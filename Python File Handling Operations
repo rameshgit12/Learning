@@ -1,0 +1,516 @@
+
+Python Handling Files:
+
+
+
+Python Read Files:
+
+
+
+demofile.txt
+
+
+
+Hello! Welcome to demofile.txt
+This file is for testing purposes.
+Good Luck!
+
+
+
+f = open("demofile.txt", "r")
+print(f.read())
+
+
+
+C:\Users\My Name&gt;python demo_file_open.py
+Hello! Welcome to demofile.txt
+This file is for testing purposes.
+Good Luck!
+
+
+
+
+
+
+
+f = open("demofile.txt", "r")
+print(f.read(5))
+
+
+
+Hello
+
+
+
+
+
+
+
+Python write/create files:
+
+
+
+f = open("demofile2.txt", "a")
+f.write("Now the file has more content!")
+f.close()
+
+#open and read the file after the appending:
+f = open("demofile2.txt", "r")
+print(f.read())
+
+
+
+Hello! Welcome to demofile2.txt
+This file is for testing purposes.
+Good Luck!Now the file has more content!
+
+
+
+f = open("demofile3.txt", "w")
+f.write("Woops! I have deleted the content!")
+f.close()
+
+#open and read the file after the appending:
+f = open("demofile3.txt", "r")
+print(f.read())
+
+
+
+Woops! I have deleted the content!
+
+
+
+
+
+
+
+f = open("myfile.txt", "x")
+
+
+
+
+
+f = open("myfile.txt", "w")
+
+
+
+Python Delete Files:
+
+
+
+import os
+os.remove("demofile.txt")
+
+
+
+
+
+
+import os
+if os.path.exists("demofile.txt"):
+  os.remove("demofile.txt")
+else:
+  print("The file does not exist")
+
+
+
+
+
+import os
+os.rmdir("myfolder")
+
+
+
+
+
+Advanced ile Method Python Operations:
+
+
+close() Closes the file
+
+
+f = open("demofile.txt", "r")
+
+
+print(f.read())
+
+
+f.close()
+
+
+
+
+
+I love you God
+
+
+I really love you
+
+
+fileno() Returns a number that represents the stream, from the operating system's perspective
+
+
+f = open("demofile.txt", "r")
+
+
+print(f.fileno())
+
+
+5
+
+
+flush() Flushes the internal buffer
+
+
+f = open("myfile.txt", "a")
+
+
+f.write("Now the file has one more line!")
+
+
+f.flush()
+
+
+f.write("...and another one!")
+
+
+
+
+
+Now the file has one more line!
+
+
+
+
+
+isatty() Returns whether the file stream is interactive or not
+
+
+f = open("demofile.txt", "r")
+print(f.isatty())
+
+
+True
+
+
+
+
+
+read() Returns the file content
+
+
+f = open("demofile.txt", "r")
+
+
+print(f.read())
+
+
+
+
+
+I love you God
+
+
+I really love you
+
+
+
+
+
+f = open("demofile.txt", "r")
+
+
+print(f.read(33))
+
+
+
+
+
+I love you suhirtha
+
+
+I really love
+
+
+
+
+
+readable() Returns whether the file stream can be read or not
+
+
+f = open("demofile.txt", "r")
+
+
+print(f.readable())
+
+
+
+
+
+True
+
+
+
+
+
+
+
+
+readline() Returns one line from the file
+
+
+f = open("demofile.txt", "r")
+
+
+print(f.readline())
+
+
+
+
+
+I love you suhirtha
+
+
+f = open("demofile.txt", "r")
+
+
+print(f.readline())
+
+
+print(f.readline())
+
+
+I love you suhirtha
+
+
+
+
+
+I really love you
+
+
+f = open("demofile.txt", "r")
+
+
+print(f.readline(5))
+
+
+I lov
+
+
+
+
+
+readlines() Returns a list of lines from the file
+
+
+f = open("demofile.txt", "r")
+
+
+print(f.readlines())
+
+
+['I love you suhirtha\n', 'I really love you']
+
+
+
+
+
+seek() Change the file position
+
+
+
+
+
+f = open("demofile.txt", "r")
+
+
+f.seek(4)
+
+
+print(f.readline())
+
+
+
+
+
+ve you suhirtha
+
+
+
+
+
+seekable() Returns whether the file allows us to change the file position
+
+
+f = open("demofile.txt", "r")
+
+
+print(f.seekable())
+
+
+
+
+
+True
+
+
+tell() Returns the current file position
+
+
+f = open("demofile.txt", "r")
+
+
+print(f.tell())
+
+
+0
+
+
+f = open("demofile.txt", "r")
+
+
+print(f.readline())
+
+
+print(f.tell())
+
+
+I love you suhirtha
+
+
+
+
+
+20
+
+
+
+
+
+truncate() Resizes the file to a specified size
+
+
+f = open("demofile2.txt", "a")
+
+
+f.truncate(20)
+
+
+f.close()
+
+
+
+
+
+#open and read the file after the truncate:
+
+
+f = open("demofile2.txt", "r")
+
+
+print(f.read())
+
+
+
+
+
+writeable() Returns whether the file can be written to or not
+
+
+f = open("demofile.txt", "a")
+
+
+print(f.writable())
+
+
+True
+
+
+
+
+
+write() Writes the specified string to the file
+
+
+
+
+
+f = open("demofile2.txt", "a")
+
+
+f.write("See you soon!")
+
+
+f.close()
+
+
+
+
+
+#open and read the file after the appending:
+
+
+f = open("demofile2.txt", "r")
+
+
+print(f.read())
+
+
+
+
+
+See you soon!
+
+
+
+
+
+
+
+
+writelines() Writes a list of strings to the file
+
+
+f = open("demofile3.txt", "a")
+
+
+f.writelines(["See you soon!", "\nOver and out."])
+
+
+f.close()
+
+
+
+
+
+#open and read the file after the appending:
+
+
+f = open("demofile3.txt", "r")
+
+
+print(f.read())
+
+
+
+
+
+See you soon!Over and out
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
