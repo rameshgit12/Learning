@@ -1,0 +1,298 @@
+AWS
+
+----------
+
+many services
+
+
+
+storage service---s3(simple storage service)(low cost storage service)
+
+
+
+s3 is distributed ,fault tolerant (replicated) storage system
+
+
+
+HDFS--&gt;file system
+
+data is stored in s3 in buckets(object)
+
+bucket--&gt;directories/files
+
+
+
+compute services:
+
+-----------------
+
+spark,hadoop----&gt;EC2(Elastic compute cloud),EMR(Elastic Map reduce)
+
+
+
+EC2--&gt;an instance is a node with an operating system(linux,windows,macos)
+
+with some configuration
+
+
+
+generated key pair(private key and public key)--&gt;private key will be with us and aws instance uses public keys.
+
+
+
+private key     and     public key
+
+
+
+SSH-22
+
+
+
+machine                  EC2 instance
+
+SSH protocol             public key
+
+(22)
+
+private key(.pem)
+
+
+
+
+
+Every instance will have an internal ip and external ip
+
+tool--&gt;Putty
+
+putty needs hostname(ip address) and .ppk file to connect to a remote instance through SSH
+
+
+
+1.we can generage ..pk file from .pem file using puttygen
+
+2.use this .ppk file with putty to connect to remote instance
+
+
+
+-------------------------------------------------------------
+
+EC2 instance ---&gt;Ubuntu 16.04,python 3.5.2
+
+instance with hadoop,spark---&gt;EMR
+
+--------------------------------------------------------------
+
+
+
+in order to access any AWS account, we need to provide security credentials
+
+1.access key
+
+2.secret key
+
+2 types of users
+
+1.Admin(full access to all AWS)
+
+2.IAM(identity and access management) users(restricted privileges)
+
+
+
+sc._jsc.hadoopConfiguration().set('fs.s3a.access.key',' ')
+
+sc._jsc.hadoopConfiguration().set('fs.s3a.secret.key',' ')
+
+
+
+df1=sqlContext.read.format('json').load('s3a://pysparkinput/world_bank_json.txt')
+
+
+
+df.show(5)
+
+
+
+df2.erite.format('parquet').partitionBy('date').save("s3a://pysparkoutput/dfout/')
+
+
+
+spark app--&gt;read and write from s3
+
+
+
+copy the hadoop common
+
+org.apache.hadoop:hadoop-common:2.6.3
+
+
+
+hadoop aws library
+
+org.apache.hadoop:hadoop-aws:2.6.3
+
+
+
+.config('spark.jars.packages','org.apache.hadoop:hadoop-aws:2.6.3')
+
+
+
+tools that can be used to interact with AWS services
+
+Accessing EC2 instance--&gt;
+
+we can use spark to read and write from AWS S3
+
+
+
+a python package to interact with AWS services(including s3) programitically is "boto3"
+
+a python package interact with AWS service(including s3) via a command line is "awscli"
+
+access key and secret key
+
+
+
+boto ---&gt;python package to interact with s3
+
+
+
+cli tool--&gt;awscli---&gt;all the services of amazon
+
+
+
+pip install boto3
+
+
+import boto3
+
+#to interact with s3, we need credentials (Access key and Secret key)
+
+
+Users:
+
+1.root(Admin)
+
+2.IAM(restrict previleges)
+
+
+
+a user will have credentials(access keys and secret key)
+
+
+
+s3client=boto3.resource('s3')  #creates a client
+
+
+
+#Accessing the buckets
+
+buckets=s3client.buckets.all()
+
+print(buckets)
+
+for bucket in buckets:
+
+  print(bucket.name)
+
+
+
+1.setting up an environment variables
+
+2.under the current user...create a folder called a .aws/credentials or config(.ini)
+
+
+
+aws_access_key_id=
+
+aws_secret_access=
+
+
+
+#creating a buckets
+
+s3client.create_bucket(Bucket='boto3bucket',location)
+
+
+
+#accessing the bucket
+
+readbucket=s3client.Bucket('pysparkinput')
+
+bucketlist=readbucket.objects.all()
+
+for object in bucketlist:
+
+   print(object.key)
+
+
+
+#Command line --CMD prompt
+
+pip install awscli
+
+&gt;aws
+
+
+
+&gt;aws s3 ls
+
+
+
+&gt;aws s3 ls pysparkinput
+
+
+
+&gt;aws s3 rm  s3://pysparkinput/xxx
+
+
+
+&gt;aws configure
+
+
+
+&gt;aws s3 cp c://sample  s3://pysparkinput
+
+
+
+performance tuning---&gt;persistance,checkpointing,memory management(executors),shuffling behaviour,
+
+
+
+static and dynamic
+
+
+
+executors memory is 5G
+
+
+
+memory--&gt;storage and processing...
+
+
+
+5GB--&gt;100%
+
+2.5GB--&gt;50% storage
+
+2.5GB--&gt;50% processing
+
+
+
+dynamic---&gt;any fractions
+
+5GB--&gt;dynamically
+
+auto scaling--&gt;5 executors--&gt;
+
+
+
+serializer--&gt;java serializer,kyro serializer
+
+
+
+spark streaming
+
+directory--&gt;file
+
+
+
