@@ -1,0 +1,172 @@
+Pyspark Spark Submit operations
+
+Cluster:
+
+YARN----&gt;distributed computing cluster(Hadoop)
+
+Standalone
+
+Mesos
+
+Kubernetes-Docker
+
+YARN--&gt;HADOOP
+
+Hadoop(HDFS and YARN)--&gt;master slave architecture
+
+
+
+       Master                    Slave
+
+HDFS---&gt;NameNode,SNN            Datanode---&gt;http portno(NN) :9870  RPC portno(NN)--&gt;8020/9000
+
+YARN-&gt;Resource Manager          Node Manager---&gt;http portno(RM):8088 RPC portno(RM)---&gt;8032
+
+
+
+m1     w1     w2    w3     w4
+
+NN     DN     DN    DN     DN
+
+SNN    NM     NM    NM     NM
+
+RM
+
+------------------------------------
+
+metadata b1    b2   b3     b4---------&gt;filex
+
+                               p1    p2   p3     p4                            --&gt;r1=spark.sparkContext.te("")
+
+
+
+                              8G    8G   8G     8G
+
+                               4c    4c   4c     4c
+
+Application submission:
+
+---------------------------
+
+spark-submit---&gt;script to submit a spark application to a cluster(irrespective of the cluster,language)
+
+spark application
+
+-----------------
+
+1 Driver and Executor(s) per application
+
+Executor---&gt;logical unit created out of certain amount of memory and certain number of cores
+
+Driver---&gt;def is same as that of an executor
+
+
+
+Executor--&gt;to process /compute a partition
+
+Driver--&gt;to take care of all the executor, it doesnot involve the processing the data
+
+
+from pyspark import SparkConf,SparkContext
+
+import sys
+
+
+
+if __name__=='__main__':
+
+conf=SparkConf()
+
+sc=SparkContext('local/yarn-client','wcapp',conf=conf)
+
+r1=sc.textFile(sys.argv[1])
+
+r2=r1.flatMap(lambda x:x.split(' ')).map(lambda x:(x,1)).reduceByKey(lambda x,y:x+y)
+
+r2.coalesce(1).saveAsTextFile('sys.argv[2]')
+
+sc.stop()
+
+
+
+python wc.py
+
+spark-submit  "configuration options" programfilepath inputfilepath  outputfilepath
+
+spark-submit  wc.py   file:///ip1  ip2  
+
+
+
+spark 2 sparksession
+
+spark1  sparkContext
+
+spark application can run in local(only one node)/cluster(YARN)
+
+local--only 1 machine
+
+cluster --multiple nodes
+
+
+
+1.how to configure the master(local/cluster(YARN))
+
+while creating spark driver--&gt;master(local/yarn)
+
+spark-submitt --help
+
+
+In YARN cluster--&gt;default values of executer and driver--
+
+         Ex/driver--&gt;default memory 1G,default cores 1
+
+
+
+App1--&gt;1G,1c
+
+App2 --&gt;2G,2c
+
+
+
+inorder to allow multiple application to run on a cluster,
+
+The application must be submitted by FAIR scheduler
+
+
+
+spark support 2 scheduler--&gt;FIFO/FAIR
+
+FIFO-only 1 app, can run at a time(default mode)
+
+FAIR--&gt;multiple apps
+
+
+
+spark-submit  --executer-cores 2 --executer-memory 2G  --conf "spark.
+
+schduler.mode"="FAIR" --driver-cores 2 --driver-memory 2G wc.py ip1 ip2
+
+
+
+2.where driver will be launched
+
+  Executor always be launched in worker nodes only
+
+  Driver can be launched in worker/out of worker
+
+
+
+  if driver has to be launched in a worker node...deploy the app in cluster mode
+
+  if driver out of worker nodes ...deploy the app in client node
+
+ Edge Node(Gateway node)--internal,external network
+
+we submit application from edge node
+
+    if we want to run driver on edge node..deploy in client node(default)
+
+                                        on one of the workers..deploy in cluster mode
+
+
+
