@@ -1,0 +1,16 @@
+run mysql…
+
+
+
+sudo MySQL
+
+
+
+drop database metastore
+
+
+ $ schematool -dbType mysql -initSchema 
+
+
+
+ $ schematool -dbType mysql -info
