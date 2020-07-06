@@ -1,0 +1,805 @@
+List/Array Methods: 
+
+
+
+append() Adds an element at the end of the list 
+
+fruits = ['apple', 'banana', 'cherry'] 
+
+fruits.append("orange")  
+
+print(fruits) 
+
+['apple', 'banana', 'cherry', 'orange'] 
+
+a = ["apple", "banana", "cherry"] 
+
+b = ["Ford", "BMW", "Volvo"] 
+
+a.append(b)  
+
+print(a) 
+
+['apple', 'banana', 'cherry', ['Ford', 'BMW', 'Volvo']] 
+
+clear() Removes all the elements from the list 
+
+fruits = ['apple', 'banana', 'cherry', 'orange'] 
+
+fruits.clear()  
+
+print(fruits) 
+
+[] 
+
+copy() Returns a copy of the list 
+
+fruits = ['apple', 'banana', 'cherry', 'orange'] 
+
+x = fruits.copy()  
+
+print(x) 
+
+['apple', 'banana', 'cherry', 'orange'] 
+
+count() Returns the number of elements with the specified value 
+
+fruits = ['apple', 'banana', 'cherry'] 
+
+x = fruits.count("cherry")  
+
+print(x) 
+
+1 
+
+points = [1, 4, 2, 9, 7, 8, 9, 3, 1] 
+
+x = points.count(9)  
+
+print(x) 
+
+2 
+
+extend() Add the elements of a list (or any iterable), to the end of the current list 
+
+fruits = ['apple', 'banana', 'cherry'] 
+
+cars = ['Ford', 'BMW', 'Volvo'] 
+
+fruits.extend(cars)  
+
+print(fruits) 
+
+['apple', 'banana', 'cherry', 'Ford', 'BMW', 'Volvo'] 
+
+fruits = ['apple', 'banana', 'cherry'] 
+
+points = (1, 4, 5, 9) 
+
+fruits.extend(points)  
+
+print(fruits) 
+
+['apple', 'banana', 'cherry', 1, 4, 5, 9] 
+
+index() Returns the index of the first element with the specified value 
+
+fruits = ['apple', 'banana', 'cherry'] 
+
+x = fruits.index("cherry")  
+
+print(x) 
+
+2 
+
+insert() Adds an element at the specified position 
+
+fruits = ['apple', 'banana', 'cherry'] 
+
+fruits.insert(1, "orange") 
+
+print(fruits) 
+
+['apple', 'orange', 'banana', 'cherry'] 
+
+pop() Removes the element at the specified position 
+
+fruits = ['apple', 'banana', 'cherry'] 
+
+fruits.pop(1)  
+
+print(fruits) 
+
+['apple', 'cherry'] 
+
+remove() Removes the first item with the specified value 
+
+fruits = ['apple', 'banana', 'cherry'] 
+
+fruits.remove("banana")  
+
+print(fruits) 
+
+['apple', 'cherry'] 
+
+reverse() Reverses the order of the list 
+
+fruits = ['apple', 'banana', 'cherry'] 
+
+fruits.reverse()  
+
+print(fruits) 
+
+['cherry', 'banana', 'apple'] 
+
+sort() Sorts the list 
+
+cars = ['Ford', 'BMW', 'Volvo'] 
+
+cars.sort() 
+
+['cherry', 'banana', 'apple'] 
+
+cars = ['Ford', 'BMW', 'Volvo'] 
+
+cars.sort(reverse=True)  
+
+print(cars) 
+
+['Volvo', 'Ford', 'BMW'] 
+
+def myFunc(e): 
+
+  return len(e) 
+
+cars = ['Ford', 'Mitsubishi', 'BMW', 'VW'] 
+
+cars.sort(key=myFunc) 
+
+print(cars) 
+
+['VW', 'BMW', 'Ford', 'Mitsubishi'] 
+
+def myFunc(e): 
+
+  return e['year'] 
+
+cars = [ 
+
+  {'car': 'Ford', 'year': 2005}, 
+
+  {'car': 'Mitsubishi', 'year': 2000}, 
+
+  {'car': 'BMW', 'year': 2019}, 
+
+  {'car': 'VW', 'year': 2011} 
+
+] 
+
+cars.sort(key=myFunc) 
+
+print(cars) 
+
+[{'car': 'Mitsubishi', 'year': 2000}, {'car': 'Ford', 'year': 2005}, {'car': 'VW', 'year': 2011}, {'car': 'BMW', 'year': 2019}] 
+
+def myFunc(e): 
+
+  return len(e) 
+
+cars = ['Ford', 'Mitsubishi', 'BMW', 'VW'] 
+
+cars.sort(reverse=True, key=myFunc) 
+
+print(cars) 
+
+['Mitsubishi', 'Ford', 'BMW', 'VW'] 
+
+
+
+Dictionary Operations Examples 
+
+clear() Removes all the elements from the dictionary 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+car.clear() 
+
+print(car) 
+
+{} 
+
+copy()  Returns a copy of the dictionary 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+x = car.copy() 
+
+print(x) 
+
+{'brand': 'Ford', 'model': 'Mustang', 'year': 1964} 
+
+fromkeys() Returns a dictionary with the specified keys and values 
+
+x = ('key1', 'key2', 'key3') 
+
+y = 0 
+
+thisdict = dict.fromkeys(x, y) 
+
+print(thisdict) 
+
+{'key1': 0, 'key2': 0, 'key3': 0} 
+
+x = ('key1', 'key2', 'key3') 
+
+thisdict = dict.fromkeys(x) 
+
+print(thisdict) 
+
+{'key1': None, 'key2': None, 'key3': None} 
+
+get()  Returns the value of the specified key 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+x = car.get("model") 
+
+print(x) 
+
+Mustang 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+x = car.get("price", 15000) 
+
+print(x) 
+
+15000 
+
+
+
+items() Returns a list containing a tuple for each key value pair 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+x = car.items() 
+
+print(x) 
+
+dict_items([('brand', 'Ford'), ('model', 'Mustang'), ('year', 1964)]) 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+x = car.items() 
+
+car["year"] = 2018 
+
+print(x) 
+
+dict_items([('brand', 'Ford'), ('model', 'Mustang'), ('year', 2018)]) 
+
+keys() Returns a list containing the dictionary's keys 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+x = car.keys() 
+
+print(x) 
+
+dict_keys(['brand', 'model', 'year']) 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+x = car.keys() 
+
+car["color"] = "white" 
+
+print(x) 
+
+dict_keys(['brand', 'model', 'year', 'color']) 
+
+pop() Removes the element with the specified key 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+car.pop("model") 
+
+print(car) 
+
+{'brand': 'Ford', 'year': 1964} 
+
+car = {   "brand": "Ford",   "model": "Mustang",   "year": 1964 }  x = car.pop("model")  print(x) 
+
+Mustang 
+
+popitem() Removes the last inserted key-value pair 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+car.popitem() 
+
+print(car) 
+
+{'brand': 'Ford', 'model': 'Mustang'} 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+x = car.popitem() 
+
+print(x) 
+
+('year', 1964) 
+
+setdefault() Returns the value of the specified key. If the key does not exist: insert the key, with the specified value 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+x = car.setdefault("model", "Bronco") 
+
+print(x) 
+
+Mustang 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+x = car.setdefault("color", "white") 
+
+print(x) 
+
+white 
+
+update() Updates the dictionary with the specified key-value pairs 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+car.update({"color": "White"}) 
+
+print(car) 
+
+{'brand': 'Ford', 'model': 'Mustang', 'year': 1964, 'color': 'White'} 
+
+values() Returns a list of all the values in the dictionary 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+dict_values(['Ford', 'Mustang', 1964]) 
+
+x = car.values() 
+
+print(x) 
+
+dict_values(['Ford', 'Mustang', 1964]) 
+
+car = { 
+
+  "brand": "Ford", 
+
+  "model": "Mustang", 
+
+  "year": 1964 
+
+} 
+
+x = car.values() 
+
+car["year"] = 2018 
+
+print(x) 
+
+dict_values(['Ford', 'Mustang', 2018]) 
+
+
+
+Tuple operation Examples 
+
+count() Returns the number of times a specified value occurs in a tuple 
+
+thistuple = (1, 3, 7, 8, 7, 5, 4, 6, 8, 5) 
+
+x = thistuple.count(5) 
+
+print(x) 
+
+2 
+
+index() Searches the tuple for a specified value and returns the position of where it was found 
+
+thistuple = (1, 3, 7, 8, 7, 5, 4, 6, 8, 5) 
+
+x = thistuple.index(8) 
+
+print(x) 
+
+3 
+
+
+
+
+
+Set Operation Examples: 
+
+add() Adds an element to the set 
+
+fruits = {"apple", "banana", "cherry"} 
+
+fruits.add("orange")  
+
+print(fruits) 
+
+{'apple', 'cherry', 'banana', 'orange'} 
+
+fruits = {"apple", "banana", "cherry"} 
+
+fruits.add("apple") 
+
+print(fruits) 
+
+{'banana', 'cherry', 'apple'} 
+
+clear() Removes all the elements from the set 
+
+fruits = {"apple", "banana", "cherry"} 
+
+fruits.clear() 
+
+print(fruits) 
+
+set() 
+
+copy() Returns a copy of the set 
+
+fruits = {"apple", "banana", "cherry"} 
+
+x = fruits.copy() 
+
+print(x) 
+
+{'banana', 'apple', 'cherry'} 
+
+difference() Returns a set containing the difference between two or more sets 
+
+x = {"apple", "banana", "cherry"} 
+
+y = {"google", "microsoft", "apple"} 
+
+z = x.difference(y)  
+
+print(z) 
+
+{'banana', 'cherry'} 
+
+x = {"apple", "banana", "cherry"} 
+
+y = {"google", "microsoft", "apple"} 
+
+z = y.difference(x)  
+
+print(z) 
+
+{'google', 'microsoft'} 
+
+difference_update() Removes the items in this set that are also included in another, specified set 
+
+x = {"apple", "banana", "cherry"} 
+
+y = {"google", "microsoft", "apple"} 
+
+x.difference_update(y)  
+
+print(x) 
+
+{'cherry', 'banana'} 
+
+discard() Remove the specified item 
+
+fruits = {"apple", "banana", "cherry"} 
+
+fruits.discard("banana")  
+
+print(fruits) 
+
+{'apple', 'cherry'} 
+
+intersection() Returns a set, that is the intersection of two other sets 
+
+x = {"apple", "banana", "cherry"} 
+
+y = {"google", "microsoft", "apple"} 
+
+z = x.intersection(y)  
+
+print(z) 
+
+{'apple'} 
+
+x = {"a", "b", "c"} 
+
+y = {"c", "d", "e"} 
+
+z = {"f", "g", "c"} 
+
+result = x.intersection(y, z) 
+
+print(result) 
+
+{'c'} 
+
+intersection_update() Removes the items in this set that are not present in other, specified set(s) 
+
+x = {"apple", "banana", "cherry"} 
+
+y = {"google", "microsoft", "apple"} 
+
+x.intersection_update(y)  
+
+print(x) 
+
+{'apple'} 
+
+isdisjoint() Returns whether two sets have a intersection or not 
+
+x = {"apple", "banana", "cherry"} 
+
+y = {"google", "microsoft", "facebook"} 
+
+z = x.isdisjoint(y)  
+
+print(z) 
+
+True 
+
+x = {"apple", "banana", "cherry"} 
+
+y = {"google", "microsoft", "apple"} 
+
+z = x.isdisjoint(y)  
+
+print(z) 
+
+False 
+
+issubset() Returns whether another set contains this set or not 
+
+x = {"a", "b", "c"} 
+
+y = {"f", "e", "d", "c", "b", "a"} 
+
+z = x.issubset(y)  
+
+print(z) 
+
+True 
+
+x = {"a", "b", "c"} 
+
+y = {"f", "e", "d", "c", "b"} 
+
+z = x.issubset(y)  
+
+print(z) 
+
+False 
+
+issuperset() Returns whether this set contains another set or not 
+
+x = {"f", "e", "d", "c", "b", "a"} 
+
+y = {"a", "b", "c"} 
+
+z = x.issuperset(y)  
+
+print(z) 
+
+True 
+
+x = {"f", "e", "d", "c", "b"} 
+
+y = {"a", "b", "c"} 
+
+z = x.issuperset(y)  
+
+print(z) 
+
+False 
+
+pop() Removes an element from the set 
+
+fruits = {"apple", "banana", "cherry"} 
+
+fruits.pop()  
+
+print(fruits) 
+
+{'apple', 'banana'} 
+
+remove() Removes the specified element 
+
+fruits = {"apple", "banana", "cherry"} 
+
+fruits.remove("banana")  
+
+print(fruits) 
+
+{'apple', 'cherry'} 
+
+symmetric_difference() Returns a set with the symmetric differences of two sets 
+
+x = {"apple", "banana", "cherry"} 
+
+y = {"google", "microsoft", "apple"} 
+
+z = x.symmetric_difference(y)  
+
+print(z) 
+
+{'cherry', 'banana', 'google', 'microsoft'} 
+
+symmetric_difference_update() inserts the symmetric differences from this set and another 
+
+x = {"apple", "banana", "cherry"} 
+
+y = {"google", "microsoft", "apple"} 
+
+x.symmetric_difference_update(y)  
+
+print(x) 
+
+{'google', 'cherry', 'banana', 'microsoft'} 
+
+
+
+union() Return a set containing the union of sets 
+
+x = {"apple", "banana", "cherry"} 
+
+y = {"google", "microsoft", "apple"} 
+
+z = x.union(y)  
+
+print(z) 
+
+{'apple', 'microsoft', 'banana', 'cherry', 'google'} 
+
+x = {"a", "b", "c"} 
+
+y = {"f", "d", "a"} 
+
+z = {"c", "d", "e"} 
+
+result = x.union(y, z)  
+
+print(result) 
+
+{'a', 'f', 'e', 'b', 'c', 'd'} 
+
+update() Update the set with the union of this set and others 
+
+x = {"apple", "banana", "cherry"} 
+
+y = {"google", "microsoft", "apple"} 
+
+x.update(y)  
+
+print(x) 
+
+{'banana', 'google', 'apple', 'cherry', 'microsoft'} 
