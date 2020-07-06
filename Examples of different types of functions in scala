@@ -1,0 +1,1361 @@
+Functions:
+
+
+
+1. How to define and use a function which has no parameters and has a return type
+
+scala&gt; def favoriteDonut(): String = {
+
+     |   "Glazed Donut"
+
+     | }
+
+favoriteDonut: ()String
+
+
+
+scala&gt;
+
+scala&gt; val myFavoriteDonut = favoriteDonut()
+
+myFavoriteDonut: String = Glazed Donut
+
+
+
+scala&gt; println(s"My favorite donut is $myFavoriteDonut")
+
+My favorite donut is Glazed Donut
+
+
+
+2. How to define and use a function with no parenthesis
+
+
+scala&gt; def leastFavoriteDonut = "Plain Donut"
+
+leastFavoriteDonut: String
+
+
+
+scala&gt; println(s"My least favorite donut is $leastFavoriteDonut")
+
+My least favorite donut is Plain Donut
+
+
+
+3. How to define and use a function with no return type
+
+def printDonutSalesReport(): Unit = {
+
+  // lookup sales data in database and create some report
+
+  println("Printing donut sales report... done!")
+
+}
+
+printDonutSalesReport()
+
+
+
+1. How to define function with parameters
+
+scala&gt; def calculateDonutCost(donutName: String, quantity: Int): Double = {
+
+     |   println(s"Calculating cost for $donutName, quantity = $quantity")
+
+     |
+
+     |   // make some calculations ...
+
+     |   2.50 * quantity
+
+     | }
+
+calculateDonutCost: (donutName: String, quantity: Int)Double
+
+
+
+scala&gt; val totalCost = calculateDonutCost("Glazed Donut", 5)
+
+Calculating cost for Glazed Donut, quantity = 5
+
+totalCost: Double = 12.5
+
+
+
+scala&gt; println(s"Total cost of donuts = $totalCost")
+
+Total cost of donuts = 12.5
+
+
+
+3. How to add default values to function parameters
+
+scala&gt; def calculateDonutCost2(donutName: String, quantity: Int, couponCode: String = "NO CODE"): Double = {
+
+     |   println(s"Calculating cost for $donutName, quantity = $quantity, couponCode = $couponCode")
+
+     | // make some calculations ...
+
+     | 2.50 * quantity
+
+     | }
+
+calculateDonutCost2: (donutName: String, quantity: Int, couponCode: String)Double
+
+
+
+
+
+scala&gt; val totalCostWithDiscount = calculateDonutCost2("Glazed Donut", 4, "COUPON_12345")
+
+Calculating cost for Glazed Donut, quantity = 4, couponCode = COUPON_12345
+
+totalCostWithDiscount: Double = 10.0
+
+
+
+
+
+scala&gt; val totalCostWithDiscount = calculateDonutCost2("Glazed Donut", 4)
+
+Calculating cost for Glazed Donut, quantity = 4, couponCode = NO CODE
+
+totalCostWithDiscount: Double = 10.0
+
+
+
+
+
+How to define an Option in a function parameter
+
+scala&gt; def calculateDonutCost(donutName: String, quantity: Int, couponCode: Option[String]): Double = {
+
+     |   println(s"Calculating cost for $donutName, quantity = $quantity")
+
+     |
+
+     |   couponCode match {
+
+     |     case Some(coupon) =&gt;
+
+     |     val discount = 0.1 // Let's simulate a 10% discount
+
+     |     val totalCost = 2.50 * quantity * (1 - discount)
+
+     |     totalCost
+
+     |
+
+     |     case None =&gt; 2.50 * quantity
+
+     |   }
+
+     | }
+
+calculateDonutCost: (donutName: String, quantity: Int, couponCode: Option[String])Double
+
+scala&gt; println(s"""Total cost = ${calculateDonutCost("Glazed Donut", 5, None)}""")
+
+Calculating cost for Glazed Donut, quantity = 5
+
+Total cost = 12.5
+
+
+
+
+
+How to assign a default value to an Option parameter
+
+scala&gt; def calculateDonutCostWithDefaultOptionValue(donutName: String, quantity: Int, couponCode: Option[String] = None): Double = {
+
+     |   println(s"Calculating cost for $donutName, quantity = $quantity")
+
+     |
+
+     |   couponCode match{
+
+     |     case Some(coupon) =&gt;
+
+     |       val discount = 0.1 // Let's simulate a 10% discount
+
+     |       val totalCost = 2.50 * quantity * (1 - discount)
+
+     |       totalCost
+
+     |
+
+     |     case _ =&gt; 2.50 * quantity
+
+     |   }
+
+     | }
+
+calculateDonutCostWithDefaultOptionValue: (donutName: String, quantity: Int, couponCode: Option[String])Double
+
+
+
+scala&gt; println(s"""Total cost = ${calculateDonutCostWithDefaultOptionValue("Glazed Donut", 5)}""")
+
+Calculating cost for Glazed Donut, quantity = 5
+
+Total cost = 12.5
+
+
+
+
+
+scala&gt; println(s"""Total cost with discount = ${calculateDonutCostWithDefaultOptionValue("Glazed Donut", 5, Some("COUPON_1234"))}""")
+
+Calculating cost for Glazed Donut, quantity = 5
+
+Total cost with discount = 11.25
+
+
+
+How to use the map function to extract a valid Option value
+
+
+scala&gt; val favoriteDonut: Option[String] = Some("Glazed Donut")
+
+favoriteDonut: Option[String] = Some(Glazed Donut)
+
+
+
+scala&gt; favoriteDonut.map(d =&gt; println(s"Favorite donut = $d"))
+
+Favorite donut = Glazed Donut
+
+res32: Option[Unit] = Some(())
+
+
+
+scala&gt;
+
+scala&gt; val leastFavoriteDonut: Option[String] = None
+
+leastFavoriteDonut: Option[String] = None
+
+
+
+scala&gt; leastFavoriteDonut.map(d =&gt; println(s"Least Favorite donut = $d"))
+
+res33: Option[Unit] = None
+
+
+
+. How to define a function which returns an Option of type String
+
+
+scala&gt; def dailyCouponCode(): Option[String] = {
+
+     |   // look up in database if we will provide our customers with a coupon today
+
+     |   val couponFromDb = "COUPON_1234"
+
+     |   Option(couponFromDb).filter(_.nonEmpty)
+
+     | }
+
+dailyCouponCode: ()Option[String]
+
+
+
+scala&gt; val todayCoupon: Option[String] = dailyCouponCode()
+
+todayCoupon: Option[String] = Some(COUPON_1234)
+
+
+
+scala&gt; println(s"Today's coupon code = ${todayCoupon.getOrElse("No Coupon's Today")}")
+
+Today's coupon code = COUPON_1234
+
+
+
+ How to call a function with Option return type using pattern matching
+
+
+
+ scala&gt; dailyCouponCode() match {
+
+     |   case Some(couponCode) =&gt; println(s"Today's coupon code = $couponCode")
+
+     |   case None =&gt; println(s"Sorry there is no coupon code today!")
+
+     | }
+
+Today's coupon code = COUPON_1234
+
+
+
+ How to call function with Option return type using map() function
+
+scala&gt; dailyCouponCode().map(couponCode =&gt; println(s"Today's coupon code = $couponCode"))
+
+Today's coupon code = COUPON_1234
+
+res62: Option[Unit] = Some(())
+
+Review function calculateDonutCost() function from previous tutorial
+
+
+
+scala&gt; def calculateDonutCost(donutName: String, quantity: Int, couponCode: Option[String]): Double = {
+
+     |   println(s"Calculating cost for $donutName, quantity = $quantity")
+
+     |
+
+     |   couponCode match {
+
+     |     case Some(coupon) =&gt;
+
+     |       val discount = 0.1 // Let's simulate a 10% discount
+
+     |       val totalCost = 2.50 * quantity * (1 - discount)
+
+     |       totalCost
+
+     |
+
+     |     case None =&gt; 2.50 * quantity
+
+     |   }
+
+     | }
+
+calculateDonutCost: (donutName: String, quantity: Int, couponCode: Option[String])Double
+
+
+
+
+
+scala&gt; println(s"""Total cost with daily coupon code = ${calculateDonutCost("Glazed Donut", 5, dailyCouponCode())}""")
+
+Calculating cost for Glazed Donut, quantity = 5
+
+Total cost with daily coupon code = 11.25
+
+
+
+scala&gt; val todayCouponUsingFold: String = dailyCouponCode().fold("No Coupon Available")(couponCode =&gt; couponCode)
+
+todayCouponUsingFold: String = COUPON_1234
+
+
+
+
+
+scala&gt; println(s"Today's coupon code = $todayCouponUsingFold")
+
+Today's coupon code = COUPON_1234
+
+
+
+
+
+How to define a function which has an implicit parameter
+
+cala&gt; def totalCost(donutType: String, quantity: Int)(implicit discount: Double): Double = {
+
+     |   println(s"Calculating the price for $quantity $donutType")
+
+     |   val totalCost = 2.50 * quantity * (1 - discount)
+
+     |   totalCost
+
+     | }
+
+totalCost: (donutType: String, quantity: Int)(implicit discount: Double)Double
+
+
+
+scala&gt; implicit val discount: Double = 0.1
+
+discount: Double = 0.1
+
+
+
+scala&gt; println(s"All customer will receive a ${discount * 100}% discount")
+
+All customer will receive a 10.0% discount
+
+
+
+scala&gt; println(s"""Total cost with discount of 5 Glazed Donuts = ${totalCost("Glazed Donut", 5)}""")
+
+Calculating the price for 5 Glazed Donut
+
+Total cost with discount of 5 Glazed Donuts = 11.25
+
+ How to define a function which takes multiple implicit parameters
+
+
+
+ scala&gt; def totalCost2(donutType: String, quantity: Int)(implicit discount: Double, storeName: String): Double = {
+
+     |   println(s"[$storeName] Calculating the price for $quantity $donutType")
+
+     |   val totalCost = 2.50 * quantity * (1 - discount)
+
+     |   totalCost
+
+     | }
+
+totalCost2: (donutType: String, quantity: Int)(implicit discount: Double, implicit storeName: String)Double
+
+
+
+
+
+scala&gt; implicit val storeName: String = "Tasty Donut Store"
+
+storeName: String = Tasty Donut Store
+
+
+
+scala&gt; println(s"""Total cost with discount of 5 Glazed Donuts = ${totalCost2("Glazed Donut", 5)}""")
+
+[Tasty Donut Store] Calculating the price for 5 Glazed Donut
+
+Total cost with discount of 5 Glazed Donuts = 11.25
+
+ How to manually pass-through implicit parameters
+
+
+
+
+
+ scala&gt; println(s"""Total cost with discount of 5 Glazed Donuts, manually passed-through = ${totalCost2("Glazed Donut", 5)(0.1, "Scala Donut Store")}""")
+
+[Scala Donut Store] Calculating the price for 5 Glazed Donut
+
+Total cost with discount of 5 Glazed Donuts, manually passed-through = 11.25
+
+ How to create a wrapper String class which will extend the String type
+
+
+
+
+
+ scala&gt; class DonutString(s: String) {
+
+     |
+
+     |   def isFavoriteDonut: Boolean = s == "Glazed Donut"
+
+     |
+
+     | }
+
+defined class DonutString
+
+
+
+
+
+How to create an implicit function to convert a String to the wrapper String class
+
+scala&gt; object DonutConverstions {
+
+     |   implicit def stringToDonutString(s: String) = new DonutString(s)
+
+     | }
+
+. How to define a function which takes a String parameter
+
+
+
+scala&gt; def applyDiscount(couponCode: String) {
+
+     |   println(s"Lookup percentage discount in database for $couponCode")
+
+     | }
+
+applyDiscount: (couponCode: String)Unit
+
+
+
+scala&gt; def applyDiscount(percentageDiscount: Double) {
+
+     |   println(s"$percentageDiscount discount will be applied")
+
+     | }
+
+applyDiscount: (percentageDiscount: Double)Unit
+
+
+
+scala&gt; applyDiscount("COUPON_1234")
+
+&lt;console&gt;:15: error: type mismatch;
+
+ found   : String("COUPON_1234")
+
+ required: Double
+
+       applyDiscount("COUPON_1234")
+
+                     ^
+
+scala&gt; applyDiscount(10)
+
+10.0 discount will be applied
+
+
+
+ How to define a generic typed function which will specify the type of its parameter
+
+
+
+scala&gt; def applyDiscount[T](discount: T) {
+
+     |   discount match {
+
+     |     case d: String =&gt;
+
+     |       println(s"Lookup percentage discount in database for $d")
+
+     |
+
+     |     case d: Double =&gt;
+
+     |       println(s"$d discount will be applied")
+
+     |
+
+     |     case _ =&gt;
+
+     |       println("Unsupported discount type")
+
+     |   }
+
+     | }
+
+applyDiscount: [T](discount: T)Unit
+
+
+
+scala&gt; applyDiscount[String]("COUPON_123")
+
+Lookup percentage discount in database for COUPON_123
+
+
+
+scala&gt; applyDiscount[Double](10)
+
+10.0 discount will be applied
+
+Review how to define a generic typed function which will specify the type of its parameter
+
+
+
+scala&gt; println(s"Result of applyDiscountWithReturnType with String parameter = ${applyDiscountWithReturnType[String]("COUPON_123")}")
+
+Lookup percentage discount in database for COUPON_123
+
+Result of applyDiscountWithReturnType with String parameter = List(COUPON_123)
+
+scala&gt;
+
+scala&gt; println()
+
+
+
+
+
+scala&gt; println(s"Result of applyDiscountWithReturnType with Double parameter = ${applyDiscountWithReturnType[Double](10.5)}")
+
+10.5 discount will be applied
+
+Result of applyDiscountWithReturnType with Double parameter = List(10.5)
+
+scala&gt;
+
+
+
+scala&gt; println()
+
+
+
+scala&gt; println(s"Result of applyDiscountWithReturnType with Char parameter = ${applyDiscountWithReturnType[Char]('U')}")
+
+Unsupported discount type
+
+Result of applyDiscountWithReturnType with Char parameter = List(U)
+
+
+
+How to define function which takes variable number of arguments
+
+scala&gt; def printReport(names: String*) {
+
+     | println(s"""Donut Report = ${names.mkString(" - ")}""")
+
+     | }
+
+printReport: (names: String*)Unit
+
+
+
+scala&gt; printReport("Glazed Donut", "Strawberry Donut", "Vanilla Donut")
+
+Donut Report = Glazed Donut - Strawberry Donut - Vanilla Donut
+
+
+
+scala&gt; printReport("Chocolate Donut")
+
+Donut Report = Chocolate Donut
+
+
+
+scala&gt; def printReport(names: String*) {
+
+     | println(s"""Donut Report = ${names.mkString(" - ")}""")
+
+     | }
+
+printReport: (names: String*)Unit
+
+
+
+scala&gt; val listDonuts: List[String] = List("Glazed Donut", "Strawberry Donut", "Vanilla Donut")
+
+listDonuts: List[String] = List(Glazed Donut, Strawberry Donut, Vanilla Donut)
+
+
+
+scala&gt; printReport(listDonuts)
+
+&lt;console&gt;:16: error: type mismatch;
+
+ found   : List[String]
+
+ required: String
+
+       printReport(listDonuts)
+
+
+
+                   ^
+
+scala&gt;
+
+scala&gt; printReport(listDonuts: _*)
+
+Donut Report = Glazed Donut - Strawberry Donut - Vanilla Donut
+
+
+
+How to pass a Sequence to a function with variable number of arguments
+
+scala&gt; val seqDonuts: Seq[String] = Seq("Chocolate Donut", "Plain Donut")
+
+seqDonuts: Seq[String] = List(Chocolate Donut, Plain Donut)
+
+
+
+scala&gt; printReport(listDonuts)
+
+&lt;console&gt;:16: error: type mismatch;
+
+ found   : List[String]
+
+ required: String
+
+       printReport(listDonuts)
+
+                   ^
+
+scala&gt; printReport(seqDonuts: _*)
+
+Donut Report = Chocolate Donut - Plain Donut
+
+Functions As Symbols
+
+scala&gt; class DonutCostCalculator {
+
+     | println("hello")
+
+     | }
+
+defined class DonutCostCalculator
+
+
+
+scala&gt; val donutCostCalculator = new DonutCostCalculator()
+
+hello
+
+donutCostCalculator: DonutCostCalculator = DonutCostCalculator@370a59d4
+
+
+
+1. How to define function with curried parameter groups
+
+
+scala&gt; def totalCost(donutType: String)(quantity: Int)(discount: Double): Double = {
+
+     |   println(s"Calculating total cost for $quantity $donutType with ${discount * 100}% discount")
+
+     |   val totalCost = 2.50 * quantity
+
+     |   totalCost - (totalCost * discount)
+
+     | }
+
+totalCost: (donutType: String)(quantity: Int)(discount: Double)Double
+
+
+
+scala&gt; println(s"Total cost = ${totalCost("Glazed Donut")(10)(0.1)}")
+
+Calculating total cost for 10 Glazed Donut with 10.0% discount
+
+Total cost = 22.5
+
+
+
+3. How to create a partially applied function from a function with curried parameter groups
+
+scala&gt; def totalCost(donutType: String)(quantity: Int)(discount: Double): Double = {
+
+     |   println(s"Calculating total cost for $quantity $donutType with ${discount * 100}% discount")
+
+     |   val totalCost = 2.50 * quantity
+
+     |   totalCost - (totalCost * discount)
+
+     | }
+
+totalCost: (donutType: String)(quantity: Int)(discount: Double)Double
+
+
+
+scala&gt; println(s"Total cost = ${totalCost("Glazed Donut")(10)(0.1)}")
+
+Calculating total cost for 10 Glazed Donut with 10.0% discount
+
+Total cost = 22.5
+
+
+
+scala&gt; val totalCostForGlazedDonuts = totalCost("Glazed Donut") _
+
+totalCostForGlazedDonuts: Int =&gt; (Double =&gt; Double) = &lt;function1&gt;
+
+
+
+scala&gt; println(s"$totalCostForGlazedDonuts")
+
+&lt;function1&gt;
+
+
+
+scala&gt; println(s"\nTotal cost for Glazed Donuts ${totalCostForGlazedDonuts(10)(0.1)}")
+
+Calculating total cost for 10 Glazed Donut with 10.0% discount
+
+Total cost for Glazed Donuts 22.5
+
+
+
+scala&gt; def totalCost(donutType: String)(quantity: Int)(discount: Double): Double = {
+
+     |   println(s"Calculating total cost for $quantity $donutType with ${discount * 100}% discount")
+
+     |   val totalCost = 2.50 * quantity
+
+     |   totalCost - (totalCost * discount)
+
+     | }
+
+totalCost: (donutType: String)(quantity: Int)(discount: Double)Double
+
+
+
+scala&gt; def totalCostWithDiscountFunctionParameter(donutType: String)(quantity: Int)(f: Double =&gt; Double): Double = {
+
+     |   println(s"Calculating total cost for $quantity $donutType")
+
+     |   val totalCost = 2.50 * quantity
+
+     |   f(totalCost)
+
+     | }
+
+
+
+totalCostWithDiscountFunctionParameter: (donutType: String)(quantity: Int)(f: Double =&gt; Double)Double
+
+
+
+scala&gt;  val totalCostOf5Donuts = totalCostWithDiscountFunctionParameter("Glazed Donut")(5){totalCost =&gt;
+
+     |   val discount = 2 // assume you fetch discount from database
+
+     |   totalCost - discount
+
+     | }
+
+Calculating total cost for 5 Glazed Donut
+
+totalCostOf5Donuts: Double = 10.5
+
+
+
+scala&gt; println(s"Total cost of 5 Glazed Donuts with anonymous discount function = $totalCostOf5Donuts")
+
+Total cost of 5 Glazed Donuts with anonymous discount function = 10.5
+
+How to define and pass a function to a higher order function
+
+
+
+scala&gt; def applyDiscount(totalCost: Double): Double = {
+
+     |   val discount = 2 // assume you fetch discount from database
+
+     |   totalCost - discount
+
+     | }
+
+applyDiscount: (totalCost: Double)Double
+
+
+
+scala&gt; println(s"Total cost of 5 Glazed Donuts with discount function = ${totalCostWithDiscountFunctionParameter("Glazed Donut")(5)(applyDiscount(_))}")
+
+Calculating total cost for 5 Glazed Donut
+
+Total cost of 5 Glazed Donuts with discount function = 10.5
+
+How to define a List with Tuple3 elements
+
+
+
+scala&gt; val listOrders = List(("Glazed Donut", 5, 2.50), ("Vanilla Donut", 10, 3.50))
+
+listOrders: List[(String, Int, Double)] = List((Glazed Donut,5,2.5), (Vanilla Donut,10,3.5))
+
+
+
+scala&gt; def placeOrderWithByNameParameter(orders: List[(String, Int, Double)])(exchangeRate: =&gt; Double): Double = {
+
+     |   var totalCost: Double = 0.0
+
+     |   orders.foreach {order =&gt;
+
+     |     val costOfItem = order._2 * order._3 * exchangeRate
+
+     |     println(s"Cost of ${order._2} ${order._1} = £$costOfItem")
+
+     |     totalCost += costOfItem
+
+     |   }
+
+     |   totalCost
+
+     | }
+
+placeOrderWithByNameParameter: (orders: List[(String, Int, Double)])(exchangeRate: =&gt; Double)Double
+
+
+
+scala&gt; println(s"Total cost of order = £${placeOrderWithByNameParameter(listOrders)(0.2)}")
+
+Cost of 5 Glazed Donut = £2.5
+
+Cost of 10 Vanilla Donut = £7.0
+
+Total cost of order = £9.5
+
+
+
+1. How to define a function with a callback parameter
+
+     |   println("Printing report ... started")
+
+     |   // look up some data in database and create a report
+
+     |   println("Printing report ... finished")
+
+     |   sendEmailCallback.map(callback =&gt; callback())
+
+     | }
+
+printReportWithOptionCallback: (sendEmailCallback: Option[() =&gt; Unit])Unit
+
+
+
+scala&gt; printReportWithOptionCallback()
+
+Printing report ... started
+
+Printing report ... finished
+
+
+
+scala&gt; printReportWithOptionCallback(Some(() =&gt;
+
+     |   println("Sending email wrapped in Some() ... finished")
+
+     | ))
+
+Printing report ... started
+
+Printing report ... finished
+
+Sending email wrapped in Some() ... finished
+
+
+
+Create Function Using The Val Keyword Instead Of Def
+
+scala&gt; def totalCostWithDiscountFunctionParameter(donutType: String)(quantity: Int)(f: Double =&gt; Double): Double = {
+
+     |   println(s"Calculating total cost for $quantity $donutType")
+
+     |   val totalCost = 2.50 * quantity
+
+     |   f(totalCost)
+
+     | }
+
+totalCostWithDiscountFunctionParameter: (donutType: String)(quantity: Int)(f: Double =&gt; Double)Double
+
+
+
+
+
+scala&gt; def applyDiscount(totalCost: Double): Double = {
+
+     |   val discount = 2 // assume you fetch discount from database
+
+     |   totalCost - discount
+
+     | }
+
+applyDiscount: (totalCost: Double)Double
+
+scala&gt; println(s"Total cost of 5 Glazed Donuts with discount def function = ${totalCostWithDiscountFunctionParameter("Glazed Donut")(5)(applyDiscount(_))}")
+
+Calculating total cost for 5 Glazed Donut
+
+Total cost of 5 Glazed Donuts with discount def function = 10.5
+
+
+
+scala&gt; val applyDiscountValueFunction = (totalCost: Double) =&gt; {
+
+     |   val discount = 2 // assume you fetch discount from database
+
+     |   totalCost - discount
+
+     | }
+
+
+
+applyDiscountValueFunction: Double =&gt; Double = &lt;function1&gt;
+
+
+
+scala&gt; println(s"Total cost of 5 Glazed Donuts with discount val function = ${totalCostWithDiscountFunctionParameter("Glazed Donut")(5)(applyDiscountValueFunction)}")
+
+Calculating total cost for 5 Glazed Donut
+
+
+
+Total cost of 5 Glazed Donuts with discount val function = 10.5
+
+
+
+scala&gt; val totalCost: Double = 10
+
+totalCost: Double = 10.0
+
+
+
+scala&gt; val applyDiscountValFunction = (amount: Double) =&gt; {
+
+     |   println("Apply discount function")
+
+     |   val discount = 2 // fetch discount from database
+
+     |   amount - discount
+
+     | }
+
+
+
+applyDiscountValFunction: Double =&gt; Double = &lt;function1&gt;
+
+
+
+scala&gt; println(s"Total cost of 5 donuts with discount = ${applyDiscountValFunction(totalCost)}")
+
+Apply discount function
+
+Total cost of 5 donuts with discount = 8.0
+
+
+
+scala&gt; val applyDiscountValFunction = (amount: Double) =&gt; {
+
+     |   println("Apply discount function")
+
+     |   val discount = 2 // fetch discount from database
+
+     |   amount - discount
+
+     | }
+
+applyDiscountValFunction: Double =&gt; Double = &lt;function1&gt;
+
+
+
+scala&gt; println(s"Total cost of 5 donuts with discount = ${applyDiscountValFunction(totalCost)}")
+
+Apply discount function
+
+Total cost of 5 donuts with discount = 8.0
+
+
+
+scala&gt; val applyTaxValFunction = (amount: Double) =&gt; {
+
+     |   println("Apply tax function")
+
+     |   val tax = 1 // fetch tax from database
+
+     |   amount + tax
+
+     | }
+
+applyTaxValFunction: Double =&gt; Double = &lt;function1&gt;
+
+scala&gt; println(s"Total cost of 5 donuts = ${ (applyDiscountValFunction andThen applyTaxValFunction)(totalCost) }")
+
+Apply discount function
+
+Apply tax function
+
+Total cost of 5 donuts = 9.0
+
+
+
+scala&gt; val applyDiscountValFunction = (amount: Double) =&gt; {
+
+     |   println("Apply discount function")
+
+     |   val discount = 2 // fetch discount from database
+
+     |   amount - discount
+
+     | }
+
+applyDiscountValFunction: Double =&gt; Double = &lt;function1&gt;
+
+
+
+scala&gt; println(s"Total cost of 5 donuts with discount = ${applyDiscountValFunction(totalCost)}")
+
+Apply discount function
+
+Total cost of 5 donuts with discount = 8.0
+
+
+
+scala&gt; val applyTaxValFunction = (amount: Double) =&gt; {
+
+     |   println("Apply tax function")
+
+     |   val tax = 1 // fetch tax from database
+
+     |   amount + tax
+
+     | }
+
+applyTaxValFunction: Double =&gt; Double = &lt;function1&gt;
+
+
+
+scala&gt; println(s"Total cost of 5 donuts = ${ (applyDiscountValFunction compose applyTaxValFunction)(totalCost) }")
+
+Apply tax function
+
+Apply discount function
+
+Total cost of 5 donuts = 9.0
+
+
+
+scala&gt; val totalCost: Double = 10
+
+totalCost: Double = 10.0
+
+
+
+scala&gt; println(s"Total cost of 5 donuts = ${ (applyDiscountValFunction compose applyTaxValFunction)(totalCost) }")
+
+Apply tax function
+
+Apply discount function
+
+Total cost of 5 donuts = 9.0
+
+
+
+scala&gt; val arrayDonuts: Array[String] = Array("Vanilla Donut", "Strawberry Donut", "Plain Donut", "Glazed Donut")
+
+arrayDonuts: Array[String] = Array(Vanilla Donut, Strawberry Donut, Plain Donut, Glazed Donut)
+
+
+
+scala&gt; @annotation.tailrec
+
+     | def search(donutName: String, donuts: Array[String], index: Int): Option[Boolean] = {
+
+     |   if(donuts.length == index) {
+
+     |     None
+
+     |   } else if(donuts(index) == donutName) {
+
+     |     Some(true)
+
+     |   } else {
+
+     |     val nextIndex = index + 1
+
+     |     search(donutName, donuts, nextIndex)
+
+     |   }
+
+     | }
+
+
+
+search: (donutName: String, donuts: Array[String], index: Int)Option[Boolean]
+
+scala&gt; println("\nStep 3: How to call a tail recursive function")
+
+
+
+Step 3: How to call a tail recursive function
+
+
+
+scala&gt; val found = search("Glazed Donut", arrayDonuts, 0)
+
+found: Option[Boolean] = Some(true)
+
+
+
+scala&gt; println(s"Find Glazed Donut = $found")
+
+Find Glazed Donut = Some(true)
+
+scala&gt;
+
+
+
+scala&gt; val notFound = search("Chocolate Donut", arrayDonuts, 0)
+
+notFound: Option[Boolean] = None
+
+
+
+scala&gt; println(s"Find Chocolate Donut = $notFound")
+
+Find Chocolate Donut = None
+
+- scala.util.control.TailCalls._
+
+scala&gt; import scala.util.control.TailCalls._
+
+import scala.util.control.TailCalls._
+
+
+
+
+
+scala&gt; def tailSearch(donutName: String, donuts: Array[String], index: Int): TailRec[Option[Boolean]] = {
+
+     |   if(donuts.length == index) {
+
+     |     done(None) // NOTE: done is imported from scala.util.control.TailCalls._
+
+     |   } else if(donuts(index) == donutName) {
+
+     |     done(Some(true))
+
+     |   } else {
+
+     |     val nextIndex = index + 1
+
+     |     tailcall(tailSearch(donutName, donuts, nextIndex)) // NOTE: tailcall is imported from  scala.util.control.TailCalls._
+
+     |   }
+
+     | }
+
+
+
+tailSearch: (donutName: String, donuts: Array[String], index: Int)util.control.TailCalls.TailRec[Option[Boolean]]
+
+
+
+scala&gt; val tailFound = tailcall(tailSearch("Glazed Donut", arrayDonuts, 0))
+
+tailFound: util.control.TailCalls.TailRec[Option[Boolean]] = Call(&lt;function0&gt;)
+
+
+
+scala&gt; println(s"Find Glazed Donut using TailCall = ${tailFound.result}") // NOTE: our returned
+
+value is wrapped so we need to get it by calling result
+
+Find Glazed Donut using TailCall = Some(true)
+
+
+
+scala&gt; val tailNotFound = tailcall(tailSearch("Chocolate Donut", arrayDonuts, 0))
+
+tailNotFound: util.control.TailCalls.TailRec[Option[Boolean]] = Call(&lt;function0&gt;)
+
+
+
+scala&gt; println(s"Find Chocolate Donut using TailCall = ${tailNotFound.result}")
+
+Find Chocolate Donut using TailCall = None
+
+
+
+scala&gt; val donut = "Glazed Donut"
+
+donut: String = Glazed Donut
+
+
+
+scala&gt; val tasteLevel = donut match {
+
+     |   case "Glazed Donut" | "Strawberry Donut" =&gt; "Very tasty"
+
+     |   case "Plain Donut" =&gt; "Tasty"
+
+     |   case _ =&gt; "Tasty"
+
+     | }
+
+tasteLevel: String = Very tasty
+
+
+
+scala&gt; println(s"Taste level of $donut = $tasteLevel")
+
+Taste level of Glazed Donut = Very tasty
+
+
+
+scala&gt; println("\nStep 2: How to define a Partial Function named isVeryTasty")
+
+Step 2: How to define a Partial Function named isVeryTasty
+
+
+
+scala&gt; val isVeryTasty: PartialFunction[String, String] = {
+
+     |   case "Glazed Donut" | "Strawberry Donut" =&gt; "Very Tasty"
+
+     | }
+
+isVeryTasty: PartialFunction[String,String] = &lt;function1&gt;
+
+
+
+scala&gt; println(s"Calling partial function isVeryTasty = ${isVeryTasty("Glazed Donut")}")
+
+Calling partial function isVeryTasty = Very Tasty
+
+
+
+Nested Function:
+
+
+
+scala&gt; def checkDonutAvailability(donutName: String): Boolean = {
+
+     |   // retrieve donut list that is currently in stock
+
+     |   val listDonutsFromStock: List[String] = List("Vanilla Donut", "Strawberry Donut", "Plain Donut", "Glazed Donut")
+
+     |
+
+     |   val iDonutInStock = (donutName.nonEmpty &amp;&amp; donutName.length &gt; 0) &amp;&amp; (listDonutsFromStock contains donutName)
+
+     |
+
+     |   iDonutInStock
+
+     | }
+
+checkDonutAvailability: (donutName: String)Boolean
+
+scala&gt; println(s"Calling checkDonutAvailability with Vanilla Donut = ${checkDonutAvailability("Vanilla Donut")}")
+
+Calling checkDonutAvailability with Vanilla Donut = true
+
+
+
+
+
+scala&gt; def checkDonutAvailabilityWithNestedFunction(donutName: String): Boolean = {
+
+     |   // retrieve donut list that is currently in stock
+
+     |   val listDonutsFromStock = List[String]("Vanilla Donut", "Strawberry Donut", "Plain Donut", "Glazed Donut")
+
+     |
+
+     |   // validate the donutName parameter by some business logic
+
+     |   val validate = (name: String) =&gt; {
+
+     |     name.nonEmpty &amp;&amp; name.length &gt; 0
+
+     |   }
+
+     |
+
+     |   // first run validate and then check if we have a matching donut from our list
+
+     |   val isDonutInStock = validate(donutName) &amp;&amp; (listDonutsFromStock contains donutName)
+
+     |
+
+     |   isDonutInStock
+
+     | }
+
+
+
+
+
+checkDonutAvailabilityWithNestedFunction: (donutName: String)Boolean
+
+
+
+scala&gt; println(s"Calling checkDonutAvailabilityWithNestedFunction with Vanilla Don
+
+${checkDonutAvailabilityWithNestedFunction("Vanilla Donut")}")
+
+Calling checkDonutAvailabilityWithNestedFunction with Vanilla Donut = true
+
+ 
+
+ 
+
+ 
