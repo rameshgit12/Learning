@@ -1,0 +1,96 @@
+
+BigDataPipelineScenorio
+
+use case:
+
+----------
+
+big data world
+
+          3 stages/phases-pipeline
+
+end --------------------------&gt;end
+
+1.data ingestion
+
+2.data preprocessing or data cleansing
+
+3.data analytics
+
+----------------------------------
+
+1.1.data ingestion
+
+       pulling the data from External storage system to Hadoop Storage System(HDFS)
+
+                  client used to maintain data in their servers on premises/cloud
+
+                  pulling the data from premises/remote servers to HDFS                
+
+
+
+       where the data is available
+
+                  servers on premises/cloud
+
+                  cloude providers--&gt;AWS,GCP,Azure(storage,compute,intelligence....)
+
+                  S3(A storage service in AWS cloude)(Simple Storage Service)
+
+                  Blob storage(Azure)
+
+                  Google cloude Storage{Google cloud storage service)   
+
+
+
+                  --&gt;formats of data
+
+                     structured,semi structured,undtructured 
+
+                                structured-Tables
+
+                                semi structured-&gt;csv,json,xml
+
+                                unstructured--&gt;non proper organised data                        
+
+2.Preprocessing or cleansing of data
+
+     input---&gt;structured,semistructured,unstructured
+
+                  output--&gt;structured data
+
+                  structured--adding some data/deleting some data,dealing with null values
+
+                  semistructured/unstructured--&gt;structured
+
+3.Analysis
+
+      Warehouses---&gt;Hive,Snowflake(AWS)
+
+
+
+s3(raw)---&gt;preprocessing(gets ready for analysis)---&gt;store the data in some storage system(warehouse)
+
+large volumes-Spark----------------&gt;Store into WH
+
+(str,semi,un)
+
+spark read,preprocess and store into WH
+
+spark can do all this by residing on a distributed computing cluster
+
+cluster--&gt;YRAN,StandAlone,Mesos,Kubernets
+
+pipeline has to be automated--&gt;cron
+
+AirFlow--&gt;pipeline creater as well as scheduler(python script)
+
+            
+
+
+
+                               
+
+
+
+                               
