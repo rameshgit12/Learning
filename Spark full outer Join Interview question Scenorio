@@ -1,0 +1,174 @@
+
+Interview Problem:
+
+
+
+Rdd1=(2,112,acb),(10,112,vbg),(1,113,jik)
+
+Rdd2=(1,111,vcx),(9,777,bvc)
+
+I have two rdds I have to join them such a way that common 1 is removed from the rdd
+
+Result=(2,112,abc),(10,112.vbg),(9,777,bvc)
+
+
+
+
+
+Method 1:
+
+scala&gt; val rdd1=sc.makeRDD(Array((2,112,"acb"),(10,112,"vbg"),(1,113,"jik")))
+
+
+
+rdd1: org.apache.spark.rdd.RDD[(Int, Int, String)] = ParallelCollectionRDD[37] at makeRDD at &lt;console&gt;:24
+
+
+
+scala&gt; val rdd2=sc.makeRDD(Array((1,111,"vcx"),(9,777,"bvc")))
+
+
+
+rdd2: org.apache.spark.rdd.RDD[(Int, Int, String)] = ParallelCollectionRDD[38] at makeRDD at &lt;console&gt;:24
+
+
+
+scala&gt; val rdd1_map=rdd1.map(x=&gt;
+
+     | (x._1,(x._2,x._3)))
+
+rdd1_map: org.apache.spark.rdd.RDD[(Int, (Int, String))] = MapPartitionsRDD[39] at map at &lt;console&gt;:26
+
+
+
+scala&gt; val rdd2_map=rdd2.map(x=&gt;
+
+     | (x._1,(x._2,x._3)))
+
+
+
+rdd2_map: org.apache.spark.rdd.RDD[(Int, (Int, String))] = MapPartitionsRDD[44] at map at &lt;console&gt;:26
+
+
+
+scala&gt; val rdd_join=rdd1_map.fullOuterJoin(rdd2_map)
+
+
+
+rdd_join: org.apache.spark.rdd.RDD[(Int, (Option[(Int, String)], Option[(Int, String)]))] = MapPartitionsRDD[47] at fullOuterJoin at &lt;console&gt;:32
+
+
+
+scala&gt; rdd_join.take(10).foreach(println)
+
+
+
+(1,(Some((113,jik)),Some((111,vcx))))
+
+(9,(None,Some((777,bvc))))
+
+(10,(Some((112,vbg)),None))
+
+(2,(Some((112,acb)),None))
+
+
+
+scala&gt; val rdd_res=rdd_join.filter(x=&gt;(x._2._1 == None) || (x._2._2 == None))
+
+
+
+rdd_res: org.apache.spark.rdd.RDD[(Int, (Option[(Int, String)], Option[(Int, String)]))] = MapPartitionsRDD[48] at filter at &lt;console&gt;:34
+
+
+
+scala&gt; rdd_res.take(10).foreach(println)
+
+
+
+(9,(None,Some((777,bvc))))
+
+(10,(Some((112,vbg)),None))
+
+(2,(Some((112,acb)),None))
+
+
+
+scala&gt; rdd_final.take(5).foreach(println)
+
+
+
+(9,Some((777,bvc)))
+
+(10,Some((112,vbg)))
+
+(2,Some((112,acb)))
+
+
+
+scala&gt;val rdd_final2=rdd_final.mapValues(x=&gt;x.getOrElse(0))
+
+
+
+scala&gt; rdd_final2.take(5).foreach(println)
+
+
+
+(9,(777,bvc))
+
+(10,(112,vbg))
+
+(2,(112,acb))
+
+
+
+Another Method:
+
+scala&gt; val rdd_sub1=rdd1_map.subtractByKey(rdd2_map)
+
+
+
+rdd_sub1: org.apache.spark.rdd.RDD[(Int, (Int, String))] = SubtractedRDD[84] at subtractByKey at &lt;console&gt;:32
+
+
+
+scala&gt; rdd_sub1.collect
+
+
+
+res61: Array[(Int, (Int, String))] = Array((2,(112,acb)), (10,(112,vbg)))
+
+
+
+scala&gt; val rdd_sub2=rdd2_map.subtractByKey(rdd1_map)
+
+
+
+rdd_sub2: org.apache.spark.rdd.RDD[(Int, (Int, String))] = SubtractedRDD[85] at subtractByKey at &lt;console&gt;:32
+
+
+
+scala&gt; rdd_sub2.collect
+
+
+
+res62: Array[(Int, (Int, String))] = Array((9,(777,bvc)))
+
+
+
+scala&gt; val res=rdd_sub1.union(rdd_sub2)
+
+
+
+res: org.apache.spark.rdd.RDD[(Int, (Int, String))] = PartitionerAwareUnionRDD[86] at union at &lt;console&gt;:36
+
+
+
+scala&gt; res.take(5).foreach(println)
+
+
+
+(2,(112,acb))
+
+(10,(112,vbg))
+
+(9,(777,bvc))
