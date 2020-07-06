@@ -1,0 +1,124 @@
+Persistance in Pyspark
+
+
+
+from pyspark import StorageLevel
+
+r1=spark.sparkContext.textFile("file:///home/hadoop/sample.txt")
+
+r1=spark.sparkContext.textFile("file:///home/hadoop/sample.txt")
+
+r1.persist(StorageLevel.MEMORY_ONLY)
+
+r2.persist(StorageLevel.MEMORY_ONLY_SER)
+
+print(r1.count())
+
+print(r2.count())
+
+
+In python--&gt;pickle serializer
+
+In java/scala--&gt; both serilization/deserial over there
+
+In java/scala--2 serializer--&gt;1.java serializer(default) 2.kyro serializer
+
+
+
+Serialization--&gt;data size gets reduced---&gt;JVM object converting into binary object
+
+Deserialisation--&gt;data size will be as it is--&gt;binary object back to JVM object
+
+
+
+data will be by default in deserialized mode
+
+SerDe
+
+storage(writing)--&gt;serialization
+
+read--&gt;deserialization
+
+object can be used for processing only in deserialized mode
+
+object(deserial)--&gt;processing
+
+object(serialization)--&gt;not processing
+
+
+
+in python--&gt; object can be stored only in serialization mode
+
+
+
+in java/scala--&gt;object can be stroed in serialization/deserialmode
+
+serialization--&gt;saves space
+
+deserial--&gt;saves time
+
+
+
+under what situations objects get serialized?
+
+1.storing/caching
+
+2.when object(s) are transferred over the network(mandatory)
+
+
+
+pyspark program---&gt;python objects&lt;-----PY4J module-----&gt;JVM objects
+
+scala/java program--&gt;JVM objects
+
+
+
+RDD--&gt;divided into partitions
+
+if data(partitions) is lost during processing--&gt;spark can automatically re-generate the lost
+
+ones with lineage(resilience)
+
+
+
+if no of transformation are less--&gt;regeneration from the beginning can be accepted
+
+if no of transformation are more--&gt;regeneration from the beginning of the flow is not a good choice
+
+
+
+persistance can be under 2 situations:
+
+1.in multiple action
+
+2.in re-generate of lost data
+
+
+
+Replication:
+
+-------------
+
+in case of data loss---&gt;regeneration--&gt;persistence
+
+if one replica of persisted data gets lost--&gt;another replica from another node
+
+
+data transfer from one node to another--&gt;timex
+
+if in only one node,regeneration should be from the beginning--&gt;timey
+
+replica is available on node 2
+
+and
+
+timey&lt;timex
+
+dataframe also can be persisted
+
+
+
+
+
+
+
