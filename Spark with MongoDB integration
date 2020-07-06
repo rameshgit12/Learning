@@ -1,0 +1,57 @@
+Spark with MongoDB integration
+
+
+&lt;!-- https://mvnrepository.com/artifact/org.mongodb.spark/mongo-spark-connector --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.mongodb.spark&lt;/groupId&gt;
+    &lt;artifactId&gt;mongo-spark-connector_2.11&lt;/artifactId&gt;
+    &lt;version&gt;2.4.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+
+spark-shell --packages org.mongodb.spark:mongo-spark-connector_2.11:2.4.0
+
+scala&gt; import com.mongodb.spark._
+import com.mongodb.spark._
+
+scala&gt; import com.mongodb.spark.config.ReadConfig
+import com.mongodb.spark.config.ReadConfig
+
+scala&gt; import com.mongodb.spark.sql._
+import com.mongodb.spark.sql._
+
+scala&gt; import org.bson.Document
+import org.bson.Document
+
+scala&gt; import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.SparkSession
+
+scala&gt; import org.apache.spark.sql.functions.{max, min}
+import org.apache.spark.sql.functions.{max, min}
+
+scala&gt; val spark = SparkSession.builder().appName("MongoPlayers").master("local[*]").getOrCreate()
+
+scala&gt; val readConfig = ReadConfig(Map("uri" -&gt; "mongodb://127.0.0.1/", "database" -&gt; "test", "collection" -&gt; "players"))
+
+scala&gt;  val df = spark.read.mongo(readConfig)
+
+scala&gt;  df.printSchema()
+root
+ |-- _id: struct (nullable = true)
+ |    |-- oid: string (nullable = true)
+ |-- age: double (nullable = true)
+ |-- birthdate: string (nullable = true)
+ |-- birthplace: string (nullable = true)
+ |-- height: string (nullable = true)
+ |-- id: double (nullable = true)
+ |-- imageUrl: string (nullable = true)
+ |-- name: string (nullable = true)
+ |-- number: double (nullable = true)
+ |-- position: string (nullable = true)
+ |-- twitterHandle: string (nullable = true)
+ |-- twitterURL: string (nullable = true)
+ |-- weight: double (nullable = true)
+
+
+scala&gt; df.show()
+
