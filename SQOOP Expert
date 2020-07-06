@@ -1,0 +1,1495 @@
+Sqoop:
+
+Import and export from/to RDBMS and Mainframe.
+
+sqoop-list-databases
+
+sqoop-list-tables
+
+sqoop-eval
+
+sqoop help
+
+
+
+$ sqoop help
+
+usage: sqoop COMMAND [ARGS]
+
+Available commands:
+
+  codegen            Generate code to interact with database records
+
+  create-hive-table  Import a table definition into Hive
+
+  eval               Evaluate a SQL statement and display the results
+
+  export             Export an HDFS directory to a database table
+
+  help               List available commands
+
+  import             Import a table from a database to HDFS
+
+  import-all-tables  Import tables from a database to HDFS
+
+  import-mainframe   Import mainframe datasets to HDFS
+
+  list-databases     List available databases on a server
+
+  list-tables        List available tables in a database
+
+  version            Display version information
+
+
+
+See 'sqoop help COMMAND' for information on a specific command.
+
+sqoop-import sqoop-export
+
+
+
+$ sqoop help import
+
+usage: sqoop import [GENERIC-ARGS] [TOOL-ARGS]
+
+Common arguments:
+
+   --connect      Specify JDBC connect string
+   --connect-manager      Specify connection manager class to use
+   --driver     Manually specify JDBC driver class to use
+   --hadoop-mapred-home
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      Override $HADOOP_MAPRED_HOME
+   --help                   Print usage instructions
+   --password-file          Set path for file containing authentication password
+   -P                       Read password from console
+   --password     Set authentication password
+   --username     Set authentication username
+   --verbose                Print more information while working
+   --hadoop-home
+     Deprecated. Override $HADOOP_HOME
+[...]
+
+
+
+Generic Hadoop command-line arguments:
+
+(must preceed any tool-specific arguments)
+
+Generic options supported are
+
+-conf      specify an application configuration file
+-D             use value for given property
+-fs       specify a namenode
+-jt     specify a job tracker
+-files     specify comma separated files to be copied to the map reduce cluster
+-libjars     specify comma separated jar files to include in the classpath.
+-archives     specify comma separated archives to be unarchived on the compute machines.
+
+The general command line syntax is
+
+bin/hadoop command [genericOptions] [commandOptions]
+
+
+
+--options-file
+
+$ sqoop import --connect jdbc:mysql://localhost/db --username foo --table TEST
+
+$ sqoop --options-file /users/homer/work/import.txt --table TEST
+
+where the options file /users/homer/work/import.txt contains the following:
+
+import
+
+--connect
+
+jdbc:mysql://localhost/db
+
+--username
+
+foo
+
+
+
+Table 1. Common arguments
+
+Argument
+
+Description
+
+--connect
+
+Specify JDBC connect string
+
+--connection-manager
+
+Specify connection manager class to use
+
+--driver
+
+Manually specify JDBC driver class to use
+
+--hadoop-mapred-home
+
+
+
+
+
+
+
+
+
+
+
+
+
+Override $HADOOP_MAPRED_HOME
+
+--help
+
+Print usage instructions
+
+--password-file
+
+Set path for a file containing the authentication password
+
+-P
+
+Read password from console
+
+--password
+
+Set authentication password
+
+--username
+
+Set authentication username
+
+--verbose
+
+Print more information while working
+
+--connection-param-file
+
+Optional properties file that provides connection parameters
+
+--relaxed-isolation     
+
+Set connection transaction isolation to read uncommitted for the mappers.
+
+
+
+
+sqoop import --connect jdbc:mysql://database.example.com/employees
+
+ $ sqoop import --connect jdbc:mysql://database.example.com/employees \
+    --username venkatesh --password-file ${user.home}/.password
+
+echo -n "secret" &gt; password.file.
+
+
+
+
+Table 2. Validation arguments More Details
+
+Argument
+
+Description
+
+--validate
+
+Enable validation of data copied, supports single table copy only.
+
+--validator
+
+Specify validator class to use.
+
+--validation-threshold
+
+Specify validation threshold class to use.
+
+--validation-failurehandler
+
+Specify validation failure handler class to use.
+
+
+
+
+
+Table 3. Import control arguments:
+
+
+
+
+Argument
+
+Description
+
+--append
+
+Append data to an existing dataset in HDFS
+
+--as-avrodatafile
+
+Imports data to Avro Data Files
+
+--as-sequencefile
+
+Imports data to SequenceFiles
+
+--as-textfile
+
+Imports data as plain text (default)
+
+--as-parquetfile
+
+Imports data to Parquet Files
+
+--boundary-query      
+
+Boundary query to use for creating splits
+
+--columns
+
+Columns to import from table
+
+--delete-target-dir
+
+Delete the import target directory if it exists
+
+--direct
+
+Use direct connector if exists for the database
+
+--fetch-size
+
+Number of entries to read from database at once.
+
+--inline-lob-limit
+
+Set the maximum size for an inline LOB
+
+-m,--num-mappers      
+
+Use n map tasks to import in parallel
+
+-e,--query
+
+Import the results of statement.
+
+--split-by
+
+Column of the table used to split work units. Cannot be used with --autoreset-to-one-mapper option.
+
+--autoreset-to-one-mapper
+
+Import should use one mapper if a table has no primary key and no split-by column is provided. Cannot be used with --split-by
+
+--table
+
+Table to read
+
+--target-dir
+
+
+
+
+
+
+
+
+
+
+
+
+
+HDFS destination dir
+
+--warehouse-dir
+
+
+
+
+
+
+
+
+
+
+
+
+
+HDFS parent for table destination
+
+--where
+
+WHERE clause to use during import
+
+-z,--compress
+
+Enable compression
+
+--compression-codec
+
+Use Hadoop codec (default gzip)
+
+--null-string
+
+The string to be written for a null value for string columns
+
+--null-non-string
+
+The string to be written for a null value for non-string columns
+
+
+
+
+
+The --null-string and --null-non-string arguments are optional.\
+If not specified, then the string "null" will be used.
+
+
+$ sqoop import \
+  --query 'SELECT a.*, b.* FROM a JOIN b on (a.id == b.id) WHERE $CONDITIONS' \
+  --split-by a.id --target-dir /user/foo/joinresults
+
+
+ $ sqoop import \
+  --query 'SELECT a.*, b.* FROM a JOIN b on (a.id == b.id) WHERE $CONDITIONS' \
+  -m 1 --target-dir /user/foo/joinresults
+
+ 
+
+Note
+
+If you are issuing the query wrapped with double quotes ("), you will have to use \$CONDITIONS instead of just $CONDITIONS to disallow your shell from treating it as a shell variable. For example, a double quoted query may look like: "SELECT * FROM x WHERE a='foo' AND \$CONDITIONS"
+
+
+The option --autoreset-to-one-mapper is typically used with the import-all-tables tool to automatically handle tables without a primary key in a schema.
+
+--skip-dist-cache
+
+Argument
+
+Description
+
+--map-column-java
+
+Override mapping from SQL to Java type for configured columns.
+
+--map-column-hive
+
+Override mapping from SQL to Hive type for configured columns.
+
+
+
+Sqoop is expecting comma separated list of mapping in form =. For example:
+
+
+$ sqoop import ... --map-column-java id=String,value=Integer
+
+Table 5. Incremental import arguments:
+
+Argument     
+
+Description
+
+--check-column (col)     
+
+Specifies the column to be examined when determining which rows to import. (the column should not be of type CHAR/NCHAR/VARCHAR/VARNCHAR/ LONGVARCHAR/LONGNVARCHAR)
+
+--incremental (mode)
+
+Specifies how Sqoop determines which rows are new. Legal values for mode include append and lastmodified.
+
+--last-value (value)
+
+Specifies the maximum value of the check column from the previous import.
+
+
+--as-textfile
+You can compress your data by using the deflate (gzip) algorithm with the -z or --compress argument, or specify any Hadoop compression codec using the --compression-codec argument. This applies to SequenceFile, text, and Avro files.
+
+ Output line formatting arguments:
+
+Argument
+
+Description
+
+--enclosed-by
+
+Sets a required field enclosing character
+
+--escaped-by
+
+Sets the escape character
+
+--fields-terminated-by
+
+Sets the field separator character
+
+--lines-terminated-by
+
+Sets the end-of-line character
+
+--mysql-delimiters
+
+Uses MySQL’s default delimiter set: fields: , lines: \n escaped-by: \ optionally-enclosed-by: '
+
+--optionally-enclosed-by
+
+Sets a field enclosing character
+
+
+
+ Hive arguments:
+
+Argument
+
+Description
+
+--hive-home
+
+
+
+
+
+
+
+
+
+
+
+Override $HIVE_HOME
+
+--hive-import
+
+Import tables into Hive (Uses Hive’s default delimiters if none are set.)
+
+--hive-overwrite
+
+Overwrite existing data in the Hive table.
+
+--create-hive-table
+
+If set, then the job will fail if the target hive
+
+table exits. By default this property is false.
+
+--hive-table
+
+Sets the table name to use when importing to Hive.
+
+--hive-drop-import-delims
+
+Drops \n, \r, and \01 from string fields when importing to Hive.
+
+--hive-delims-replacement
+
+Replace \n, \r, and \01 from string fields with user defined string when importing to Hive.
+
+--hive-partition-key
+
+Name of a hive field to partition are sharded on
+
+--hive-partition-value
+
+String-value that serves as partition key for this imported into hive in this job.
+
+--map-column-hive      
+
+Override default mapping from SQL type to Hive type for configured columns.
+
+
+--hive-import--hive-overwrite
+sqoop import  ... --null-string '\\N' --null-non-string '\\N'
+
+
+Argument
+
+Description
+
+--column-family
+
+Sets the target column family for the import
+
+--hbase-create-table
+
+If specified, create missing HBase tables
+
+--hbase-row-key
+
+Specifies which input column to use as the row key
+
+In case, if input table contains composite
+
+key, then
+
+comma-separated list of composite key
+
+attributes
+
+--hbase-table
+
+Specifies an HBase table to use as the target instead of HDFS
+
+--hbase-bulkload
+
+Enables bulk loading
+
+
+Table 10. Accumulo arguments:
+
+
+
+Argument
+
+Description
+
+--accumulo-table
+
+Specifies an Accumulo table to use as the target instead of HDFS
+
+--accumulo-column-family
+
+Sets the target column family for the import
+
+--accumulo-create-table
+
+If specified, create missing Accumulo tables
+
+--accumulo-row-key
+
+Specifies which input column to use as the row key
+
+--accumulo-visibility
+
+(Optional) Specifies a visibility token to apply to all rows inserted into Accumulo. Default is the empty string.
+
+--accumulo-batch-size
+
+(Optional) Sets the size in bytes of Accumulo’s write buffer. Default is 4MB.
+
+--accumulo-max-latency
+
+(Optional) Sets the max latency in milliseconds for the Accumulo batch writer. Default is 0.
+
+--accumulo-zookeepers
+
+Comma-separated list of Zookeeper servers used by the Accumulo instance
+
+--accumulo-instance
+
+Name of the target Accumulo instance
+
+--accumulo-user
+
+Name of the Accumulo user to import as
+
+--accumulo-password
+
+Password for the Accumulo user
+
+
+Argument     
+
+Description
+
+--bindir
+
+
+
+
+
+
+
+
+
+Output directory for compiled objects
+
+--class-name
+
+Sets the generated class name. This overrides --package-name. When combined with --jar-file, sets the input class.
+
+--jar-file      
+
+Disable code generation; use specified jar
+
+--outdir
+
+
+
+
+
+
+
+
+
+Output directory for generated code
+
+--package-name
+
+Put auto-generated classes in this package
+
+--map-column-java
+
+Override default mapping from SQL type to Java type for configured columns.
+
+
+$ sqoop import --connect  --table SomeTable --package-name com.foocorp
+
+$ sqoop import --table SomeTable --jar-file mydatatypes.jar \
+    --class-name SomeTableType
+
+sqoop import -D property.name=property.value …
+
+A basic import of a table named EMPLOYEES in the corp database:
+
+
+$ sqoop import --connect jdbc:mysql://db.foo.com/corp --table EMPLOYEES
+
+A basic import requiring a login:
+
+$ sqoop import --connect jdbc:mysql://db.foo.com/corp --table EMPLOYEES \
+    --username SomeUser -P
+Enter password: (hidden)
+Selecting specific columns from the EMPLOYEES table:
+
+$ sqoop import --connect jdbc:mysql://db.foo.com/corp --table EMPLOYEES \
+    --columns "employee_id,first_name,last_name,job_title"
+Controlling the import parallelism (using 8 parallel tasks):
+
+$ sqoop import --connect jdbc:mysql://db.foo.com/corp --table EMPLOYEES \
+    -m 8
+Storing data in SequenceFiles, and setting the generated class name to com.foocorp.Employee:
+
+$ sqoop import --connect jdbc:mysql://db.foo.com/corp --table EMPLOYEES \
+    --class-name com.foocorp.Employee --as-sequencefile
+Specifying the delimiters to use in a text-mode import:
+
+$ sqoop import --connect jdbc:mysql://db.foo.com/corp --table EMPLOYEES \
+    --fields-terminated-by '\t' --lines-terminated-by '\n' \
+    --optionally-enclosed-by '\"'
+Importing the data to Hive:
+
+$ sqoop import --connect jdbc:mysql://db.foo.com/corp --table EMPLOYEES \
+    --hive-import
+Importing only new employees:
+
+$ sqoop import --connect jdbc:mysql://db.foo.com/corp --table EMPLOYEES \
+    --where "start_date &gt; '2010-01-01'"
+Changing the splitting column from the default:
+
+$ sqoop import --connect jdbc:mysql://db.foo.com/corp --table EMPLOYEES \
+    --split-by dept_id
+Verifying that an import was successful:
+
+$ hadoop fs -ls EMPLOYEES
+Found 5 items
+drwxr-xr-x   - someuser somegrp          0 2010-04-27 16:40 /user/someuser/EMPLOYEES/_logs
+-rw-r--r--   1 someuser somegrp    2913511 2010-04-27 16:40 /user/someuser/EMPLOYEES/part-m-00000
+-rw-r--r--   1 someuser somegrp    1683938 2010-04-27 16:40 /user/someuser/EMPLOYEES/part-m-00001
+-rw-r--r--   1 someuser somegrp    7245839 2010-04-27 16:40 /user/someuser/EMPLOYEES/part-m-00002
+-rw-r--r--   1 someuser somegrp    7842523 2010-04-27 16:40 /user/someuser/EMPLOYEES/part-m-00003
+
+$ hadoop fs -cat EMPLOYEES/part-m-00000 | head -n 10
+0,joe,smith,engineering
+1,jane,doe,marketing
+...
+Performing an incremental import of new data, after having already imported the first 100,000 rows of a table:
+
+$ sqoop import --connect jdbc:mysql://db.foo.com/somedb --table sometable \
+    --where "id &gt; 100000" --target-dir /incremental_dataset --append
+An import of a table named EMPLOYEES in the corp database that uses validation to validate the import using the table row count and number of rows copied into HDFS: More Details
+
+$ sqoop import --connect jdbc:mysql://db.foo.com/corp \
+    --table EMPLOYEES --validate
+$ sqoop import-all-tables (generic-args) (import-args)
+$ sqoop-import-all-tables (generic-args) (import-args)
+
+Table 13. Common arguments
+
+
+Argument
+
+Description
+
+--connect
+
+Specify JDBC connect string
+
+--connection-manager
+
+Specify connection manager class to use
+
+--driver
+
+Manually specify JDBC driver class to use
+
+--hadoop-mapred-home
+
+
+
+
+
+
+
+
+
+Override $HADOOP_MAPRED_HOME
+
+--help
+
+Print usage instructions
+
+--password-file
+
+Set path for a file containing the authentication password
+
+-P
+
+Read password from console
+
+--password
+
+Set authentication password
+
+--username
+
+Set authentication username
+
+--verbose
+
+Print more information while working
+
+--connection-param-file
+
+Optional properties file that provides connection parameters
+
+--relaxed-isolation     
+
+Set connection transaction isolation to read uncommitted for the mappers.
+
+
+
+Table 14. Import control arguments:
+
+Argument
+
+Description
+
+--as-avrodatafile
+
+Imports data to Avro Data Files
+
+--as-sequencefile
+
+Imports data to SequenceFiles
+
+--as-textfile
+
+Imports data as plain text (default)
+
+--as-parquetfile
+
+Imports data to Parquet Files
+
+--direct
+
+Use direct import fast path
+
+--inline-lob-limit
+
+Set the maximum size for an inline LOB
+
+-m,--num-mappers
+
+Use n map tasks to import in parallel
+
+--warehouse-dir
+
+
+
+
+
+
+
+
+
+HDFS parent for table destination
+
+-z,--compress
+
+Enable compression
+
+--compression-codec
+
+Use Hadoop codec (default gzip)
+
+--exclude-tables
+
+Comma separated list of tables to exclude from import process
+
+--autoreset-to-one-mapper
+
+Import should use one mapper if a table with no primary key is encountered
+
+
+--enclosed-by
+
+Sets a required field enclosing character
+
+--escaped-by
+
+Sets the escape character
+
+--fields-terminated-by
+
+Sets the field separator character
+
+--lines-terminated-by
+
+Sets the end-of-line character
+
+--mysql-delimiters
+
+Uses MySQL’s default delimiter set: fields: , lines: \n escaped-by: \ optionally-enclosed-by: '
+
+--optionally-enclosed-by
+
+Sets a field enclosing character
+
+
+Table 16. Input parsing arguments:
+
+Argument
+
+Description
+
+--input-enclosed-by
+
+Sets a required field encloser
+
+--input-escaped-by
+
+Sets the input escape character
+
+--input-fields-terminated-by
+
+Sets the input field separator
+
+--input-lines-terminated-by
+
+Sets the input end-of-line character     
+
+--input-optionally-enclosed-by      
+
+Sets a field enclosing character
+
+
+Table 17. Hive arguments:
+
+Argument
+
+Description
+
+--hive-home
+
+
+
+
+
+
+
+
+
+Override $HIVE_HOME
+
+--hive-import
+
+Import tables into Hive (Uses Hive’s default delimiters if none are set.)
+
+--hive-overwrite
+
+Overwrite existing data in the Hive table.
+
+--create-hive-table
+
+If set, then the job will fail if the target hive
+
+table exits. By default this property is false.
+
+--hive-table
+
+Sets the table name to use when importing to Hive.
+
+--hive-drop-import-delims
+
+Drops \n, \r, and \01 from string fields when importing to Hive.
+
+--hive-delims-replacement
+
+Replace \n, \r, and \01 from string fields with user defined string when importing to Hive.
+
+--hive-partition-key
+
+Name of a hive field to partition are sharded on
+
+--hive-partition-value
+
+String-value that serves as partition key for this imported into hive in this job.
+
+--map-column-hive      
+
+Override default mapping from SQL type to Hive type for configured columns.
+
+
+Table 18. Code generation arguments:
+
+Argument
+
+Description
+
+--bindir
+
+
+
+
+
+
+
+
+
+Output directory for compiled objects
+
+--jar-file
+
+Disable code generation; use specified jar
+
+--outdir
+
+
+
+
+
+
+
+
+
+Output directory for generated code
+
+--package-name      
+
+Put auto-generated classes in this package 
+
+
+Import all tables from the corp database:
+
+$ sqoop import-all-tables --connect jdbc:mysql://db.foo.com/corp
+Verifying that it worked:
+
+$ hadoop fs -ls
+Found 4 items
+drwxr-xr-x   - someuser somegrp       0 2010-04-27 17:15 /user/someuser/EMPLOYEES
+drwxr-xr-x   - someuser somegrp       0 2010-04-27 17:15 /user/someuser/PAYCHECKS
+drwxr-xr-x   - someuser somegrp       0 2010-04-27 17:15 /user/someuser/DEPARTMENTS
+drwxr-xr-x   - someuser somegrp       0 2010-04-27 17:15 /user/someuser/OFFICE_SUPPLIES
+
+$ sqoop import-mainframe --connect z390 \
+    --username david --password-file ${user.home}/.password
+$ sqoop import-mainframe --connnect  --dataset foo --warehouse-dir /shared \
+    …
+
+$ sqoop import-mainframe --connnect  --dataset foo --target-dir /dest \
+
+sqoop import  ... --null-string '\\N' --null-non-string '\\N
+$ sqoop import-mainframe --connect  --dataset SomePDS --package-name com.foocorp
+
+$ sqoop import-mainframe --connect  --dataset SomePDS --package-name com.foocorp
+
+$ sqoop import-mainframe --connect  --dataset SomePDS --package-name com.foocorp
+
+$ sqoop import-mainframe --connect z390 --dataset EMPLOYEES \
+    --hive-import
+$ sqoop export (generic-args) (export-args)
+$ sqoop-export (generic-args) (export-args)
+ Export control arguments:
+
+
+
+Argument
+
+Description
+
+--columns
+
+Columns to export to table
+
+--direct
+
+Use direct export fast path
+
+--export-dir
+
+
+
+
+
+
+
+HDFS source path for the export
+
+-m,--num-mappers
+
+Use n map tasks to export in parallel
+
+--table
+
+Table to populate
+
+--call
+
+Stored Procedure to call
+
+--update-key
+
+Anchor column to use for updates. Use a comma separated list of columns if there are more than one column.
+
+--update-mode
+
+Specify how updates are performed when new rows are found with non-matching keys in database.
+
+Legal values for mode include updateonly (default) and allowinsert.
+
+--input-null-string
+
+The string to be interpreted as null for string columns
+
+--input-null-non-string
+
+The string to be interpreted as null for non-string columns
+
+--staging-table
+
+The table in which data will be staged before being inserted into                                         the destination table.
+
+--clear-staging-table
+
+Indicates that any data present in the staging table can be deleted.
+
+--batch
+
+Use batch mode for underlying statement execution.
+
+
+CREATE TABLE foo(
+    id INT NOT NULL PRIMARY KEY,
+    msg VARCHAR(32),
+    bar INT);  0,this is a test,42
+1,some more data,100
+…
+
+Running sqoop-export --table foo --update-key id --export-dir /path/to/data --connect …
+
+Input parsing arguments:
+
+Argument
+
+Description
+
+--input-enclosed-by
+
+Sets a required field encloser
+
+--input-escaped-by
+
+Sets the input escape character
+
+--input-fields-terminated-by
+
+Sets the input field separator
+
+--input-lines-terminated-by
+
+Sets the input end-of-line character     
+
+--input-optionally-enclosed-by      
+
+Sets a field enclosing character
+
+
+Failed Exports
+Exports may fail for a number of reasons:
+
+Loss of connectivity from the Hadoop cluster to the database (either due to hardware fault, or server software crashes)
+Attempting to INSERT a row which violates a consistency constraint (for example, inserting a duplicate primary key value)
+Attempting to parse an incomplete or malformed record from the HDFS source data
+Attempting to parse records using incorrect delimiters
+Capacity issues (such as insufficient RAM or disk space)
+
+ sqoop export --connect jdbc:mysql://db.example.com/foo --table bar  \
+    --export-dir /results/bar_data --validate
+
+$ sqoop export --connect jdbc:mysql://db.example.com/foo --call barproc \
+    --export-dir /results/bar_da
+
+ValidationThreshold - Determines if the error margin between the source and target are acceptable: Absolute, Percentage Tolerant, etc. Default
+
+ValidationFailureHandler - Responsible for handling failures: log an error/warning, abort, etc. Default implementation is LogOnFailureHandler that logs a warning message to the configured logger.
+
+
+Validator - Drives the validation logic by delegating the decision to ValidationThreshold and delegating failure handling to ValidationFailureHandler. The default implementation is RowCountValidator which validates the row counts from source and the target.
+
+
+
+
+Validator. 
+
+Property:         validator
+Description:      Driver for validation,
+                  must implement org.apache.sqoop.validation.Validator
+Supported values: The value has to be a fully qualified class name.
+Default value:    org.apache.sqoop.validation.RowCountValidator
+Validation Threshold. 
+
+Property:         validation-threshold
+Description:      Drives the decision based on the validation meeting the
+                  threshold or not. Must implement
+                  org.apache.sqoop.validation.ValidationThreshold
+Supported values: The value has to be a fully qualified class name.
+Default value:    org.apache.sqoop.validation.AbsoluteValidationThreshold
+Validation Failure Handler. 
+
+Property:         validation-failurehandler
+Description:      Responsible for handling failures, must implement
+                  org.apache.sqoop.validation.ValidationFailureHandler
+Supported values: The value has to be a fully qualified class name.
+Default value:    org.apache.sqoop.validation.AbortOnFailureHandler
+
+$ sqoop import --connect jdbc:mysql://db.foo.com/corp  \
+    --table EMPLOYEES --validate
+
+$ sqoop export --connect jdbc:mysql://db.example.com/foo --table bar  \
+    --export-dir /results/bar_data --validate
+
+sqoop import --connect jdbc:mysql://db.foo.com/corp --table EMPLOYEES \
+    --validate --validator org.apache.sqoop.validation.RowCountValidator \
+    --validation-threshold \
+          org.apache.sqoop.validation.AbsoluteValidationThreshold \
+    --validation-failurehandler \
+          org.apache.sqoop.validation.AbortOnFailureHandler
+
+$ sqoop job (generic-args) (job-args) [-- [subtool-name] (subtool-args)]
+$ sqoop-job (generic-args) (job-args) [-- [subtool-name] (subtool-args)]
+
+
+
+Job management options:
+
+
+
+Argument     
+
+Description
+
+--create
+
+Define a new saved job with the specified job-id (name). A second Sqoop command-line, separated by a -- should be specified; this defines the saved job.
+
+--delete
+
+Delete a saved job.
+
+--exec
+
+Given a job defined with --create, run the saved job.
+
+--show
+
+Show the parameters for a saved job.
+
+--list
+
+List all saved jobs
+
+
+
+
+
+$ sqoop job --create myjob -- import --connect jdbc:mysql://example.com/db \
+    --table mytable
+
+
+ sqoop job --list
+Available jobs:
+  myjob
+
+sqoop job --show myjob
+ Job: myjob
+ Tool: import
+ Options:
+ ----------------------------
+ direct.import = false
+ codegen.input.delimiters.record = 0
+ hdfs.append.dir = false
+ db.table = mytable
+ …
+
+sqoop job --exec myjob
+10/08/19 13:08:45 INFO tool.CodeGenTool: Beginning code generation
+…
+
+
+The exec action allows you to override arguments of the saved job
+by supplying them after a --. For example, if the database were
+changed to require a username, we could specify the username and
+password with:
+
+
+
+$ sqoop job --exec myjob -- --username someuser -P
+Enter password:
+…
+
+
+The exec action allows you to override arguments of the saved job by supplying them after a --. For example, if the database were changed to require a username, we could specify the username and password with:
+
+$ sqoop job --exec myjob -- --username someuser -P
+Enter password:
+…
+
+
+Common options:
+
+Argument     
+
+Description
+
+--help
+
+Print usage instructions
+
+--verbose
+
+Print more information while working 
+
+ $ sqoop metastore (generic-args) (metastore-args)
+$ sqoop-metastore (generic-args) (metastore-args)
+
+
+Argument     
+
+Description
+
+--shutdown
+
+Shuts down a running metastore instance on the same machine.     
+
+
+Clients should connect to the metastore by specifying sqoop.metastore.client.autoconnect.url or --meta-connect with the value jdbc:hsqldb:hsql://:/sqoop. For example, jdbc:hsqldb:hsql://metaserver.example.com:16000/sqoop.
+
+
+ $ sqoop merge (generic-args) (merge-args)
+$ sqoop-merge (generic-args) (merge-args)
+
+
+
+
+Merge options:
+
+
+
+Argument
+
+Description
+
+--class-name
+
+Specify the name of the record-specific class to use during the merge job.
+
+--jar-file
+
+Specify the name of the jar to load the record class from.
+
+--merge-key
+
+Specify the name of a column to use as the merge key.
+
+--new-data
+
+Specify the path of the newer dataset.
+
+--onto
+
+Specify the path of the older dataset.
+
+--target-dir
+
+Specify the target path for the output of the merge job. 
+
+
+
+  sqoop merge --new-data newer --onto older --target-dir merged \
+    --jar-file datatypes.jar --class-name Foo --merge-key id
+
+
+
+$ sqoop codegen (generic-args) (codegen-args)
+$ sqoop-codegen (generic-args) (codegen-args)
+
+
+
+
+sqoop codegen --connect jdbc:mysql://db.example.com/corp \
+    --table employees
+
+
+
+
+$ sqoop create-hive-table (generic-args) (create-hive-table-args)
+$ sqoop-create-hive-table (generic-args) (create-hive-table-args)
+
+
+
+
+sqoop create-hive-table --connect jdbc:mysql://db.example.com/corp \
+    --table employees --hive-table emps
+
+
+
+$ sqoop eval (generic-args) (eval-args)
+$ sqoop-eval (generic-args) (eval-args)
+
+
+SQL evaluation arguments:
+
+
+
+Argument     
+
+Description
+
+-e,--query
+
+Execute statement in SQL. 
+
+
+
+
+sqoop eval --connect jdbc:mysql://db.example.com/corp \
+    --query "SELECT * FROM employees LIMIT 10"
+Insert a row into the foo table:
+
+$ sqoop eval --connect jdbc:mysql://db.example.com/corp \
+    -e "INSERT INTO foo VALUES(42, 'bar')"
+
+
+sqoop-list-databases
+
+$ sqoop list-databases (generic-args) (list-databases-args)
+$ sqoop-list-databases (generic-args) (list-databases-args)
+
+sqoop list-databases --connect jdbc:mysql://database.example.com/
+information_schema
+employees
+
+sqoop-list-tables$ sqoop list-tables (generic-args) (list-tables-args)
+$ sqoop-list-tables (generic-args) (list-tables-args)
+
+$ sqoop list-tables --connect jdbc:mysql://database.example.com/corp
+employees
+payroll_checks
+job_descriptions
+office_supplies
+
+$ sqoop list-tables --connect jdbc:postgresql://localhost/corp  --username name -P -- --schema payrolldept
+employees
+expenses
+
+$ sqoop version
+$ sqoop-version
+
+sqoop version
+Sqoop {revnumber}
+git commit id 46b3e06b79a8411320d77c984c3030db47dd1c22
+Compiled by aaron@jargon on Mon May 17 13:43:22 PDT 2010
+
+
+Supported Databases
+
+Database
+
+version     
+
+--direct support?     
+
+connect string matches     
+
+HSQLDB
+
+1.8.0+
+
+No
+
+jdbc:hsqldb:*//
+
+MySQL
+
+5.0+
+
+Yes
+
+jdbc:mysql://
+
+Oracle
+
+10.2.0+     
+
+No
+
+jdbc:oracle:*//
+
+PostgreSQL     
+
+8.3+
+
+Yes (import only)
+
+jdbc:postgresql://
+
+CUBRID
+
+9.2+
+
+NO
+
+
+
+$ sqoop import --table foo \
+    --connect jdbc:mysql://db.example.com/someDb?zeroDateTimeBehavior=round
+Sqoop’s direct mode does not support imports of BLOB, CLOB, or LONGVARBINARY column
+
+$ sqoop import -D oracle.sessionTimeZone=America/Los_Angeles \
+    --connect jdbc:oracle:thin:@//db.example.com/foo --table bar
+
+
+
+
+
+
+
