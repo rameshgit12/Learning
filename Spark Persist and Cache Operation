@@ -1,0 +1,94 @@
+Persist and Cache both copy the data into memory as default. It is not action.
+
+
+
+What is the difference b/w Cache and Persist
+
+
+
+Cache is able to copy the data into memory but Persist has additional below option  that has to store
+
+
+
+MEMORY_DISK,
+
+MEMORY_ONLY
+
+DISK_ONLY
+
+SERIELIZED
+
+REPLICATION
+
+
+
+USING UNPERSIST() option to cleanup the partitioned of memory data
+
+
+
+
+
+CODE:
+
+
+
+scala&gt; val rdd1=sc.makeRDD(Array(1,2,3,4))
+
+
+
+rdd1: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[0] at makeRDD at &lt;console&gt;:24
+
+
+
+scala&gt; val rdd2=rdd1.map(x=&gt;x+1)
+
+
+
+rdd2: org.apache.spark.rdd.RDD[Int] = MapPartitionsRDD[1] at map at &lt;console&gt;:26
+
+
+
+scala&gt; val rdd3=rdd2.map(x=&gt;x+2)
+
+
+
+rdd3: org.apache.spark.rdd.RDD[Int] = MapPartitionsRDD[3] at map at &lt;console&gt;:28
+
+
+
+scala&gt; val rdd4=rdd3.map(x=&gt;x+2)
+
+
+
+rdd4: org.apache.spark.rdd.RDD[Int] = MapPartitionsRDD[4] at map at &lt;console&gt;:30
+
+
+
+scala&gt; rdd2.persist()  //===&gt;Use whichever option you like rdd2.persist(storageLevel,DISK_ONLY) or rdd2.cache
+
+
+
+res0: rdd2.type = MapPartitionsRDD[1] at map at &lt;console&gt;:26
+
+scala&gt; val rdd5=rdd2.map(x=&gt;x+2)
+
+
+
+rdd5: org.apache.spark.rdd.RDD[Int] = MapPartitionsRDD[5] at map at &lt;console&gt;:28
+
+
+
+scala&gt; rdd3.take(5)
+
+
+
+res1: Array[Int] = Array(4, 5, 6, 7)
+
+
+
+scala&gt; rdd5.take(5)
+
+
+
+res2: Array[Int] = Array(4, 5, 6, 7)
+
