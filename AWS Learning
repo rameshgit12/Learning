@@ -1,0 +1,66 @@
+What is cloud:
+
+100 windows server-
+license -10k
+
+
+2 days/2 months
+time
+storage
+license
+
+
+whatever we are following to create any service in on-premises, the same steps follow in cloud
+
+All organisation moving towards cloud
+No initial investment
+
+use and Pay model
+
+No extra hassels
+Amazon workspace
+
+Creating EC2 instance:
+
+1)Created EC2 steps in AWS 
+
+2)PUTTYGen-->load the private key file-->save as ppk file
+
+3)Open putty-->put your ssh-->add the ppk file
+
+4)open your ip address through Putty
+
+5)sudo su ~  or sudo su root
+
+6)apt-get update
+
+7)apt install apache2
+
+8)service apache2 start
+
+9)service apache2 status
+
+10)cd /var/www/html
+
+11)vi index.html--> change something
+
+12)put your ipaddress in the browser, you can see your changes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
