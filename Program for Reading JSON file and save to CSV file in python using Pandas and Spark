@@ -1,0 +1,76 @@
+Program for Reading JSON file and save to CSV file in python using Pandas
+
+
+
+In [1]: import pandas as pd                                                    
+
+In [2]: import json                                                            
+
+In [3]: import csv                                                             
+
+In [4]: with open('/home/hadoop/git.json', 'r') as f:
+
+   ...:     dicts = json.load(f)
+
+   ...:                                                      
+
+In [5]: from pandas.io.json import json_normalize            
+
+In [6]: df = pd.DataFrame(dicts)                             
+
+In [7]: df.dtypes                                            
+
+Out[7]:
+
+assignee              object
+
+assignees             object
+
+
+
+
+
+                                                                                                                               
+
+Out[9]:
+
+                                                title                                             labels            created_at            updated_at closed_at
+
+0   #607   [{'id': 167756, 'node_id': 'MDU6TGFiZWwxNjc3NT]  2019-03-29T02:20:18Z  2019-03-29T02:20:40      None
+
+1                            Share [{'id': 57548, 'node_id': 'MDU6TGFiZWw1NzU0OA'] 2019-03-29T02:17:52  2019-03-29T02:18:17      None
+
+2        Setup  [{'id': 57548, 'node_id': 'MDU6TGFiZWw1NzU0OA']  2019-03-29T02:16:59Z  2019-03-29T02:17:36Z      None
+
+
+
+n [89]: df1=df['title','labels','created_at','updated_at','closed_at']]  
+
+                                                                                                                             
+
+In [90]: df1.to_csv("/home/hadoop/file.csv", encoding="utf-8")        
+
+
+
+Program for Reading JSON file and save to CSV file in SPARK
+
+
+
+scala&gt; val df = spark.read.option("multiline","true").option("inferschema","true").format("json").load("/home/hadoop/Desktop/vow/ramesh.json")
+
+scala&gt; df.select($"title" as "title",$"labels.name" as "name",$"created_at" as "created_at", $"updated_at" as "updated_at", $"closed_at" as "closed_at").show
+
+
+
+
+
+
+
+scala&gt; df.select($"title" as "title",$"labels.name" as "name",$"created_at" as "created_at", $"updated_at" as "updated_at", $"closed_at" as "closed_at").show
+
++--------------------+--------------------+--------------------+--------------------+---------+
+
+|               title|                name|          created_at|          updated_at|closed_at|
+
++--------------------+--------------------+--------------------+--------------------+---------+
+
