@@ -1,0 +1,127 @@
+
+GCP---&gt;Google Cloude Platform
+
+1.Gmail Account
+
+
+
+2.GCP create Big data cluster---&gt;3 instances1 instance master 2 instances are workers
+
+                            2 cpu cores and 7.5GB
+
+   each instance will be provided with 2IPS, internal and external
+
+    remote connection can be made to the instances with external IP only
+
+
+
+3.Connecting to the instance/s
+
+SSH protocol ---&gt;DSA/RSA Algorithm....2 keys public key and private key.
+
+4.Tool to connect to the remote instance
+
+Putty---&gt;SSH, hostname and IP and private key
+
+
+
+5.Creation of SSH keys
+
+use a tool called puttyGen--public key and private key      
+
+                            add public key generated to the instance to get
+
+                                                                                                         connect with
+
+           username:rsa-key-20181222@35.200.213.182(external key)
+
+                                                                           private key(.ppk)
+
+                                                                        
+
+
+
+6.list of services
+
+    master--&gt;HDFS(name node,secondary namenode)--&gt;2.9.0
+
+           --&gt;YARN(Resource Manager,History Server)
+
+                                             Hive(Run Jar)
+
+                                              PIG(RunJar)
+
+                                              HiveServer2(RunServer2)
+
+                                              spark 2.3.2  scala 2.11.8
+
+                                             python 2.7.13
+
+                             
+
+slaves.workers--&gt;HDFS(datanode)
+
+
+
+                                                            Yarn(NodeManager)
+
+                                                            http port no :9870
+
+                                                            yarn port no:8088                              
+
+
+
+7.Accessing the clusters web ui(HDFS,YARN,Spark)
+
+               1.we should download and install "Google cloud SDK"
+
+               SDK is a command line tool to interact with GCP
+
+            
+
+    create SSH tunnel to connect to web user interface     
+
+      cloud vendor--&gt;Storage service--&gt;Computing Service
+
+
+AWS-----&gt;S3------------------&gt;EMR(Elastic Map Reduce)
+
+GCP=====&gt;GCS(Google cloude Storage)--------&gt;Data Proc
+
+GCS--&gt;HDFS---&gt;Process the data
+
+GCP cloud SDK--&gt;to do everything with GCP cloud
+
+
+
+hdfs dfsadmin -printTopology
+
+hostname -I
+
+
+
+8.Running spark application on cluster--&gt;Yarn,Standalone,kubernetes,Mesos
+
+from pyspark.sql import SparkSession
+
+import sys
+
+if __name__=='__main__':
+
+spark=SparkSession.builder.master('yarn').appName('myfirstapp-wordcount').getOrCreate()
+
+r1=spark.sparkContext.textFile('sys.argv[1]')
+
+r2=r1.flatMap(lambda x:x.split(' ')).map(lambda x:(x,1)).
+
+reduceByKey(lambda x,y:x+y)
+
+r2.coalesce(1).saveAsTextFile('sys.argv[2]')
+
+                                             
+
+
+
+9.how to exchange data between local and remote nodes(SCP)(winscp)                                 
+
+spark-submit   hdfs://wordcount.py  /sample  /wordcountout
