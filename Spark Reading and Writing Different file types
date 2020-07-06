@@ -1,0 +1,198 @@
+Reading Different file types:
+
+Unstructure File Format:
+
+Input file:
+
+file1.txt
+
+spark is big big data tech
+
+hadoop is also a bigdata tech
+
+hdfs is a storage system
+
+yarn is computing system
+
+
+
+val rdd1=sc.textFile("file:///home/cloudera/file1")
+
+rdd1.collect.foreach(println)
+
+
+
+output:
+
+spark is big big data tech
+
+hadoop is also a bigdata tech
+
+hdfs is a storage system
+
+yarn is computing system
+
+
+
+
+
+Structure File Formats:
+
+-----------------------
+
+Reading CSV files
+
+Input file--&gt;
+
+file2
+
+1,2,usa
+
+2,3,uk
+
+3,4,australia
+
+4,5,japan
+
+
+
+
+
+External library from mavenrepositories -&gt;Spark CSV and Spark XML
+
+Launching the shell:
+
+spark-shell package 'com.databricks:spark-csv.2.11:1.5.0'
+
+
+
+code:
+
+val df_csv=sqlContext.read.format("csv").load("file:///home/cloudera/file2")
+
+df_csv.show
+
+
+
+
+
+Reading JSON files
+
+Inputfile--&gt;jsonfile
+
+{"name":"karnakar","course":"spark","country":"India"}
+
+{"name":"Hina","country":"USA","course":"scala"}
+
+{"course":"hadoop","name":"Hina","country":"India"}
+
+
+code
+
+val df_json=sqlContext.read.format("json").load("file://home/cloudera/jsonfile")
+
+df_json.show
+
+Reading XML Files:
+
+Inputfile--&gt;
+
+xmlfile
+
+&lt;trainee&gt;
+
+   &lt;name&gt;Ramesh&lt;/name&gt;
+
+   &lt;course&gt;spark&lt;/course&gt;
+
+&lt;/trainee&gt;  
+
+&lt;trainee&gt;
+
+   &lt;name&gt;Dinesh&lt;/name&gt;
+
+   &lt;course&gt;scala&lt;/course&gt;
+
+&lt;/trainee&gt; 
+
+
+code:
+
+val df_xml=sqlContext.read.format("xml").option("rowTag","trainee").load("file:///home/cloudera/xmlfile")
+
+df.xml.show
+
+
+
+Tranformation and writing to save:
+
+---------------------------------
+
+rdd1.collect.foreach(println)
+
+val rdd2=rdd1.filter(x=&gt;x.contains("system"))
+
+rdd2.collect.foreach(println)
+
+
+
+val df_csv2=df_csv.where("c2='usa'")
+
+df_csv2.show
+
+
+
+Writing to Local:
+
+df_csv2.write.format("json").save("file:///home/cloudera/csvoutput")
+
+df_xml.write,format("csv").save("file://home/cloudera/xmloutput")
+
+rdd2.saveAsTextFile("file://home/cloudera/rddoutput")
+
+
+
+
+
+In Additonal properties:
+
+option("header","true")
+
+option("inferSchema","true")
+
+option("delimeter","\t")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
