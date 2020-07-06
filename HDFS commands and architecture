@@ -1,0 +1,103 @@
+All hadoop commands are invoked by the bin/hadoop script
+
+hadoop fs –help
+hadoop fs –help lshadoop fs –usage ls
+$ hadoop fs –ls /
+ hadoop fs –ls
+
+
+
+hadoop fs –ls –R /user/cloudera
+
+
+
+hadoop fs –mkdir /user/cloudera/dezyre1
+
+
+
+sudo –u hdfs hadoop fs –mkdir /dezyre
+
+
+
+hadoop fs –copyFromLocal Sample1.txt /user/cloudera/dezyre1
+
+
+
+hadoop fs –put Sample2.txt /user/cloudera/dezyre1
+
+
+
+hadoop fs –moveFromLocal Sample3.txt /user/cloudera/dezyre1
+
+
+
+$ hadoop fs –du /user/cloudera/dezyre1
+
+
+
+hadoop fs –df 
+
+
+
+hadoop fs –expunge
+
+
+
+hadoop fs –cat /user/cloudera/dezyre1/Sample1.txt
+
+
+
+hadoop fs –cp /user/cloudera/dezyre/war_and_peace /user/cloudera/dezyre1/
+
+
+
+hadoop fs –mv /user/cloudera/dezyre1/Sample1.txt /user/cloudera/dezyre/
+
+
+
+hadoop fs –rm -r /user/cloudera/dezyre3
+
+
+
+hadoop fs –rm /user/cloudera/dezyre3
+
+
+
+hadoop fs -tail /user/cloudera/dezyre/war_and_peace
+
+
+
+hadoop fs -tail /user/cloudera/dezyre/war_and_peace
+
+
+
+hadoop fs –copyToLocal /user/cloudera/dezyre1/Sample1.txt /home/cloudera/hdfs_bkp/
+
+
+
+hadoop fs –get /user/cloudera/dezyre1/Sample2.txt /home/cloudera/hdfs_bkp/
+
+
+
+hadoop fs –touchz /user/cloudera/dezyre1/Sample4.txt
+
+
+
+hadoop fs –setrep –w 1 /user/cloudera/dezyre1/Sample1.txt
+
+
+
+sudo –u hdfs hadoop fs –chgrp –R cloudera /dezyre
+
+
+
+sudo –u hdfs hadoop fs –chown –R cloudera /dezyre
+
+
+
+hadoop fs –chmod /dezyre
+
+
+
+data  merge.txt
+
