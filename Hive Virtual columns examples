@@ -1,0 +1,119 @@
+Step1:
+Inside Files directory:
+
+[cloudera@quickstart files]$ ls -ltr
+
+total 8
+
+-rw-rw-r-- 1 cloudera cloudera 6 Apr 15 10:56 file11.txt
+
+-rw-rw-r-- 1 cloudera cloudera 8 Apr 15 10:57 file12.txt
+
+Sample Data's
+
+[cloudera@quickstart files]$ cat file11.txt
+
+1
+
+2
+
+3
+
+[cloudera@quickstart files]$ cat file12.txt
+
+3
+
+5
+
+6
+
+7
+
+
+
+Step 2:
+
+Create the hive table:
+
+hive&gt;; create external table tab(id Int) row format delimited fields terminated by ',' location 'file:///home/cloudera/files/';
+
+OK
+
+Time taken: 0.043 seconds
+
+
+
+Step 3: Execute in hive
+
+hive&gt; select id,INPUT__FILE__NAME from tab;
+
+OK
+
+3 file:/home/cloudera/files/file12.txt
+
+5 file:/home/cloudera/files/file12.txt
+
+6 file:/home/cloudera/files/file12.txt
+
+7 file:/home/cloudera/files/file12.txt
+
+1 file:/home/cloudera/files/file11.txt
+
+2 file:/home/cloudera/files/file11.txt
+
+3 file:/home/cloudera/files/file11.txt
+
+INPUT__FILE__NAME--It is the virtual column name in hive
+
+
+
+hive&gt;;; select id,REGEXP_EXTRACT(INPUT_FILE_NAME, './(.)/(.*)', 2) as FILE_NAME from tab;
+
+OK
+
+3 file12.txt
+
+5 file12.txt
+
+6 file12.txt
+
+7 file12.txt
+
+1 file11.txt
+
+2 file11.txt
+
+3 file11.txt
+
+Time taken: 0.052 seconds, Fetched: 7 row(s)
+
+
+
+hive&gt;;; create view emp_upd as select id,REGEXP_EXTRACT(INPUT_FILE_NAME, './(.)/(.*)', 2) as FILE_NAME from tab;
+
+OK
+
+Time taken: 0.11 seconds
+
+hive&gt;; select * from emp_upd;
+
+OK
+
+3 file12.txt
+
+5 file12.txt
+
+6 file12.txt
+
+7 file12.txt
+
+1 file11.txt
+
+2 file11.txt
+
+3 file11.txt
+
+Time taken: 0.096 seconds, Fetched: 7 row(s)
+
+
+
