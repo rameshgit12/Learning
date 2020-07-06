@@ -1,0 +1,30 @@
+match case example in Scala
+
+
+scala&gt; def f1(x:Int):Unit = {
+     | x match{
+     | case 1 =&gt; println("One")
+     | case 2 =&gt; println("Two")
+     | case 3 =&gt; println("Three")
+     | case 4 =&gt; println("Four")
+     | case _ =&gt; println("Other Number")
+     | }
+
+     | }
+
+
+
+f1: (x: Int)Unit
+
+scala&gt; f1(1)
+One
+
+scala&gt; f1(2)
+Two
+
+scala&gt; f1(_)
+res2: Int =&gt; Unit = $$Lambda$1067/1853443923@2e1ba142
+
+scala&gt; f1(0)
+Other Number
+
