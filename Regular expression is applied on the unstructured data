@@ -1,0 +1,17 @@
+Input data
+
+Val input="1000avgdhdhh"
+
+
+
+Code
+
+Val str="(0-9)+".r
+
+Str.FindfirstIn(input).get    &lt;--- it will be returned the one or more numeric from the given input string
+
+
+
+Output
+
+1000
