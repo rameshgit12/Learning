@@ -1,0 +1,2728 @@
+1. Installation
+
+
+
+Step 1: https://www.python.org/  --&gt;Download--&gt;Install it
+
+
+
+2. Numbers
+
+&gt;&gt;&gt; 2+6
+
+8
+
+&gt;&gt;&gt; 3+4
+
+7
+
+&gt;&gt;&gt; 3*20
+
+60
+
+&gt;&gt;&gt; 12/4
+
+3.0
+
+&gt;&gt;&gt; 8+2*10
+
+28
+
+&gt;&gt;&gt; (8+2)*10
+
+100
+
+&gt;&gt;&gt; 18/4
+
+4.5
+
+&gt;&gt;&gt; 18%2
+
+0
+
+&gt;&gt;&gt; 18%4
+
+2
+
+&gt;&gt;&gt; 5*5*5
+
+125
+
+&gt;&gt;&gt; 5**5
+
+3125
+
+&gt;&gt;&gt; 5**3
+
+125
+
+
+
+Variables:
+
+&gt;&gt;&gt; tuna=5
+
+&gt;&gt;&gt; 20+tuna
+
+25
+
+&gt;&gt;&gt; bacon=18
+
+&gt;&gt;&gt; bacon/tuna
+
+3.6
+
+
+
+3.Strings
+
+&gt;&gt;&gt; ' ' or " "
+
+' '
+
+&gt;&gt;&gt; "CCR is a credit card project"
+
+'CCR is a credit card project'
+
+&gt;&gt;&gt; 'ccr is a credit project'
+
+'ccr is a credit project'
+
+&gt;&gt;&gt; 'i don't think she is 18'
+
+  File "", line 1
+    'i don't think she is 18'
+           ^
+SyntaxError: invalid syntax
+&gt;&gt;&gt; "i don't think she is 18"
+"i don't think she is 18"
+&gt;&gt;&gt; "Duntbi "hrllo" ok"
+  File "", line 1
+    "Duntbi "hrllo" ok"
+                 ^
+SyntaxError: invalid syntax
+&gt;&gt;&gt; 'Duntbi "hrllo" ok'
+'Duntbi "hrllo" ok'
+&gt;&gt;&gt; firstName="Bucky"
+&gt;&gt;&gt; firstName+"Roberts"
+'BuckyRoberts'
+&gt;&gt;&gt; firstName+'Roberts'
+'BuckyRoberts'
+&gt;&gt;&gt; firstName+'Robert'
+'BuckyRobert'
+&gt;&gt;&gt; firstName*3
+'BuckyBuckyBucky'
+&gt;&gt;&gt; pritn('c:\desktop\nnew one')
+Traceback (most recent call last):
+  File "", line 1, in 
+NameError: name 'pritn' is not defined
+&gt;&gt;&gt; pritn("c:\desktop\nnew one")
+Traceback (most recent call last):
+  File "", line 1, in 
+NameError: name 'pritn' is not defined
+&gt;&gt;&gt; 'i don\'t this credit'
+"i don't this credit"
+&gt;&gt;&gt; "i don\'t this credit"
+"i don't this credit"
+&gt;&gt;&gt; "i don\"t this credit"
+'i don"t this credit'
+&gt;&gt;&gt; print('hello')
+hello
+&gt;&gt;&gt; print('c:\deskto/n newline')
+c:\deskto/n newline
+&gt;&gt;&gt; print('c:\desktop \n newline')
+c:\desktop
+ newline
+&gt;&gt;&gt; print('c:\desktop\n newline')
+c:\desktop
+ newline
+&gt;&gt;&gt; print(r'c:\desktop\n newline')
+c:\desktop\n newline
+
+
+
+4.Slicing the String
+
+
+&gt;&gt;&gt; user='tune worker'
+
+&gt;&gt;&gt; user[0]
+
+'t'
+
+&gt;&gt;&gt; user[5]
+
+'w'
+
+&gt;&gt;&gt; user[-1]
+
+'r'
+
+&gt;&gt;&gt; user[2:7]
+
+'ne wo'
+
+&gt;&gt;&gt; user[-3]
+
+'k'
+
+&gt;&gt;&gt; user[:7]
+
+'tune wo'
+
+&gt;&gt;&gt; user[:]
+
+'tune worker'
+
+&gt;&gt;&gt; print('decide')
+
+decide
+
+&gt;&gt;&gt; len("tune")
+
+4
+
+&gt;&gt;&gt; len(user)
+
+11
+
+5.List
+
+players=[29.54,56,45,67]
+
+players[2]
+
+players[2]=88
+
+players+[91,92,93] --&gt;not permanant
+
+players.append(20)
+
+players[:2]=[0.0]
+
+players[:2]=[]
+
+players[:]
+
+6.pycharm download
+
+https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=windows&amp;code=PCC
+
+
+
+7.if elif else
+
+age=27
+
+if age    print('No beers for you')
+
+name="Lucy"
+
+if name is "Bucky":
+
+    print("Hi Bucky")
+
+elif name is "Lilly":
+
+    print("Hi Lilly")
+
+else:
+
+    print("please signup the correct name")
+
+please signup the correct name
+
+foods =['bacon','tuna','hari','beef','oil']
+
+for f in foods:
+
+    print(f)
+
+    print(len(f))
+
+bacon
+
+5
+
+tuna
+
+4
+
+hari
+
+4
+
+beef
+
+4
+
+oil
+
+3
+
+8.for,range while
+
+for f in foods[:2]:
+
+    print(f)
+
+    print(len(f))
+
+for x in range(10):
+
+    print(x)
+
+for x in range(5,12):
+
+    print(x)
+
+for x in range(5,40,5):
+
+    print(x)
+
+
+
+b=5
+
+while b
+
+    print("hi")
+
+    b+=1
+
+
+
+9.break and continue
+
+
+
+#break and continuemagicNum=26for n in range(101):
+    if n is magicNum:
+        print(n,'this is magic number')
+        break    else:
+        print(n)
+26 this is magic number
+
+
+
+num=[2,5,12,13,17]
+for n in range(1,20):
+    if n is num:
+        continue    print(n)
+
+
+
+
+10.Functions and Return values,Default arguments:
+
+
+
+def beg():
+    print('beg,function all')
+beg()
+beg()
+beg()
+
+
+beg,function all
+
+beg,function all
+
+beg,function all
+
+
+
+def bitcoin_to_us(btc):
+    amount=btc*527    print(amount)
+bitcoin_to_us(3.85)
+bitcoin_to_us(1.25)
+
+
+2028.95
+
+658.75
+
+
+
+def allow_dating_age(myage):
+    girl_age=myage/2+7    return girl_age
+bourn=allow_dating_age(33)
+print(bourn,"or elder")
+
+
+23.5 or elder
+
+
+
+def get_gender(sex='Unknown'):
+    if sex is 'm':
+        sex='male'    elif sex is 'f':
+        sex='female'    print(sex)
+
+get_gender('m')
+get_gender('f')
+get_gender()
+
+
+male
+
+female
+
+Unknown
+
+
+
+#Keyword argumentsdef dumb(name='Nethra',action='at',item='time'):
+    print(name,action,item)
+dumb()
+dumb('San','fix','cool')
+dumb(item='awesome')
+
+Nethra at time
+San fix cool
+Nethra at awesome
+
+#Flexible number of Argumentsdef add_num(*args):
+    total=0    for a in args:
+        total+=a
+    print(total)
+
+add_num(3)
+add_num(3,32)
+add_num(3,43,5345.22)
+
+ 3
+35
+5391.22
+
+#Unpacking argsdef health_cal(age,apple_ate,cig):
+    answer=(100-age)+(apple_ate*3.5)-(cig*2)
+    print(answer)
+bucking_date=[27,20,0]
+health_cal(bucking_date[0],bucking_date[1],bucking_date[2])
+health_cal(*bucking_date)
+
+
+143.0
+143.0
+
+#Setgroceries={'alva','lattu','orange','apple'}
+print(groceries)
+if 'apple' in groceries:
+    print('Your item is matched')
+else:
+    print('please try again')
+
+
+{'lattu', 'alva', 'orange', 'apple'}
+Your item is matched
+
+Dictionaries
+classmates={'A':'apple','B':'ball','c':'carot'}
+print(classmates)
+print(classmates['A'])
+for k,v in classmates.items():
+    print(k,v)
+
+
+apple
+A apple
+B ball
+c carot
+
+
+Module:
+import tuna
+tuna.fish()
+import random
+x=random.randrange
+print(x)
+
+#Modulesdef fish():
+    print('I am tuna fish')
+
+
+
+Reading and Writing Files
+fw=open('sample.txt','w')
+fw.write("Hardwork should never faile\n")
+fw.write("truth will never loose")
+fw.close()
+
+fr=open('sample.txt','r')
+text=fr.read()
+print(text)
+fr.close()
+
+
+Hardwork should never faile
+truth will never loose
+Read the images:
+import urllib.request
+import random
+def def_img(url):
+    name=random.randrange(1,1000)
+    full_img=str(name)+'jpg'    urllib.request.urlretrieve(url,full_name)
+
+def_img("https://www.youtube.com/watch?v=WJbu2Ib3ozE")
+
+Download the file from browser
+
+from urllib import request
+goog_url="https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv"def download_stock_date(csv_url):
+    response=request.urlopen(csv_url)
+    csv=response.read()
+    csv_str=str(csv)
+    lines=csv_str.split("\\n")
+    print(lines)
+    dest_url=r'C:\\Users\\Nethra\\PycharmProjects\\PythonExercise\\goog.csv'    fx=open(dest_url,"w")
+    for line in lines:
+        print(line)
+
+
+
+
+lambda function
+
+lambda arguments:expression
+
+
+
+ lambda x,y:x+y
+
+
+
+ map:
+
+
+
+map(function,sequence)
+
+
+
+ a=[1,2,3,4]
+
+
+
+def square(x)
+
+
+
+   return x*x
+
+
+
+ map(square,a)
+
+
+
+in python 3 ,it will be returned to the iterator
+
+
+
+so, list(map(square,a)
+
+
+
+ map(lambda x:x*x,a)
+
+
+
+ b=[1,1,1,1]
+
+
+
+ tuple(map(lambda x,y:x+y,a,b))
+
+
+
+Regular expression:
+
+
+
+"^python"
+
+
+
+"com$"
+
+
+
+. -&gt;matches single character
+
+
+
+[^1-9]
+
+
+
+'x*'-&gt;zero or more occurance
+
+
+
+'x+'-&gt; one or more occurance
+
+
+
+'x?'-&gt; zero or one occurence
+
+
+
+'x{2}'-&gt;exactl 2 occurance
+
+
+
+'x{5,}'=5 or more occurance
+
+
+
+'x{5,8}'-&gt; between 5 and 8
+
+
+
+a|b
+
+
+
+()
+
+
+
+\s -&gt;matcher the space
+
+
+
+\S-&gt; matcher the non white space
+
+
+
+\d
+
+
+
+\D
+
+
+
+
+
+Ex:
+
+
+
+str1='my name is alice'
+
+
+
+str1.replace("alice","john")
+
+
+
+str2="main street broad road"
+
+
+
+str.replace("road","rd")
+
+
+
+RE function:
+
+
+
+match
+
+search
+
+final
+
+replace
+
+sub 
+
+
+
+
+
+import replace
+
+line="peg:cat i love cats"
+
+#match=re.match(pattern,string,)
+
+match=re.match(r"pet:\w\w\w",line)
+
+match.group(0)
+
+match=re.search(r"pet:\w\w\w",line)
+
+match
+
+match.group(0)
+
+match is looking the beginning the string
+
+search is looking the entire string in which taking first match
+
+findall-gloable search
+
+
+
+line="pet:cat i love cats pet:cow i line"
+
+
+
+find=re.findall(r"pet:\w\w\w",line)
+
+
+
+s=re.split(r"pet:\w\w\w",line)
+
+
+
+svar=re.sub
+
+
+
+str1="john@abc.com and alice@pqr.com"
+
+
+
+var=re.sub(r"@\w+","@xyz",str1)
+
+
+
+
+
+
+
+Looping with Index:
+
+
+
+color=['red','blue','yellow']
+
+
+
+for i in color:
+
+
+
+  print(i)
+
+
+
+for i in range(len(color))
+
+
+
+  print(i,color[i])
+
+
+
+
+
+for i,j in enumerate(color,1)
+
+
+
+  print(i,j)
+
+
+
+ negative with looping index:
+
+
+
+list1=[1,2,3,4]
+
+
+
+list[-3]====&gt;list[2]
+
+
+
+list1.insert(-3,10)
+
+
+
+list1[-3:-1]
+
+
+
+del list1[-1]
+
+
+
+
+
+List vs Dictionary:
+
+
+
+list-linear datastructure
+
+
+
+dictionary-associate datastructure
+
+
+
+list2=[2,3,4,"hello"]
+
+
+
+list1[3]
+
+
+
+dict1={1:'one',2:'two',3:'three'}
+
+
+
+dict1[2]
+
+
+
+String Functions
+
+&gt;&gt;&gt; str1="hello welcome to amuls acadamy"
+
+&gt;&gt;&gt; str1.capitalize()
+
+'Hello welcome to amuls acadamy'
+
+&gt;&gt;&gt; str2="Welcome to HCL"
+
+
+
+&gt;&gt;&gt; str2.capitalize()
+
+'Welcome to hcl'
+
+
+
+&gt;&gt;&gt; str1="""johny johny yes papa
+
+... eating sugar no papa
+
+... telling lie no papa
+
+... opn your mouth haha"""
+
+
+
+&gt;&gt;&gt; st1.count('no')
+
+Traceback (most recent call last):
+
+  File "", line 1, in 
+NameError: name 'st1' is not defined
+
+
+
+&gt;&gt;&gt; st1.count("no")
+
+Traceback (most recent call last):
+
+  File "", line 1, in 
+NameError: name 'st1' is not defined
+
+
+
+&gt;&gt;&gt; str1="google.com"
+
+&gt;&gt;&gt; str1.endswith('com')
+
+True
+
+
+
+&gt;&gt;&gt; str1.endswith('m')
+
+True
+
+
+
+&gt;&gt;&gt; str1.endswith('org')
+
+False
+
+
+
+&gt;&gt;&gt; str1="amuls academy"
+
+&gt;&gt;&gt; str1
+
+'amuls academy'
+
+&gt;&gt;&gt; str1.find('y')
+
+
+
+&gt;&gt;&gt; str1.find('aca')
+
+
+
+&gt;&gt;&gt; str1.find('ca')
+
+
+
+&gt;&gt;&gt; len(str1)
+
+
+
+&gt;&gt;&gt; str1.split()
+
+['amuls', 'academy']
+
+&gt;&gt;&gt; str2="Hello welcom to amuls Academy"
+
+&gt;&gt;&gt; str2.split()
+
+['Hello', 'welcom', 'to', 'amuls', 'Academy']
+
+&gt;&gt;&gt; str2.split('o')
+
+['Hell', ' welc', 'm t', ' amuls Academy']
+
+
+
+&gt;&gt;&gt; str2.title()
+
+'Hello Welcom To Amuls Academy'
+
+
+
+&gt;&gt;&gt; str2='WELCOME'
+
+&gt;&gt;&gt; str2.lower()
+
+'welcome'
+
+&gt;&gt;&gt; str2.islower()
+
+False
+
+&gt;&gt;&gt; str2
+
+'WELCOME'
+
+
+
+&gt;&gt;&gt; str1.islower()
+
+False
+
+&gt;&gt;&gt; str1="amuls academy"
+
+&gt;&gt;&gt; str1.islower()
+
+True
+
+&gt;&gt;&gt; str1.upper()
+
+'AMULS ACADEMY'
+
+&gt;&gt;&gt; str2
+
+'WELCOME'
+
+&gt;&gt;&gt; str2.isupper()
+
+True
+
+&gt;&gt;&gt; str3="Amuls"
+
+&gt;&gt;&gt; str3.upper()
+
+'AMULS'
+
+&gt;&gt;&gt; str1="hello WElcme to AMULS academy"
+
+&gt;&gt;&gt; str1.swapcase()
+
+'HELLO weLCME TO amuls ACADEMY'
+
+
+
+&gt;&gt;&gt; str1="hello wlcome nish"
+
+&gt;&gt;&gt; str1.replace('nisha','amuls')
+
+'hello wlcome nish'
+
+&gt;&gt;&gt; str1.replace('nish','amuls')
+
+'hello wlcome amuls'
+
+&gt;&gt;&gt; str1.replace('o','r')
+
+'hellr wlcrme nish'
+
+&gt;&gt;&gt; str1.isdigit()
+
+False
+
+&gt;&gt;&gt; str2='123g'
+
+&gt;&gt;&gt; str2.isdigit()
+
+False
+
+&gt;&gt;&gt; str3='1234567'
+
+&gt;&gt;&gt; str3.isdigit()
+
+True
+
+&gt;&gt;&gt; str3.isalpha()
+
+False
+
+&gt;&gt;&gt; str2.isalpha()
+
+False
+
+&gt;&gt;&gt; str1.isalpha()
+
+False
+
+&gt;&gt;&gt; str4="hello"
+
+&gt;&gt;&gt; str4.isalpha()
+
+True
+
+
+
+&gt;&gt;&gt; str1='aaaaaaaahelloaaaaaaa'
+
+&gt;&gt;&gt; str1.strip('a')
+
+'hello'
+
+&gt;&gt;&gt; str1='!!!!!!!!hello!!!!!!!'
+
+&gt;&gt;&gt; str1.lstrip('!')
+
+'hello!!!!!!!'
+
+&gt;&gt;&gt; str1.rstrip('!')
+
+'!!!!!!!!hello'
+
+&gt;&gt;&gt;
+
+
+
+Dictionaries:
+
+
+
+&gt;&gt;&gt; temp={}
+
+&gt;&gt;&gt; temp['sun']=33.4
+
+&gt;&gt;&gt; temp['mon']=45
+
+&gt;&gt;&gt; temp['tue']=30
+
+&gt;&gt;&gt; temp
+
+{'sun': 33.4, 'mon': 45, 'tue': 30}
+
+&gt;&gt;&gt; mail_address={'amul':'amul@gmail.com','ram':'ram@gmail.com'}
+
+&gt;&gt;&gt; mail_address
+
+{'amul': 'amul@gmail.com', 'ram': 'ram@gmail.com'}
+
+&gt;&gt;&gt; mail_address.keys()
+
+dict_keys(['amul', 'ram'])
+
+&gt;&gt;&gt; mail_address.values()
+
+dict_values(['amul@gmail.com', 'ram@gmail.com'])
+
+&gt;&gt;&gt; mail_address['amul']
+
+'amul@gmail.com'
+
+
+
+
+
+&gt;&gt;&gt; dict()
+
+{}
+
+&gt;&gt;&gt; num={1:'one',2:'two',3:'three'}
+
+&gt;&gt;&gt; numbers=dict(num)
+
+&gt;&gt;&gt; numbers
+
+{1: 'one', 2: 'two', 3: 'three'}
+
+&gt;&gt;&gt; len(numbers)
+
+3
+
+&gt;&gt;&gt; del num[2]
+
+&gt;&gt;&gt; num
+
+{1: 'one', 3: 'three'}
+
+&gt;&gt;&gt; numbers
+
+{1: 'one', 2: 'two', 3: 'three'}
+
+&gt;&gt;&gt; 1 in num
+
+True
+
+&gt;&gt;&gt; 2 in num
+
+False
+
+
+
+&gt;&gt;&gt; my_dict={1:"apple",2:'ball',3:"cat"}
+
+&gt;&gt;&gt; my_dict
+
+{1: 'apple', 2: 'ball', 3: 'cat'}
+
+&gt;&gt;&gt; my_dict={}
+
+&gt;&gt;&gt; my_dict[1]="apple"
+
+&gt;&gt;&gt; my_dict[2]="bat"
+
+&gt;&gt;&gt; my_dict[3]="cat"
+
+&gt;&gt;&gt; my_dict
+
+{1: 'apple', 2: 'bat', 3: 'cat'}
+
+&gt;&gt;&gt; d=dict([(1,"apple"),(2,"ball")])
+
+&gt;&gt;&gt; d
+
+{1: 'apple', 2: 'ball'}
+
+&gt;&gt;&gt; a=[1,2,3,4]
+
+&gt;&gt;&gt; b=["apple","ball","cat","dog"]
+
+&gt;&gt;&gt; my_dict={}
+
+&gt;&gt;&gt; for i in range(len(a)):
+
+...     my_dict[a[i]]=b[i]
+
+...
+
+&gt;&gt;&gt; my_dict
+
+{1: 'apple', 2: 'ball', 3: 'cat', 4: 'dog'}
+
+&gt;&gt;&gt; my_dict.keys()
+
+dict_keys([1, 2, 3, 4])
+
+&gt;&gt;&gt; my_dict.values()
+
+dict_values(['apple', 'ball', 'cat', 'dog'])
+
+&gt;&gt;&gt; my_dict[3]
+
+'cat'
+
+&gt;&gt;&gt; my_dict["apple"]
+
+Traceback (most recent call last):
+
+  File "", line 1, in 
+KeyError: 'apple'
+&gt;&gt;&gt; my_dict.get(1)
+'apple'
+&gt;&gt;&gt; my_dict.get("apple")
+&gt;&gt;&gt; my_dict
+{1: 'apple', 2: 'ball', 3: 'cat', 4: 'dog'}
+&gt;&gt;&gt; my_dict.get(5)
+&gt;&gt;&gt; my_dict[5]
+Traceback (most recent call last):
+  File "", line 1, in 
+KeyError: 5
+&gt;&gt;&gt; my_dict[4]="dog"
+&gt;&gt;&gt; my_dict
+{1: 'apple', 2: 'ball', 3: 'cat', 4: 'dog'}
+&gt;&gt;&gt; my_dict[2]="bat"
+&gt;&gt;&gt; len(my_dict)
+4
+&gt;&gt;&gt; my_dict
+{1: 'apple', 2: 'bat', 3: 'cat', 4: 'dog'}
+&gt;&gt;&gt;
+
+
+
+&gt;&gt;&gt; #fromkeys(iterable,value)
+
+...
+
+&gt;&gt;&gt; list1=[1,2,3,4]
+
+&gt;&gt;&gt; dict.fromkeys(list1)
+
+{1: None, 2: None, 3: None, 4: None}
+
+&gt;&gt;&gt; {}.fromkeys(range(1,7),10)
+
+{1: 10, 2: 10, 3: 10, 4: 10, 5: 10, 6: 10}
+
+&gt;&gt;&gt;
+
+
+
+&gt;&gt;&gt; students
+
+{'john': 20, 'ria': 21, 'ann': 22, 'anable': None}
+
+&gt;&gt;&gt; students.setdefault('roo',10)
+
+10
+
+&gt;&gt;&gt; students
+
+{'john': 20, 'ria': 21, 'ann': 22, 'anable': None, 'roo': 10}
+
+
+
+
+&gt;&gt;&gt; #Dictionary.update(dictionary)
+
+...
+
+&gt;&gt;&gt; dict1={1:"a",2:"b"}
+
+&gt;&gt;&gt; list1=[3,"c"]
+
+&gt;&gt;&gt; dict1.update([list1])
+
+&gt;&gt;&gt; dict1
+
+{1: 'a', 2: 'b', 3: 'c'}
+
+&gt;&gt;&gt; dict1.update(x=3,y=2,z=4)
+
+&gt;&gt;&gt; dict1
+
+{1: 'a', 2: 'b', 3: 'c', 'x': 3, 'y': 2, 'z': 4}
+
+&gt;&gt;&gt;
+
+
+
+&gt;&gt;&gt; my_dict={1:"a",2:"b",3:"c",4:"d"}
+
+&gt;&gt;&gt; del my_dict[2]
+
+&gt;&gt;&gt; my_dict
+
+{1: 'a', 3: 'c', 4: 'd'}
+
+&gt;&gt;&gt; my_dict.pop(1)
+
+'a'
+
+&gt;&gt;&gt; my_dict
+
+{3: 'c', 4: 'd'}
+
+&gt;&gt;&gt; my_dict.clear()
+
+&gt;&gt;&gt; my_dict
+
+{}
+
+&gt;&gt;&gt; del my_dict
+
+&gt;&gt;&gt; my_dict
+
+Traceback (most recent call last):
+
+  File "", line 1, in 
+NameError: name 'my_dict' is not defined
+&gt;&gt;&gt;
+
+
+
+File Handling
+
+&gt;&gt;&gt; #open(filename,mode)
+
+
+
+&gt;&gt;&gt; text_file=open("text.txt",'w')
+
+&gt;&gt;&gt; text_file.write("hello file")
+
+10
+
+&gt;&gt;&gt; text_file.close()
+
+&gt;&gt;&gt; text_file=open("text.txt","a")
+
+&gt;&gt;&gt; text_file.write("welcome to amuls acadamy")
+
+24
+
+&gt;&gt;&gt; text_file.close()
+
+&gt;&gt;&gt; text_file=open("text.txt","r")
+
+&gt;&gt;&gt; print(text_file.read())
+
+hello filewelcome to amuls acadamy
+
+&gt;&gt;&gt; text_file.close()
+
+
+
+Renaming and Deleting the file
+
+
+&gt;&gt;&gt; text_file.close()
+
+&gt;&gt;&gt; import os
+
+&gt;&gt;&gt; os.rename("text.txt","new_file.txt")
+
+&gt;&gt;&gt; os.getcwd()
+
+'C:\\Users\\Nethra'
+
+&gt;&gt;&gt; os.remove("new_file.txt")
+
+
+Managing Directory:
+
+&gt;&gt;&gt; import os
+
+&gt;&gt;&gt; os.mkdir("c:\\Users\\Nethra\\Desktop\\new")
+
+&gt;&gt;&gt; os.getcwd()
+
+'C:\\Users\\Nethra'
+
+&gt;&gt;&gt; os.chdir("c:\\Users\\Nethra\\Desktop\\new")
+
+&gt;&gt;&gt; os.getcwd()
+
+'c:\\Users\\Nethra\\Desktop\\new'
+
+&gt;&gt;&gt; os.mkdir('amul')
+
+&gt;&gt;&gt; os.listdir()
+
+['amul']
+
+&gt;&gt;&gt; os.listdir("c:\\")
+
+['$Recycle.Bin', '$WINDOWS.~BT', 'Config.Msi', 'Documents and Settings', 'hadoop', 'hiberfil.sys', 'hp', 'Intel', 'pagefile.sys', 'PerfLogs', 'Program Files', 'Program Files (x86)', 'ProgramData', 'Recovery', 'swapfile.sys', 'SWSetup', 'System Volume Information', 'SYSTEM.SAV', 'tmp', 'Users', 'Windows']
+
+&gt;&gt;&gt; os.rmdir("amul")
+
+Exception Handling
+
+&gt;&gt;&gt; raise ValueError(4)
+
+Traceback (most recent call last):
+
+  File "", line 1, in 
+ValueError: 4
+&gt;&gt;&gt; raise NameError
+Traceback (most recent call last):
+
+&gt;&gt;&gt; try:
+
+...     num=int(input("Enter a number"))
+
+...     if num&lt;=0:
+
+...        raise ValueError("That is not positive number")
+
+... except ValueError as error:
+
+...     print("error")
+
+...
+
+Enter a number -2
+
+error
+
+&gt;&gt;&gt; import math
+
+&gt;&gt;&gt; num=int(input("input:"))
+
+input:104
+
+&gt;&gt;&gt; try:
+
+...    result=math.factorial(num)
+
+...    print(result)
+
+... finally:
+
+...    print("goodbye!")
+
+...
+
+10299016745145627623848583864765044283053772454999072182325491776887871732475287174542709871683888003235965704141638377695179741979175588724736000000000000000000000000
+
+goodbye!
+
+
+
+Class and Objects
+
+
+
+&gt;&gt;&gt; def display(name):
+
+...   print("hello",name)
+
+...   return
+
+...
+
+&gt;&gt;&gt; display("sam")
+
+hello sam
+
+&gt;&gt;&gt; display("amul")
+
+hello amul
+
+&gt;&gt;&gt; #class and objects
+
+...
+
+&gt;&gt;&gt; class person:
+
+...   pass
+
+...
+
+&gt;&gt;&gt; #main
+
+... p=person()
+
+&gt;&gt;&gt; print(p)
+
+
+
+
+
+Methods:
+
+
+
+&gt;&gt;&gt; class person:
+
+...    def __init__(self,name):
+
+...        self.name=name
+
+...    def display(self):
+
+...       print("hello",self.name)
+
+...
+
+&gt;&gt;&gt; person("amul").display()
+
+hello amul
+
+
+
+Instance variables
+
+The variable belongs to the object 
+
+Class variable belongs to the class
+
+
+Inheritance
+
+
+
+&gt;&gt;&gt; class animal:
+
+...   def eating(self):
+
+...     print("eating")
+
+...
+
+&gt;&gt;&gt; class dog(animal):
+
+...   def display(self):
+
+...     print("ok")
+
+...
+
+&gt;&gt;&gt; d=dog()
+
+&gt;&gt;&gt; d.eating()
+
+eating
+
+&gt;&gt;&gt; d.display()
+
+ok
+
+
+
+
+
+Multilevel inheritance:
+
+
+
+&gt;&gt;&gt; class person:
+
+...   def display(self):
+
+...     print("hello,this is class person")
+
+...
+
+&gt;&gt;&gt; class employee(person):
+
+...    def printing(self):
+
+...       print("hello,this is derived class employee")
+
+...
+
+&gt;&gt;&gt; class programmer(employee):
+
+...    def show(self):
+
+...      print("hello, this is another derived class programmer")
+
+
+
+&gt;&gt;&gt; p1=programmer()
+
+&gt;&gt;&gt; p1.display()
+
+hello,this is class person
+
+&gt;&gt;&gt; p1.printing()
+
+hello,this is derived class employee
+
+&gt;&gt;&gt; p1.show()
+
+hello, this is another derived class programmer
+
+
+
+Multiple Inheritance:
+
+&gt;&gt;&gt; class land_animal:
+
+...   def printing(self):
+
+...      print("this animal lives on land")
+
+...
+
+&gt;&gt;&gt; class water_animal:
+
+...    def display(self):
+
+...      print("this animal lives in water")
+
+...
+
+&gt;&gt;&gt; class frog(land_animal,water_animal):
+
+...   pass
+
+...
+
+&gt;&gt;&gt; f1=frog()
+
+&gt;&gt;&gt; f1.printing()
+
+this animal lives on land
+
+&gt;&gt;&gt;
+
+&gt;&gt;&gt; f1.display()
+
+this animal lives in water
+
+
+
+Method overriding:
+
+&gt;&gt;&gt; class A:
+
+...   def display(self):
+
+...    print("methid belongs to class A")
+
+...
+
+&gt;&gt;&gt; class B(A):
+
+...   def display(self):
+
+...     print("method belongs to class B")
+
+...
+
+&gt;&gt;&gt; b1=B()
+
+&gt;&gt;&gt; b1.display()
+
+method belongs to class B
+
+&gt;&gt;&gt;
+
+
+
+Encapsulation:
+
+To prevent the data modification accidently
+
+Private
+
+Public
+
+
+
+&gt;&gt;&gt; class car:
+
+...   def __int__(self):
+
+...    self._updatessoftware()
+
+...   def derive(self):
+
+...    print("driving")
+
+...   def __updatessoftware(self):
+
+...     print("updating software")
+
+...
+
+&gt;&gt;&gt; b=car()
+
+&gt;&gt;&gt; b.derive()
+
+driving
+
+&gt;&gt;&gt; b.__updatessoftware()
+
+Traceback (most recent call last):
+
+  File "", line 1, in 
+AttributeError: 'car' object has no attribute '__updatessoftware'
+
+
+
+Private variable
+
+
+
+&gt;&gt; class car:
+
+...   __maxspeed=0
+
+...   __name=""
+
+...   def __init__(self):
+
+...     self.__maxspeed=200
+
+...     self.__name="supercar"
+
+...   def drive(self):
+
+...      print("driving")
+
+...      print(self.__maxspeed)
+
+...   #def setspeed(self,speed):
+
+...     # self.__maxspeed=speed
+
+...    #print(self.__maxspeed)
+
+...
+
+&gt;&gt;&gt; redcar=car()
+
+&gt;&gt;&gt; redcar.drive()
+
+driving
+
+200
+
+&gt;&gt;&gt; redcar.__maxspeed=100
+
+&gt;&gt;&gt; redcar.drive()
+
+driving
+
+200
+
+&gt;&gt;&gt;
+
+
+
+Ploymorphism
+
+
+
+&gt;&gt;&gt; class dog:
+
+...   def sound(self):
+
+...     print("bow bow")
+
+...
+
+&gt;&gt;&gt; class cat:
+
+...    def sound(self):
+
+...      print("meow")
+
+...
+
+&gt;&gt;&gt; def makesound(animaltype):
+
+...   animaltype.sound()
+
+...
+
+&gt;&gt;&gt; catobj=cat()
+
+&gt;&gt;&gt; dogobj=dog()
+
+&gt;&gt;&gt; makesound(catobj)
+
+meow
+
+&gt;&gt;&gt; makesound(dogobj)
+
+bow bow
+
+
+
+Methods:
+
+&gt;&gt;&gt; import time
+
+&gt;&gt;&gt; time.time()
+
+1571593375.0245504
+
+&gt;&gt;&gt; time.localtime(time.time())
+
+time.struct_time(tm_year=2019, tm_mon=10, tm_mday=20, tm_hour=23, tm_min=13, tm_sec=33, tm_wday=6, tm_yday=293, tm_isdst=0)
+
+&gt;&gt;&gt; time.asctime()
+
+'Sun Oct 20 23:16:50 2019'
+
+&gt;&gt;&gt;
+
+
+
+&gt;&gt;&gt; tuple1 = (1993,6,8,9,20,0,0,0)
+
+&gt;&gt;&gt; time.mktime(tuple1)
+
+Traceback (most recent call last):
+
+  File "", line 1, in 
+TypeError: mktime(): illegal time tuple argument
+&gt;&gt;&gt; import time
+&gt;&gt;&gt; time.mktime(tuple1)
+Traceback (most recent call last):
+  File "", line 1, in 
+TypeError: mktime(): illegal time tuple argument
+&gt;&gt;&gt; time.localtime(time.mktime(tuple1))
+Traceback (most recent call last):
+  File "", line 1, in 
+TypeError: mktime(): illegal time tuple argument
+
+
+
+&gt;&gt;&gt; import time
+
+&gt;&gt;&gt; print("hello people")
+
+hello people
+
+&gt;&gt;&gt; time.sleep(5)
+
+&gt;&gt;&gt; time.sleep(10)
+
+
+
+calendar:
+
+&gt;&gt;&gt; import calendar
+
+&gt;&gt;&gt; print(calendar.month(2000,4))
+
+     April 2000
+
+Mo Tu We Th Fr Sa Su
+
+                1  2
+
+ 3  4  5  6  7  8  9
+
+10 11 12 13 14 15 16
+
+17 18 19 20 21 22 23
+
+24 25 26 27 28 29 30
+
+&gt;&gt;&gt; print(calendar.year(2020))
+
+Traceback (most recent call last):
+
+  File "", line 1, in 
+AttributeError: module 'calendar' has no attribute 'year'
+&gt;&gt;&gt; print(calendar.calendar(2020))
+                                  2020
+
+      January                   February                   March
+
+Mo Tu We Th Fr Sa Su      Mo Tu We Th Fr Sa Su      Mo Tu We Th Fr Sa Su
+
+       1  2  3  4  5                      1  2                         1
+
+ 6  7  8  9 10 11 12       3  4  5  6  7  8  9       2  3  4  5  6  7  8
+
+13 14 15 16 17 18 19      10 11 12 13 14 15 16       9 10 11 12 13 14 15
+
+20 21 22 23 24 25 26      17 18 19 20 21 22 23      16 17 18 19 20 21 22
+
+27 28 29 30 31            24 25 26 27 28 29         23 24 25 26 27 28 29
+
+                                                    30 31
+
+       April                      May                       June
+
+Mo Tu We Th Fr Sa Su      Mo Tu We Th Fr Sa Su      Mo Tu We Th Fr Sa Su
+
+       1  2  3  4  5                   1  2  3       1  2  3  4  5  6  7
+
+ 6  7  8  9 10 11 12       4  5  6  7  8  9 10       8  9 10 11 12 13 14
+
+13 14 15 16 17 18 19      11 12 13 14 15 16 17      15 16 17 18 19 20 21
+
+20 21 22 23 24 25 26      18 19 20 21 22 23 24      22 23 24 25 26 27 28
+
+27 28 29 30               25 26 27 28 29 30 31      29 30
+
+        July                     August                  September
+
+Mo Tu We Th Fr Sa Su      Mo Tu We Th Fr Sa Su      Mo Tu We Th Fr Sa Su
+
+       1  2  3  4  5                      1  2          1  2  3  4  5  6
+
+ 6  7  8  9 10 11 12       3  4  5  6  7  8  9       7  8  9 10 11 12 13
+
+13 14 15 16 17 18 19      10 11 12 13 14 15 16      14 15 16 17 18 19 20
+
+20 21 22 23 24 25 26      17 18 19 20 21 22 23      21 22 23 24 25 26 27
+
+27 28 29 30 31            24 25 26 27 28 29 30      28 29 30
+
+                          31
+
+      October                   November                  December
+
+Mo Tu We Th Fr Sa Su      Mo Tu We Th Fr Sa Su      Mo Tu We Th Fr Sa Su
+
+          1  2  3  4                         1          1  2  3  4  5  6
+
+ 5  6  7  8  9 10 11       2  3  4  5  6  7  8       7  8  9 10 11 12 13
+
+12 13 14 15 16 17 18       9 10 11 12 13 14 15      14 15 16 17 18 19 20
+
+19 20 21 22 23 24 25      16 17 18 19 20 21 22      21 22 23 24 25 26 27
+
+26 27 28 29 30 31         23 24 25 26 27 28 29      28 29 30 31
+
+                          30
+
+&gt;&gt;&gt; calendar.weekday(2017,3,9)
+
+3
+
+&gt;&gt;&gt; calendar.weekday(2017,10,20)
+
+4
+
+&gt;&gt;&gt; calendar.weekday(2019,10,20)
+
+6
+
+&gt;&gt;&gt; calendar.weekday(2019,20,10)
+
+Traceback (most recent call last):
+
+  File "", line 1, in 
+  File "C:\Users\Nethra\lib\calendar.py", line 117, in weekday
+    return datetime.date(year, month, day).weekday()
+ValueError: month must be in 1..12
+&gt;&gt;&gt; calendar.weekday(2019,10,20)
+6
+&gt;&gt;&gt; calendar.isleap(2020)
+True
+&gt;&gt;&gt; calendar.isleap(2019)
+False
+&gt;&gt;&gt; calendar.leapdays(2000,2020)
+5
+&gt;&gt;&gt; calendar
+
+&gt;&gt;&gt; help(calendar)
+
+
+
+set:
+
+Its mutable, unordered and non dublicated
+
+
+
+frozenset- unmutable
+
+
+
+&gt;&gt;&gt; fruits={'apple','banana'}
+
+&gt;&gt;&gt; fruits
+
+{'apple', 'banana'}
+
+&gt;&gt;&gt; fruits.add('grapes')
+
+&gt;&gt;&gt; fruits
+
+{'apple', 'banana', 'grapes'}
+
+&gt;&gt;&gt; animal=frozenset(['tiger','lion'])
+
+&gt;&gt;&gt; animal.add('cat')
+
+Traceback (most recent call last):
+
+  File "", line 1, in 
+AttributeError: 'frozenset' object has no attribute 'add'
+&gt;&gt;&gt; num={1,2,3,1,2,3,3,4,5,6}
+&gt;&gt;&gt; num
+{1, 2, 3, 4, 5, 6}
+&gt;&gt;&gt; emptyset={}
+&gt;&gt;&gt; type(emptyset)
+
+&gt;&gt;&gt; emptyset=set()
+&gt;&gt;&gt; type(emptyset)
+
+&gt;&gt;&gt; num={1,2,3,4}
+&gt;&gt;&gt; num1=set(num)
+&gt;&gt;&gt; num1
+{1, 2, 3, 4}
+
+
+
+&gt;&gt;&gt; num={1,2,3,1,2,3,3,4,5,6}
+
+&gt;&gt;&gt; num
+
+{1, 2, 3, 4, 5, 6}
+
+&gt;&gt;&gt; emptyset={}
+
+&gt;&gt;&gt; type(emptyset)
+
+
+&gt;&gt;&gt; emptyset=set()
+&gt;&gt;&gt; type(emptyset)
+
+&gt;&gt;&gt; num={1,2,3,4}
+&gt;&gt;&gt; num1=set(num)
+&gt;&gt;&gt; num1
+{1, 2, 3, 4}
+&gt;&gt;&gt; set1={1,2,3,4,'hello'}
+&gt;&gt;&gt; 6 in set1
+False
+&gt;&gt;&gt; 4 in set1
+True
+&gt;&gt;&gt; set1.add(6)
+&gt;&gt;&gt; set1
+{1, 2, 3, 4, 6, 'hello'}
+&gt;&gt;&gt; set1.remove(4)
+&gt;&gt;&gt; set1
+{1, 2, 3, 6, 'hello'}
+&gt;&gt;&gt; set2={1,'apple'}
+&gt;&gt;&gt; set1|set2
+{1, 2, 3, 6, 'hello', 'apple'}
+&gt;&gt;&gt; set1.clear()
+&gt;&gt;&gt; set1
+
+set()
+
+
+
+&gt;&gt;&gt; A={1,2,3,4}
+
+&gt;&gt;&gt; B={1,5,7,3}d
+
+&gt;&gt;&gt; A&amp;B
+
+{1, 3}
+
+&gt;&gt;&gt; A - B
+
+{2, 4}
+
+&gt;&gt;&gt; B-A
+
+{5, 7}
+
+&gt;&gt;&gt; A^B
+
+{2, 4, 5, 7}
+
+&gt;&gt;&gt; len(A)
+
+4
+
+&gt;&gt;&gt; len(B)
+
+4
+
+&gt;&gt;&gt; C=A.copy()
+
+&gt;&gt;&gt; C
+
+{1, 2, 3, 4}
+
+
+
+Type  and dir function
+
+{1, 2, 3, 4}
+
+&gt;&gt;&gt; type(1)
+
+
+&gt;&gt;&gt; type(1.44)
+
+&gt;&gt;&gt; list1=[]
+&gt;&gt;&gt; type(list1)
+
+&gt;&gt;&gt; help(type);
+Help on class type in module builtins:
+
+
+dir()
+
+dir(math)
+
+
+
+Iterators:
+
+
+
+&gt;&gt;&gt; list1=[5,1.2,"hello"]
+
+&gt;&gt;&gt; for i in list1:
+
+...   print(i)
+
+...
+
+5
+
+1.2
+
+hello
+
+&gt;&gt;&gt; for i in {1,2,3,'g'}:
+
+...   print(i)
+
+...
+
+1
+
+2
+
+3
+
+g
+
+&gt;&gt;&gt; for i in (1,2.3,4.5,6):
+
+...   print(i)
+
+...
+
+1
+
+2.3
+
+4.5
+
+6
+
+&gt;&gt;&gt; for i in 'hello':
+
+...   print(i)
+
+...
+
+h
+
+e
+
+l
+
+l
+
+o
+
+&gt;&gt;&gt; iter(list1)
+
+
+&gt;&gt;&gt; iterator=iter(list1)
+&gt;&gt;&gt; next(iterator)
+5
+&gt;&gt;&gt; next(iterator)
+1.2
+&gt;&gt;&gt; next(iterator)
+'hello'
+&gt;&gt;&gt; fruits=['apple','orange','graps']
+&gt;&gt;&gt; i=0
+&gt;&gt;&gt; while i...    print(fruits[i])
+...    i=i+1
+...
+apple
+orange
+graps
+
+&gt;&gt;&gt; i=0
+&gt;&gt;&gt; while i...    print(fruits[i])
+...    i=i+1
+...
+Traceback (most recent call last):
+  File "", line 2, in 
+TypeError: 'set' object is not subscriptable
+
+
+&gt;&gt;&gt; def print_each(iterable):
+...    iterator=iter(iterable)
+...    while true:
+...      try:
+...         item=next(iterator)
+...      except stopItration:
+...         break
+...      else:
+...         print(item)
+...
+&gt;&gt;&gt; print_each(['Red','orange'])
+
+Traceback (most recent call last):
+
+
+
+Generators:
+
+&gt;&gt;&gt; def fib(mymax):
+
+...   a,b=0,1
+
+...   while True:
+
+...     c=a+b
+
+...     if c...        print("before yield keyword")
+...        yield c
+...        print("after yeild keyword")
+...        a=b
+...        b=c
+...     else:
+...        break
+...
+&gt;&gt;&gt; gen=fib(10)
+&gt;&gt;&gt; next(gen)
+before yield keyword
+1
+&gt;&gt;&gt; next(gen)
+after yeild keyword
+before yield keyword
+2
+&gt;&gt;&gt; next(gen)
+after yeild keyword
+before yield keyword
+3
+&gt;&gt;&gt; next(gen)
+after yeild keyword
+before yield keyword
+5
+&gt;&gt;&gt; next(gen)
+after yeild keyword
+before yield keyword
+8
+&gt;&gt;&gt; next(gen)
+after yeild keyword
+Traceback (most recent call last):
+  File "", line 1, in 
+StopIteration
+
+
+
+Regular Expression:
+
+&gt;&gt;&gt; str1="my name is alice"
+
+&gt;&gt;&gt; str1.replace("alice","john")
+
+'my name is john'
+
+&gt;&gt;&gt; str2="main street broad road"
+
+&gt;&gt;&gt; str2.replace("road","rd")
+
+'main street brd rd'
+
+&gt;&gt;&gt; str2[0:17]+str2[17:].replace("road","rd")
+
+'main street broad rd'
+
+
+
+&gt;&gt;&gt; import re
+
+&gt;&gt;&gt; line="pet:cat i love cats"
+
+&gt;&gt;&gt; #match=re.match(pattern,string.)
+...
+&gt;&gt;&gt; match=re.match(r"pet:\w\w\w",line)
+&gt;&gt;&gt; match
+
+&gt;&gt;&gt; match.group(0)
+'pet:cat'
+&gt;&gt;&gt; match=re.search(r"pet:\w\w\w",line)
+&gt;&gt;&gt; match
+
+&gt;&gt;&gt; match.group(0)
+'pet:cat'
+&gt;&gt;&gt; line="i love cats pet:cat"
+&gt;&gt;&gt; var=re.match(r"pet:\w\w\w",line)
+&gt;&gt;&gt; var.group(0)
+Traceback (most recent call last):
+  File "", line 1, in 
+AttributeError: 'NoneType' object has no attribute 'group'
+&gt;&gt;&gt; var=re.search(r"pet:\w\w\w",line)
+&gt;&gt;&gt; var
+
+&gt;&gt;&gt; var.group(0)
+'pet:cat'
+&gt;&gt;&gt; line="pet:cat i love cats pet:cow"
+&gt;&gt;&gt; var=re.search(r"pet:\w\w\w",line)
+&gt;&gt;&gt; var
+
+&gt;&gt;&gt; var.group(0)
+'pet:cat'
+&gt;&gt;&gt; var=re.findall(r"pet:\w\w\w",line)
+&gt;&gt;&gt; var
+['pet:cat', 'pet:cow']
+&gt;&gt;&gt; var=re.search(r"pet:\w\w\w",line)
+&gt;&gt;&gt; var
+&gt;&gt;&gt; import re
+&gt;&gt;&gt; line="i love cats pet:cat i love cows, pet:cow thank you"
+&gt;&gt;&gt; s=re.split(r"pet:\w\w\w",line)
+&gt;&gt;&gt; s
+['i love cats ', ' i love cows, ', ' thank you']
+&gt;&gt;&gt; str1="john@abc.com and alice@pqr.com"
+&gt;&gt;&gt; var= re.sub(r"@\w+","@xyz",str1)
+&gt;&gt;&gt; var
+'john@xyz.com and alice@xyz.com'
+
+
+
+&gt;&gt;&gt; def counter(c):
+...    if c&lt;=0:
+...       return c
+...    else:
+...       return c+counter(c-1)
+...
+&gt;&gt;&gt; counter(5)
+15
+&gt;&gt;&gt; counter(3)
+6
+xError: invalid syntax
+&gt;&gt;&gt; def fact(n):
+...   if n==1:
+...      return 1
+...   else:
+...     return n*fact(n-1)
+...
+&gt;&gt;&gt; fact(10)
+3628800
+&gt;&gt;&gt; fact(4)
+24
+
+
+Range and XRange function
+
+
+&gt;&gt;&gt; range(1,6)
+range(1, 6)
+&gt;&gt;&gt; type(range(6))
+
+
+
+
+
+
+Range and Xrange--&gt;in python 2
+
+In python 3, we placed xrange to range function in python3
+
+
+
+Append vs Extend
+
+
+
+&gt;&gt;&gt; range(1,6)
+
+range(1, 6)
+
+&gt;&gt;&gt; type(range(6))
+
+
+&gt;&gt;&gt; a=[1,2,3]
+&gt;&gt;&gt; a.append(10)
+&gt;&gt;&gt; a
+[1, 2, 3, 10]
+&gt;&gt;&gt; a.extend("amul")
+&gt;&gt;&gt; a
+[1, 2, 3, 10, 'a', 'm', 'u', 'l']
+&gt;&gt;&gt; len(a)
+8
+&gt;&gt;&gt; b=[1,22,333]
+&gt;&gt;&gt; b.extend("hello")
+&gt;&gt;&gt; b
+[1, 22, 333, 'h', 'e', 'l', 'l', 'o']
+&gt;&gt;&gt; len(b)
+8
+
+
+
+Lambda Function
+
+&gt;&gt;&gt; a=[1,2,3,4]
+
+&gt;&gt;&gt; def square(x):
+
+...    return x*x
+
+...
+
+&gt;&gt;&gt; map(square,a)
+
+
+&gt;&gt;&gt; list(map(square,a))
+[1, 4, 9, 16]
+&gt;&gt;&gt; map(lambda x:x*x,a)
+&gt;&gt;&gt; list(map(lambda x:x*x,a))
+[1, 4, 9, 16]
+&gt;&gt;&gt; map(lambda x,y:x+y,a,b)
+
+&gt;&gt;&gt; b=[1,2,2,2]
+&gt;&gt;&gt; tuple(map(lambda x,y:x+y,a,b))
+(2, 4, 5, 6)
+
+
+
+List comprehension
+
+
+
+&gt;&gt;&gt; num=[1,2,3,4]
+
+&gt;&gt;&gt; 10*num
+
+[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]
+
+&gt;&gt;&gt; [x*10 for x in num]
+
+[10, 20, 30, 40]
+
+&gt;&gt;&gt; words=["hello",'a','amuls']
+
+&gt;&gt;&gt; [x.upper() for x in words]
+
+['HELLO', 'A', 'AMULS']
+
+&gt;&gt;&gt; str1="amul12334"
+
+\
+
+&gt;&gt;&gt; [x for x in str1 if x.isdigit()]
+
+['1', '2', '3', '3', '4']
+
+&gt;&gt;&gt; [x for x in str1 if x.isalpha()]
+
+['a', 'm', 'u', 'l']
+
+&gt;&gt;&gt; list1=[[1,2,3],[4,5,6],['a','b']]
+
+&gt;&gt;&gt; [x[0] for x in list1]
+
+[1, 4, 'a']
+
+&gt;&gt;&gt; def square(x):
+
+...    return x*x
+
+...
+
+&gt;&gt;&gt; [square(x) for x in range(1,11)]
+
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+&gt;&gt;&gt; a=[1,2,3,4]
+
+&gt;&gt;&gt; b=[10,1,6]
+
+&gt;&gt;&gt; [x+y for x in a for y in b]
+
+[11, 2, 7, 12, 3, 8, 13, 4, 9, 14, 5, 10]
+
+&gt;&gt;&gt; c=[1,2,3,4]
+
+&gt;&gt;&gt; [a[i]+c[i] for i in range(0,len(a))]
+
+[2, 4, 6, 8]
+
+&gt;&gt;&gt;
+
+
+
+&gt;&gt; #[expression for item in iterable]
+
+...
+
+&gt;&gt;&gt; [x for i in range(1,11)]
+
+[10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+
+&gt;&gt;&gt; #[expression for item in iterable if conditional]
+
+...
+
+&gt;&gt;&gt; #[expression if condiitonal else stmnt for item in iterable]
+
+...
+
+&gt;&gt;&gt; [x for x in range(1,11)]
+
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+&gt;&gt;&gt; [x for x in range(1,11) if x%2==0]
+
+[2, 4, 6, 8, 10]
+
+&gt;&gt;&gt; [x if x&gt;2 else x+1 for x in range(1,11)]
+
+[2, 3, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+
+
+
+&gt;&gt;&gt; list1=[]
+
+&gt;&gt;&gt; for i in range(1,11):
+
+...    list1.append(i)
+
+...
+
+&gt;&gt;&gt; list1
+
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+&gt;&gt;&gt; [x for x in range(1,11)]
+
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+&gt;&gt;&gt; num=[1,2,2.3,4.5]
+
+&gt;&gt;&gt; list(map(lambda x:int(x),num))
+
+[1, 2, 2, 4]
+
+&gt;&gt;&gt; [int(x) for x in num]
+
+[1, 2, 2, 4]
+
+&gt;&gt;&gt; import timeit
+
+&gt;&gt;&gt; timeit.timeit('list(map(lambda x:int(x),num))')
+
+
+
+&gt;&gt;&gt; list(filter(lambda x:x%2==0,range(1,11)))
+
+[2, 4, 6, 8, 10]
+
+&gt;&gt;&gt; [x for x in range(1,11) if x%2==0]
+
+[2, 4, 6, 8, 10]
+
+&gt;&gt;&gt; import functools
+
+&gt;&gt;&gt; functools.reduce(lambda x,y:x+y,[1,2,3,4])
+
+10
+
+&gt;&gt;&gt; sum([x for x in [1,2,3,4]])
+
+10
+
+
+
+&gt;&gt;&gt; list1=[]
+
+&gt;&gt;&gt; for i in range(1,11):
+
+...    list1.append(i)
+
+...
+
+&gt;&gt;&gt; list1
+
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+&gt;&gt;&gt; [x for x in range(1,11)]
+
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+&gt;&gt;&gt; num=[1,2,2.3,4.5]
+
+&gt;&gt;&gt; list(map(lambda x:int(x),num))
+
+[1, 2, 2, 4]
+
+&gt;&gt;&gt; [int(x) for x in num]
+
+[1, 2, 2, 4]
+
+&gt;&gt;&gt; import timeit
+
+&gt;&gt;&gt; timeit.timeit('list(map(lambda x:int(x),num))')
+
+
+
+&gt;&gt;&gt; list(filter(lambda x:x%2==0,range(1,11)))
+
+[2, 4, 6, 8, 10]
+
+&gt;&gt;&gt; [x for x in range(1,11) if x%2==0]
+
+[2, 4, 6, 8, 10]
+
+&gt;&gt;&gt; import functools
+
+&gt;&gt;&gt; functools.reduce(lambda x,y:x+y,[1,2,3,4])
+
+10
+
+&gt;&gt;&gt; sum([x for x in [1,2,3,4]])
+
+10
+
+&gt;&gt;&gt; def mul(a,b):
+
+...   return a*b
+
+...
+
+&gt;&gt;&gt; print(mul(2,3))
+
+6
+
+&gt;&gt;&gt; print(__name__)
+
+__main__
+
+&gt;&gt;&gt; if __name__='__main__':
+
+  File "", line 1
+    if __name__='__main__':
+               ^
+SyntaxError: invalid syntax
+&gt;&gt;&gt; if __name__=='__main__':
+...    print(mul(2,3))
+...    print(__name__)
+...
+6
+__main__
+
+
+
+Bitwise operator
+
+&gt;&gt;&gt; #Bitwise AND
+
+...
+
+&gt;&gt;&gt; a=20
+
+&gt;&gt;&gt; b=4
+
+&gt;&gt;&gt; a&amp;b
+
+4
+
+&gt;&gt;&gt; a|b
+
+20
+
+&gt;&gt;&gt; a^b
+
+16
+
+&gt;&gt;&gt; bin(10)
+
+'0b1010'
+
+&gt;&gt;&gt;
+
+&gt;&gt;&gt; ~a
+
+-21
+
+&gt;&gt;&gt; ~50
+
+-51
+
+&gt;&gt;&gt; bin(0b11101011)
+
+'0b11101011'
+
+-234
+
+&gt;&gt;&gt; a=20
+
+&gt;&gt;&gt; a&lt;80
+-21
+&gt;&gt;&gt; a&gt;&gt;2
+5
+
+
+shallow copy:
+
+&gt;&gt;&gt; import copy
+&gt;&gt;&gt; list1=[1,2,3,4]
+&gt;&gt;&gt; list2=copy.copy(list1)
+&gt;&gt;&gt; list2.append("a")
+&gt;&gt;&gt; list1
+[1, 2, 3, 4]
+&gt;&gt;&gt; list2
+[1, 2, 3, 4, 'a']
+&gt;&gt;&gt; list2[0]='q'
+&gt;&gt;&gt; list2
+['q', 2, 3, 4, 'a']
+&gt;&gt;&gt; list1
+
+[1, 2, 3, 4]
+
+
+
+drawback:nested list
+
+
+
+deep copy:
+
+&gt;&gt;&gt; import copy
+
+&gt;&gt;&gt; list1=[1,2,3,4]
+
+&gt;&gt;&gt; list2=copy.deepcopy(list1)
+
+&gt;&gt;&gt; list2
+
+[1, 2, 3, 4]
+
+&gt;&gt;&gt; id(list1)==id(list2)
+
+False
+
+&gt;&gt;&gt; list2.append(10)
+
+&gt;&gt;&gt; list2
+
+[1, 2, 3, 4, 10]
+
+&gt;&gt;&gt; list1
+
+[1, 2, 3, 4]
+
+&gt;&gt;&gt; list1=[[1,2],3,4]
+
+&gt;&gt;&gt; list2=copy.deepcopy(list1)
+
+&gt;&gt;&gt; list1
+
+[[1, 2], 3, 4]
+
+&gt;&gt;&gt; list2[0][1]="ram"
+
+&gt;&gt;&gt; list2
+
+[[1, 'ram'], 3, 4]
+
+&gt;&gt;&gt; list1
+
+[[1, 2], 3, 4]
+
+
+
+immutable object--&gt;assignment operator
+
+mutable object-&gt;shallow copy
+
+nested mutable object-&gt;deep copy
+
