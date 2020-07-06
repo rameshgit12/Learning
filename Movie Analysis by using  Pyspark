@@ -1,0 +1,846 @@
+Movie Analysis by using  Pyspark
+
+
+
+from pyspark.sql import SparkSession
+
+
+
+spark=SparkSession.builder.master('local').appName('app').getOrCreate()
+
+spark
+
+Spark UI
+
+Version
+
+v2.4.0
+
+Master
+
+local[*]
+
+AppName
+
+PySparkShell
+
+
+
+&gt;&gt;&gt; from pyspark.sql import Row
+
+
+
+&gt;&gt;&gt; import datetime as DT
+
+
+
+&gt;&gt;&gt; r1=Row(id=101,city='hyd',date=DT.date(2014,10,23))
+
+
+
+&gt;&gt;&gt; r2=Row(city='bnglr',id=102,date=DT.date(2013,11,22))
+
+
+
+&gt;&gt;&gt; d1=spark.createDataFrame([r1,r2])
+
+
+
+&gt;&gt;&gt; d1.show()
+
+
+
+[Stage 0:&gt;                                                                                                                  +-----+----------+---+
+
+| city|      date| id|
+
++-----+----------+---+
+
+|  hyd|2014-10-23|101|
+
+|bnglr|2013-11-22|102|
+
++-----+----------+---+
+
+
+
+d1.printSchema()
+
+root
+
+ |-- city: string (nullable = true)
+
+ |-- date: date (nullable = true)
+
+ |-- id: long (nullable = true)
+
+
+
+r3=Row(id=101,city='hyd',date=DT.datetime(2014,10,23,23,34,45))
+
+
+
+r4=Row(city='bnglr',id=102,date=DT.datetime(2013,11,22,11,23,45))
+
+
+
+d2=spark.createDataFrame([r3,r4])
+
+
+
+d2.show()
+
++-----+-------------------+---+
+
+| city|               date| id|
+
++-----+-------------------+---+
+
+|  hyd|2014-10-23 23:34:45|101|
+
+|bnglr|2013-11-22 11:23:45|102|
+
++-----+-------------------+---+
+
+
+
+d2.printSchema()
+
+
+
+&gt;&gt;&gt; d2.printSchema()
+
+root
+
+ |-- city: string (nullable = true)
+
+ |-- date: timestamp (nullable = true)
+
+ |-- id: long (nullable = true)
+
+
+
+Take dataset from below link:
+
+http://grouplens.org/datasets.movielens/1m
+
+movie--&gt;movieID,title,genres
+
+rating.dat--&gt;user_id,movie_id,rating,timestamp
+
+users.dat               --&gt;user_id,gender,age,occupation,Zipcode
+
+
+
+1)Top 10 most viewed movies with their movies name(ascending or descending order)
+
+movies_r1=spark.sparkContext.textFile('file:///home/hadoop/movies.dat')
+
+print(movies_r1.take(10))
+
+
+
+[u"1::Toy Story (1995)::Animation|Children's|Comedy", u"2::Jumanji (1995)::Adventure|Children's|Fantasy", u'3::Grumpier Old Men (1995)::Comedy|Romance', u'4::Waiting to Exhale (1995)::Comedy|Drama', u'5::Father of the Bride Part II (1995)::Comedy', u'6::Heat (1995)::Action|Crime|Thriller', u'7::Sabrina (1995)::Comedy|Romance', u"8::Tom and Huck (1995)::Adventure|Children's", u'9::Sudden Death (1995)::Action', u'10::GoldenEye (1995)::Action|Adventure|Thriller']
+
+&gt;&gt;&gt; movies_r2=movies_r1.map(lambda x:x.encode('utf-8')).map(lambda x:x.split("::")).map(lambda x:((int)(x[0]),x[1],x[2]))
+
+
+
+&gt;&gt;&gt; movies_r2.take(2)
+
+[(1, 'Toy Story (1995)', "Animation|Children's|Comedy"), (2, 'Jumanji (1995)', "Adventure|Children's|Fantasy")]
+
+
+
+movies_df=movies_r2.toDF(['Movieid','MovieTitle','Genres'])
+
+&gt;&gt;&gt; movies_df.show(5)
+
+
+
++-------+--------------------+--------------------+
+
+
+
+|Movieid|          MovieTitle|              Genres|
+
+
+
++-------+--------------------+--------------------+
+
+
+
+|      1|    Toy Story (1995)|Animation|Childre...|
+
+
+
+|      2|      Jumanji (1995)|Adventure|Childre...|
+
+
+
+|      3|Grumpier Old Men ...|      Comedy|Romance|
+
+
+
+|      4|Waiting to Exhale...|        Comedy|Drama|
+
+
+
+|      5|Father of the Bri...|              Comedy|
+
+
+
++-------+--------------------+--------------------+
+
+
+
+only showing top 5 rows
+
+
+
+&gt;&gt;&gt; movies_df.printSchema()
+
+root
+
+
+
+ |-- Movieid: long (nullable = true)
+
+
+
+ |-- MovieTitle: string (nullable = true)
+
+
+
+ |-- Genres: string (nullable = true)
+
+
+
+&gt;&gt;&gt; ratings_r1=spark.sparkContext.textFile("file:///home/hadoop/ratings.dat")
+
+&gt;&gt;&gt; ratings_r1.take(2)
+
+
+
+[u'1::1193::5::978300760', u'1::661::3::978302109']
+
+
+
+ratings_r2=ratings_r1.map(lambda x:x.encode("utf-8")).map(lambda x:x.split('::')).map(lambda x:((int)(x[0]),(int)(x[1]),x[2],x[3]))
+
+
+
+ratings_df=rating_r2.toDF(['UserID','Movie','Rating','Timestamp'])
+
+&gt;&gt;&gt; ratings_df.show(5)
+
+
+
++------+-----+------+---------+
+
+
+
+|UserID|Movie|Rating|Timestamp|
+
+
+
++------+-----+------+---------+
+
+
+
+|     1| 1193|     5|978300760|
+
+
+
+|     1|  661|     3|978302109|
+
+
+
+|     1|  914|     3|978301968|
+
+
+
+|     1| 3408|     4|978300275|
+
+
+
+|     1| 2355|     5|978824291|
+
+
+
++------+-----+------+---------+
+
+
+
+only showing top 5 rows
+
+
+
+&gt;&gt;&gt; ratings_df.printSchema()
+
+
+
+root
+
+
+
+ |-- UserID: long (nullable = true)
+
+
+
+ |-- Movie: long (nullable = true)
+
+
+
+ |-- Rating: string (nullable = true)
+
+
+
+ |-- Timestamp: string (nullable = true)
+
+
+
+from pyspark.sql.functions import col,count,desc
+
+ movies_ratings=movies_df.join(ratings_df,col('Movieid')==col('Movie'),'inner')
+
+
+
+movies_ratings.show(5)
+
+
+
++-------+--------------+------+------+-----+------+----------+                 
+
+
+
+|Movieid|    MovieTitle|Genres|UserID|Movie|Rating| Timestamp|
+
+
+
++-------+--------------+------+------+-----+------+----------+
+
+
+
+|     26|Othello (1995)| Drama|    18|   26|     4| 978157335|
+
+
+
+|     26|Othello (1995)| Drama|    69|   26|     4| 977882050|
+
+
+
+|     26|Othello (1995)| Drama|   229|   26|     4|1039503573|
+
+
+
+|     26|Othello (1995)| Drama|   342|   26|     4| 976338677|
+
+
+
+|     26|Othello (1995)| Drama|   524|   26|     3| 976169012|
+
+
+
++-------+--------------+------+------+-----+------+----------+
+
+
+
+only showing top 5 rows
+
+movies_ratings.cache()
+
+
+
+movies_ratings.printSchema()
+
+movies_ratings.cache()  # the data will be readily available in memory
+
+
+
+movies_ratings2=movies_ratings.select('MovieTitle','UserID').groupBy('MovieTitle').agg(count('UserID').alias('Views')).orderBy(desc('Views')).limit(20)
+
+movies.ratings2.cache()
+
+&gt;&gt;&gt; movies.ratings2.show()
+
+
+
+ MovieTitle|Views|
+
+
+
++--------------------+-----+
+
+
+
+|American Beauty (...| 3428|
+
+
+
+|Star Wars: Episod...| 2991|
+
+
+
+|Star Wars: Episod...| 2990|
+
+
+
+|Star Wars: Episod...| 2883|
+
+
+
+|Jurassic Park (1993)| 2672|
+
+
+
+|Saving Private Ry...| 2653|
+
+
+
+|Terminator 2: Jud...| 2649|
+
+
+
+|  Matrix, The (1999)| 2590|
+
+
+
+|Back to the Futur...| 2583|
+
+
+
+|Silence of the La...| 2578|
+
+
+
+| Men in Black (1997)| 2538|
+
+
+
+|Raiders of the Lo...| 2514|
+
+
+
+|        Fargo (1996)| 2513|
+
+
+
+|Sixth Sense, The ...| 2459|
+
+
+
+|   Braveheart (1995)| 2443|
+
+
+
+|Shakespeare in Lo...| 2369|
+
+
+
+|Princess Bride, T...| 2318|
+
+
+
+|Schindler's List ...| 2304|
+
+
+
+|L.A. Confidential...| 2288|
+
+
+
+|Groundhog Day (1993)| 2278|
+
+
+
++--------------------+-----+
+
+movies_ratings2.createOrReplaceTempView('mrTable')
+
+ratings_df.createOrReplaceTempView('rTable')
+
+
+
+Spark SQL:
+
+------------
+
+ result=spark.sql('select MovieTitle,count(UserID) as Views from mrTable group by MovieTitle order by Views desc limit 1')
+
+
+
+result3.coalesce(1).write.format('csv').option('header',True).save("file:///home/hadoop/Top10movies")
+
+
+
+(2)Top twenty rated movies(Condition: the movie should be rated/by view atleast 40 users)
+
+
+
+from pyspark.sql.functions import avg
+
+&gt;&gt;&gt; result2=movies_ratings.select('MovieTitle','Rating','UserID').groupBy('MovieTitle').agg(avg('rating').alias("AvgRating"),count('UserID').alias('Views'))
+
+
+
+&gt;&gt;&gt; result2.cache()
+
+result2.show()
+
+result3=result2.filter('Views&gt;=40').orderBy(desc('AvgRating'))
+
+result3.show()
+
+---------------+------------------+-----+                                
+
+
+
+|          MovieTitle|         AvgRating|Views|
+
+
+
++--------------------+------------------+-----+
+
+
+
+|      Sanjuro (1962)| 4.608695652173913|   69|
+
+
+
+|Seven Samurai (Th...| 4.560509554140127|  628|
+
+
+
+|Shawshank Redempt...| 4.554557700942973| 2227|
+
+
+
+|Godfather, The (1...| 4.524966261808367| 2223|
+
+
+
+|Close Shave, A (1...|  4.52054794520548|  657|
+
+
+
+|Usual Suspects, T...| 4.517106001121705| 1783|
+
+
+
+|Schindler's List ...| 4.510416666666667| 2304|
+
+
+
+|Wrong Trousers, T...| 4.507936507936508|  882|
+
+
+
+|Sunset Blvd. (a.k...| 4.491489361702127|  470|
+
+
+
+|Raiders of the Lo...| 4.477724741447892| 2514|
+
+
+
+|  Rear Window (1954)| 4.476190476190476| 1050|
+
+
+
+|Paths of Glory (1...| 4.473913043478261|  230|
+
+
+
+|Star Wars: Episod...| 4.453694416583082| 2991|
+
+
+
+|Third Man, The (1...| 4.452083333333333|  480|
+
+
+
+|Dr. Strangelove o...|4.4498902706656915| 1367|
+
+
+
+|Wallace &amp; Gromit:...| 4.426940639269406|  438|
+
+
+
+|To Kill a Mocking...| 4.425646551724138|  928|
+
+
+
+|Double Indemnity ...| 4.415607985480944|  551|
+
+
+
+|   Casablanca (1942)| 4.412822049131217| 1669|
+
+
+
+|World of Apu, The...| 4.410714285714286|   56|
+
+
+
++--------------------+------------------+-----
+
+result3.coalesce(1).write.format('csv').option('header',True).save("file:///home/hadoop/Top10movies")
+
+
+
+MovieTitle,AvgRating,Views
+
+
+
+Sanjuro (1962),4.608695652173913,69
+
+
+
+Seven Samurai (The Magnificent Seven) (Shichinin no samurai) (1954),4.560509554140127,628
+
+
+
+"Shawshank Redemption, The (1994)",4.554557700942973,2227
+
+
+
+"Godfather, The (1972)",4.524966261808367,2223
+
+
+
+"Close Shave, A (1995)",4.52054794520548,657
+
+
+
+"Usual Suspects, The (1995)",4.517106001121705,1783
+
+
+
+Schindler's List (1993),4.510416666666667,2304
+
+
+
+"Wrong Trousers, The (1993)",4.507936507936508,882
+
+
+
+Sunset Blvd. (a.k.a. Sunset Boulevard) (1950),4.491489361702127,470
+
+
+
+Raiders of the Lost Ark (1981),4.477724741447892,2514
+
+
+
+Rear Window (1954),4.476190476190476,1050
+
+
+
+Paths of Glory (1957),4.473913043478261,230
+
+
+
+Star Wars: Episode IV - A New Hope (1977),4.453694416583082,2991
+
+
+
+"Third Man, The (1949)",4.452083333333333,480
+
+
+
+Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb (1963),4.4498902706656915,1367
+
+
+
+Wallace &amp; Gromit: The Best of Aardman Animation (1996),4.426940639269406,438
+
+
+
+To Kill a Mockingbird (1962),4.425646551724138,928
+
+
+
+Double Indemnity (1944),4.415607985480944,551
+
+
+
+Casablanca (1942),4.412822049131217,1669
+
+
+
+"World of Apu, The (Apur Sansar) (1959)",4.410714285714286,56
+
+
+
+"Sixth Sense, The (1999)",4.406262708418057,2459
+
+
+
+Yojimbo (1961),4.404651162790698,215
+
+
+
+Pather Panchali (1955),4.404255319148936,47
+
+
+
+Lawrence of Arabia (1962),4.401925391095066,831
+
+
+
+"Maltese Falcon, The (1941)",4.395973154362416,1043
+
+
+
+One Flew Over the Cuckoo's Nest (1975),4.390724637681159,1725
+
+
+
+Citizen Kane (1941),4.388888888888889,1116
+
+
+
+City Lights (1931),4.387453874538745,271
+
+
+
+"Bridge on the River Kwai, The (1957)",4.386993603411514,938
+
+
+
+North by Northwest (1959),4.38403041825095,1315
+
+
+
+"Great Escape, The (1963)",4.376436781609195,696
+
+
+
+"General, The (1927)",4.368932038834951,206
+
+
+
+"Grand Day Out, A (1992)",4.361522198731501,473
+
+
+
+"Godfather: Part II, The (1974)",4.357565011820331,1692
+
+
+
+"Bicycle Thief, The (Ladri di biciclette) (1948)",4.357142857142857,252
+
+
+
+"Silence of the Lambs, The (1991)",4.3518231186966645,2578
+
+
+
+To Live (Huozhe) (1994),4.344262295081967,61
+
+
+
+"Grand Illusion (Grande illusion, La) (1937)",4.33939393939394,165
+
+
+
+Chinatown (1974),4.339240506329114,1185
+
+
+
+Saving Private Ryan (1998),4.337353938937053,2653
+
+
+
+Creature Comforts (1990),4.335766423357664,274
+
+
+
+Monty Python and the Holy Grail (1974),4.335209505941213,1599
+
+
+
+"Manchurian Candidate, The (1962)",4.333333333333333,765
+
+
+
+Life Is Beautiful (La Vita ï¿½ bella) (1997),4.329861111111111,1152
+
+
+
+Dersu Uzala (1974),4.326086956521739,92
+
+
+
+print("success")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
