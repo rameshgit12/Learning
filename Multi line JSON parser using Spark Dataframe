@@ -1,0 +1,121 @@
+Multi line JSON parser using Spark Dataframe
+
+
+Input file
+tags_sample.json:
+-----------------------
+
+{
+  "stackoverflow": [{
+    "tag": {
+      "id": 1,
+      "name": "scala",
+      "author": "Martin Odersky",
+      "frameworks": [
+        {
+          "id": 1,
+          "name": "Play Framework"
+        },
+        {
+          "id": 2,
+          "name": "Akka Framework"
+        }
+      ]
+    }
+  },
+    {
+      "tag": {
+        "id": 2,
+        "name": "java",
+        "author": "James Gosling",
+        "frameworks": [
+          {
+            "id": 1,
+            "name": "Apache Tomcat"
+          },
+          {
+            "id": 2,
+            "name": "Spring Boot"
+          }
+        ]
+      }
+    }
+  ]
+}
+
+
+scala&gt; import spark.sqlContext.implicits._
+import spark.sqlContext.implicits._
+
+scala&gt; val tagsDF = spark.read.option("multiLine", true).option("inferSchema", true).format("json").load("E:\\DataSets\\tags_sample.json")
+
+
+
+tagsDF: org.apache.spark.sql.DataFrame = [stackoverflow: array&lt;struct&lt;tag:struct&lt;author:string,frameworks:array&lt;struct&lt;id:bigint,name:string&gt;&gt;,id:bigi
+nt,name:string&gt;&gt;&gt;]
+
+
+
+scala&gt;
+
+scala&gt; tagsDF.printSchema
+root
+ |-- stackoverflow: array (nullable = true)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- tag: struct (nullable = true)
+ |    |    |    |-- author: string (nullable = true)
+ |    |    |    |-- frameworks: array (nullable = true)
+ |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |-- id: long (nullable = true)
+ |    |    |    |    |    |-- name: string (nullable = true)
+ |    |    |    |-- id: long (nullable = true)
+ |    |    |    |-- name: string (nullable = true)
+
+scala&gt; tagsDF.show  // It is not correct
++--------------------+
+|       stackoverflow|
++--------------------+
+|[[[Martin Odersky...|
++--------------------+
+
+scala&gt; val df = tagsDF.select(explode($"stackoverflow") as "stags")
+
+
+
+df: org.apache.spark.sql.DataFrame = [stags: struct&lt;tag: struct&lt;author: string, frameworks:
+
+scala&gt; df.printSchema
+
+
+
+
+root
+ |-- stags: struct (nullable = true)
+ |    |-- tag: struct (nullable = true)
+ |    |    |-- author: string (nullable = true)
+ |    |    |-- frameworks: array (nullable = true)
+ |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |-- id: long (nullable = true)
+ |    |    |    |    |-- name: string (nullable = true)
+ |    |    |-- id: long (nullable = true)
+ |    |    |-- name: string (nullable = true)
+
+
+
+
+scala&gt; val df1 = df.select(
+     |               $"stags.tag.id" as "id",
+     |               $"stags.tag.author" as "author",
+     |               $"stags.tag.name" as "tag_name",
+     |               $"stags.tag.frameworks.id" as "frameworks_id",
+     |               $"stags.tag.frameworks.name" as "frameworks_name"
+     |             )
+df1: org.apache.spark.sql.DataFrame = [id: bigint, author: string ... 3 more fields]
+
+scala&gt; df1.show
++---+--------------+--------+-------------+--------------------+
+| id|        author|tag_name|frameworks_id|     frameworks_name|
++---+--------------+--------+-------------+--------------------+
+|  1|Martin Odersky|   scala|       [1, 2]|[Play Framework, ...|
+|  2| James Gosling|    java|       [1, 2]|[Apache Tomcat, S...|
++---+--------------+--------+-------------+--------------------+
