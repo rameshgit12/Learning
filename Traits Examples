@@ -1,0 +1,669 @@
+Traits example:
+
+
+cala&gt; println("Step 1: Create a trait which will define the methods for a data access layer")
+
+
+
+Step 1: Create a trait which will define the methods for a data access layer
+
+
+
+scala&gt; trait DonutShoppingCartDao {
+
+     |
+
+     |  def add(donutName: String): Long
+
+     |
+
+     |  def update(donutName: String): Boolean
+
+     |
+
+     |  def search(donutName: String): String
+
+     |
+
+     |  def delete(donutName: String): Boolean
+
+     |
+
+     |  }
+
+defined trait DonutShoppingCartDao
+
+
+
+scala&gt; println("\nStep 2: Create a DonutShoppingCart class which extends the trait from Step 1 and implements its methods")
+
+
+
+Step 2: Create a DonutShoppingCart class which extends the trait from Step 1 and implements its methods
+
+
+
+scala&gt; class DonutShoppingCart extends DonutShoppingCartDao {
+
+     |
+
+     |  override def add(donutName: String): Long = {
+
+     |   println(s"DonutShoppingCart-&gt; add method -&gt; donutName: $donutName")
+
+     |   1
+
+     |  }
+
+     |
+
+     |  override def update(donutName: String): Boolean = {
+
+     |   println(s"DonutShoppingCart-&gt; update method -&gt; donutName: $donutName")
+
+     |   true
+
+     |  }
+
+     |
+
+     |  override def search(donutName: String): String = {
+
+     |   println(s"DonutShoppingCart-&gt; search method -&gt; donutName: $donutName")
+
+     |   donutName
+
+     |  }
+
+     |
+
+     |  override def delete(donutName: String): Boolean = {
+
+     |   println(s"DonutShoppingCart-&gt; delete method -&gt; donutName: $donutName")
+
+     |   true
+
+     |  }
+
+     | }
+
+defined class DonutShoppingCart
+
+
+
+
+
+scala&gt;
+
+scala&gt; println("\nStep 3: Create an instance of DonutShoppingCart and call the add, update, search and delete methods")
+
+
+
+
+
+Step 3: Create an instance of DonutShoppingCart and call the add, update, search and delete methods
+
+
+scala&gt; val donutShoppingCart1: DonutShoppingCart = new DonutShoppingCart()
+
+donutShoppingCart1: DonutShoppingCart = DonutShoppingCart@2cb6bc65
+
+
+
+scala&gt; donutShoppingCart1.add("Vanilla Donut")
+
+DonutShoppingCart-&gt; add method -&gt; donutName: Vanilla Donut
+
+res52: Long = 1
+
+
+
+scala&gt; donutShoppingCart1.update("Vanilla Donut")
+
+DonutShoppingCart-&gt; update method -&gt; donutName: Vanilla Donut
+
+res53: Boolean = true
+
+
+
+scala&gt; donutShoppingCart1.search("Vanilla Donut")
+
+DonutShoppingCart-&gt; search method -&gt; donutName: Vanilla Donut
+
+res54: String = Vanilla Donut
+
+
+
+scala&gt; donutShoppingCart1.delete("Vanilla Donut")
+
+DonutShoppingCart-&gt; delete method -&gt; donutName: Vanilla Donut
+
+res55: Boolean = true
+
+
+
+scala&gt; println("\nStep 4: Create an instance of DonutShoppingCart and assign its type to the trait DonutShoppingCartDao")
+
+
+
+Step 4: Create an instance of DonutShoppingCart and assign its type to the trait DonutShoppingCartDao
+
+
+
+scala&gt; val donutShoppingCart2: DonutShoppingCartDao = new DonutShoppingCart()
+
+donutShoppingCart2: DonutShoppingCartDao = DonutShoppingCart@1f24fb1
+
+
+
+scala&gt; donutShoppingCart2.add("Vanilla Donut")
+
+DonutShoppingCart-&gt; add method -&gt; donutName: Vanilla Donut
+
+res57: Long = 1
+
+
+
+scala&gt; donutShoppingCart2.update("Vanilla Donut")
+
+DonutShoppingCart-&gt; update method -&gt; donutName: Vanilla Donut
+
+res58: Boolean = true
+
+
+
+scala&gt; donutShoppingCart2.search("Vanilla Donut")
+
+DonutShoppingCart-&gt; search method -&gt; donutName: Vanilla Donut
+
+res59: String = Vanilla Donut
+
+
+
+scala&gt; donutShoppingCart2.delete("Vanilla Donut")
+
+DonutShoppingCart-&gt; delete method -&gt; donutName: Vanilla Donut
+
+res60: Boolean = true
+
+
+
+
+
+val donutShoppingCart2: DonutShoppingCartDao[String] = new DonutShoppingCart[String]()
+
+donutShoppingCart2.add("Vanilla Donut")
+
+donutShoppingCart2.update("Vanilla Donut")
+
+donutShoppingCart2.search("Vanilla Donut")
+
+donutShoppingCart2.delete("Vanilla Donut")
+
+
+
+
+
+scala&gt; trait DonutShoppingCartDao[A] {
+
+     |
+
+     |  def add(donut: A): Long
+
+     |
+
+     |  def update(donut: A): Boolean
+
+     |
+
+     |  def search(donut: A): A
+
+     |
+
+     |  def delete(donut: A): Boolean
+
+     |
+
+     | }
+
+defined trait DonutShoppingCartDao
+
+
+
+
+
+scala&gt; println("\nStep 2: Create a second trait which will define the methods for checking donut inventory")
+
+
+
+Step 2: Create a second trait which will define the methods for checking donut inventory
+
+scala&gt; trait DonutInventoryService[A] {
+
+     |
+
+     |  def checkStockQuantity(donut: A): Int
+
+     |
+
+     | }
+
+defined trait DonutInventoryService
+
+
+
+
+
+scala&gt;
+
+scala&gt; println("\nStep 3: Create a DonutShoppingCart class which extends multiple traits namely trait DonutShoppingCartDao and trait DonutInventoryService")
+
+
+
+Step 3: Create a DonutShoppingCart class which extends multiple traits namely trait DonutShoppingCartDao and trait DonutInventoryService
+
+
+
+scala&gt; class DonutShoppingCart[A] extends DonutShoppingCartDao[A] with DonutInventoryService[A] {
+
+     |
+
+     |  override def add(donut: A): Long = {
+
+     |   println(s"DonutShoppingCart-&gt; add method -&gt; donut: $donut")
+
+     |   1
+
+     |  }
+
+     |
+
+     |  override def update(donut: A): Boolean = {
+
+     |   println(s"DonutShoppingCart-&gt; update method -&gt; donut: $donut")
+
+     |   true
+
+     |  }
+
+     |
+
+     |  override def search(donut: A): A = {
+
+     |   println(s"DonutShoppingCart-&gt; search method -&gt; donut: $donut")
+
+     |   donut
+
+     |  }
+
+     |
+
+     |  override def delete(donut: A): Boolean = {
+
+     |   println(s"DonutShoppingCart-&gt; delete method -&gt; donut: $donut")
+
+     |   true
+
+     |  }
+
+     |
+
+     |  override def checkStockQuantity(donut: A): Int = {
+
+     |   println(s"DonutShoppingCart-&gt; checkStockQuantity method -&gt; donut: $donut")
+
+     |   10
+
+     |  }
+
+     | }
+
+defined class DonutShoppingCart
+
+
+
+scala&gt; println("\nStep 4: Create an instance of DonutShoppingCart and call the add, update, search and delete methods")
+
+
+
+Step 4: Create an instance of DonutShoppingCart and call the add, update, search and delete methods
+
+scala&gt; val donutShoppingCart: DonutShoppingCart[String] = new DonutShoppingCart[String]()
+
+donutShoppingCart: DonutShoppingCart[String] = DonutShoppingCart@7bd395f7
+
+
+
+scala&gt; donutShoppingCart.add("Vanilla Donut")
+
+DonutShoppingCart-&gt; add method -&gt; donut: Vanilla Donut
+
+res73: Long = 1
+
+
+
+scala&gt; donutShoppingCart.update("Vanilla Donut")
+
+DonutShoppingCart-&gt; update method -&gt; donut: Vanilla Donut
+
+res74: Boolean = true
+
+
+
+scala&gt; donutShoppingCart.search("Vanilla Donut")
+
+DonutShoppingCart-&gt; search method -&gt; donut: Vanilla Donut
+
+res75: String = Vanilla Donut
+
+
+
+scala&gt; donutShoppingCart.delete("Vanilla Donut")
+
+DonutShoppingCart-&gt; delete method -&gt; donut: Vanilla Donut
+
+res76: Boolean = true
+
+
+
+scala&gt; println("\nStep 5: Call the checkStockQuantity method which was inherited from trait DonutInventoryService")
+
+
+
+
+
+Step 5: Call the checkStockQuantity method which was inherited from trait DonutInventoryService
+
+
+
+scala&gt; donutShoppingCart.checkStockQuantity("Vanilla Donut")
+
+DonutShoppingCart-&gt; checkStockQuantity method -&gt; donut: Vanilla Donut
+
+res78: Int = 10
+
+
+
+scala&gt;
+
+cala&gt; trait DonutDatabase[A] {
+
+     |
+
+     |  def addOrUpdate(donut: A): Long
+
+     |
+
+     |  def query(donut: A): A
+
+     |
+
+     |  def delete(donut: A): Boolean
+
+     | }
+
+defined trait DonutDatabase
+
+scala&gt;
+
+
+
+scala&gt; println("\nStep 2: Create a class which extends trait DonutDatabase and knows how to perform CRUD operations with Apache Cassandra as storage layer")
+
+
+
+Step 2: Create a class which extends trait DonutDatabase and knows how to perform CRUD operations with Apache Cassandra as storage layer
+
+
+
+scala&gt; class CassandraDonutStore[A] extends DonutDatabase[A] {
+
+     |
+
+     |  override def addOrUpdate(donut: A): Long = {
+
+     |   println(s"CassandraDonutDatabase-&gt; addOrUpdate method -&gt; donut: $donut")
+
+     |   1
+
+     |  }
+
+     |
+
+     |  override def query(donut: A): A = {
+
+     |   println(s"CassandraDonutDatabase-&gt; query method -&gt; donut: $donut")
+
+     |   donut
+
+     |  }
+
+     |
+
+     |  override def delete(donut: A): Boolean = {
+
+     |   println(s"CassandraDonutDatabase-&gt; delete method -&gt; donut: $donut")
+
+     |   true
+
+     |  }
+
+     | }
+
+defined class CassandraDonutStore
+
+
+
+scala&gt; println("\nStep 3: Create a trait which will define the methods for a data access layer and will require dependency injection for DonutDatabase
+
+
+
+
+
+Step 3: Create a trait which will define the methods for a data access layer and will require dependency injection for DonutDatabase
+
+scala&gt; trait DonutShoppingCartDao[A] {
+
+     |
+
+     |  val donutDatabase: DonutDatabase[A] // dependency injection
+
+     |
+
+     |  def add(donut: A): Long = {
+
+     |   println(s"DonutShoppingCartDao-&gt; add method -&gt; donut: $donut")
+
+     |   donutDatabase.addOrUpdate(donut)
+
+     |  }
+
+     |
+
+     |  def update(donut: A): Boolean = {
+
+     |   println(s"DonutShoppingCartDao-&gt; update method -&gt; donut: $donut")
+
+     |   donutDatabase.addOrUpdate(donut)
+
+     |   true
+
+     |  }
+
+     |
+
+     |  def search(donut: A): A = {
+
+     |   println(s"DonutShoppingCartDao-&gt; search method -&gt; donut: $donut")
+
+     |   donutDatabase.query(donut)
+
+     |  }
+
+     |
+
+     |  def delete(donut: A): Boolean = {
+
+     |   println(s"DonutShoppingCartDao-&gt; delete method -&gt; donut: $donut")
+
+     |   donutDatabase.delete(donut)
+
+     |  }
+
+     |
+
+     | }
+
+defined trait DonutShoppingCartDao
+
+
+
+scala&gt; println("\nStep 4: Create a trait which will define the methods for checking donut inventory and will require dependency injection for DonutDatabase")
+
+
+
+
+
+Step 4: Create a trait which will define the methods for checking donut inventory and will require dependency injection for DonutDatabase
+
+
+
+scala&gt; trait DonutInventoryService[A] {
+
+     |
+
+     |  val donutDatabase: DonutDatabase[A] // dependency injection
+
+     |
+
+     |  def checkStockQuantity(donut: A): Int = {
+
+     |   println(s"DonutInventoryService-&gt; checkStockQuantity method -&gt; donut: $donut")
+
+     |   donutDatabase.query(donut)
+
+     |   1
+
+     |  }
+
+     |
+
+     | }
+
+defined trait DonutInventoryService
+
+
+
+scala&gt; println("\nStep 5: Create a trait which will act as a facade which extends multiple traits namely trait DonutShoppingCartDao and trait DonutInventoryService. It also inject the correct DonutDatabase implementation - a CassandraDonutStore")
+
+
+
+Step 5: Create a trait which will act as a facade which extends multiple traits namely trait DonutShoppingCartDao and trait DonutInventoryService. It also inject the correct DonutDatabase implementation - a CassandraDonutStore
+
+
+
+scala&gt; trait DonutShoppingCartServices[A] extends DonutShoppingCartDao[A] with DonutInventoryService[A] {
+
+     |  override val donutDatabase: DonutDatabase[A] = new CassandraDonutStore[A]()
+
+     | }
+
+defined trait DonutShoppingCartServices
+
+
+
+
+
+scala&gt; println("\nStep 6: Create a DonutShoppingCart class which extends a single facade named DonutShoppingCartServices to expose all the underlying features required by a DonutShoppingCart")
+
+
+
+
+
+
+
+Step 6: Create a DonutShoppingCart class which extends a single facade named DonutShoppingCartServices to expose all the underlying features required by a DonutShoppingCart
+
+scala&gt;  class DonutShoppingCart[A] extends DonutShoppingCartServices[A] {
+
+     |
+
+     | }
+
+defined class DonutShoppingCart
+
+
+
+
+
+scala&gt; println("\nStep 7: Create an instance of DonutShoppingCart and call the add, update, search and delete methods")
+
+
+
+
+
+Step 7: Create an instance of DonutShoppingCart and call the add, update, search and delete methods
+
+
+
+scala&gt; val donutShoppingCart: DonutShoppingCart[String] = new DonutShoppingCart[String]()
+
+donutShoppingCart: DonutShoppingCart[String] = DonutShoppingCart@5a4be77f
+
+
+
+scala&gt; donutShoppingCart.add("Vanilla Donut")
+
+DonutShoppingCartDao-&gt; add method -&gt; donut: Vanilla Donut
+
+
+
+CassandraDonutDatabase-&gt; addOrUpdate method -&gt; donut: Vanilla Donut
+
+res85: Long = 1
+
+scala&gt; donutShoppingCart.update("Vanilla Donut")
+
+
+
+DonutShoppingCartDao-&gt; update method -&gt; donut: Vanilla Donut
+
+CassandraDonutDatabase-&gt; addOrUpdate method -&gt; donut: Vanilla Donut
+
+res86: Boolean = true
+
+
+
+scala&gt; donutShoppingCart.search("Vanilla Donut")
+
+DonutShoppingCartDao-&gt; search method -&gt; donut: Vanilla Donut
+
+
+
+CassandraDonutDatabase-&gt; query method -&gt; donut: Vanilla Donut
+
+res87: String = Vanilla Donut
+
+
+
+scala&gt; donutShoppingCart.delete("Vanilla Donut")
+
+DonutShoppingCartDao-&gt; delete method -&gt; donut: Vanilla Donut
+
+CassandraDonutDatabase-&gt; delete
+
+method -&gt; donut: Vanilla Donut
+
+res88: Boolean = true
+
+
+
+scala&gt; donutShoppingCart.checkStockQuantity("Vanilla Donut")
+
+DonutInventoryService-&gt; checkStockQuantity method -&gt; donut: Vanilla Donut
+
+CassandraDonutDatabase-&gt; query method -&gt; donut: Vanilla Donut
+
+res89: Int = 1
+
+scala&gt;
