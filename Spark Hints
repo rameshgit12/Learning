@@ -1,0 +1,154 @@
+Number of executer is equal to no of partition
+
+
+
+Number of executer is equal to no of tasks
+
+
+
+Stages means that series of transformation
+
+New stage gets created on shuffling
+
+
+
+Nodemanager allocates the resources at the corresponding node
+
+
+
+Driver and executer are logical
+
+
+
+Block and partition are physical
+
+
+
+Resource manager submitted the job and allocating resources to the overall cluster.
+
+
+
+RDD,DATAFRAME,DATASET are storage object, that is distributed or split object, Although
+
+SCALA objects are not distributed itself.
+
+
+
+
+
+Spark Streaming:
+
+Dstream=&gt;RDD==&gt;BATCH INTERVAL
+
+            ==&gt;Partition=&gt;Block Interval-200ms
+
+No of transformation=&gt;No of RDD
+
+Dstream is internally convert into RDD API
+
+RDD API
+
+DF API
+
+DS API
+
+DStream API ===&gt;Transformation==&gt; it has 2 types
+
+     (1)Stateful transformation 
+
+  (2)Stateless transformation
+
+Narrow Transformation:It is not involved shuffling
+
+
+
+Wide Transformation&gt;;It involves shuffling
+
+
+
+Is it possible SQL operation for DStream?
+
+
+
+Dataframe and Dataset are supporting sql operation
+
+
+
+RDD-non sql operation
+
+
+
+Horizontal merging-&gt;Join
+
+Vertical merging=&gt;Union
+
+
+
+Number of cores =No of receiver+1
+
+
+
+   Recent Batch creation   stateless processing   stateful
+
+7.00-7.01   B1(R1)
+
+7.01-7.02   B2(R2)                      B1(R1)              B1
+
+7.02-7.03   B3(R3)                      B2(R2)             B2,B1
+
+7.03-7.04   B4(R4)                      B3(R3)              B3,R2
+
+7.04-7.05   B5(R5)                      B4(R4)              B4,B3
+
+
+
+Stateful:It is called as Windowing
+
+A transformation involves multiple batch for processing
+
+
+
+
+
+Stateless:
+
+As transformation involves one batch for processing at a time
+
+W.S=2, window size is equalvalent to the number of batches
+
+
+
+Slide Interval:
+
+
+
+
+
+SPARK STAGS and TASK:
+
+
+
+
+
+                     master              slave          masterrpcurl
+
+YARN                    RM         NM                     8082
+
+Standalone         Sparkmaster  Sparkworker     7077
+
+Mesos              Mesos master  mesosworker     5050
+
+
+
+Spark app--&gt;;2 programs
+
+1)Driver-&gt;Master
+
+2)Executor--&gt;Slave
+
+task--&gt;partition under task
+
+partition-&gt;data
+
+excueter-&gt;logical entity, space and cores
+
