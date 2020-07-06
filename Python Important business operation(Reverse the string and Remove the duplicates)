@@ -1,0 +1,51 @@
+How to remove the duplicates:
+
+&gt;&gt;&gt; mylist=["a","b","a","c","c"]
+
+&gt;&gt;&gt; mylist=list(dict.fromkeys(mylist))
+
+&gt;&gt;&gt; print(mylist)
+
+['a', 'b', 'c']
+
+
+
+How to remove duplicates through Function
+
+&gt;&gt;&gt; def my_function(x):
+
+...     return list(dict.fromkeys(x))
+
+...
+
+&gt;&gt;&gt; mylist=my_function(["a","b","a","c","c"])
+
+&gt;&gt;&gt; print(mylist)
+
+['a', 'b', 'c']
+
+
+
+Reverse the String:
+
+&gt;&gt;&gt; txt="Hello World"[::-1]
+
+&gt;&gt;&gt; print(txt)
+
+dlroW olleH
+
+
+
+Reverse a String through Function:
+
+&gt;&gt;&gt; def my_function(x):
+
+...     return x[::-1]
+
+...
+
+&gt;&gt;&gt; mytxt=my_function("I wonder how this text looks like backwards")
+
+&gt;&gt;&gt; print(mytxt)
+
+sdrawkcab ekil skool txet siht woh rednow I
