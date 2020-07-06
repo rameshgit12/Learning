@@ -1,0 +1,892 @@
+Different way of scala functions:
+
+
+scala&gt; {x:Int=&gt;x+30}
+
+
+
+res0: Int =&gt; Int = &lt;function1&gt;
+
+
+
+scala&gt; val f2={(x:Int,y:Int)=&gt;(x+y)/(x-y)}
+
+
+
+f2: (Int, Int) =&gt; Int = &lt;function2&gt;
+
+
+
+scala&gt; val f3={(x:String,y:Int)=&gt;x+y.toString}
+
+
+
+f3: (String, Int) =&gt; String = &lt;function2&gt;
+
+
+
+scala&gt; val a:Int=35
+
+
+
+a: Int = 35
+
+
+
+scala&gt; def f3={(x:String,y:Int)=&gt;x+y.toString}
+
+
+
+f3: (String, Int) =&gt; String
+
+
+
+scala&gt; var b="scala"
+
+
+
+b: String = scala
+
+
+
+scala&gt; def f4(a:Int,b:Int):Int={
+
+     | val p=a+b
+
+     | val q=a-b
+
+     | val r=a*b
+
+     | p*q*r
+
+     | }
+
+
+
+f4: (a: Int, b: Int)Int
+
+
+
+scala&gt; f4(2,3)
+
+
+
+res1: Int = -30
+
+
+
+scala&gt; val f2={(x:Int,y:Int)=&gt;(x+y)/(x-y)}
+
+
+
+f2: (Int, Int) =&gt; Int = &lt;function2&gt;
+
+
+
+scala&gt; f2(4,5)
+
+
+
+res3: Int = -9
+
+
+
+scala&gt; val f3={(x:String,y:Int)=&gt;x+y.toString}
+
+
+
+f3: (String, Int) =&gt; String = &lt;function2&gt;
+
+
+
+scala&gt; f3("scala",3)
+
+
+
+res4: String = scala3
+
+
+
+scala&gt; {x:Int=&gt;x+30}
+
+
+
+res5: Int =&gt; Int = &lt;function1&gt;
+
+
+
+scala&gt; res5(20)
+
+
+
+res6: Int = 50
+
+
+
+scala&gt; val f2={(x:Int,y:Int)=&gt;(x+y)/(x-y)}
+
+
+
+f2: (Int, Int) =&gt; Int = &lt;function2&gt;
+
+
+
+High order Function: Function is passed as argument or returned as function
+
+
+scala&gt; def f5={(a:Int,b:Int,c:(Int,Int)=&gt;Int)=&gt;c(a,b)}
+
+
+
+f5: (Int, Int, (Int, Int) =&gt; Int) =&gt; Int
+
+
+
+scala&gt; f5(2,3,f2)
+
+
+
+res7: Int = -5
+
+
+
+scala&gt; f5(2,3,f4)
+
+
+
+res9: Int = -30
+
+
+
+scala&gt; def f5={(a:Int,b:Int,c:(Int,Int)=&gt;Int)=&gt;c(a,b)}
+
+
+
+f5: (Int, Int, (Int, Int) =&gt; Int) =&gt; Int
+
+
+
+scala&gt; def m1(x:Int,y:Int):Int=x+y
+
+
+
+m1: (x: Int, y: Int)Int
+
+
+
+scala&gt; def m1(x:Int,y:Int):Int={x+y}
+
+
+
+m1: (x: Int, y: Int)Int
+
+
+
+Partial Applied function: Parameter as individual argument
+
+
+scala&gt; def m2(x:Int)(y:Int):Int={x+y}
+
+
+
+m2: (x: Int)(y: Int)Int
+
+
+
+scala&gt; m1(5,6)
+
+
+
+res10: Int = 11
+
+
+
+scala&gt; m2(4)
+
+
+
+&lt;console&gt;:26: error: missing argument list for method m2
+
+
+
+Unapplied methods are only converted to functions when a function type is expected.
+
+You can make this conversion explicit by writing `m2 _` or `m2(_)(_)` instead of `m2`.
+
+       m2(4)
+
+         ^
+
+
+
+scala&gt; m2(4)_
+
+
+
+res12: Int =&gt; Int = &lt;function1&gt;
+
+
+
+scala&gt; m2(4)(5)
+
+
+
+res14: Int = 9
+
+
+
+scala&gt; def m1(x:Int,y:Int):Int={x+y}
+
+
+
+m1: (x: Int, y: Int)Int
+
+
+
+scala&gt; m1(6,7)
+
+
+
+res15: Int = 13
+
+
+
+scala&gt; def m3={(a:Int)=&gt;a+20}
+
+
+
+m3: Int =&gt; Int
+
+
+
+scala&gt; val a=Array(2,3,4,5,6)
+
+
+
+a: Array[Int] = Array(2, 3, 4, 5, 6)
+
+
+
+Built in function:x is passed as function that is called as high order function
+
+
+
+scala&gt; a.map{(x:Int)=&gt;x+30}
+
+
+
+res16: Array[Int] = Array(32, 33, 34, 35, 36)
+
+
+
+scala&gt; a.map(x=&gt;x+30)
+
+
+
+res17: Array[Int] = Array(32, 33, 34, 35, 36)
+
+
+
+scala&gt; a.filter(x=&gt;x%2==0)
+
+
+
+res18: Array[Int] = Array(2, 4, 6)
+
+
+
+scala&gt; a.filter{x:Int=&gt;x%2==0}
+
+
+
+res19: Array[Int] = Array(2, 4, 6)
+
+
+
+scala&gt; val a2=Array(Array(1,2),Array(2,3),Array(3,4))
+
+
+
+a2: Array[Array[Int]] = Array(Array(1, 2), Array(2, 3), Array(3, 4))
+
+
+
+scala&gt; a2.flatMap(x=&gt;x)
+
+
+
+res20: Array[Int] = Array(1, 2, 2, 3, 3, 4)
+
+
+
+scala&gt; class A{
+
+     | val a:Int=20
+
+     | val b:Float=2.2f
+
+     | def m1(a:Int,b:Int):Int={a+b}
+
+     | def m2={(a:Int,b:Int)=&gt;a-b}
+
+     | }
+
+cxfdfgf4ty53
+
+defined class A
+
+
+
+When the function is in the class scope, we can access through by object...if it is outiside, we can access it directly
+
+
+
+scala&gt; val ob1=new A
+
+
+
+ob1: A = A@72fb8a1d
+
+
+
+scala&gt; ob1.m1(2,3)
+
+
+
+res23: Int = 5
+
+
+
+scala&gt; ob1.m2(2,3)
+
+
+
+res24: Int = -1
+
+
+
+Different way of function construction: Below to represent but both are same
+
+
+scala&gt; def k1(a:Int,b:String)=a+b.toInt
+
+
+
+k1: (a: Int, b: String)Int
+
+
+
+scala&gt; def k1(a:Int,b:String):Int={a+b.toInt}
+
+
+
+k1: (a: Int, b: String)Int
+
+
+
+scala&gt; def k2={(x:Int,y:Int)=&gt;x+y}
+
+
+
+k2: (Int, Int) =&gt; Int
+
+
+
+scala&gt; k2(3,4)
+
+
+
+res25: Int = 7
+
+
+
+
+
+Functional programming:
+
+
+
+scala&gt; val a1=Array("spark is a big data technology","hadoop is a big data technology","hadoop and spark are big data technologies")
+
+
+
+a1: Array[String] = Array(spark is a big data technology, hadoop is a big data technology, hadoop and spark are big data technologies)
+
+
+
+scala&gt; a1.size
+
+
+
+res26: Int = 3
+
+
+
+scala&gt; val a2=a1.map(x=&gt;x.split(" ")).flatMap(x=&gt;x).map(x=&gt;(x,1))
+
+
+
+a2: Array[(String, Int)] = Array((spark,1), (is,1), (a,1), (big,1), (data,1), (technology,1), (hadoop,1), (is,1), (a,1), (big,1), (data,1), (technology,1), (hadoop,1), (and,1), (spark,1), (are,1), (big,1), (data,1), (technologies,1))
+
+
+
+scala&gt; val a3=a2.groupBy(x=&gt;x._1)
+
+
+
+a3: scala.collection.immutable.Map[String,Array[(String, Int)]] = Map(are -&gt; Array((are,1)), is -&gt; Array((is,1), (is,1)), big -&gt; Array((big,1), (big,1), (big,1)), data -&gt; Array((data,1), (data,1), (data,1)), a -&gt; Array((a,1), (a,1)), technologies -&gt; Array((technologies,1)), technology -&gt; Array((technology,1), (technology,1)), hadoop -&gt; Array((hadoop,1), (hadoop,1)), spark -&gt; Array((spark,1), (spark,1)), and -&gt; Array((and,1)))
+
+
+
+scala&gt; val a3=a2.groupBy(x=&gt;x._1).map(x=&gt;(x._1,x._2.size))
+
+
+
+a3: scala.collection.immutable.Map[String,Int] = Map(are -&gt; 1, is -&gt; 2, big -&gt; 3, data -&gt; 3, a -&gt; 2, technologies -&gt; 1, technology -&gt; 2, hadoop -&gt; 2, spark -&gt; 2, and -&gt; 1)
+
+
+
+scala&gt; val x1=List(2,3,4,5,6,7,8)
+
+
+
+x1: List[Int] = List(2, 3, 4, 5, 6, 7, 8)
+
+
+
+scala&gt; x1.sum
+
+
+
+res27: Int = 35
+
+
+
+scala&gt; x1.reduce((x,y)=&gt;(x+y))
+
+
+
+res29: Int = 35
+
+
+
+scala&gt; x1.reduce((x,y)=&gt;(x-y))
+
+
+
+res30: Int = -31
+
+
+
+scala&gt; x1.max
+
+
+
+res31: Int = 8
+
+
+
+scala&gt; x1.min
+
+
+
+res32: Int = 2
+
+
+
+scala&gt; x1.sum/x1.size
+
+
+
+res33: Int = 5
+
+
+
+scala&gt; x1.reduce((x,y)=&gt;if(x&gt;y) x else y)
+
+
+
+res34: Int = 8
+
+
+
+scala&gt; x1.reduce((x,y)=&gt;if(x&lt;y) x else y)
+
+
+
+res35: Int = 2
+
+
+
+scala&gt; val x2=List("a","b","c","d","e","f")
+
+
+
+x2: List[String] = List(a, b, c, d, e, f)
+
+
+
+scala&gt; x1.zip(x2)
+
+
+
+res36: List[(Int, String)] = List((2,a), (3,b), (4,c), (5,d), (6,e), (7,f))
+
+
+
+scala&gt; val r1=sc,makeRDD(Array(1,2,3,4,5))
+
+
+
+&lt;console&gt;:1: error: ';' expected but ',' found.
+
+
+
+val r1=sc,makeRDD(Array(1,2,3,4,5))
+
+         ^
+
+scala&gt; val r1=sc.makeRDD(Array(1,2,3,4,5))
+
+
+
+r1: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[0] at makeRDD at &lt;console&gt;:24
+
+                 ^
+
+scala&gt; val f2=sc.makeRDD(Array("a","b","c","d","e"))
+
+
+
+f2: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[1] at makeRDD at &lt;console&gt;:24
+
+scala&gt; val r2=sc.makeRDD(Array("a","b","c","d","e"))
+
+
+
+r2: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[2] at makeRDD at &lt;console&gt;:24
+
+scala&gt; r1.zip(r2)
+
+
+
+res37: org.apache.spark.rdd.RDD[(Int, String)] = ZippedPartitionsRDD2[3] at zip at &lt;console&gt;:29
+
+
+
+scala&gt; r1.zip(r2).collect
+
+
+
+res38: Array[(Int, String)] = Array((1,a), (2,b), (3,c), (4,d), (5,e))
+
+
+
+scala&gt; val r2=sc.makeRDD(Array("a","b","c","d"))
+
+
+
+r2: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[5] at makeRDD at &lt;console&gt;:24
+
+scala&gt; r1.zip(r2).collect
+
+
+
+19/02/17 02:12:54 ERROR Executor: Exception in task 0.0 in stage 1.0 (TID 1)
+
+org.apache.spark.SparkException: Can only zip RDDs with same number of elements in each partition
+
+
+
+scala&gt; x1.zipWithIndex
+
+res40: List[(Int, Int)] = List((2,0), (3,1), (4,2), (5,3), (6,4), (7,5), (8,6))
+
+
+
+
+
+scala&gt; val a1=Array(1,2,3,4,5,6,7)
+
+a1: Array[Int] = Array(1, 2, 3, 4, 5, 6, 7)
+
+
+
+scala&gt; var sum=0
+
+sum: Int = 0
+
+
+
+scala&gt; a1.sum   ======&gt; Predefined function
+
+res42: Int = 28
+
+
+
+User defined Function:
+
+scala&gt; for(i &lt;- 0 to a1.size-1 by 1){
+
+     | sum=sum+a1(i)
+
+     | }
+
+
+
+scala&gt; println(sum)
+
+48
+
+
+
+scala&gt; class A{
+
+     | var id =0
+
+     | var name =""
+
+     | }
+
+
+
+defined class A
+
+
+
+scala&gt; val n1=new A
+
+n1: A = A@3f43c65e
+
+
+
+scala&gt; n1.id=20
+
+n1.id: Int = 20
+
+
+
+scala&gt; n1.name="spark"
+
+n1.name: String = spark
+
+
+
+USER DEFINED FUNCTION
+
+scala&gt; for(i&lt;-0 to a1.size-1 by 1){
+
+     | if(a1(i)%2==0)
+
+     | println(" "+a1(i))
+
+     | }
+
+
+
+ 2
+
+ 4
+
+ 6
+
+scala&gt; a1.filter(x=&gt;x%2==0)===&gt;filter is PREDEFINED function where as aregument is user
+
+defined function
+
+
+
+res48: Array[Int] = Array(2, 4, 6)
+
+
+
+scala&gt; a1
+
+
+
+res49: Array[Int] = Array(1, 2, 3, 4, 5, 6, 7)
+
+
+
+scala&gt; for(i&lt;-0 to a1.size-1 by 1)
+
+     | {
+
+     | a1(i)=a1(i)+10
+
+     | }
+
+
+
+scala&gt; a1
+
+
+
+res51: Array[Int] = Array(11, 12, 13, 14, 15, 16, 17)
+
+
+
+scala&gt; val a2=Array(3,4,5,6,7,8)
+
+
+
+a2: Array[Int] = Array(3, 4, 5, 6, 7, 8)
+
+
+
+scala&gt; a2.map(x=&gt;x+10)
+
+
+
+res52: Array[Int] = Array(13, 14, 15, 16, 17, 18)
+
+
+
+scala&gt; val r=Range(1,100)
+
+
+
+r: scala.collection.immutable.Range = Range(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99)
+
+
+
+scala&gt; r.map(x=&gt;x+10)
+
+
+
+res53: scala.collection.immutable.IndexedSeq[Int] = Vector(11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109)
+
+
+
+scala&gt; (5,6)
+
+res57: (Int, Int) = (5,6)
+
+
+
+scala&gt; rres55(5,6)
+
+&lt;console&gt;:24: error: not found: value rres55
+
+       rres55(5,6)
+
+       ^
+
+scala&gt; res55(5,6)
+
+res59: Int = -11
+
+
+
+scala&gt; a2.map(x=&gt;x+10)
+
+res60: Array[Int] = Array(13, 14, 15, 16, 17, 18)
+
+
+
+scala&gt; a2
+
+res61: Array[Int] = Array(3, 4, 5, 6, 7, 8)
+
+
+
+scala&gt; a2.map(x=&gt;x+10)
+
+res62: Array[Int] = Array(13, 14, 15, 16, 17, 18)
+
+
+
+scala&gt; def f5={x:Int=&gt;x+10}
+
+f5: Int =&gt; Int
+
+
+
+scala&gt; a2.map(f5)
+
+res63: Array[Int] = Array(13, 14, 15, 16, 17, 18)
+
+
+
+scala&gt; a1.map(f5)
+
+res64: Array[Int] = Array(21, 22, 23, 24, 25, 26, 27)
+
+
+
+scala&gt; def f6={(x:Int,y:Int)=&gt;
+
+     | val p=x+y
+
+     | val q=x-y
+
+     | val r=x*y
+
+     | val s=x/y
+
+     | p+q+r+s
+
+     | }
+
+
+
+f6: (Int, Int) =&gt; Int
+
+
+
+scala&gt; f6(2,3)
+
+
+
+res65: Int = 10
+
+
+
+scala&gt; def f7(x:Int,y:Int):Int={
+
+     | val p=x+y
+
+     | val q=x-y
+
+     | val r=x*y
+
+     | val s=x/y
+
+     | p+q+r+s
+
+     | }
+
+
+
+f7: (x: Int, y: Int)Int
+
+
+
+scala&gt; def m1={(x:Int,y:Int)=&gt;x+y}
+
+m1: (Int, Int) =&gt; Int
+
+
+
+scala&gt; def m2={(m1:(Int,Int)=&gt;Int,a:Int)=&gt;
+
+     | }
+
+m2: ((Int, Int) =&gt; Int, Int) =&gt; Unit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
