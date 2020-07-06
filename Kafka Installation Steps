@@ -1,0 +1,62 @@
+Step 1:
+download kafka
+
+http://www-eu.apache.org/dist/kafka/1.0.0/kafka_2.11-1.0.0.tgz
+
+Step 2:
+
+copy to cloudera VM.
+
+Open terminal 
+
+tar -xvzf kafka_2.11-1.0.0.tgz
+
+Step 3:
+
+cd kafka_2.11-1.0.0
+cd config
+
+Edit server.properties
+vi server.properties
+
+Edit the zookeeper.server : quickstart.cloudera
+
+zookeeper.connect=localhost:2181
+
+
+---------------------
+
+Step 4:
+
+Make sure zookeeper is running.
+
+cd /usr/lib/zookeeper/bin
+sh zkCli.sh
+
+Step 5:
+
+Start the server:
+
+kafka bin folder =&gt; 
+
+cd /home/cloudera/kafka_2.11-1.0.0/bin
+
+sh kafka-server-start.sh /home/cloudera/kafka_2.11-1.0.0/config/server.properties &amp;
+
+sh kafka-topics.sh --create --topic Payment_IND1 --zookeeper quickstart.cloudera:2181 --replication-factor 1 --partitions 3
+
+sh kafka-topics.sh --zookeeper quickstart.cloudera:2181 --list
+
+sh kafka-console-producer.sh --broker-list quickstart.cloudera:9092 --topic Payment_IND1
+
+sh kafka-console-consumer.sh --zookeeper quickstart.cloudera:2181 --topic Payment_IND1 --from-beginning
+
+netstat -anlp | grep 9092
+
+spark-submit --class SparkKafkaIntegration Spark_Streaming_Kafka-0.0.1-jar-with-dependencies.jar quickstart.cloudera:2181 Test tamilboomimar 1
+
+
+
+cat /tmp/kafka-logs/Payment_IND1-0/00000000000000000000.log
+cat /tmp/kafka-logs/Payment_IND1-1/00000000000000000000.log
+cat /tmp/kafka-logs/Payment_IND1-2/00000000000000000000.log
