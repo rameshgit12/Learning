@@ -1,0 +1,1729 @@
+
+Python Keywords
+
+
+
+and A logical operator
+
+
+
+x = (5 &gt; 3 and 5 &lt; 10)
+
+
+
+print(x)
+
+
+
+
+
+
+
+if 5 &gt; 3 and 5 &lt; 10:
+
+
+
+  print("Both statements are True")
+
+
+
+else:
+
+
+
+  print("At least one of the statements are False")
+
+
+
+
+
+
+
+True
+
+
+
+Both statements are True
+
+
+
+as To create an alias
+
+
+
+import calendar as c
+
+
+
+print(c.month_name[1])
+
+
+
+
+
+
+
+January
+
+
+
+assert For debugging
+
+
+
+x = "hello"
+
+
+
+#if condition returns True, then nothing happens:
+
+
+
+assert x == "hello"
+
+
+
+
+
+
+
+#if condition returns False, AssertionError is raised:
+
+
+
+assert x == "goodbye", "x should be 'hello'"
+
+
+
+
+
+
+
+Traceback (most recent call last):
+
+
+
+  File "main.py", line 6, in
+
+
+
+    assert x == "goodbye", "x should be 'hello'"
+
+
+
+AssertionError: x should be 'hello'
+
+
+
+break To break out of a loop
+
+
+
+for i in range(9):
+
+
+
+  if i &gt; 3:
+
+
+
+    break
+
+
+
+  print(i)
+
+
+
+0
+
+
+
+1
+
+
+
+2
+
+
+
+3
+
+
+
+i = 1
+
+
+
+while i &lt; 9:
+
+
+
+  print(i)
+
+
+
+  if i == 3:
+
+
+
+    break
+
+
+
+  i += 1
+
+
+
+1
+
+
+
+2
+
+
+
+3
+
+
+
+class To define a class
+
+
+
+class Person:
+
+
+
+  name = "John"
+
+
+
+  age = 36
+
+
+
+
+
+
+
+p1 = Person()
+
+
+
+print(p1.name)
+
+
+
+John
+
+
+
+continue To continue to the next iteration of a loop
+
+
+
+for i in range(9):
+
+
+
+  if i == 3:
+
+
+
+    continue
+
+
+
+  print(i)
+
+
+
+0
+
+
+
+1
+
+
+
+2
+
+
+
+4
+
+
+
+5
+
+
+
+6
+
+
+
+7
+
+
+
+8
+
+
+
+i = 0
+
+
+
+while i &lt; 9:
+
+
+
+  i += 1
+
+
+
+  if i == 3:
+
+
+
+    continue
+
+
+
+  print(i)
+
+
+
+1
+
+
+
+2
+
+
+
+4
+
+
+
+5
+
+
+
+6
+
+
+
+7
+
+
+
+8
+
+
+
+9
+
+
+
+def To define a function
+
+
+
+def my_function():
+
+
+
+  print("Hello from a function")
+
+
+
+my_function()
+
+
+
+
+
+
+
+Hello from a function
+
+
+
+
+
+
+
+del To delete an object
+
+
+
+class MyClass:
+
+
+
+  name = "John"
+
+
+
+del myClass
+
+
+
+print(myClass)
+
+
+
+Traceback (most recent call last):
+
+
+
+  File "main.py", line 3, in
+
+
+
+    del myClass
+
+
+
+NameError: name 'myClass' is not defined
+
+
+
+
+
+
+
+x = "hello"
+
+
+
+del x
+
+
+
+print(x)
+
+
+
+Traceback (most recent call last):
+
+
+
+  File "main.py", line 3, in
+
+
+
+    print(x)
+
+
+
+NameError: name 'x' is not defined
+
+
+
+
+
+
+
+x = ["apple", "banana", "cherry"]
+
+
+
+del x[0]
+
+
+
+print(x)
+
+
+
+['banana', 'cherry']
+
+
+
+
+
+
+
+elif Used in conditional statements, same as else if
+
+
+
+for i in range(-5, 5):
+
+
+
+  if i &gt; 0:
+
+
+
+    print("YES")
+
+
+
+  elif i == 0:
+
+
+
+    print("WHATEVER")
+
+
+
+  else:
+
+
+
+    print("NO")
+
+
+
+NO
+
+
+
+NO
+
+
+
+NO
+
+
+
+NO
+
+
+
+NO
+
+
+
+WHATEVER
+
+
+
+YES
+
+
+
+YES
+
+
+
+YES
+
+
+
+YES
+
+
+
+
+
+
+
+else Used in conditional statements
+
+
+
+x = 2
+
+
+
+if x &gt; 3:
+
+
+
+  print("YES")
+
+
+
+else:
+
+
+
+  print("NO")
+
+
+
+NO
+
+
+
+
+
+
+
+x = 5
+
+
+
+try:
+
+
+
+  x &gt; 10
+
+
+
+except:
+
+
+
+  print("Something went wrong")
+
+
+
+else:
+
+
+
+  print("The 'Try' code was executed without raising any errors!")
+
+
+
+The 'Try' code was executed without raising any errors!
+
+
+
+
+
+
+
+except Used with exceptions, what to do when an exception occurs
+
+
+
+try:
+
+
+
+  x &gt; 3
+
+
+
+except:
+
+
+
+  print("Something went wrong")
+
+
+
+Something went wrong
+
+
+
+
+
+
+
+x = "hello"
+
+
+
+
+
+
+
+try:
+
+
+
+  x &gt; 3
+
+
+
+except NameError:
+
+
+
+  print("You have a variable that is not defined.")
+
+
+
+except TypeError:
+
+
+
+  print("You are comparing values of different type")
+
+
+
+You are comparing values of different type
+
+
+
+
+
+
+
+try:
+
+
+
+  x = 1/0
+
+
+
+except NameError:
+
+
+
+  print("You have a variable that is not defined.")
+
+
+
+except TypeError:
+
+
+
+  print("You are comparing values of different type")
+
+
+
+except:
+
+
+
+  print("Something else went wrong")
+
+
+
+
+
+
+
+Something else went wrong
+
+
+
+
+
+
+
+x = 1
+
+
+
+
+
+
+
+try:
+
+
+
+  x &gt; 10
+
+
+
+except NameError:
+
+
+
+  print("You have a variable that is not defined.")
+
+
+
+except TypeError:
+
+
+
+  print("You are comparing values of different type")
+
+
+
+else:
+
+
+
+  print("The 'Try' code was executed without raising any errors!")
+
+
+
+The 'Try' code was executed without raising any errors!
+
+
+
+
+
+
+
+False Boolean value, result of comparison operations
+
+
+
+print(5 &gt; 6)
+
+
+
+
+
+
+
+print(4 in [1,2,3])
+
+
+
+
+
+
+
+print("hello" is "goodbye")
+
+
+
+
+
+
+
+print(5 == 6)
+
+
+
+
+
+
+
+print(5 == 6 or 6 == 7)
+
+
+
+
+
+
+
+print(5 == 6 and 6 == 7)
+
+
+
+
+
+
+
+print("hello" is not "hello")
+
+
+
+
+
+
+
+print(not(5 == 5))
+
+
+
+
+
+
+
+print(3 not in [1,2,3])
+
+
+
+False
+
+
+
+False
+
+
+
+False
+
+
+
+False
+
+
+
+False
+
+
+
+False
+
+
+
+False
+
+
+
+False
+
+
+
+False
+
+
+
+
+
+
+
+finally Used with exceptions, a block of code that will be executed no matter if there is an exception or not
+
+
+
+try:
+
+
+
+  x &gt; 3
+
+
+
+except:
+
+
+
+  print("Something went wrong")
+
+
+
+else:
+
+
+
+  print("Nothing went wrong")
+
+
+
+finally:
+
+
+
+  print("The try...except block is finished")
+
+
+
+Something went wrong
+
+
+
+The try...except block is finished
+
+
+
+
+
+
+
+for To create a for loop
+
+
+
+for x in range(1, 9):
+
+
+
+  print(x)
+
+
+
+1
+
+
+
+2
+
+
+
+3
+
+
+
+4
+
+
+
+5
+
+
+
+6
+
+
+
+7
+
+
+
+8
+
+
+
+fruits = ["apple", "banana", "cherry"]
+
+
+
+for x in fruits:
+
+
+
+  print(x)
+
+
+
+apple
+
+
+
+banana
+
+
+
+cherry
+
+
+
+
+
+
+
+from To import specific parts of a module
+
+
+
+from datetime import time
+
+
+
+x = time(hour=15)
+
+
+
+print(x)
+
+
+
+15:00:00
+
+
+
+
+
+
+
+global To declare a global variable
+
+
+
+
+
+
+
+def myfunction():
+
+
+
+  global x
+
+
+
+  x = "hello"
+
+
+
+
+
+
+
+#execute the function:
+
+
+
+myfunction()
+
+
+
+
+
+
+
+#x should now be global, and accessible in the global scope.
+
+
+
+print(x)
+
+
+
+hello
+
+
+
+if  make a conditional statement
+
+
+
+x = 5
+
+
+
+if x &gt; 3:
+
+
+
+  print("YES")
+
+
+
+YES x = 5
+
+
+
+if x &gt; 6:
+
+
+
+  print("YES")
+
+
+
+else:
+
+
+
+  print("NO")
+
+
+
+NO
+
+
+
+import To import a module
+
+
+
+import datetime
+
+
+
+x = datetime.datetime.now()
+
+
+
+print(x)
+
+
+
+2019-04-15 20:41:05.252261
+
+
+
+in To check if a value is present in a list, tuple, etc.
+
+
+
+fruits = ["apple", "banana", "cherry"]
+
+
+
+if "banana" in fruits:
+
+
+
+  print("yes")
+
+
+
+yes
+
+
+
+fruits = ["apple", "banana", "cherry"]
+
+
+
+for x in fruits:
+
+
+
+  print(x)
+
+
+
+apple
+
+
+
+banana
+
+
+
+cherry
+
+
+
+is To test if two variables are equal
+
+
+
+x = ["apple", "banana", "cherry"]
+
+
+
+
+
+
+
+y = x
+
+
+
+
+
+
+
+print(x is y)
+
+
+
+True
+
+
+
+x = ["apple", "banana", "cherry"]
+
+
+
+
+
+
+
+y = ["apple", "banana", "cherry"]
+
+
+
+
+
+
+
+print(x is y)
+
+
+
+False
+
+
+
+lambda To create an anonymous function
+
+
+
+x = lambda a : a + 10
+
+
+
+
+
+
+
+print(x(5))
+
+
+
+15
+
+
+
+x = lambda a, b, c : a + b + c
+
+
+
+
+
+
+
+print(x(5, 6, 2))
+
+
+
+13
+
+
+
+None Represents a null value
+
+
+
+x = None
+
+
+
+print(x)
+
+
+
+
+
+
+
+x = None
+
+
+
+if x:
+
+
+
+  print("Do you think None is True")
+
+
+
+else:
+
+
+
+  print("None is not True...")
+
+
+
+None
+
+
+
+None is not True...
+
+
+
+nonlocal To declare a non-local variable
+
+
+
+def myfunc1():
+
+
+
+  x = "John"
+
+
+
+  def myfunc2():
+
+
+
+    x = "hello"
+
+
+
+  myfunc2()
+
+
+
+  return x
+
+
+
+
+
+
+
+print(myfunc1())
+
+
+
+John
+
+
+
+not A logical operator
+
+
+
+x = False
+
+
+
+print(not x)
+
+
+
+True
+
+
+
+or A logical operator
+
+
+
+x = (5 &gt; 3 or 5 &gt; 10)
+
+
+
+print(x)
+
+
+
+if 5 &gt; 3 or 5 &gt; 10:
+
+
+
+  print("At least one of the statements are True")
+
+
+
+else:
+
+
+
+  print("None of the statements are True")
+
+
+
+True
+
+
+
+At least one of the statements are True
+
+
+
+pass A null statement, a statement that will do nothing
+
+
+
+class Person:
+
+
+
+  pass
+
+
+
+
+
+
+
+raise To raise an exception
+
+
+
+x = -1
+
+
+
+if x &lt; 0:
+
+
+
+  raise Exception("Sorry, no numbers below zero")
+
+
+
+Traceback (most recent call last):
+
+
+
+  File "main.py", line 3, in
+
+
+
+    raise Exception("Sorry, no numbers below zero")
+
+
+
+Exception: Sorry, no numbers below zero
+
+
+
+x = "hello"
+
+
+
+
+
+
+
+if not type(x) is int:
+
+
+
+  raise TypeError("Only integers are allowed")
+
+
+
+Traceback (most recent call last):
+
+
+
+  File "main.py", line 4, in
+
+
+
+    raise TypeError("Only integers are allowed")
+
+
+
+TypeError: Only integers are allowed
+
+
+
+return To exit a function and return a value
+
+
+
+def myfunction():
+
+
+
+  return 3+3
+
+
+
+
+
+
+
+print(myfunction())
+
+
+
+6
+
+
+
+def myfunction():
+
+
+
+  return 3+3
+
+
+
+  print("Hello, World!")
+
+
+
+
+
+
+
+print(myfunction())
+
+
+
+
+
+
+
+6
+
+
+
+True Boolean value, result of comparison operations
+
+
+
+print(5 &lt; 6)
+
+
+
+
+
+
+
+print(2 in [1,2,3])
+
+
+
+
+
+
+
+print(5 is 5)
+
+
+
+
+
+
+
+print(5 == 5)
+
+
+
+
+
+
+
+print(5 == 5 or 6 == 7)
+
+
+
+
+
+
+
+print(5 == 5 and 7 == 7)
+
+
+
+
+
+
+
+print("hello" is not "goodbye")
+
+
+
+
+
+
+
+print(not(5 == 7))
+
+
+
+
+
+
+
+print(4 not in [1,2,3])
+
+
+
+True
+
+
+
+True
+
+
+
+True
+
+
+
+True
+
+
+
+True
+
+
+
+True
+
+
+
+True
+
+
+
+True
+
+
+
+True
+
+
+
+try To make a try...except statement
+
+
+
+try:
+
+
+
+  x &gt; 3
+
+
+
+except:
+
+
+
+  print("Something went wrong")
+
+
+
+Something went wrong
+
+
+
+try:
+
+
+
+  x &gt; 3
+
+
+
+except:
+
+
+
+  Exception("Something went wrong")
+
+
+
+
+
+
+
+while To create a while loop
+
+
+
+x = 0
+
+
+
+
+
+
+
+while x &lt; 9:
+
+
+
+  print(x)
+
+
+
+  x = x + 1
+
+
+
+0
+
+
+
+1
+
+
+
+2
+
+
+
+3
+
+
+
+4
+
+
+
+5
+
+
+
+6
+
+
+
+7
+
+
+
+8
+
+
+
