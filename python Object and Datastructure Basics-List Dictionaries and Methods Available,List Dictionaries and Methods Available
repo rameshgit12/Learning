@@ -1,0 +1,202 @@
+python Object and Datastructure Basics-List Dictionaries and Methods Available
+
+l=[1,2,0,'abc']
+
+l[1]
+
+l[0]
+
+l[3]
+
+len(l)
+
+type(l)
+
+List concat:
+
+l1=[1,2,66]
+
+l=1+l1
+
+l*2
+
+[1, 2, 0, 'abc', 1, 2, 66, 1, 2, 0, 'abc', 1, 2, 66]
+
+l[0]='changed'
+
+['changed', 2, 0, 'abc', 1, 2, 66]
+
+l[22]='new string'
+
+print(l)
+
+l.append('new element1')
+
+l[4].lower()
+
+l[4].capitalize()
+
+l[:3]
+
+['changed', 2, 0]
+
+l[-2]
+
+66
+
+b=set(l)
+
+print(b)
+
+{0, 1, 2, 66, 'new element1', 'changed', 'abc'}
+
+Searcing :
+
+s='name'
+
+l=['string','something.'name']
+
+if s in l:
+
+  print('its found')
+
+else
+
+  print('not found')
+
+ 
+
+for x in l:
+
+  if x==s:
+
+    print('not found')
+
+  esle:
+
+    print('not found')
+
+
+
+Nested list:
+
+ l=[1,2,0,'string',[1,2,3]]
+
+ l.extend([5,6,7])
+
+ print(l)
+
+ l.append([8,9,0])
+
+
+
+ slice if nested list
+
+ l[1][0]
+
+type(l[1])
+
+
+
+l=[1,2,3,4,4,5]
+
+l.count(2)
+
+l.index(1)
+
+l.insert(0,'Starting')
+
+print(l)
+
+l.pop()
+
+print(l)
+
+l.pop(0)
+
+l.remove(3)
+
+print(l)
+
+l.clear()
+
+print(l)
+
+import copy
+
+new 1=copy.deepcopy(l)
+
+
+
+Dictionary:
+
+my_dict={'key1':'value'}
+
+len(my_dict)
+
+my_dict={'number':1,'string':'am a string'}
+
+di=dict(x=5,x=6)
+
+print(di)
+
+my_dict['number']
+
+my_dict['you']='some value'
+
+my_dict.update(new_dict)
+
+my_dict.items()
+
+from collections import OrderedDict
+
+dict=OrderedDict([])
+
+my_dict.get('string','element is not present')
+
+&gt;&gt;&gt; my_dict.get('string','element is not present')
+
+'am a string'
+
+&gt;&gt;&gt; my_dict.get('strings','element is not present')
+
+'element is not present'
+
+
+
+Python Object and Datastructure Basics:Tuples,Sets,Frozen sets,Comparision Operator:
+
+Tuple is immutable
+
+my_tuple=(1,2,'string')
+
+my_tuple[2].upper()
+
+print(my_tuple)
+
+my_tuple[0]+2
+
+my_tuple.index('string')
+
+t=(1)  ====t(1,)--&gt;it is called as tuple
+
+type(t)
+
+my_set=set()
+
+my_set={'k1',1,1,1}
+
+type(my_set)
+
+set()-mutable
+
+frozenset-immutable
+
+frozenset
+
+1String-immutable
+list-mutable,It hold any type of object
+dict-mutable,no slicing and indexing..we can use keys to grab the values
+tuple is immutable
+set()-mutable,duplicate removal
+frozenset-immutable
