@@ -1,0 +1,2141 @@
+
+scala&gt; println("Step 1: How to initialize an immutable List with 3 elements")
+
+Step 1: How to initialize an immutable List with 3 elements
+
+
+
+scala&gt; val list1: List[String] = List("Plain Donut","Strawberry Donut","Chocolate Donut")
+
+list1: List[String] = List(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println(s"Elements of list1 = $list1")
+
+Elements of list1 = List(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+Step 2: How to access elements of immutable List at specific index
+
+scala&gt; println(s"Element at index 0 = ${list1(0)}")
+
+Element at index 0 = Plain Donut
+
+
+
+scala&gt; println(s"Element at index 1 = ${list1(1)}")
+
+Element at index 1 = Strawberry Donut
+
+
+
+scala&gt; println(s"Element at index 2 = ${list1(2)}")
+
+Element at index 2 = Chocolate Donut
+
+
+
+scala&gt; println("\nStep 3: How to append elements at the end of immutable List using :+")
+
+Step 3: How to append elements at the end of immutable List using :+
+
+
+
+scala&gt; val list2: List[String] = list1 :+ "Vanilla Donut"
+
+list2: List[String] = List(Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Append elements at the end using :+ = $list2")
+
+Append elements at the end using :+ = List(Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+scala&gt; println("\nStep 4: How to prepend elements at the front of immutable List using +:")
+
+Step 4: How to prepend elements at the front of immutable List using +:
+
+
+
+scala&gt; val list3: List[String] = "Vanilla Donut" +: list1
+
+list3: List[String] = List(Vanilla Donut, Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println(s"Prepend elements at the front using +: = $list3")
+
+Prepend elements at the front using +: = List(Vanilla Donut, Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println("\nStep 5: How to add two immutable lists together using ::")
+
+Step 5: How to add two immutable lists together using ::
+
+
+
+scala&gt; val list4: List[Any] = list1 :: list2
+
+list4: List[Any] = List(List(Plain Donut, Strawberry Donut, Chocolate Donut), Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Add two lists together using :: = $list4")
+
+Add two lists together using :: = List(List(Plain Donut, Strawberry Donut, Chocolate Donut), Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+scala&gt; val list5: List[String] = list1 ::: list2
+
+list5: List[String] = List(Plain Donut, Strawberry Donut, Chocolate Donut, Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Add two lists together using ::: = $list5")
+
+Add two lists together using ::: = List(Plain Donut, Strawberry Donut, Chocolate Donut, Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+scala&gt; println("\nStep 7: How to initialize an empty immutable List")
+
+Step 7: How to initialize an empty immutable List
+
+
+
+scala&gt; val emptyList: List[String] = List.empty[String]
+
+emptyList: List[String] = List()
+
+
+
+scala&gt; println(s"Empty list = $emptyList")
+
+Empty list = List()
+
+
+
+scala&gt; val list = List()
+
+list: List[Nothing] = List()
+
+
+
+println("Step 1: How to initialize an immutable ListSet with 3 elements")
+
+val listSet1: ListSet[String] = ListSet("Plain Donut","Strawberry Donut","Chocolate Donut")
+
+
+
+println(s"Elements of listSet1 = $listSet1")
+
+Step 1: How to initialize an immutable List with 3 elements
+
+Elements of listSet1 = ListSet(Chocolate Donut, Strawberry Donut, Plain Donut)
+
+
+
+println("\nStep 2: How to check elements of immutable ListSet")
+
+
+
+println(s"Element Plain Donut = ${listSet1("Plain Donut")}")
+
+
+
+println(s"Element Strawberry Donut = ${listSet1("Strawberry Donut")}")
+
+
+
+println(s"Element Chocolate Donut = ${listSet1("Chocolate Donut")}")
+
+
+
+Step 2: How to check elements of immutable ListSet
+
+Element Plain Donut = true
+
+Element Strawberry Donut = true
+
+Element Chocolate Donut = true
+
+
+
+println("\nStep 3: How to add elements of immutable ListSet using +")
+
+val listSet2: ListSet[String] = listSet1 + "Vanilla Donut"
+
+
+
+println(s"Adding element Vanilla to ListSet using + = $listSet2")
+
+
+
+Step 3: How to add elements of immutable ListSet using +
+
+Adding element Vanilla to ListSet using + = ListSet(Vanilla Donut, Chocolate Donut, Strawberry Donut, Plain Donu
+
+
+
+println("\nStep 4: How to add two ListSet together using ++")
+
+
+
+val listSet3: ListSet[String] = listSet1 ++ ListSet("Glazed Donut")
+
+
+
+println(s"Add two lists together using ++ = $listSet3")
+
+
+
+println("\nStep 5: How to remove element from the ListSet using -")
+
+val listSet4: ListSet[String] = listSet1 - ("Plain Donut")
+
+
+
+println(s"ListSet without the element Plain Donut = $listSet4")
+
+
+
+Step 5: How to remove element from the ListSet using -
+
+ListSet without the element Plain Donut = ListSet(Chocolate Donut, Strawberry Donut)
+
+println("\nStep 6: How to initialize an empty ListSet")
+
+
+
+val emptyListSet: ListSet[String] = ListSet.empty[String]
+
+println(s"Empty ListSet of type String = $emptyListSet")
+
+
+
+Step 6: How to initialize an empty ListSet
+
+Empty ListSet of type String = ListSet()
+
+
+
+scala&gt; println("Step 1: How to initialize a ListMap with 3 elements using key -&gt; value notation")
+
+Step 1: How to initialize a ListMap with 3 elements using key -&gt; value notation
+
+
+
+scala&gt; import scala.collection.immutable.ListMap
+
+import scala.collection.immutable.ListMap
+
+
+
+scala&gt; val listMap1: ListMap[String, String] = ListMap("PD" -&gt; "Plain Donut", "SD" -&gt;"Strawberry Donut", "CD" -&gt; "Chocolate Donut")
+
+listMap1: scala.collection.immutable.ListMap[String,String] = Map(PD -&gt; Plain Donut, SD -&gt; Strawberry Donut, CD -&gt; Chocolate Donut)
+
+
+
+scala&gt; println(s"Elements of listMap1 = $listMap1")
+
+Elements of listMap1 = Map(PD -&gt; Plain Donut, SD -&gt; Strawberry Donut, CD -&gt; Chocolate Donut)
+
+
+
+scala&gt; println("\nStep 2: How to access elements by specific key in the ListMap")
+
+
+
+Step 2: How to access elements by specific key in the ListMap
+
+scala&gt; println(s"Element by key PD = ${listMap1("PD")}")
+
+Element by key PD = Plain Donut
+
+
+
+scala&gt; println(s"Element by key SD = ${listMap1("SD")}")
+
+Element by key SD = Strawberry Donut
+
+
+
+scala&gt; println("\nStep 3: How to add elements to ListMap using +")
+
+
+
+Step 3: How to add elements to ListMap using +
+
+scala&gt; val listMap2: ListMap[String, String] = listMap1 + ("KD" -&gt; "Krispy Kreme Donut")
+
+listMap2: scala.collection.immutable.ListMap[String,String] = Map(PD -&gt; Plain Donut, SD -&gt; Strawberry Donut, CD -&gt; Chocolate Donut, KD -&gt; Krispy Kreme Donut)
+
+
+
+scala&gt; println(s"Elements of listMap2 = $listMap2")
+
+Elements of listMap2 = Map(PD -&gt; Plain Donut, SD -&gt; Strawberry Donut, CD -&gt; Chocolate Donut, KD -&gt; Krispy Kreme Donut)
+
+
+
+scala&gt; println("\nStep 5: How to remove key and value from ListMap using -")
+
+
+
+Step 5: How to remove key and value from ListMap using -
+
+scala&gt; val listMap4: ListMap[String, String] = listMap1 - ("CD")
+
+listMap4: scala.collection.immutable.ListMap[String,String] = Map(PD -&gt; Plain Donut, SD -&gt; Strawberry Donut)
+
+
+
+scala&gt; println(s"ListMap without the key CD and its value = $listMap4")
+
+ListMap without the key CD and its value = Map(PD -&gt; Plain Donut, SD -&gt; Strawberry Donut)
+
+
+
+scala&gt; println("\nStep 6: How to initialize an empty ListMap")
+
+
+
+Step 6: How to initialize an empty ListMap
+
+scala&gt; val emptyListMap: ListMap[String, String] = ListMap.empty[String,String]
+
+emptyListMap: scala.collection.immutable.ListMap[String,String] = Map()
+
+scala&gt; println(s"Empty ListMap with key type String and value also of type String= $emptyListMap")
+
+
+
+Empty ListMap with key type String and value also of type String= Map()
+
+
+
+scala&gt; println("Step 1: How to initialize a Map with 3 elements")
+
+
+
+Step 1: How to initialize a Map with 3 elements
+
+
+
+scala&gt; val map1: Map[String, String] = Map(("PD","Plain Donut"),("SD","Strawberry Donut"),("CD","Chocolate Donut"))
+
+map1: Map[String,String] = Map(PD -&gt; Plain Donut, SD -&gt; Strawberry Donut, CD -&gt; Chocolate Donut)
+
+
+
+scala&gt; println(s"Elements of map1 = $map1")
+
+Elements of map1 = Map(PD -&gt; Plain Donut, SD -&gt; Strawberry Donut, CD -&gt; Chocolate Donut)
+
+
+
+scala&gt; println("\nStep 2: How to initialize Map using key -&gt; value notation")
+
+
+
+Step 2: How to initialize Map using key -&gt; value notation
+
+
+
+scala&gt; val map2: Map[String, String] = Map("VD"-&gt; "Vanilla Donut", "GD" -&gt; "Glazed Donut")
+
+map2: Map[String,String] = Map(VD -&gt; Vanilla Donut, GD -&gt; Glazed Donut)
+
+
+
+scala&gt; println(s"Elements of map1 = $map2")
+
+Elements of map1 = Map(VD -&gt; Vanilla Donut, GD -&gt; Glazed Donut)
+
+
+
+scala&gt; println("\nStep 3: How to access elements by specific key")
+
+
+
+Step 3: How to access elements by specific key
+
+scala&gt; println(s"Element by key VD = ${map2("VD")}")
+
+Element by key VD = Vanilla Donut
+
+
+
+scala&gt; println(s"Element by key GD = ${map2("GD")}")
+
+Element by key GD = Glazed Donut
+
+scala&gt;
+
+scala&gt; println("\nStep 4: How to add elements using +")
+
+Step 4: How to add elements using +
+
+
+
+scala&gt; val map3: Map[String, String] = map1 + ("KD" -&gt; "Krispy Kreme Donut")
+
+map3: Map[String,String] = Map(PD -&gt; Plain Donut, SD -&gt; Strawberry Donut, CD -&gt; Chocolate Donut, KD -&gt; Krispy Kreme Donut)
+
+
+
+scala&gt; println(s"Element in map3 = $map3")
+
+
+
+Element in map3 = Map(PD -&gt; Plain Donut, SD -&gt; Strawberry Donut, CD -&gt; Chocolate Donut, KD -&gt; Krispy Kreme Donut)
+
+
+
+scala&gt; println("\nStep 5: How to add two Maps together using ++")
+
+Step 5: How to add two Maps together using ++
+
+
+
+scala&gt; val map4: Map[String, String] = map1 ++ map2
+
+map4: Map[String,String] = Map(PD -&gt; Plain Donut, GD -&gt; Glazed Donut, SD -&gt; Strawberry Donut, VD -&gt; Vanilla Donut, CD -&gt; Chocolate Donut)
+
+
+
+scala&gt; println(s"Elements in map4 = $map4")
+
+Elements in map4 = Map(PD -&gt; Plain Donut, GD -&gt; Glazed Donut, SD -&gt; Strawberry Donut, VD -&gt; Vanilla Donut, CD -&gt; Chocolate Donut)
+
+
+
+scala&gt; println("\nStep 6: How to remove key and its value from map using -")
+
+Step 6: How to remove key and its value from map using -
+
+scala&gt;
+
+
+
+scala&gt; val map5: Map[String, String] = map4 - ("CD")
+
+map5: Map[String,String] = Map(PD -&gt; Plain Donut, GD -&gt; Glazed Donut, SD -&gt; Strawberry Donut, VD -&gt; Vanilla Donut)
+
+
+
+scala&gt; println(s"Map without the key CD and its value = $map5")
+
+Map without the key CD and its value = Map(PD -&gt; Plain Donut, GD -&gt; Glazed Donut, SD -&gt; Strawberry Donut, VD -&gt; Vanilla Donut)
+
+
+
+scala&gt; println("\nStep 7: How to initialize an empty Map")
+
+Step 7: How to initialize an empty Map
+
+
+
+scala&gt; val emptyMap: Map[String,String] = Map.empty[String,String]
+
+emptyMap: Map[String,String] = Map()
+
+
+
+scala&gt; println(s"Empty Map = $emptyMap")
+
+Empty Map = Map()
+
+
+
+scala&gt; import scala.collection.immutable.HashMap
+
+import scala.collection.immutable.HashMap
+
+
+
+scala&gt; println("Step 1: How to initialize a HashMap with 3 elements using Tuples of key and value")
+
+Step 1: How to initialize a HashMap with 3 elements using Tuples of key and value
+
+
+
+scala&gt; val hashMap1: HashMap[String, String] = HashMap(("PD","Plain Donut"),("SD","Strawberry Donut"),("CD","Chocolate Donut"))
+
+hashMap1: scala.collection.immutable.HashMap[String,String] = Map(PD -&gt; Plain Donut, SD -&gt; Strawberry Donut, CD -&gt; Chocolate Donut)
+
+
+
+scala&gt; println(s"Elements of hashMap1 = $hashMap1")
+
+Elements of hashMap1 = Map(PD -&gt; Plain Donut, SD -&gt; Strawberry Donut, CD -&gt; Chocolate Donut)
+
+
+
+Step 2: How to initialize HashMap using key -&gt; value notation
+
+
+
+scala&gt; val hashMap2: HashMap[String, String] = HashMap("VD"-&gt; "Vanilla Donut", "GD" -&gt; "Glazed Donut")
+
+hashMap2: scala.collection.immutable.HashMap[String,String] = Map(GD -&gt; Glazed Donut, VD -&gt; Vanilla Donut)
+
+
+
+scala&gt; println(s"Elements of hashMap2 = $hashMap2")
+
+Elements of hashMap2 = Map(GD -&gt; Glazed Donut, VD -&gt; Vanilla Donut)
+
+
+
+scala&gt; println("\nStep 3: How to access elements in HashMap by specific key")
+
+Step 3: How to access elements in HashMap by specific key
+
+
+
+scala&gt; println(s"Element by key VD = ${hashMap2("VD")}")
+
+Element by key VD = Vanilla Donut
+
+
+
+scala&gt; println(s"Element by key GD = ${hashMap2("GD")}")
+
+Element by key GD = Glazed Donut
+
+
+
+Step 4: How to add elements to HashMap using +
+
+scala&gt; val hashMap3: HashMap[String, String] = hashMap1 + ("KD" -&gt; "Krispy Kreme Donut")
+
+hashMap3: scala.collection.immutable.HashMap[String,String] = Map(PD -&gt; Plain Donut, SD -&gt; Strawberry Donut, KD -&gt; Krispy Kreme Donut, CD -&gt; Chocolate Donut)
+
+
+
+scala&gt; println(s"Element in hashMap3 = $hashMap3")
+
+Element in hashMap3 = Map(PD -&gt; Plain Donut, SD -&gt; Strawberry Donut, KD -&gt; Krispy Kreme Donut, CD -&gt; Chocolate Donut)
+
+
+
+scala&gt;
+
+Step 5: How to add two HashMaps together using ++
+
+scala&gt; val hashMap4: Map[String, String] = hashMap1 ++ hashMap2
+
+
+
+hashMap4: Map[String,String] = Map(PD -&gt; Plain Donut, GD -&gt; Glazed Donut, SD -&gt; Strawberry Donut, VD -&gt; Vanilla Donut, CD -&gt; Chocolate Donut)
+
+
+
+scala&gt; println(s"Elements in hashMap4 = $hashMap4")
+
+Elements in hashMap4 = Map(PD -&gt; Plain Donut, GD -&gt; Glazed Donut, SD -&gt; Strawberry Donut, VD -&gt; Vanilla Donut, CD -&gt; Chocolate Donut)
+
+
+
+scala&gt;
+
+scala&gt; println("\nStep 6: How to remove key and its value from HashMap using -")
+
+
+
+Step 6: How to remove key and its value from HashMap using -
+
+
+
+scala&gt; val hashMap5: Map[String, String] = hashMap4 - ("CD")
+
+hashMap5: Map[String,String] = Map(PD -&gt; Plain Donut, GD -&gt; Glazed Donut, SD -&gt; Strawberry Donut, VD -&gt; Vanilla Donut)
+
+
+
+scala&gt; println(s"HashMap without the key CD and its value = $hashMap5")
+
+HashMap without the key CD and its value = Map(PD -&gt; Plain Donut, GD -&gt; Glazed Donut, SD -&gt; Strawberry Donut, VD -&gt; Vanilla Donut)
+
+scala&gt;
+
+
+
+scala&gt; println("\nStep 7: How to initialize an empty HashMap")
+
+Step 7: How to initialize an empty HashMap
+
+
+
+scala&gt; val emptyHashMap: HashMap[String,String] = HashMap.empty[String,String]
+
+emptyHashMap: scala.collection.immutable.HashMap[String,String] = Map()
+
+
+
+scala&gt; println(s"Empty HashMap = $emptyHashMap")
+
+Empty HashMap = Map()
+
+
+
+scala&gt; import scala.collection.immutable.TreeMap
+
+import scala.collection.immutable.TreeMap
+
+
+
+scala&gt; println("Step 1: How to initialize a TreeMap with 3 elements using Tuples key and value")
+
+Step 1: How to initialize a TreeMap with 3 elements using Tuples key and value
+
+scala&gt; val treeMap1: TreeMap[String, String] = TreeMap(("PD","Plain Donut"),("SD","Strawberry Donut"),("CD","Chocolate Donut"))
+
+
+
+treeMap1: scala.collection.immutable.TreeMap[String,String] = Map(CD -&gt; Chocolate Donut, PD -&gt; Plain Donut, SD -&gt; Strawberry Donut)
+
+
+
+scala&gt; println(s"Elements of treeMap1 = $treeMap1")
+
+Elements of treeMap1 = Map(CD -&gt; Chocolate Donut, PD -&gt; Plain Donut, SD -&gt; Strawberry Donut)
+
+
+
+scala&gt; println("\nStep 2: How to initialize TreeMap using key -&gt; value notation")
+
+Step 2: How to initialize TreeMap using key -&gt; value notation
+
+
+
+scala&gt; val treeMap2: TreeMap[String, String] = TreeMap("VD"-&gt; "Vanilla Donut", "GD" -&gt; "Glazed Donut")
+
+treeMap2: scala.collection.immutable.TreeMap[String,String] = Map(GD -&gt; Glazed Donut, VD -&gt; Vanilla Donut)
+
+
+
+scala&gt; println(s"Elements of treeMap2 = $treeMap2")
+
+Elements of treeMap2 = Map(GD -&gt; Glazed Donut, VD -&gt; Vanilla Donut)
+
+
+
+scala&gt; println("\nStep 3: How to access elements of TreeMap by specific key")
+
+Step 3: How to access elements of TreeMap by specific key
+
+
+
+scala&gt; println(s"Element by key VD = ${treeMap2("VD")}")
+
+Element by key VD = Vanilla Donut
+
+
+
+scala&gt; println(s"Element by key GD = ${treeMap2("GD")}")
+
+Element by key GD = Glazed Donut
+
+
+
+scala&gt; import scala.collection.immutable.HashMap
+
+import scala.collection.immutable.HashMap
+
+
+
+scala&gt; println("\nStep 4: How to add elements to TreeMap using +")
+
+Step 4: How to add elements to TreeMap using +
+
+
+
+scala&gt; val treeMap3: TreeMap[String, String] = treeMap1 + ("KD" -&gt; "Krispy Kreme Donut")
+
+treeMap3: scala.collection.immutable.TreeMap[String,String] = Map(CD -&gt; Chocolate Donut, KD -&gt; Krispy Kreme Donut, PD -&gt; Plain Donut, SD -&gt; Strawberry Donut)
+
+
+
+scala&gt; println(s"Elements in treeMap3 = $treeMap3")
+
+Elements in treeMap3 = Map(CD -&gt; Chocolate Donut, KD -&gt; Krispy Kreme Donut, PD -&gt; Plain Donut, SD -&gt; Strawberry Donut)
+
+scala&gt;
+
+
+
+scala&gt; println("\nStep 5: How to add two TreeMaps together using ++")
+
+Step 5: How to add two TreeMaps together using ++
+
+
+
+scala&gt; val treeMap4: TreeMap[String, String] = treeMap1 ++ treeMap2
+
+treeMap4: scala.collection.immutable.TreeMap[String,String] = Map(CD -&gt; Chocolate Donut, GD -&gt; Glazed Donut, PD -&gt; Plain Donut, SD -&gt; Strawberry Donut, VD -&gt; Vanilla Donut)
+
+
+
+scala&gt; println(s"Elements in treeMap4 = $treeMap4"
+
+     | )
+
+Elements in treeMap4 = Map(CD -&gt; Chocolate Donut, GD -&gt; Glazed Donut, PD -&gt; Plain Donut, SD -&gt; Strawberry Donut, VD -&gt; Vanilla Donut)
+
+
+
+scala&gt; println("\nStep 7: How to change ordering of TreeMap to descending alphabet")
+
+
+
+Step 7: How to change ordering of TreeMap to descending alphabet
+
+scala&gt; object AlphabetOrdering extends Ordering[String] {
+
+     |  def compare(key1:String, key2:String) = key2.compareTo(key1)
+
+     | }
+
+defined object AlphabetOrdering
+
+
+
+scala&gt; val treeMap6: TreeMap[String, String] = TreeMap(("PD","Plain Donut"),("SD","Strawberry Donut"),("CD","Chocolate Donut"))(AlphabetOrdering)
+
+treeMap6: scala.collection.immutable.TreeMap[String,String] = Map(SD -&gt; Strawberry Donut, PD -&gt; Plain Donut, CD -&gt; Chocolate Donut)
+
+
+
+scala&gt; println(s"Elements of treeMap6 in descending order = $treeMap6")
+
+Elements of treeMap6 in descending order = Map(SD -&gt; Strawberry Donut, PD -&gt; Plain Donut, CD -&gt; Chocolate Donut)
+
+
+
+scala&gt; println("\nStep 8: How to initialize an empty TreeMap")
+
+Step 8: How to initialize an empty TreeMap
+
+
+
+scala&gt; val emptyTreeMap: TreeMap[String,String] = TreeMap.empty[String,String]
+
+emptyTreeMap: scala.collection.immutable.TreeMap[String,String] = Map()
+
+
+
+scala&gt; println(s"Empty TreeMap = $emptyTreeMap")
+
+Empty TreeMap = Map()
+
+
+
+scala&gt; import scala.collection.immutable.Queue
+
+import scala.collection.immutable.Queue
+
+
+
+scala&gt; println("Step 1: How to initialize a Queue with 3 elements")
+
+Step 1: How to initialize a Queue with 3 elements
+
+
+
+scala&gt; val queue1: Queue[String] = Queue("Plain Donut", "Strawberry Donut", "Chocolate Donut")
+
+queue1: scala.collection.immutable.Queue[String] = Queue(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println(s"Elements of queue1 = $queue1")
+
+Elements of queue1 = Queue(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+scala&gt;
+
+
+
+scala&gt; println("\nStep 2: How to access elements at specific index in a Queue")
+
+Step 2: How to access elements at specific index in a Queue
+
+
+
+scala&gt; println(s"Element at index 0 = ${queue1(0)}")
+
+Element at index 0 = Plain Donut
+
+
+
+scala&gt; println(s"Element at index 0 = ${queue1(1)}")
+
+Element at index 0 = Strawberry Donut
+
+
+
+scala&gt; println(s"Element at index 0 = ${queue1(2)}")
+
+Element at index 0 = Chocolate Donut
+
+
+
+scala&gt; println("\nStep 3: How to add elements in a Queue using :+")
+
+Step 3: How to add elements in a Queue using :+
+
+
+
+scala&gt; val queue2: Queue[String] = queue1 :+ "Glazed Donut"
+
+queue2: scala.collection.immutable.Queue[String] = Queue(Plain Donut, Strawberry Donut, Chocolate Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Elements of queue2 = $queue2")
+
+Elements of queue2 = Queue(Plain Donut, Strawberry Donut, Chocolate Donut, Glazed Donut)
+
+
+
+scala&gt; val enqueue: Queue[String] = queue1.enqueue("Vanilla Donut")
+
+enqueue: scala.collection.immutable.Queue[String] = Queue(Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Enqueue element Vanilla Donut onto queue1 = $enqueue")
+
+Enqueue element Vanilla Donut onto queue1 = Queue(Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+Step 5: How to take the first element from the Queue using dequeue function
+
+
+
+scala&gt; val dequeue: (String, Queue[String]) = queue1.dequeue
+
+dequeue: (String, scala.collection.immutable.Queue[String]) = (Plain Donut,Queue(Strawberry Donut, Chocolate Donut))
+
+
+
+scala&gt; println(s"First element dequeue = ${dequeue._1}")
+
+First element dequeue = Plain Donut
+
+
+
+scala&gt; println(s"Remaining elements after dequeue = ${dequeue._2}")
+
+Remaining elements after dequeue = Queue(Strawberry Donut, Chocolate Donut)
+
+
+
+Step 6: How to add two Queues together using ++
+
+scala&gt; val queue3: Queue[String] = queue1 ++ Queue[String]("Glazed Donut", "Vanilla Donut")
+
+queue3: scala.collection.immutable.Queue[String] = Queue(Plain Donut, Strawberry Donut, Chocolate Donut, Glazed Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Elements in queue3 = $queue3")
+
+Elements in queue3 = Queue(Plain Donut, Strawberry Donut, Chocolate Donut, Glazed Donut, Vanilla Donut)
+
+
+
+scala&gt;  println(s"Elements in queue3 = $queue1")
+
+Elements in queue3 = Queue(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+scala&gt;
+
+
+
+scala&gt; println("\nStep 7: How to initialize an empty Queue")
+
+Step 7: How to initialize an empty Queue
+
+
+
+scala&gt; val emptyQueue: Queue[String] = Queue.empty[String]
+
+emptyQueue: scala.collection.immutable.Queue[String] = Queue()
+
+
+
+scala&gt; println(s"Empty Queue = $emptyQueue")
+
+Empty Queue = Queue()
+
+
+
+scala&gt; println("Step 1: How to initialize a Sequence with 3 elements")
+
+Step 1: How to initialize a Sequence with 3 elements
+
+
+
+scala&gt; val seq1: Seq[String] = Seq("Plain Donut","Strawberry Donut","Chocolate Donut")
+
+seq1: Seq[String] = List(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println(s"Elements of seq1 = $seq1")
+
+Elements of seq1 = List(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println("\nStep 2: How to access elements in Sequence at specific index")
+
+Step 2: How to access elements in Sequence at specific index
+
+
+
+scala&gt; println(s"Element at index 0 = ${seq1(0)}")
+
+Element at index 0 = Plain Donut
+
+
+
+scala&gt; println(s"Element at index 1 = ${seq1(1)}")
+
+Element at index 1 = Strawberry Donut
+
+
+
+scala&gt; println(s"Element at index 2 = ${seq1(2)}")
+
+Element at index 2 = Chocolate Donut
+
+
+
+scala&gt; println("\nStep 3: How to add elements to Sequence using :+")
+
+Step 3: How to add elements to Sequence using :+
+
+
+
+scala&gt; val seq2: Seq[String] = seq1 :+ "Vanilla Donut"
+
+seq2: Seq[String] = List(Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Adding elements to Sequence using :+ = $seq2")
+
+Adding elements to Sequence using :+ = List(Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+scala&gt; println("\nStep 4: How to add two Sequence together using ++")
+
+Step 4: How to add two Sequence together using ++
+
+
+
+scala&gt; val seq3: Seq[String] = seq1 ++ Seq[String]("Vanilla Donut", "Glazed Donut")
+
+seq3: Seq[String] = List(Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Add two sequences together using ++ = $seq3")
+
+Add two sequences together using ++ = List(Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut, Glazed Donut)
+
+
+
+scala&gt; println("\nStep 5: How to initialize an empty Sequence")
+
+Step 5: How to initialize an empty Sequence
+
+
+
+scala&gt; val emptySeq: Seq[String] = Seq.empty[String]
+
+emptySeq: Seq[String] = List()
+
+
+
+scala&gt; println(s"Empty Sequence = $emptySeq")
+
+Empty Sequence = List()
+
+
+
+scala&gt; println("Step 1: How to initialize a Set with 3 elements")
+
+Step 1: How to initialize a Set with 3 elements
+
+
+
+scala&gt; val set1: Set[String] = Set("Plain Donut","Strawberry Donut","Chocolate Donut")
+
+set1: Set[String] = Set(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println(s"Elements of set1 = $set1")
+
+Elements of set1 = Set(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println("\nStep 2: How to check specific elements exists in Set")
+
+Step 2: How to check specific elements exists in Set
+
+
+
+scala&gt; println(s"Element Plain Donut = ${set1("Plain Donut")}")
+
+Element Plain Donut = true
+
+
+
+scala&gt; println(s"Element Strawberry Donut = ${set1("Strawberry Donut")}")
+
+Element Strawberry Donut = true
+
+
+
+scala&gt; println(s"Element Chocolate Donut = ${set1("Chocolate Donut")}")
+
+Element Chocolate Donut = true
+
+
+
+Step 3: How to add elements in Set using +
+
+scala&gt; val set2: Set[String] = set1 + "Vanilla Donut" + "Vanilla Donut"
+
+set2: Set[String] = Set(Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Adding elements to Set using + = $set2")
+
+Adding elements to Set using + = Set(Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+Step 4: How to add two Sets together using ++
+
+scala&gt; val set3: Set[String] = set1 ++ Set[String]("Vanilla Donut", "Glazed Donut")
+
+set3: Set[String] = Set(Vanilla Donut, Plain Donut, Chocolate Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Add two Sets together using ++ = $set3")
+
+Add two Sets together using ++ = Set(Vanilla Donut, Plain Donut, Chocolate Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println("\nStep 5: How to remove element from Set using -")
+
+Step 5: How to remove element from Set using -
+
+
+
+scala&gt; val set4: Set[String] = set1 - "Plain Donut"
+
+set4: Set[String] = Set(Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println(s"Set without Plain Donut element = $set4")
+
+Set without Plain Donut element = Set(Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println("\nStep 6: How to find the intersection between two Sets using &amp;")
+
+Step 6: How to find the intersection between two Sets using &amp;
+
+
+
+scala&gt; val set5: Set[String] = Set("Vanilla Donut", "Glazed Donut", "Plain Donut")
+
+set5: Set[String] = Set(Vanilla Donut, Glazed Donut, Plain Donut)
+
+
+
+scala&gt; println(s"Intersection of set1 and set5 = ${set1 &amp; set5}")
+
+Intersection of set1 and set5 = Set(Plain Donut)
+
+
+
+Step 7: How to find the difference between two Sets using &amp;~
+
+
+
+scala&gt; println(s"Difference between set1 and set5 = ${set1 &amp;~ set5}")
+
+Difference between set1 and set5 = Set(Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; set1
+
+res127: Set[String] = Set(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println("\nStep 8: How to initialize an empty Set")
+
+Step 8: How to initialize an empty Set
+
+
+
+scala&gt; val emptySet: Set[String] = Set.empty[String]
+
+emptySet: Set[String] = Set()
+
+
+
+scala&gt; println(s"Empty Set = $emptySet")
+
+Empty Set = Set()
+
+
+
+scala&gt; import scala.collection.immutable.HashSet
+
+import scala.collection.immutable.HashSet
+
+
+
+scala&gt; println("Step 1: How to initialize a HashSet with 3 elements")
+
+Step 1: How to initialize a HashSet with 3 elements
+
+
+
+scala&gt; val hashSet1: HashSet[String] = HashSet("Plain Donut","Strawberry Donut","Chocolate Donut")
+
+hashSet1: scala.collection.immutable.HashSet[String] = Set(Plain Donut, Chocolate Donut, Strawberry Donut)
+
+
+
+scala&gt; println(s"Elements of hashSet1 = $hashSet1")
+
+Elements of hashSet1 = Set(Plain Donut, Chocolate Donut, Strawberry Donut)
+
+
+
+scala&gt; println("\nStep 2: How to check specific elements in HashSet")
+
+Step 2: How to check specific elements in HashSet
+
+
+
+scala&gt; println(s"Element Plain Donut = ${hashSet1("Plain Donut")}")
+
+Element Plain Donut = true
+
+
+
+scala&gt; println(s"Element Strawberry Donut = ${hashSet1("Strawberry Donut")}")
+
+Element Strawberry Donut = true
+
+
+
+scala&gt; println(s"Element Chocolate Donut = ${hashSet1("Chocolate Donut")}")
+
+Element Chocolate Donut = true
+
+
+
+scala&gt; println("\nStep 3: How to add elements in HashSet using +")
+
+Step 3: How to add elements in HashSet using +
+
+scala&gt;
+
+
+
+scala&gt; val hashSet2: HashSet[String] = hashSet1 + "Vanilla Donut" + "Vanilla Donut"
+
+hashSet2: scala.collection.immutable.HashSet[String] = Set(Vanilla Donut, Plain Donut, Chocolate Donut, Strawberry Donut)
+
+
+
+scala&gt; println(s"Adding elements to HashSet using + = $hashSet2")
+
+Adding elements to HashSet using + = Set(Vanilla Donut, Plain Donut, Chocolate Donut, Strawberry Donut)
+
+
+
+scala&gt; // NOTE: we only have one Vanilla Donut element and not two as HashSet is distinct
+
+
+
+scala&gt; println("\nStep 4: How to add two HashSets together using ++")
+
+
+
+Step 4: How to add two HashSets together using ++
+
+scala&gt; val hashSet3: HashSet[String] = hashSet1 ++ HashSet[String]("Vanilla Donut", "Glazed Donut")
+
+
+
+hashSet3: scala.collection.immutable.HashSet[String] = Set(Vanilla Donut, Plain Donut, Chocolate Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Add two HashSets together using ++ = $hashSet3")
+
+Add two HashSets together using ++ = Set(Vanilla Donut, Plain Donut, Chocolate Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt;
+
+scala&gt; println("\nStep 5: How to remove element in HashSet using -")
+
+Step 5: How to remove element in HashSet using -
+
+
+
+scala&gt; val hashSet4: HashSet[String] = hashSet1 - "Plain Donut"
+
+hashSet4: scala.collection.immutable.HashSet[String] = Set(Chocolate Donut, Strawberry Donut)
+
+
+
+scala&gt; println(s"HashSet without Plain Donut element = $hashSet4")
+
+HashSet without Plain Donut element = Set(Chocolate Donut, Strawberry Donut)
+
+
+
+Step 2: How to check specific elements in HashSet
+
+scala&gt; val hashSet5: HashSet[String] = HashSet("Vanilla Donut", "Glazed Donut", "Plain Donut")
+
+hashSet5: scala.collection.immutable.HashSet[String] = Set(Vanilla Donut, Plain Donut, Glazed Donut)
+
+Element Plain Donut = true
+
+
+
+scala&gt; println(s"Intersection of hashSet1 and hashSet5 = ${hashSet1 &amp; hashSet5}")
+
+Intersection of hashSet1 and hashSet5 = Set(Plain Donut)Strawberry Donut")}")
+
+Element Strawberry Donut = true
+
+
+
+scala&gt; println("\nStep 7: How to find the difference between two HashSets using &amp;~")
+
+scala&gt; println(s"Element Chocolate Donut = ${hashSet1("Chocolate Donut")}")
+
+
+
+Step 7: How to find the difference between two HashSets using &amp;~
+
+scala&gt; println(s"Difference of hashSet1 and hashSet5 = ${hashSet1 &amp;~ hashSet5}")
+
+
+
+Difference of hashSet1 and hashSet5 = Set(Chocolate Donut, Strawberry Donut)
+
+Step 3: How to add elements in HashSet using +
+
+scala&gt; val emptyHashSet: HashSet[String] = HashSet.empty[String]
+
+emptyHashSet: scala.collection.immutable.HashSet[String] = Set())
+
+Adding elements to HashSet using + = Set(Vanilla Donut, Plain Donut, Chocolate Donut, Strawberry Donut)
+
+
+
+scala&gt; println(s"Empty HashSet = $emptyHashSet")
+
+Empty HashSet = Set()ly have one Vanilla Donut element and not two as HashSet is distinct
+
+
+
+scala&gt; import scala.collection.immutable.TreeSet
+
+import scala.collection.immutable.TreeSet
+
+
+
+scala&gt; println("Step 1: How to initialize a TreeSet with 3 elements")
+
+Step 1: How to initialize a TreeSet with 3 elements
+
+
+
+scala&gt; val treeSet1: TreeSet[String] = TreeSet("Plain Donut","Strawberry Donut","Chocolate Donut")
+
+treeSet1: scala.collection.immutable.TreeSet[String] = TreeSet(Chocolate Donut, Plain Donut, Strawberry Donut)
+
+
+
+scala&gt; println(s"Elements of treeSet1 = $treeSet1")
+
+Elements of treeSet1 = TreeSet(Chocolate Donut, Plain Donut, Strawberry Donut)
+
+
+
+scala&gt; println(s"Elements of treeSet1 = $treeSet1")
+
+Elements of treeSet1 = TreeSet(Chocolate Donut, Plain Donut, Strawberry Donut)
+
+
+
+scala&gt; println("\nStep 2: How to check specific elements in TreeSet")
+
+Step 2: How to check specific elements in TreeSet
+
+
+
+scala&gt; println(s"Element Plain Donut = ${treeSet1("Plain Donut")}")
+
+Element Plain Donut = true
+
+
+
+scala&gt; println(s"Element Strawberry Donut = ${treeSet1("Strawberry Donut")}")
+
+Element Strawberry Donut = true
+
+
+
+scala&gt; println(s"Element Chocolate Donut = ${treeSet1("Chocolate Donut")}")
+
+Element Chocolate Donut = true
+
+
+
+scala&gt; println("\nStep 3: How to add elements to TreeSet using +")
+
+Step 3: How to add elements to TreeSet using +
+
+
+
+scala&gt; val treeSet2: TreeSet[String] = treeSet1 + "Vanilla Donut" + "Vanilla Donut"
+
+treeSet2: scala.collection.immutable.TreeSet[String] = TreeSet(Chocolate Donut, Plain Donut, Strawberry Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Adding elements to TreeSet using + = $treeSet2")
+
+Adding elements to TreeSet using + = TreeSet(Chocolate Donut, Plain Donut, Strawberry Donut, Vanilla Donut)
+
+
+
+scala&gt;
+
+scala&gt; println("\nStep 4: How to add two TreeSets together using ++")
+
+Step 4: How to add two TreeSets together using ++
+
+
+
+scala&gt; val treeSet3: TreeSet[String] = treeSet1 ++ TreeSet[String]("Vanilla Donut", "Glazed Donut")
+
+treeSet3: scala.collection.immutable.TreeSet[String] = TreeSet(Chocolate Donut, Glazed Donut, Plain Donut, Strawberry Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Add two TreeSets together using ++ = $treeSet3")
+
+Add two TreeSets together using ++ = TreeSet(Chocolate Donut, Glazed Donut, Plain Donut, Strawberry Donut, Vanilla Donut)
+
+
+
+scala&gt; println("\nStep 5: How to remove element in TreeSet using -")
+
+scala&gt;
+
+Step 5: How to remove element in TreeSet using -
+
+scala&gt; val treeSet4: TreeSet[String] = treeSet1 - "Plain Donut"
+
+
+
+treeSet4: scala.collection.immutable.TreeSet[String] = TreeSet(Chocolate Donut, Strawberry Donut)
+
+scala&gt; println(s"TreeSet without Plain Donut element = $treeSet4")
+
+
+
+TreeSet without Plain Donut element = TreeSet(Chocolate Donut, Strawberry Donut)
+
+Step 6: How to find the intersection between two TreeSets using &amp;
+
+
+
+scala&gt; val treeSet5: TreeSet[String] = TreeSet("Vanilla Donut", "Glazed Donut", "Plain Donut")
+
+treeSet5: scala.collection.immutable.TreeSet[String] = TreeSet(Glazed Donut, Plain Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Intersection of treeSet1 and treeSet5 = ${treeSet1 &amp; treeSet5}")
+
+Intersection of treeSet1 and treeSet5 = TreeSet(Plain Donut)
+
+
+
+Step 7: How to find the difference between two TreeSets using &amp;~
+
+scala&gt; println(s"Difference of treeSet1 and treeSet5 = ${treeSet1 &amp;~ treeSet5}")
+
+
+
+Difference of treeSet1 and treeSet5 = TreeSet(Chocolate Donut, Strawberry Donut)
+
+
+
+scala&gt; object AlphabetOrdering extends Ordering[String] {
+
+     |  def compare(element1:String, element2:String) = element2.compareTo(element1)
+
+     | }
+
+defined object AlphabetOrdering
+
+
+
+scala&gt; val treeSet6: TreeSet[String] = TreeSet("Plain Donut", "Strawberry Donut", "Chocolate Donut")(AlphabetOrdering)
+
+treeSet6: scala.collection.immutable.TreeSet[String] = TreeSet(Strawberry Donut, Plain Donut, Chocolate Donut)
+
+
+
+scala&gt; println(s"Elements of treeSet6 = $treeSet6")
+
+Elements of treeSet6 = TreeSet(Strawberry Donut, Plain Donut, Chocolate Donut)
+
+
+
+Step 9: How to initialize an empty TreeSet
+
+scala&gt; val emptyTreeSet: TreeSet[String] = TreeSet.empty[String]
+
+emptyTreeSet: scala.collection.immutable.TreeSet[String] = TreeSet()
+
+
+
+scala&gt; println(s"Empty TreeSet = $emptyTreeSet")
+
+Empty TreeSet = TreeSet()
+
+
+
+scala&gt; import scala.collection.immutable.SortedSet
+
+import scala.collection.immutable.SortedSet
+
+
+
+scala&gt; println("Step 1: How to initialize a SortedSet with 3 elements")
+
+Step 1: How to initialize a SortedSet with 3 elements
+
+scala&gt; val sortedSet1: SortedSet[String] = SortedSet("Plain Donut","Strawberry Donut","Chocolate Donut")
+
+
+
+sortedSet1: scala.collection.immutable.SortedSet[String] = TreeSet(Chocolate Donut, Plain Donut, Strawberry Donut)
+
+
+
+scala&gt; println(s"Elements of sortedSet1 = $sortedSet1")
+
+Elements of sortedSet1 = TreeSet(Chocolate Donut, Plain Donut, Strawberry Donut)
+
+scala&gt;
+
+
+
+scala&gt; println("\nStep 2: How to check specific elements in SortedSet")
+
+
+
+Step 2: How to check specific elements in SortedSet
+
+scala&gt; println(s"Element Plain Donut = ${sortedSet1("Plain Donut")}")
+
+Element Plain Donut = true
+
+
+
+scala&gt; println(s"Element Strawberry Donut = ${sortedSet1("Strawberry Donut")}")
+
+Element Strawberry Donut = true
+
+
+
+scala&gt; println(s"Element Chocolate Donut = ${sortedSet1("Chocolate Donut")}")
+
+Element Chocolate Donut = true
+
+
+
+Step 3: How to add elements to SortedSet using +
+
+scala&gt; val sortedSet2: SortedSet[String] = sortedSet1 + "Vanilla Donut" + "Vanilla Donut"
+
+sortedSet2: scala.collection.immutable.SortedSet[String] = TreeSet(Chocolate Donut, Plain Donut, Strawberry Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Adding elements to SortedSet using + = $sortedSet2")
+
+Adding elements to SortedSet using + = TreeSet(Chocolate Donut, Plain Donut, Strawberry Donut, Vanilla Donut)
+
+
+
+scala&gt; println("\nStep 4: How to add two SortedSets together using ++")
+
+Step 4: How to add two SortedSets together using ++
+
+
+
+scala&gt; val sortedSet3: SortedSet[String] = sortedSet1 ++ SortedSet[String]("Vanilla Donut", "Glazed Donut")
+
+
+
+sortedSet3: scala.collection.immutable.SortedSet[String] = TreeSet(Chocolate Donut, Glazed Donut, Plain Donut, Strawberry Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Add two SortedSets together using ++ = $sortedSet3")
+
+Add two SortedSets together using ++ = TreeSet(Chocolate Donut, Glazed Donut, Plain Donut, Strawberry Donut, Vanilla Donut)
+
+
+
+scala&gt; println("\nStep 5: How to remove element in SortedSet using -")
+
+Step 5: How to remove element in SortedSet using -
+
+
+
+scala&gt; val sortedSet4: SortedSet[String] = sortedSet1 - "Plain Donut"
+
+sortedSet4: scala.collection.immutable.SortedSet[String] = TreeSet(Chocolate Donut, Strawberry Donut)
+
+
+
+scala&gt; println(s"SortedSet without Plain Donut element = $sortedSet4")
+
+SortedSet without Plain Donut element = TreeSet(Chocolate Donut, Strawberry Donut)
+
+
+
+scala&gt; println("\nStep 6: How to find the intersection between two SortedSets using &amp;")
+
+
+
+Step 6: How to find the intersection between two SortedSets using &amp;
+
+scala&gt; val sortedSet5: SortedSet[String] = SortedSet("Vanilla Donut", "Glazed Donut", "Plain Donut")
+
+
+
+sortedSet5: scala.collection.immutable.SortedSet[String] = TreeSet(Glazed Donut, Plain Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Intersection of sortedSet1 and sortedSet5 = ${sortedSet1 &amp; sortedSet5}")
+
+Intersection of sortedSet1 and sortedSet5 = TreeSet(Plain Donut)
+
+
+
+Step 7: How to find the difference between two SortedSets using &amp;~
+
+
+
+scala&gt; println(s"Difference of sortedSet1 and sortedSet5 = ${sortedSet1 &amp;~ sortedSet5}")
+
+Difference of sortedSet1 and sortedSet5 = TreeSet(Chocolate Donut, Strawberry Donut)
+
+
+
+Step 8: How to change ordering of SortedSet to descending alphabet
+
+scala&gt; object AlphabetOrdering extends Ordering[String] {
+
+     |  def compare(element1:String, element2:String) = element2.compareTo(element1)
+
+     | }
+
+defined object AlphabetOrdering
+
+
+
+scala&gt; val sortedSet6: SortedSet[String] = SortedSet("Plain Donut", "Strawberry Donut", "Chocolate Donut")(AlphabetOrdering)
+
+sortedSet6: scala.collection.immutable.SortedSet[String] = TreeSet(Strawberry Donut, Plain Donut, Chocolate Donut)
+
+scala&gt;
+
+
+
+scala&gt; val emptySortedSet: SortedSet[String] = SortedSet.empty[String]
+
+emptySortedSet: scala.collection.immutable.SortedSet[String] = TreeSet()
+
+
+
+scala&gt; println(s"Empty SortedSet = $emptySortedSet")
+
+Empty SortedSet = TreeSet()
+
+
+
+scala&gt;
+
+scala&gt; import scala.collection.immutable.BitSet
+
+import scala.collection.immutable.BitSet
+
+
+
+scala&gt; println("Step 1: How to initialize a BitSet with 3 elements")
+
+Step 1: How to initialize a BitSet with 3 elements
+
+
+
+scala&gt; val bitSet1: BitSet = BitSet(3, 2, 0)
+
+bitSet1: scala.collection.immutable.BitSet = BitSet(0, 2, 3)
+
+
+
+scala&gt; println(s"Elements of bitSet1 = $bitSet1")
+
+Elements of bitSet1 = BitSet(0, 2, 3)
+
+
+
+scala&gt; println("\nStep 2: How to check specific elements in BitSet")
+
+Step 2: How to check specific elements in BitSet
+
+
+
+scala&gt; println(s"Element 0 = ${bitSet1(0)}")
+
+Element 0 = true
+
+
+
+scala&gt; println(s"Element 2 = ${bitSet1(2)}")
+
+Element 2 = true
+
+
+
+scala&gt; println(s"Element 3 = ${bitSet1(3)}")
+
+Element 3 = true
+
+
+
+scala&gt; println("\nStep 3: How to add elements in BitSet using +")
+
+scala&gt;
+
+
+
+Step 3: How to add elements in BitSet using +
+
+scala&gt; val bitSet2: BitSet = bitSet1 + 13 + 13
+
+bitSet2: scala.collection.immutable.BitSet = BitSet(0, 2, 3, 13)
+
+
+
+scala&gt; println(s"Adding elements to BitSet using + = $bitSet2")
+
+Adding elements to BitSet using + = BitSet(0, 2, 3, 13)
+
+
+
+scala&gt; println("\nStep 4: How to add two BitSets together using ++")
+
+Step 4: How to add two BitSets together using ++
+
+
+
+scala&gt; val bitSet3: BitSet = bitSet1 ++ BitSet(13, 14, 15, 16, 17)
+
+bitSet3: scala.collection.immutable.BitSet = BitSet(0, 2, 3, 13, 14, 15, 16, 17)
+
+
+
+scala&gt; println(s"Add two BitSets together using ++ = $bitSet3")
+
+Add two BitSets together using ++ = BitSet(0, 2, 3, 13, 14, 15, 16, 17)
+
+
+
+Step 5: How to remove element in BitSet using -
+
+
+
+scala&gt; val bitSet4: BitSet = bitSet1 - 0
+
+bitSet4: scala.collection.immutable.BitSet = BitSet(2, 3)
+
+
+
+scala&gt; println(s"BitSet without element 0 = $bitSet4")
+
+BitSet without element 0 = BitSet(2, 3)
+
+
+
+Step 6: How to find the intersection between two BitSets using &amp;
+
+scala&gt; val bitSet5: BitSet = BitSet(0, 2, 4)
+
+bitSet5: scala.collection.immutable.BitSet = BitSet(0, 2, 4)
+
+
+
+scala&gt; println(s"Intersection of bitSet1 and bitSet5 = ${bitSet1 &amp; bitSet5}")
+
+Intersection of bitSet1 and bitSet5 = BitSet(0, 2)
+
+
+
+Step 7: How to find the difference between two BitSets using &amp;~
+
+scala&gt; println(s"Difference of bitSet1 and bitSet5 = ${bitSet1 &amp;~ bitSet5}")
+
+Difference of bitSet1 and bitSet5 = BitSet(3)
+
+
+
+Step 8: How to initialize an empty BitSet
+
+scala&gt; val emptyBitSet: BitSet = BitSet.empty
+
+emptyBitSet: scala.collection.immutable.BitSet = BitSet()
+
+
+
+scala&gt; println(s"Empty BitSet = $emptyBitSet")
+
+Empty BitSet = BitSet()
+
+
+
+scala&gt; println("Step 1: How to initialize Stack with 3 elements")
+
+Step 1: How to initialize Stack with 3 elements
+
+
+
+scala&gt; val stack1: Stack[String] = Stack("Plain Donut", "Strawberry Donut", "Chocolate Donut")
+
+warning: there was one deprecation warning; re-run with -deprecation for details
+
+stack1: scala.collection.immutable.Stack[String] = Stack(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println(s"Elements of stack1 = $stack1")
+
+Elements of stack1 = Stack(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+scala&gt;
+
+
+
+scala&gt; println("\nStep 2: How to initialize a Stack using an Immutable List")
+
+Step 2: How to initialize a Stack using an Immutable List
+
+
+
+scala&gt; val stack2: List[String] = List("Plain Donut","Strawberry Donut","Chocolate Donut")
+
+stack2: List[String] = List(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println(s"Using an Immutable List for stack, elements are = $stack2")
+
+Using an Immutable List for stack, elements are = List(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println("\nStep 3: Push one element at the top of the stack using :: of Immutable List")
+
+Step 3: Push one element at the top of the stack using :: of Immutable List
+
+scala&gt;
+
+
+
+scala&gt; val stack3: List[String] = "Vanilla Donut" :: stack2
+
+stack3: List[String] = List(Vanilla Donut, Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println(s"Using an Immutable List for stack, elements after push = $stack3")
+
+Using an Immutable List for stack, elements after push = List(Vanilla Donut, Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt;
+
+scala&gt; println("\nStep 4: Push N elements at the top of the stack using :: of Immutable List")
+
+Step 4: Push N elements at the top of the stack using :: of Immutable List
+
+
+
+scala&gt; val stack4: List[String] = "Glazed Donut" :: "Vanilla Donut" :: stack2
+
+stack4: List[String] = List(Glazed Donut, Vanilla Donut, Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println(s"Using an Immutable List for stack, elements after pushing N elements = $stack4")
+
+Using an Immutable List for stack, elements after pushing N elements = List(Glazed Donut, Vanilla Donut, Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; stack2
+
+res218: List[String] = List(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println("\nStep 5: Pop element from the Stack using tail function of Immutable List")
+
+Step 5: Pop element from the Stack using tail function of Immutable List
+
+
+
+scala&gt; val stack5: List[String] = stack2.tail
+
+stack5: List[String] = List(Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println("\nStep 6: How to initialize an empty Stack using Immutable List")
+
+Step 6: How to initialize an empty Stack using Immutable List
+
+
+
+scala&gt; val emptyStack: List[String] = List.empty[String]
+
+emptyStack: List[String] = List()
+
+
+
+scala&gt; println("Step 1: How to create a Stream with 3 numbers using #::")
+
+Step 1: How to create a Stream with 3 numbers using #::
+
+
+
+scala&gt; val stream1: Stream[Int] = 1 #:: 2 #:: 3 #:: Stream.empty
+
+stream1: Stream[Int] = Stream(1, ?)
+
+
+
+scala&gt; println(s"Elements of stream1 = $stream1")
+
+Elements of stream1 = Stream(1, ?)
+
+
+
+scala&gt; import scala.collection.immutable.Stream.cons
+
+import scala.collection.immutable.Stream.cons
+
+
+
+scala&gt; println("\nStep 2: How to create a Stream with 3 numbers using Stream.cons")
+
+Step 2: How to create a Stream with 3 numbers using Stream.cons
+
+
+
+scala&gt; val stream2: Stream[Int] = cons(1, cons(2, cons(3, Stream.empty) ) )
+
+stream2: Stream[Int] = Stream(1, ?)
+
+
+
+scala&gt; println(s"Elements of stream2 = ${stream2}")
+
+Elements of stream2 = Stream(1, ?)
+
+scala&gt;
+
+scala&gt; println("\nStep 3: How to print all 3 numbers from stream2 using the take function")
+
+Step 3: How to print all 3 numbers from stream2 using the take function
+
+
+
+scala&gt; print("Take first 3 numbers from stream2 = ")p of the stack using :: of Immutable List")
+
+Take first 3 numbers from stream2 =
+
+
+
+scala&gt; stream2.take(3).printthe top of the stack using :: of Immutable List
+
+1, 2, 3, empty
+
+
+
+scala&gt; val stack3: List[String] = "Vanilla Donut" :: stack2
+
+stack3: List[String] = List(Vanilla Donut, Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; print("\nTake first 10 numbers from stream2 = ")
+
+
+
+scala&gt; println(s"Using an Immutable List for stack, elements after push = $stack3")
+
+Take first 10 numbers from stream2 = ements after push = List(Vanilla Donut, Plain Donut, Strawberry Donut, Chocolate Do
+
+
+
+scala&gt; stream2.take(10).print
+
+1, 2, 3, empty
+
+
+
+scala&gt; println("\n\nStep 4: How to define an infinite Stream of numbers using Stream.cons")
+
+
+
+scala&gt; println("\nStep 4: Push N elements at the top of the stack using :: of Immutable List")
+
+
+
+Step 4: How to define an infinite Stream of numbers using Stream.cons
+
+
+
+Step 4: Push N elements at the top of the stack using :: of Immutable List
+
+
+
+scala&gt; def inifiniteNumberStream(number: Int): Stream[Int] = Stream.cons(number, inifiniteNumberStream(number + 1))
+
+inifiniteNumberStream: (number: Int)Stream[Int]" :: "Vanilla Donut" :: stack2
+
+
+
+stack4: List[String] = List(Glazed Donut, Vanilla Donut, Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; print("Take only the first 20 numbers from the infinite number stream = ")
+
+
+
+Take only the first 20 numbers from the infinite number stream = r pushing N elements = $stack4")
+
+
+
+scala&gt; inifiniteNumberStream(1).take(20).printter pushing N elements = List(Glazed Donut, Vanilla Donut, Plain Donut, St
+
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, empty
+
+
+
+scala&gt; println("\n\nStep 5: How to define an infinite stream of numbers using Stream.from")
+
+scala&gt; stack2
+
+
+
+res218: List[String] = List(Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+Step 5: How to define an infinite stream of numbers using Stream.from
+
+scala&gt;  val stack4: List[String] = "Glazed Donut" :: "Vanilla Donut" :: "Vannilla Donut" :: stack2
+
+
+
+scala&gt; val stream3: Stream[Int] = Stream.from(1)a Donut, Vannilla Donut, Plain Donut, Strawberry Donut, Chocolate Donut)
+
+stream3: Stream[Int] = Stream(1, ?)
+
+
+
+scala&gt; print("Take only the first 20 numbers from the infinite number stream = ")
+
+Take only the first 20 numbers from the infinite number stream =
+
+scala&gt; stream3.take(20).print
+
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, empty
+
+
+
+scala&gt; println("\n\nStep 6: How to initialize an empty Stream")
+
+
+
+Step 6: How to initialize an empty Stream
+
+scala&gt; val emptyStream: Stream[Int] = Stream.empty[Int]
+
+emptyStream: Stream[Int] = Stream()
+
+
+
+scala&gt; println(s"Empty Stream = $emptyStream")
+
+Empty Stream = Stream()
+
+
+
+println("Step 1: How to initialize a Vector with 3 elements")
+
+val vector1: Vector[String] = Vector("Plain Donut", "Strawberry Donut", "Chocolate Donut")
+
+println(s"Elements of vector1 = $vector1")
+
+
+
+scala&gt; println("\nStep 2: How to access elements of Vector at specific index")
+
+Step 2: How to access elements of Vector at specific index
+
+
+
+scala&gt; println(s"Element at index 0 = ${vector1(0)}")
+
+Element at index 0 = Plain Donut
+
+
+
+scala&gt; println(s"Element at index 1 = ${vector1(1)}")
+
+Element at index 1 = Strawberry Donut
+
+
+
+scala&gt; println(s"Element at index 2 = ${vector1(2)}")
+
+Element at index 2 = Chocolate Donut
+
+
+
+scala&gt; println("\nStep 3: How to append elements at the end of Vector using :+")
+
+Step 3: How to append elements at the end of Vector using :+
+
+
+
+scala&gt; val vector2 = vector1 :+ "Vanilla Donut"
+
+vector2: scala.collection.immutable.Vector[String] = Vector(Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Adding elements to Vector using :+ = $vector2")
+
+Adding elements to Vector using :+ = Vector(Plain Donut, Strawberry Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+scala&gt; println("\nStep 4: How to prepend elements in front of Vector using +:")
+
+Step 4: How to prepend elements in front of Vector using +:
+
+
+
+scala&gt; val vector3 = "Vanilla Donut" +: vector1
+
+vector3: scala.collection.immutable.Vector[String] = Vector(Vanilla Donut, Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println(s"Adding elements to Vector using :+ = $vector3")
+
+Adding elements to Vector using :+ = Vector(Vanilla Donut, Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; println("\nStep 5: How to add two Vectors together using ++")
+
+Step 5: How to add two Vectors together using ++
+
+
+
+scala&gt; val vector4 = vector1 ++ Vector[String]("Glazed Donut")
+
+vector4: scala.collection.immutable.Vector[String] = Vector(Plain Donut, Strawberry Donut, Chocolate Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Add two vectors together using ++ = $vector3")
+
+Add two vectors together using ++ = Vector(Vanilla Donut, Plain Donut, Strawberry Donut, Chocolate Donut)
+
+
+
+scala&gt; // NOTE: this return a new Vector(...), elements from the second vector)
+
+scala&gt; println("\nStep 6: How to initialize an empty Vector")
+
+Step 6: How to initialize an empty Vector
+
+
+
+scala&gt; val emptyVector: Vector[String] = Vector.empty[String]
+
+emptyVector: Vector[String] = Vector()
+
+
+
+scala&gt; println(s"Empty vector of type String = $emptyVector")
+
+Empty vector of type String = Vector()
+
