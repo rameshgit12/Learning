@@ -1,0 +1,100 @@
+Installation of the jupyter notebook on Ubundo:
+
+
+
+Python 2:
+
+
+step 1:sudo apt install python-pip
+
+
+
+step 2:pip --version
+
+
+
+step 3:sudo pip install --upgrade pip
+
+
+
+step 4:sudo pip install jupyter
+
+
+
+step 5:jupytor notebook   --&gt; once hit it , the localhost:8088 url is opened where you can run the program
+
+
+
+Python 3:
+
+
+Step1 :sudo apt install python3-pip
+
+Step 2: pip3 install jupyter
+
+Step 3: pip3 install py4j
+
+step 4:jupytor notebook   --&gt; once hit it , the localhost:8088 url is opened where you can run the program
+
+
+
+For Windows,
+
+
+
+https://www.anaconda.com/distribution/
+
+
+
+
+
+Spark and Jupyter connectivity:
+
+
+gedit ~/.bashrc    =&gt;&gt; add below path
+
+
+
+ export PYSPARK_DRIVER_PYTHON=jupyter
+
+ export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
+
+ export PYSPARK_PYTHON=/user/local/spark/python2.7
+
+ export PYTHONPATH=$PYSPARK_PYTHON:$PYTHONPATH
+
+
+
+then source ~/.bashrc
+
+
+
+
+
+
+
+Windows environment variable:
+
+
+JAVA_HOME C:\Program Files\Java\jdk1.8.0_201
+
+PYSPARK_DRIVER_PYTHON Jupyter
+
+PYSPARK_DRIVER_PYTHON_OPTS  notebook
+
+PYSPARK_PYTHON python2.7
+
+SPARK_HOME F:\spark-2.4.0-bin-hadoop2.7
+
+
+
+PATH--&gt;;C:\Program Files\Java\jre1.8.0_201\bin;C:\Program Files\Java\jdk1.8.0_201\bin;F:\spark-2.4.0-bin-hadoop2.7\bin;C:\Windows\System32;C:\hadoop\bin;C:\Users\Nethra\Anaconda3;C:\Users\Nethra\Anaconda3\Scripts;C:\Users\Nethra\Anaconda3\DLLs;
+
+
+
+
+
+
+
+
+
