@@ -1,0 +1,95 @@
+//Bank Transaction Use cases
+
+import scala.io.Source
+
+
+
+
+
+//Defining the Schema
+
+case class Transaction(
+
+     transactionId:String,
+
+     accountId:String,
+
+     trasactionDay:Int,
+
+     category:Int,
+
+     transactionAmount:Double
+
+     )
+
+
+
+
+
+//Read the file
+
+val fileName="C:/Users/Nethra/Desktop/transactions.txt"
+
+val transactionslines=Source.fromFile(fileName).getLines().drop(1)
+
+
+
+
+
+//Spliting and stored as List of Transaction
+
+val transactions:List[Transaction]=transactionslines.map{line=&gt;
+
+    val split=line.split(',')
+
+    Transaction(split(0),split(1),split(2).toInt,split(3),split(4).toDouble)}.toList
+
+
+
+
+
+//Question 1- Calculate the total transaction value for all transactions for each day
+
+val q1=transactions.groupBy(t=&gt;t.transactionDay).mapValues(t=&gt;t.map(x=&gt;x.transactionAmount).sum)
+
+q1.foreach(println)
+
+
+
+
+
+//Question 2-Calculate the average value of transactions per account for each type of transaction (there are seven in total)
+
+val q2=transactions.groupBy(x=&gt;(x.accountId,x.category)).mapValues(_.map(_.transactionAmount)).mapValues(list=&gt;list.sum/list.size)
+
+q2.foreach(println)
+
+
+
+
+
+//Question 3-(a) The maximum transaction value in the previous 5 days of transactions per account
+
+val q31 = transactions.filter(trans=&gt;trans.transactionDay&lt;=5).groupBy(x=&gt;x.accountId).mapValues(trans =&gt; (trans.map(amount =&gt; amount.transactionAmount).max))
+
+q31.foreach(println)
+
+
+
+
+
+//Question -3(b) The average transaction value of the previous 5 days of transactions per account
+
+val q32 = transactions.filter(trans=&gt;trans.transactionDay&lt;=5).groupBy(x=&gt;x.accountId).mapValues(trans =&gt; (trans.map(amount =&gt; amount.transactionAmount))).mapValues(x=&gt;x.sum/x.size)
+
+q32.foreach(println)
+
+
+
+
+
+////Question -3(c) The total transaction value of transactions types “AA”, “CC” and “FF” in the previous 5 days per account
+
+val q33 = transactions.filter(trans=&gt;trans.transactionDay&lt;=5 &amp;&amp; (trans.category=="AA"||trans.category=="FF" || trans.category=="CC")).groupBy(x=&gt;x.accountId).mapValues(t=&gt;t.map(x=&gt;x.transactionAmount).sum)
+
+q32.foreach(println)
