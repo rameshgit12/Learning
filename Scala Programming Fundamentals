@@ -1,0 +1,818 @@
+MAC OS:
+
+brew install scala
+
+scala.lang.org
+
+
+
+How pass the scala argument with APP trait and without Main method
+
+
+object HelloWorld extends App{
+
+println("Hello World Scala")
+
+ println(args.mkString(","))
+
+}
+
+
+
+Run--&gt;Edit configuration--&gt; add the program arguments
+
+Hello World Scala
+
+SPARK,HADOOP,GITUB
+
+
+
+Declare a variable with no initialization:
+
+var leastFavoriteDonut: String = _
+
+leastFavoriteDonut = "Plain Donut"
+
+Using String interpolation to print a variable
+
+val favoriteDonut: String = "Glazed Donut"
+
+println(s"My favorite donut = $favoriteDonut")
+
+
+
+O/P
+
+My favorite donut = Glazed Donut
+
+Using String interpolation on object properties
+
+case class Donut(name: String, tasteLevel: String)
+
+val favoriteDonut2: Donut = Donut("Glazed Donut", "Very Tasty")
+
+println(s"My favorite donut name = ${favoriteDonut2.name}, tasteLevel = ${favoriteDonut2.tasteLevel}")
+
+
+
+O/P
+
+My favorite donut name = Glazed Donut, tasteLevel = Very Tasty
+
+Using String interpolation to evaluate expressions
+
+val qtyDonutsToBuy: Int = 10
+
+println(s"Are we buying 10 donuts = ${qtyDonutsToBuy == 10}")
+
+
+
+O/P
+
+Are we buying 10 donuts = true
+
+Using String interpolation for formatting text
+
+
+
+scala&gt; val donutName: String = "Vanilla Donut"
+
+donutName: String = Vanilla Donut
+
+
+
+scala&gt; val donutTasteLevel: String = "Tasty"
+
+donutTasteLevel: String = Tasty
+
+
+
+scala&gt; println(f"$donutName%20s $donutTasteLevel")
+
+       Vanilla Donut Tasty
+
+Using f interpolation to format numbers
+
+
+
+scala&gt; val donutPrice: Double = 2.50
+
+donutPrice: Double = 2.5
+
+
+
+scala&gt; println(s"Donut price = $donutPrice")
+
+Donut price = 2.5
+
+
+
+scala&gt; println(f"Formatted donut price = $donutPrice%.2f")
+
+Formatted donut price = 2.50
+
+raw interpolcation
+
+
+
+scala&gt; println(raw"Favorite donut\t$donutName")
+
+Favorite donut\tVanilla Donut
+
+
+
+scala&gt; val donutJson2: String ="{\"donut_name\":\"Glazed Donut\",\"taste_level\":\"Very Tasty\",\"price\":2.50}"
+
+
+
+donutJson2: String = {"donut_name":"Glazed Donut","taste_level":"Very Tasty","price":2.50}
+
+
+
+scala&gt; println(s"donutJson2 = $donutJson2")
+
+donutJson2 = {"donut_name":"Glazed Donut","taste_level":"Very Tasty","price":2.50}
+
+
+
+Using Scala compiler to convert from one data type to another
+
+scala&gt; val numberOfDonuts: Short = 1
+
+numberOfDonuts: Short = 1
+
+
+
+scala&gt; val minimumDonutsToBuy: Int = numberOfDonuts
+
+minimumDonutsToBuy: Int = 1
+
+
+
+scala&gt; val minimumDonutsToSell: String = numberOfDonuts
+
+&lt;console&gt;:12: error: type mismatch;
+
+ found   : Short
+
+ required: String
+
+       val minimumDonutsToSell: String = numberOfDonuts
+
+
+
+scala&gt; val minimumDonutsToSell: String = numberOfDonuts.toString()
+
+minimumDonutsToSell: String = 1
+
+
+
+IF statement:
+
+scala&gt; val numberOfPeople = 20
+
+numberOfPeople: Int = 20
+
+scala&gt; val donutsPerPerson = 2
+
+donutsPerPerson: Int = 2
+
+
+
+scala&gt;
+
+scala&gt; if(numberOfPeople &gt; 10)
+
+     |   println(s"Number of donuts to buy = ${numberOfPeople * donutsPerPerson}")
+
+Number of donuts to buy = 40
+
+
+
+scala&gt; val defaultDonutsToBuy = 8
+
+defaultDonutsToBuy: Int = 8
+
+scala&gt;
+
+scala&gt; if(numberOfPeople &gt; 10)
+
+     |   println(s"Number of donuts to buy = ${numberOfPeople * donutsPerPerson}")
+
+Number of donuts to buy = 40
+
+scala&gt; else
+
+&lt;console&gt;:1: error: illegal start of definition
+
+else
+
+^
+
+scala&gt;   println(s"Number of donuts to buy = $defaultDonutsToBuy")
+
+Number of donuts to buy = 8
+
+
+
+scala&gt; if(numberOfPeople &gt; 10) {
+
+     |   println(s"Number of donuts to buy = ${numberOfPeople * donutsPerPerson}")
+
+     | } else if (numberOfPeople == 0) {
+
+     |   println("Number of people is zero.")
+
+     |   println("No need to buy donuts.")
+
+     | } else {
+
+     |   println(s"Number of donuts to buy = $defaultDonutsToBuy")
+
+     | }
+
+Number of donuts to buy = 40
+
+
+
+scala&gt; val numberOfDonutsToBuy = if(numberOfPeople &gt; 10) (numberOfPeople * donutsPerPerson) else defaultDonutsToBuy
+
+numberOfDonutsToBuy: Int = 40
+
+
+
+scala&gt; println(s"Number of donuts to buy = $numberOfDonutsToBuy")
+
+Number of donuts to buy = 40
+
+
+
+For Loop:
+
+scala&gt; for(numberOfDonuts &lt;- 1 to 5){
+
+     |   println(s"Number of donuts to buy = $numberOfDonuts")
+
+     | }
+
+Number of donuts to buy = 1
+
+Number of donuts to buy = 2
+
+Number of donuts to buy = 3
+
+Number of donuts to buy = 4
+
+Number of donuts to buy = 5
+
+
+
+scala&gt; for(numberOfDonuts &lt;- 1 until 5){
+
+     |   println(s"Number of donuts to buy = $numberOfDonuts")
+
+     | }
+
+Number of donuts to buy = 1
+
+Number of donuts to buy = 2
+
+Number of donuts to buy = 3
+
+Number of donuts to buy = 4
+
+
+
+val donutIngredients = List("flour", "sugar", "egg yolks", "syrup", "flavouring")
+
+donutIngredients: List[String] = List(flour, sugar, egg yolks, syrup, flavouring)
+
+scala&gt; for(ingredient &lt;- donutIngredients if ingredient == "sugar"){
+
+     |   println(s"Found sweetening ingredient = $ingredient")
+
+     | }
+
+Found sweetening ingredient = sugar
+
+
+
+
+
+scala&gt; val sweeteningIngredients = for {
+
+     |   ingredient &lt;- donutIngredients
+
+     |   if (ingredient == "sugar" || ingredient == "syrup")
+
+     | } yield ingredient
+
+sweeteningIngredients: List[String] = List(sugar, syrup)
+
+
+
+scala&gt; println(s"Sweetening ingredients = $sweeteningIngredients")
+
+Sweetening ingredients = List(sugar, syrup)
+
+
+
+scala&gt; val twoDimensionalArray = Array.ofDim[String](2,2)
+
+twoDimensionalArray: Array[Array[String]] = Array(Array(null, null), Array(null, null))
+
+scala&gt; twoDimensionalArray(0)(0) = "flour"
+
+scala&gt; twoDimensionalArray(0)(1) = "sugar"
+
+scala&gt; twoDimensionalArray(1)(0) = "egg"
+
+scala&gt; twoDimensionalArray(1)(1) = "syrup"
+
+scala&gt; for { x &lt;- 0 until 2
+
+     |        y &lt;- 0 until 2
+
+     | } println(s"Donut ingredient at index ${(x,y)} = ${twoDimensionalArray(x)(y)}")
+
+
+
+Donut ingredient at index (0,0) = flour
+
+Donut ingredient at index (0,1) = sugar
+
+Donut ingredient at index (1,0) = egg
+
+Donut ingredient at index (1,1) = syrup
+
+
+
+Range:
+
+scala&gt; val from1To5 = 1 to 5
+
+from1To5: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5)
+
+
+
+scala&gt; println(s"Range from 1 to 5 inclusive = $from1To5")
+
+Range from 1 to 5 inclusive = Range(1, 2, 3, 4, 5)
+
+
+
+scala&gt; val from1Until5 = 1 until 5
+
+from1Until5: scala.collection.immutable.Range = Range(1, 2, 3, 4)
+
+
+
+scala&gt; println(s"Range from 1 until 5 where 5 is excluded = $from1Until5")
+
+Range from 1 until 5 where 5 is excluded = Range(1, 2, 3, 4)
+
+
+
+scala&gt; val from0To10By2 = 0 to 10 by 2
+
+from0To10By2: scala.collection.immutable.Range = Range(0, 2, 4, 6, 8, 10)
+
+
+
+scala&gt; println(s"Range from 0 to 10 with multiples of 2 = $from0To10By2")
+
+Range from 0 to 10 with multiples of 2 = Range(0, 2, 4, 6, 8, 10)
+
+
+
+scala&gt; val alphabetRangeFromAToZ = 'a' to 'z'
+
+alphabetRangeFromAToZ: scala.collection.immutable.NumericRange.Inclusive[Char] = NumericRange(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z)
+
+
+
+scala&gt; println(s"Range of alphabets from a to z = $alphabetRangeFromAToZ")
+
+Range of alphabets from a to z = NumericRange(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z)
+
+   
+
+scala&gt; val alphabetRangeFromAToZBy2 = 'a' to 'z' by 2
+
+alphabetRangeFromAToZBy2: scala.collection.immutable.NumericRange[Char] = NumericRange(a, c, e, g, i, k, m, o, q, s, u, w, y)
+
+
+
+scala&gt; println(s"Range of every other alphabet = $alphabetRangeFromAToZBy2")
+
+Range of every other alphabet = NumericRange(a, c, e, g, i, k, m, o, q, s, u, w, y)
+
+
+
+scala&gt;  val listFrom1To5 = (1 to 5).toList
+
+listFrom1To5: List[Int] = List(1, 2, 3, 4, 5)
+
+
+
+scala&gt;   println(s"Range to list = ${listFrom1To5.mkString(" ")}")
+
+Range to list = 1 2 3 4 5
+
+
+
+scala&gt;
+
+scala&gt;   val setFrom1To5 = (1 to 5).toSet
+
+setFrom1To5: scala.collection.immutable.Set[Int] = Set(5, 1, 2, 3, 4)
+
+
+
+scala&gt;   println(s"Range to set = ${setFrom1To5.mkString(" ")}")
+
+Range to set = 5 1 2 3 4
+
+scala&gt;
+
+
+
+scala&gt;   val sequenceFrom1To5 = (1 to 5).toSeq
+
+sequenceFrom1To5: scala.collection.immutable.Range = Range(1, 2, 3, 4, 5)
+
+
+
+scala&gt;   println(s"Range to sequence = ${sequenceFrom1To5.mkString(" ")}")
+
+Range to sequence = 1 2 3 4 5
+
+scala&gt;
+
+
+
+scala&gt;   val arrayFrom1To5 = (1 to 5).toArray
+
+arrayFrom1To5: Array[Int] = Array(1, 2, 3, 4, 5)
+
+
+
+scala&gt;   println(s"Range to array = `${arrayFrom1To5.mkString(" ")}")
+
+Range to array = `1 2 3 4 5
+
+
+
+While loop:
+
+scala&gt; var numberOfDonutsToBake = 10
+
+numberOfDonutsToBake: Int = 10
+
+scala&gt; while (numberOfDonutsToBake &gt; 0) {
+
+     |   println(s"Remaining donuts to be baked = $numberOfDonutsToBake")
+
+     |   numberOfDonutsToBake -= 1
+
+     | }
+
+Remaining donuts to be baked = 10
+
+Remaining donuts to be baked = 9
+
+Remaining donuts to be baked = 8
+
+Remaining donuts to be baked = 7
+
+Remaining donuts to be baked = 6
+
+Remaining donuts to be baked = 5
+
+Remaining donuts to be baked = 4
+
+Remaining donuts to be baked = 3
+
+Remaining donuts to be baked = 2
+
+Remaining donuts to be baked = 1
+
+
+
+scala&gt; var numberOfDonutsBaked = 0
+
+numberOfDonutsBaked: Int = 0
+
+scala&gt; do {
+
+     |   numberOfDonutsBaked += 1
+
+     |   println(s"Number of donuts baked = $numberOfDonutsBaked")
+
+     | } while (numberOfDonutsBaked &lt; 5)
+
+Number of donuts baked = 1
+
+Number of donuts baked = 2
+
+Number of donuts baked = 3
+
+Number of donuts baked = 4
+
+Number of donuts baked = 5
+
+
+
+Pattern Matching:
+
+scala&gt; val donutType = "Glazed Donut"
+
+donutType: String = Glazed Donut
+
+scala&gt; donutType match {
+
+     |   case "Glazed Donut" =&gt; println("Very tasty")
+
+     |   case "Plain Donut" =&gt; println("Tasty")
+
+     | }
+
+Very tasty
+
+
+
+scala&gt; val tasteLevel = donutType match {
+
+     |   case "Glazed Donut" =&gt; "Very tasty"
+
+     |   case "Plain Donut" =&gt; "Tasty"
+
+     | }
+
+tasteLevel: String = Very tasty
+
+scala&gt; println(s"Taste level of $donutType = $tasteLevel")
+
+Taste level of Glazed Donut = Very tasty
+
+
+
+scala&gt; val tasteLevel2 = donutType match {
+
+     |   case "Glazed Donut" =&gt; "Very tasty"
+
+     |   case "Plain Donut" =&gt; "Tasty"
+
+     |   case _ =&gt; "Tasty"
+
+     | }
+
+tasteLevel2: String = Very tasty
+
+
+
+scala&gt; println(s"Taste level of $donutType = $tasteLevel2")
+
+Taste level of Glazed Donut = Very tasty
+
+
+
+scala&gt; val tasteLevel3 = donutType match {
+
+     |   case "Glazed Donut" | "Strawberry Donut" =&gt; "Very tasty"
+
+     |   case "Plain Donut" =&gt; "Tasty"
+
+     |   case _ =&gt; "Tasty"
+
+     | }
+
+tasteLevel3: String = Very tasty
+
+
+
+scala&gt; println(s"Taste level of $donutType = $tasteLevel3")
+
+Taste level of Glazed Donut = Very tasty
+
+
+
+scala&gt; val tasteLevel4 = donutType match {
+
+     |   case donut if (donut.contains("Glazed") || donut.contains("Strawberry")) =&gt; "Very tasty"
+
+     |   case "Plain Donut"  =&gt; "Tasty"
+
+     |   case _  =&gt; "Tasty"
+
+     | }
+
+tasteLevel4: String = Very tasty
+
+
+
+scala&gt; println(s"Taste level of $donutType = $tasteLevel4")
+
+Taste level of Glazed Donut = Very tasty
+
+
+
+scala&gt; val priceType = priceOfDonut match {
+
+     |   case price: Int =&gt; "Int"
+
+     |   case price: Double =&gt; "Double"
+
+     |   case price: Float =&gt; "Float"
+
+     |   case price: String =&gt; "String"
+
+     |   case price: Boolean =&gt; "Boolean"
+
+     |   case price: Char =&gt; "Char"
+
+     |   case price: Long =&gt; "Long"
+
+     | }
+
+priceType: String = Double
+
+
+
+scala&gt; println(s"Donut price type = $priceType")
+
+Donut price type = Double
+
+
+
+Tuples:
+
+scala&gt; val glazedDonutTuple = Tuple2("Glazed Donut", "Very Tasty")
+
+glazedDonutTuple: (String, String) = (Glazed Donut,Very Tasty)
+
+
+
+scala&gt; println(s"Glazed Donut with 2 data points = $glazedDonutTuple")
+
+Glazed Donut with 2 data points = (Glazed Donut,Very Tasty)
+
+
+
+Accessing Element in Tuple:
+
+scala&gt; val donutType = glazedDonutTuple._1
+
+donutType: String = Glazed Donut
+
+
+
+scala&gt; val donutTasteLevel = glazedDonutTuple._2
+
+donutTasteLevel: String = Very Tasty
+
+
+
+scala&gt; println(s"$donutType taste level is $donutTasteLevel")
+
+Glazed Donut taste level is Very Tasty
+
+
+
+scala&gt; val glazedDonut = Tuple3("Glazed Donut", "Very Tasty", 2.50)
+
+glazedDonut: (String, String, Double) = (Glazed Donut,Very Tasty,2.5)
+
+
+
+scala&gt; println(s"${glazedDonut._1} taste level is ${glazedDonut._2} and it's price is ${glazedDonut._3}"
+
+     | )
+
+Glazed Donut taste level is Very Tasty and it's price is 2.5
+
+Learn How To Use Option - Avoid Null
+
+
+
+scala&gt; val glazedDonutTaste: Option[String] = Some("Very Tasty")
+
+glazedDonutTaste: Option[String] = Some(Very Tasty)
+
+
+
+scala&gt; println(s"Glazed Donut taste = ${glazedDonutTaste.get}")
+
+Glazed Donut taste = Very Tasty
+
+
+
+scala&gt; val glazedDonutName: Option[String] = None
+
+glazedDonutName: Option[String] = None
+
+
+
+scala&gt; println(s"Glazed Donut name = ${glazedDonutName.getOrElse("Glazed Donut")}")
+
+Glazed Donut name = Glazed Donut
+
+
+
+scala&gt; glazedDonutName match {
+
+     |   case Some(name) =&gt; println(s"Received donut name = $name")
+
+     |   case None       =&gt; println(s"No donut name was found!")
+
+     | }
+
+No donut name was found!
+
+
+
+scala&gt; glazedDonutTaste.map(taste =&gt; println(s"glazedDonutTaste = $taste"))
+
+glazedDonutTaste = Very Tasty
+
+
+
+res68: Option[Unit] = Some(())
+
+
+
+scala&gt; glazedDonutName.map(name =&gt; println(s"glazedDonutName = $name"))
+
+res69: Option[Unit] = None
+
+
+
+any:
+
+scala&gt; val favoriteDonut: Any = "Glazed Donut"
+
+favoriteDonut: Any = Glazed Donut
+
+
+
+scala&gt; println(s"favoriteDonut of type Any = $favoriteDonut")
+
+favoriteDonut of type Any = Glazed Donut
+
+
+
+scala&gt; val donutName: AnyRef = "Glazed Donut"
+
+donutName: AnyRef = Glazed Donut
+
+
+
+scala&gt; println(s"donutName of type AnyRef = $donutName")
+
+donutName of type AnyRef = Glazed Donut
+
+
+
+scala&gt; val donutPrice: AnyVal = 2.50
+
+donutPrice: AnyVal = 2.5
+
+
+
+scala&gt; println(s"donutPrice of type AnyVal = $donutPrice")
+
+donutPrice of type AnyVal = 2.5
+
+
+
+Enumeration:
+
+scala&gt; object Donut extends Enumeration {
+
+     |   type Donut = Value
+
+     |
+
+     |   val Glazed      = Value("Glazed")
+
+     |   val Strawberry  = Value("Strawberry")
+
+     |   val Plain       = Value("Plain")
+
+     |   val Vanilla     = Value("Vanilla")
+
+     | }
+
+defined object Donut
+
+
+
+scala&gt; println(s"Vanilla Donut string value = ${Donut.Vanilla}")
+
+Vanilla Donut string value = Vanilla
+
+
+
+scala&gt; println(s"Donut types = ${Donut.values}")
+
+Donut types = Donut.ValueSet(Glazed, Strawberry, Plain, Vanilla)
