@@ -1,0 +1,142 @@
+
+hdfs --&gt;
+
+---------------
+
+Reading data from hdfs
+
+processing
+
+storing
+
+---------------------
+
+hdfs--&gt;folders/files
+
+
+
+REST API--&gt; Representational State Transfer Application Programming Interface
+
+URL--&gt;https://www.google.com
+
+http and https
+
+1.remote server http/https
+
+2.GET PUT POST
+
+
+
+hadoop is running in remote location
+
+hadoop--&gt;URLs---&gt;REST API
+
+
+
+read and write the data from hdfs --&gt;NN,SNN,DN
+
+
+
+NN--&gt;
+
+http request to HDFS(NN)---&gt;webserver(node)(webhdfs)
+
+jntuh.ac.in
+
+
+
+curl--&gt;connecting url
+
+webhdfs--&gt;
+
+kerbros
+
+username/pwd
+
+configure
+
+
+
+curl -i "http://ip-172-31-35-141.ec2.internal:50070/webhdfs/v1/user/cloudera/calllogdata
+
+?op=OPEN"  -L  ==&gt;GET option
+
+?op=LISTSTATUS
+
+?op=MKDIRS  -X PUT
+
+
+
+import os
+
+import request
+
+from pyspark.sql import SparkSession
+
+spark=SparkSession.builder.master('local').getOrCreate()
+
+spark
+
+
+
+with open("c:\\users\sample.txt") as inputfile:
+
+    recordsinfile=len(inputfile.readLines())
+
+print("the no of records are {}',format(recordsinfile))
+
+
+
+#if the input file is in hdfs
+
+#use webhdfs to connect and read from hdfs
+
+
+
+r1=spark.sparkContext.textFile("c://.......//sample.txt")
+
+print(r1.collect())
+
+noofRec=len(r1.collect())
+
+print("the no of records are {}'.format(noofRec))
+
+if recordsinfile==noofRec:
+
+  print("the no of records matched")
+
+else:
+
+  print("some issue while loading the data")
+
+
+
+r2=r1.filter(lambda x:'d' in x)
+
+noofrecordswriting=r2.count()
+
+
+
+r2.coalesce(1).saveAsTextFile("c://")
+
+with open("c://") as outputfile:
+
+  recordswritten=len(outputfile.readLines())
+
+
+
+if noofrecordswriting==recordswritten
+
+  print("the records are written successfully")
+
+
+
+  Testing framework in python:
+
+pytest
+
+unit testing
+
+
+
+  
