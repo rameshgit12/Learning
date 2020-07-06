@@ -1,0 +1,150 @@
+Python Object and Datastructure Basics:Strings,Print Formatting
+
+jupyter notebook
+
+print("Hello")
+
+Hello
+
+
+
+Comment the code #
+
+This is actually a mark down cell wont execute  ==&gt;mark down
+
+l=[1,2,3,4]
+
+
+
+l.tab(shift+tab==&gt; show the comment)
+
+comment the code==&gt;ctrl+forward slash
+
+
+
+a=1
+
+type(a)
+
+int
+
+
+
+a=0.2
+
+type(a)
+
+float
+
+
+
+#Order of the Execution
+
+PEMDAS==paranthaesis,exp,mul,div,add,sub
+
+
+
+a,b=1,2
+
+print("Hello \t how are you")
+
+Hello   how are you
+
+
+
+#Concatenation:
+
+s='string'+'new string'
+
+print(s)
+
+stringnew string
+
+
+
+#Repeat the string:
+
+letter='A'
+
+letter *5
+
+'AAAAA'
+
+
+
+#String Indexing:
+
+s='Hello how are you'
+
+s[0]===&gt;'H'
+
+s[0:4]==&gt;'Hell'
+
+s[starting index:ending index(not including):step size]
+
+
+
+s[6:9]=&gt;'how'
+
+s[-1]=&gt;'u'
+
+s[-2]=&gt;:'o'
+
+s[:]=&gt;'Hello how are you'
+
+s[0:10:2]=&gt;'Hlohw'
+
+
+
+reverse the string:
+
+s[::-1]  =&gt;'uoy era woh olleH'
+
+s[::-2]  =&gt;'uyeawholH'
+
+
+
+len(s)==&gt;17
+
+s[0]='K'
+
+s='her'
+
+
+
+#string is immutable
+
+id(s)--&gt;memory id (70477056L)
+
+a=10
+
+print('a value is',a)
+
+('a value is', 10)
+
+a=10
+
+print('a value is',format(a))
+
+
+
+s='Hello how are you'
+
+s.count('o')==&gt;3
+
+s='Hello how are you'
+
+
+
+s.isdigit()==&gt;False
+
+
+
+
+
+
+
+
+
+
+
