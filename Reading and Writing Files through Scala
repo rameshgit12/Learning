@@ -1,0 +1,76 @@
+Code:
+
+
+
+import java.io.PrintWriter
+
+import scala.io.Source
+
+object ScalaExample {
+
+def main(args:Array[String]):Unit={
+
+  val writer=new PrintWriter("C:\\Users\\Nethra\\Desktop\\test.txt")
+
+  writer.write("Just some Random Text\n Some more Random Text")
+
+  writer.close()
+
+  val textFromFile=Source.fromFile("C:\\Users\\Nethra\\Desktop\\test.txt")
+
+  val lineIterator=textFromFile.getLines()
+
+  for(line&lt;-lineIterator)
+
+    print(line)
+
+  textFromFile.close()
+
+}
+
+}
+
+
+
+
+
+Output:
+
+ScalaExample
+
+Just some Random Text
+
+Some more Random Text
+
+Process finished with exit code 0
+
+
+
+TRY and CATCH operations:
+
+
+
+scala&gt; def d(n1:Int,n2:Int)=try
+
+     | {
+
+     | (n1/n2)
+
+     | }catch{
+
+     | case ex:java.lang.ArithmeticException=&gt;"can't divide by zero"
+
+     | }finally{
+
+     | //cleanup after exeption
+
+     | }
+
+d: (n1: Int, n2: Int)Any
+
+scala&gt; println("3/0=",d(3,0))
+
+(3/0=,can't divide by zero)
+
+
+
