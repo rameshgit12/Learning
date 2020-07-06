@@ -1,0 +1,158 @@
+Scala : Either, Left, Right Example
+
+
+// Either... Left.. Right
+
+
+scala&gt;  def menu(day:String): Either[Int,String] = {
+     |  if (day == "Sunday") Right("Fish Curry")
+     |  else if (day == "Monday") Right("Veg Fry")
+     |  else Left(0)
+
+     |  }
+
+
+
+menu: (day: String)Either[Int,String]
+
+scala&gt; println(menu("Sunday"))
+
+
+
+
+Right(Fish Curry)
+
+scala&gt; println(menu("Monday"))
+
+
+
+Right(Veg Fry)
+
+scala&gt; println(menu("Tuesday"))
+
+
+
+Left(0)
+
+
+  menu(input) match {
+ case Left(a) =&gt; println("Left Answer is : " + a)
+ case Right(b) =&gt; println("Right Answer is : " + b)
+ }
+
+
+
+ Right Answer is : Fish Curry
+
+ scala&gt; val c = menu("Monday")
+
+
+
+c: Either[Int,String] = Right(Veg Fry)
+
+scala&gt; c.isRight
+
+
+
+res3: Boolean = true
+
+scala&gt; c.isLeft
+
+
+
+res4: Boolean = false
+
+
+scala&gt; val c = menu("Monday")
+
+
+
+c: Either[Int,String] = Right(Veg Fry)
+
+scala&gt; c.isLeft
+
+
+
+res5: Boolean = false
+
+
+
+scala&gt;
+scala&gt; c.isRight
+
+
+
+res6: Boolean = true
+
+scala&gt; val input = "Sunday"
+
+
+
+input: String = Sunday
+
+scala&gt; if (menu(input).isLeft) menu(input).left.map( a =&gt; println("Answer is : " + a))
+
+
+
+res7: Any = ()
+
+
+scala&gt;  if (menu(input).isRight) menu(input).right.map( b =&gt; println("Answer is : " + b))
+
+
+
+Answer is : Fish Curry
+
+
+
+res1: Any = Right(())
+
+
+
+scala&gt; val c = menu("Monday")
+
+
+
+c: Either[Int,String] = Right(Veg Fry)
+
+scala&gt; c
+
+
+
+res3: Either[Int,String] = Right(Veg Fry)
+
+
+scala&gt; c.left.toOption
+
+
+
+res8: Option[Int] = None
+
+scala&gt; c.right.toOption
+
+
+
+res9: Option[String] = Some(Veg Fry)
+
+
+
+def divideXByY(x: Int, y: Int): Either[String, Int] = {
+      if (y == 0) Left("Dude, can't divide by 0")
+      else Right(x / y)
+  }
+
+  // a few different ways to use Either, Left, and Right
+
+
+
+  println(divideXByY(1, 0))
+  println(divideXByY(1, 1))
+
+
+
+  divideXByY(1, 0) match {
+      case Left(s) =&gt; println("Answer: " + s)
+      case Right(i) =&gt; println("Answer: " + i)
+  }
+
+}
