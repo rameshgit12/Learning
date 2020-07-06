@@ -1,0 +1,798 @@
+DataFrame Various Operations:
+
+
+1)Patient File:
+
+ID,Name,Age,Sex,State,Symptoms,Diagnosis,Stage,Survival
+
+109234,Allen,66,M,Montana,Red itchy patches,Biopsy,1,YES
+
+112443,James,54,M,United,Blood Cough,Malignant,2,NO
+
+124325,Neena,32,F,Eng,Cancer,Biopsy,3,YES
+
+213245,Sara,34,F,IND,HEAD ACHE,CNS,4,NO
+
+112443,James,54,M,United,Blood Cough,Malignant,2,YES
+
+124325,Neena,32,F,Eng,Cancer,Biopsy,6,NO
+
+
+
+code:
+
+val df1=spark.read.format("csv").option("header","true").load("/user/osboxes/patient.csv")
+
+df1.show(10)
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+
+
+|    ID| Name|Age|Sex|  State|         Symptoms|Diagnosis|Stage|Survival|
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+
+
+|109234|Allen| 66|  M|Montana|Red itchy patches|   Biopsy|    1|     YES|
+
+|112443|James| 54|  M| United|      Blood Cough|Malignant|    2|      NO|
+
+|124325|Neena| 32|  F|    Eng|           Cancer|   Biopsy|    3|     YES|
+
+|213245| Sara| 34|  F|    IND|        HEAD ACHE|      CNS|    4|      NO|
+
+|112443|James| 54|  M| United|      Blood Cough|Malignant|    2|     YES|
+
+|124325|Neena| 32|  F|    Eng|           Cancer|   Biopsy|    6|      NO|
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+
+
+
+
+df1.printSchema()
+
+root
+
+ |-- ID: string (nullable = true)
+
+ |-- Name: string (nullable = true)
+
+ |-- Age: string (nullable = true)
+
+ |-- Sex: string (nullable = true)
+
+ |-- State: string (nullable = true)
+
+ |-- Symptoms: string (nullable = true)
+
+ |-- Diagnosis: string (nullable = true)
+
+ |-- Stage: string (nullable = true)
+
+ |-- Survival: string (nullable = true)
+
+df1.count()
+
+df1.select("stage").distinct.show
+
++-----+                                                                        
+
+|stage|
+
++-----+
+
+|    3|
+
+|    6|
+
+|    1|
+
+|    4|
+
+|    2|
+
++-----+
+
+
+
+df1.where("Age&gt;50")
+
+
+
+df1.where("Age&gt;50").show(10)
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+
+
+|    ID| Name|Age|Sex|  State|         Symptoms|Diagnosis|Stage|Survival|
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+
+
+|109234|Allen| 66|  M|Montana|Red itchy patches|   Biopsy|    1|     YES|
+
+|112443|James| 54|  M| United|      Blood Cough|Malignant|    2|      NO|
+
+|112443|James| 54|  M| United|      Blood Cough|Malignant|    2|     YES|
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+
+
+
+
+df1.where("Age&gt;50 and Age&lt;=60").show
+
+
+
++------+-----+---+---+------+-----------+---------+-----+--------+
+
+|    ID| Name|Age|Sex| State|   Symptoms|Diagnosis|Stage|Survival|
+
++------+-----+---+---+------+-----------+---------+-----+--------+
+
+|112443|James| 54|  M|United|Blood Cough|Malignant|    2|      NO|
+
+|112443|James| 54|  M|United|Blood Cough|Malignant|    2|     YES|
+
+
+
+df1.withColumn("Survival",when(col("Survival")==="YES",1).otherwise(0)).show(10)
+
+
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+
+
+|    ID| Name|Age|Sex|  State|         Symptoms|Diagnosis|Stage|Survival|
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+
+
+|109234|Allen| 66|  M|Montana|Red itchy patches|   Biopsy|    1|       1|
+
+|112443|James| 54|  M| United|      Blood Cough|Malignant|    2|       0|
+
+|124325|Neena| 32|  F|    Eng|           Cancer|   Biopsy|    3|       1|
+
+|213245| Sara| 34|  F|    IND|        HEAD ACHE|      CNS|    4|       0|
+
+|112443|James| 54|  M| United|      Blood Cough|Malignant|    2|       1|
+
+|124325|Neena| 32|  F|    Eng|           Cancer|   Biopsy|    6|       0|
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+
+
+
+
+df1.where("ID!=0").show
+
+
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+
+
+|    ID| Name|Age|Sex|  State|         Symptoms|Diagnosis|Stage|Survival|
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+
+
+|109234|Allen| 66|  M|Montana|Red itchy patches|   Biopsy|    1|     YES|
+
+|112443|James| 54|  M| United|      Blood Cough|Malignant|    2|      NO|
+
+|124325|Neena| 32|  F|    Eng|           Cancer|   Biopsy|    3|     YES|
+
+|213245| Sara| 34|  F|    IND|        HEAD ACHE|      CNS|    4|      NO|
+
+|112443|James| 54|  M| United|      Blood Cough|Malignant|    2|     YES|
+
+|124325|Neena| 32|  F|    Eng|           Cancer|   Biopsy|    6|      NO|
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+
+
+
+
+df1.withColumn("Agegroup",when(col("Age")&gt;=18 and col("Age")&lt;=25,"Teenage").when(col("Age")&gt;25 and col("Age")&lt;=45,"MiddleAge").otherwise("OldAge")).show(10)
+
+
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+---------+
+
+|    ID| Name|Age|Sex|  State|         Symptoms|Diagnosis|Stage|Survival| Agegroup|
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+---------+
+
+|109234|Allen| 66|  M|Montana|Red itchy patches|   Biopsy|    1|     YES|   OldAge|
+
+|112443|James| 54|  M| United|      Blood Cough|Malignant|    2|      NO|   OldAge|
+
+|124325|Neena| 32|  F|    Eng|           Cancer|   Biopsy|    3|     YES|MiddleAge|
+
+|213245| Sara| 34|  F|    IND|        HEAD ACHE|      CNS|    4|      NO|MiddleAge|
+
+|112443|James| 54|  M| United|      Blood Cough|Malignant|    2|     YES|   OldAge|
+
+|124325|Neena| 32|  F|    Eng|           Cancer|   Biopsy|    6|      NO|MiddleAge|
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+---------+
+
+
+
+df1.withColumn("Age",when(col("Age")&gt;=18 and col("Age")&lt;=25,"Teenage").when(col("Age")&amp;g&gt;25 and col("Age")&lt;=45,"MiddleAge").otherwise("OldAge")).show(10)
+
+
+
++------+-----+---------+---+-------+-----------------+---------+-----+--------+
+
+|    ID| Name|      Age|Sex|  State|         Symptoms|Diagnosis|Stage|Survival|
+
++------+-----+---------+---+-------+-----------------+---------+-----+--------+
+
+|109234|Allen|   OldAge|  M|Montana|Red itchy patches|   Biopsy|    1|     YES|
+
+|112443|James|   OldAge|  M| United|      Blood Cough|Malignant|    2|      NO|
+
+|124325|Neena|MiddleAge|  F|    Eng|           Cancer|   Biopsy|    3|     YES|
+
+|213245| Sara|MiddleAge|  F|    IND|        HEAD ACHE|      CNS|    4|      NO|
+
+|112443|James|   OldAge|  M| United|      Blood Cough|Malignant|    2|     YES|
+
+|124325|Neena|MiddleAge|  F|    Eng|           Cancer|   Biopsy|    6|      NO|
+
++------+-----+---------+---+-------+-----------------+---------+-----+--------+
+
+
+
+df1.withColumnRenamed("Sex","Gender").show(5)
+
++------+-----+---+------+-------+-----------------+---------+-----+--------+
+
+|    ID| Name|Age|Gender|  State|         Symptoms|Diagnosis|Stage|Survival|
+
++------+-----+---+------+-------+-----------------+---------+-----+--------+
+
+|109234|Allen| 66|     M|Montana|Red itchy patches|   Biopsy|    1|     YES|
+
+|112443|James| 54|     M| United|      Blood Cough|Malignant|    2|      NO|
+
+|124325|Neena| 32|     F|    Eng|           Cancer|   Biopsy|    3|     YES|
+
+|213245| Sara| 34|     F|    IND|        HEAD ACHE|      CNS|    4|      NO|
+
+|112443|James| 54|     M| United|      Blood Cough|Malignant|    2|     YES|
+
++------+-----+---+------+-------+-----------------+---------+-----+--------+
+
+
+
+df1.withColumn("Age",col("Age").cast("Float")).printSchema
+
+root
+
+ |-- ID: string (nullable = true)
+
+ |-- Name: string (nullable = true)
+
+ |-- Age: float (nullable = true)
+
+ |-- Sex: string (nullable = true)
+
+ |-- State: string (nullable = true)
+
+ |-- Symptoms: string (nullable = true)
+
+ |-- Diagnosis: string (nullable = true)
+
+ |-- Stage: string (nullable = true)
+
+ |-- Survival: string (nullable = true)
+
+
+
+df1.withColumn("NewAge",col("Age")+10).show
+
+
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+------+
+
+|    ID| Name|Age|Sex|  State|         Symptoms|Diagnosis|Stage|Survival|NewAge|
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+------+
+
+|109234|Allen| 66|  M|Montana|Red itchy patches|   Biopsy|    1|     YES|  76.0|
+
+|112443|James| 54|  M| United|      Blood Cough|Malignant|    2|      NO|  64.0|
+
+|124325|Neena| 32|  F|    Eng|           Cancer|   Biopsy|    3|     YES|  42.0|
+
+|213245| Sara| 34|  F|    IND|        HEAD ACHE|      CNS|    4|      NO|  44.0|
+
+|112443|James| 54|  M| United|      Blood Cough|Malignant|    2|     YES|  64.0|
+
+|124325|Neena| 32|  F|    Eng|           Cancer|   Biopsy|    6|      NO|  42.0|
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+------+
+
+
+
+df1.withColumn("Type",lit("CancerPatient")).show
+
+
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+-------------+
+
+|    ID| Name|Age|Sex|  State|         Symptoms|Diagnosis|Stage|Survival|         Type|
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+-------------+
+
+|109234|Allen| 66|  M|Montana|Red itchy patches|   Biopsy|    1|     YES|CancerPatient|
+
+|112443|James| 54|  M| United|      Blood Cough|Malignant|    2|      NO|CancerPatient|
+
+|124325|Neena| 32|  F|    Eng|           Cancer|   Biopsy|    3|     YES|CancerPatient|
+
+|213245| Sara| 34|  F|    IND|        HEAD ACHE|      CNS|    4|      NO|CancerPatient|
+
+|112443|James| 54|  M| United|      Blood Cough|Malignant|    2|     YES|CancerPatient|
+
+|124325|Neena| 32|  F|    Eng|           Cancer|   Biopsy|    6|      NO|CancerPatient|
+
++------+-----+---+---+-------+-----------------+---------+-----+--------+-------------+
+
+
+
+df1.select("Sex").distinct.show
+
+---+                                                                          
+
+|Sex|
+
++---+
+
+|  F|
+
+|  M|
+
++---+
+
+
+
+2)csvfile:
+
+1,2,3.4
+
+2,3,4.5
+
+3,4.5,7.8
+
+code:
+
+val df1_csv=spark.read.format("csv").load("/user/osboxes/csvfile")
+
+
+
+df1_csv.show
+
++---+---+---+
+
+|_c0|_c1|_c2|
+
++---+---+---+
+
+|  1|  2|3.4|
+
+|  2|  3|4.5|
+
+|  3|4.5|7.8|
+
++---+---+---+
+
+df1_csv.printSchema
+
+root
+
+ |-- _c0: string (nullable = true)
+
+ |-- _c1: string (nullable = true)
+
+ |-- _c2: string (nullable = true)
+
+
+
+Defined the external schema
+
+import org.apache.spark.sql.types.
+
+_
+
+val sch=StructType(StructField("id1",FloatType)::StructField("id2",FloatType)::StructField("id3",FloatType)::Nil)
+
+
+
+val df2_csv=spark.read.format("csv").schema(sch).load("/user/osboxes/csvfile")
+
+df2_csv.show
+
++---+---+---+
+
+|id1|id2|id3|
+
++---+---+---+
+
+|1.0|2.0|3.4|
+
+|2.0|3.0|4.5|
+
+|3.0|4.5|7.8|
+
++---+---+---+
+
+df2_csv.printSchema
+
+root
+
+ |-- id1: float (nullable = true)
+
+ |-- id2: float (nullable = true)
+
+ |-- id3: float (nullable = true)
+
+
+
+3)csvfile2
+
+C0,C1
+
+s1,d1
+
+s1,d2
+
+s1,d2
+
+s1,d3
+
+s2,d1
+
+s2,d3
+
+s2,d1
+
+s3,d2
+
+s3,d1
+
+
+
+code:
+
+val df2_csv=spark.read.format("csv").option("header","true").option("inferSchema","true").load("/user/osboxes/csvfile2")
+
+
+
+df2_csv.groupBy("c0","c1").agg(count("*")).show
+
+
+
+4)Movie File
+
+movieId,title,genres
+
+1,Toy Story (1995),Adventure|Animation|Children|Comedy|Fantasy
+
+2,Jumanji (1995),Adventure|Children|Fantasy
+
+3,Grumpier Old Men (1995),Comedy|Romance
+
+4,Waiting to Exhale (1995),Comedy|Drama|Romance
+
+5,Father of the Bride Part II (1995),Comedy
+
+6,Heat (1995),Action|Crime|Thriller
+
+7,Sabrina (1995),Comedy|Romance
+
+8,Tom and Huck (1995),Adventure|Children
+
+9,Sudden Death (1995),Action
+
+10,GoldenEye (1995),Action|Adventure|Thriller
+
+11,"American President, The (1995)",Comedy|Drama|Romance
+
+12,Dracula: Dead and Loving It (1995),Comedy|Horror
+
+13,Balto (1995),Adventure|Animation|Children
+
+14,Nixon (1995),Drama
+
+15,Cutthroat Island (1995),Action|Adventure|Romance
+
+16,Casino (1995),Crime|Drama
+
+17,Sense and Sensibility (1995),Drama|Romance
+
+18,Four Rooms (1995),Comedy
+
+19,Ace Ventura: When Nature Calls (1995),Comedy
+
+20,Money Train (1995),Action|Comedy|Crime|Drama|Thriller
+
+21,Get Shorty (1995),Comedy|Crime|Thriller
+
+22,Copycat (1995),Crime|Drama|Horror|Mystery|Thriller
+
+
+
+
+
+Code:
+
+val d1=sc.textFile("/user/osboxes/movies.txt")
+
+d1.take(10).foreach(println)
+
+
+
+1,Toy Story (1995),Adventure|Animation|Children|Comedy|Fantasy
+
+2,Jumanji (1995),Adventure|Children|Fantasy
+
+3,Grumpier Old Men (1995),Comedy|Romance
+
+4,Waiting to Exhale (1995),Comedy|Drama|Romance
+
+5,Father of the Bride Part II (1995),Comedy
+
+6,Heat (1995),Action|Crime|Thriller
+
+7,Sabrina (1995),Comedy|Romance
+
+8,Tom and Huck (1995),Adventure|Children
+
+9,Sudden Death (1995),Action
+
+10,GoldenEye (1995),Action|Adventure|Thriller
+
+
+
+val d2=d1.map(x=&gt;x.split(","))
+
+
+
+val d3=d2.map{x=&gt;
+
+val mid=x(0).toInt
+
+val title=x(1)
+
+val genre=x(2)
+
+(mid,title,genre)
+
+}
+
+
+
+d3.take(10).foreach(println)
+
+
+
+(1,Toy Story (1995),Adventure|Animation|Children|Comedy|Fantasy)
+
+(2,Jumanji (1995),Adventure|Children|Fantasy)
+
+(3,Grumpier Old Men (1995),Comedy|Romance)
+
+(4,Waiting to Exhale (1995),Comedy|Drama|Romance)
+
+(5,Father of the Bride Part II (1995),Comedy)
+
+(6,Heat (1995),Action|Crime|Thriller)
+
+(7,Sabrina (1995),Comedy|Romance)
+
+(8,Tom and Huck (1995),Adventure|Children)
+
+(9,Sudden Death (1995),Action)
+
+(10,GoldenEye (1995),Action|Adventure|Thriller)
+
+
+
+val dff1=d3.toDF()
+
+
+
+val dff2=d3.toDF("movieid","title","genre")
+
+
+
+dff1.show(5)
+
++---+--------------------+--------------------+
+
+| _1|                  _2|                  _3|
+
++---+--------------------+--------------------+
+
+|  1|    Toy Story (1995)|Adventure|Animati...|
+
+|  2|      Jumanji (1995)|Adventure|Childre...|
+
+|  3|Grumpier Old Men ...|      Comedy|Romance|
+
+|  4|Waiting to Exhale...|Comedy|Drama|Romance|
+
+|  5|Father of the Bri...|              Comedy|
+
++---+--------------------+--------------------+
+
+
+
+dff2.show(5)
+
+
+
++-------+--------------------+--------------------+
+
+|movieid|               title|               genre|
+
++-------+--------------------+--------------------+
+
+|      1|    Toy Story (1995)|Adventure|Animati...|
+
+|      2|      Jumanji (1995)|Adventure|Childre...|
+
+|      3|Grumpier Old Men ...|      Comedy|Romance|
+
+|      4|Waiting to Exhale...|Comedy|Drama|Romance|
+
+|      5|Father of the Bri...|              Comedy|
+
++-------+--------------------+--------------------+
+
+
+
+Case Class:
+
+
+case class Movies(MovieID:Int,Title:String,Genre:String)
+
+val dff3=d2.map{x=&gt;
+
+val mid=x(0).toInt
+
+val title=x(1)
+
+val genre=x(2)
+
+Movies(mid,title,genre)
+
+}
+
+
+
+scala&gt; dff3.take(10).foreach(println)
+
+Movies(1,Toy Story (1995),Adventure|Animation|Children|Comedy|Fantasy)
+
+Movies(2,Jumanji (1995),Adventure|Children|Fantasy)
+
+Movies(3,Grumpier Old Men (1995),Comedy|Romance)
+
+Movies(4,Waiting to Exhale (1995),Comedy|Drama|Romance)
+
+Movies(5,Father of the Bride Part II (1995),Comedy)
+
+Movies(6,Heat (1995),Action|Crime|Thriller)
+
+Movies(7,Sabrina (1995),Comedy|Romance)
+
+Movies(8,Tom and Huck (1995),Adventure|Children)
+
+Movies(9,Sudden Death (1995),Action)
+
+Movies(10,GoldenEye (1995),Action|Adventure|Thriller)
+
+
+
+val df3=dff3.toDF()
+
+scala&gt; df3.show(5)
+
++-------+--------------------+--------------------+
+
+|MovieID|               Title|               Genre|
+
++-------+--------------------+--------------------+
+
+|      1|    Toy Story (1995)|Adventure|Animati...|
+
+|      2|      Jumanji (1995)|Adventure|Childre...|
+
+|      3|Grumpier Old Men ...|      Comedy|Romance|
+
+|      4|Waiting to Exhale...|Comedy|Drama|Romance|
+
+|      5|Father of the Bri...|              Comedy|
+
++-------+--------------------+--------------------+
+
+only showing top 5 rows
+
+
+
+5)Make RDD
+
+val rd1=sc.makeRDD(Array((1,2),(2,3),(4,5)))
+
+rd1.collect.foreach(println)
+
+(1,2)
+
+(2,3)
+
+(4,5)
+
+case class A(id1:Int,id2:Int)
+
+rd1.map(x=&gt;A(x._1,x._2)).toDF.show
+
+|id1|id2|
+
++---+---+
+
+|  1|  2|
+
+|  2|  3|
+
+|  4|  5|
+
++---+---+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
