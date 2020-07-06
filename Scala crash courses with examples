@@ -1,0 +1,1378 @@
+
+
+ 
+Scala Crash Course 
+
+
+
+scala&gt; val myIntArray:Array[Int] = new Array(3)
+
+myIntArray: Array[Int] = Array(0, 0, 0)
+
+
+
+scala&gt; myIntArray
+
+res0: Array[Int] = Array(0, 0, 0)
+
+
+
+scala&gt; myIntArray.foreach(println)
+
+0
+
+0
+
+0
+
+
+
+scala&gt; myIntArray(0)=10
+
+
+
+scala&gt; myIntArray(1)=20
+
+
+
+scala&gt; myIntArray(2)=30
+
+
+
+scala&gt; myIntArray.foreach(println)
+
+10
+
+20
+
+30
+
+
+
+
+
+scala&gt; def addOne(x:Int): Int = {
+
+     | x+1
+
+     | }
+
+addOne: (x: Int)Int
+
+
+
+scala&gt; addOne(5)
+
+res6: Int = 6
+
+
+
+scala&gt; addOne(50)
+
+res7: Int = 51
+
+
+
+
+
+ scala&gt; def addTwo(x:Int):Int = {
+
+     | return x + 2;
+
+     | }
+
+addTwo: (x: Int)Int
+
+
+
+scala&gt; addTwo(5);
+
+res8: Int = 7
+
+
+
+scala&gt; (1 to 10).foreach(x =&gt; println(addTwo(x)))
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+
+
+
+
+scala&gt; def max(x:Int, y:Int): Int = {
+
+     | if (x &gt; y) x else y
+
+     | }
+
+max: (x: Int, y: Int)Int
+
+
+
+scala&gt; max(5,6)
+
+res22: Int = 6
+
+
+
+
+
+scala&gt; val myArray = Array("Zara","Lara","Sara")
+
+myArray: Array[String] = Array(Zara, Lara, Sara)
+
+
+
+scala&gt; var i = 0
+
+i: Int = 0
+
+
+
+scala&gt; while (i &lt; myArray.length) {
+
+     | println(myArray(i))
+
+     | i += 1
+
+     | }
+
+Zara
+
+Lara
+
+Sara
+
+
+
+scala&gt; myArray.foreach(arg =&gt; println(arg))
+
+Zara
+
+Lara
+
+Sara
+
+
+
+scala&gt; myArray.foreach(println(_))
+
+Zara
+
+Lara
+
+Sara
+
+
+
+scala&gt; myArray.foreach(println)
+
+Zara
+
+Lara
+
+Sara
+
+
+
+
+
+
+
+scala&gt; for(arg      | println(arg)
+Zara
+Lara
+Sara
+
+
+$ cat hello.sc
+object hello{
+ def main(args:Array[String]):Unit = {
+  println("Hello : " + args(0) + " !")
+ }
+}
+
+scala&gt; :load /home/hadoop/Desktop/ScalaTraining/hello.sc
+Loading /home/hadoop/Desktop/ScalaTraining/hello.sc...
+defined object hello
+
+scala&gt; hello.main(Array("Sara"))
+Hello : Sara !
+
+
+
+
+
+
+
+scala&gt; val word = "India!"
+word: String = India!
+
+scala&gt; var n = 5
+n: Int = 5
+
+scala&gt; var i = 0
+i: Int = 0
+
+scala&gt; while (i &lt; n){
+     | println(word)
+     | i += 1
+     | }
+India!
+India!
+India!
+India!
+India!
+
+scala&gt; (1 to n).foreach(x =&gt; println(word + " #" + x))
+India! #1
+India! #2
+India! #3
+India! #4
+India! #5
+
+
+
+
+
+$ cat Hello.scala
+object Hello extends App{
+ println("Hello, World!")
+}
+
+scala&gt; :load /home/hadoop/Desktop/ScalaTraining/Hello.scala
+Loading /home/hadoop/Desktop/ScalaTraining/Hello.scala...
+defined object Hello
+
+scala&gt; Hello.main(null)
+Hello, World!
+
+
+
+scala&gt; 1 to n
+res41: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5)
+
+scala&gt; (1).to(5)
+res42: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5)
+
+
+
+scala&gt; val greetStrings : Array[String] = new Array[String](3)
+greetStrings: Array[String] = Array(null, null, null)
+
+scala&gt; greetStrings(0) = "Hello"
+
+scala&gt; greetStrings(1) = ", "
+
+scala&gt; greetStrings(2) = " world! \n"
+
+scala&gt; greetStrings.apply(0)
+res47: String = Hello
+
+scala&gt; def printArgs(args:Array[String]):Unit = {
+     | var i = 0
+     | while (i &lt; args.length) {
+     | println(args(i))
+     | i += 1
+     | }
+     | }
+printArgs: (args: Array[String])Unit
+
+scala&gt; printArgs(greetStrings)
+Hello
+,
+ world!
+
+
+scala&gt; printArgs(Array("I","Love","India"))
+I
+Love
+India
+
+
+scala&gt; def printArgs(args:Array[String]): Unit = {
+     | for (arg &lt; args)
+:2: error: 'for (arg &lt; args)
+               ^
+
+scala&gt; def printArgs(args:Array[String]): Unit = {
+     | for (arg      | println(arg)
+     | }
+printArgs: (args: Array[String])Unit
+
+scala&gt; printArgs(greetStrings)
+Hello
+,
+ world!
+
+
+scala&gt; printArgs(Array("I","Love","India"))
+I
+Love
+India
+
+
+scala&gt; Array("Siva "," Lara", " Mala").mkString("\t")
+res56: String = Siva   Lara  Mala
+
+scala&gt; println(Array("Siva "," Lara", " Mala").mkString("\t"))
+Siva   Lara  Mala
+
+scala&gt; println(Array(" Siva "," Lara", " Mala").mkString("\n"))
+ Siva
+ Lara
+ Mala
+
+scala&gt; println(Array(" Siva "," Lara", " Mala").mkString(":"))
+ Siva : Lara: Mala
+
+
+scala&gt; def formatArgs(args:Array[String]):String = return args.mkString("\n")
+formatArgs: (args: Array[String])String
+
+
+scala&gt; formatArgs(Array("sare","gare"))
+res63: String =
+sare
+gare
+
+scala&gt; formatArgs(Array("sare","gare")).foreach(println)
+s
+a
+r
+e
+
+
+g
+a
+r
+e
+
+
+scala&gt; myArray
+res65: Array[String] = Array(Zara, Lara, Sara)
+
+scala&gt; formatArgs(myArray)
+res66: String =
+Zara
+Lara
+Sara
+
+
+scala&gt; def formatArgs(args:Array[String]):String = return args.mkString(":")
+formatArgs: (args: Array[String])String
+
+scala&gt; formatArgs(myArray)
+res67: String = Zara:Lara:Sara
+
+
+scala&gt; val res = formatArgs(Array("zero","one","two"))
+res: String = zero:one:two
+
+scala&gt; assert(res == "zero:one:two")
+
+scala&gt; val numNames = Array("zero","one","two")
+numNames: Array[String] = Array(zero, one, two)
+
+scala&gt; val numNames = Array.apply("zero","one","two")
+numNames: Array[String] = Array(zero, one, two)
+
+scala&gt; numNames.exists(s =&gt; s.contains("z"))
+res72: Boolean = true
+
+
+
+scala&gt; val oneTwo  = List(1,2,3)
+oneTwo: List[Int] = List(1, 2, 3)
+
+scala&gt; val threeFour = List(3,4)
+threeFour: List[Int] = List(3, 4)
+
+scala&gt; val oneTwoThreeFour  = oneTwo ::: threeFour
+oneTwoThreeFour: List[Int] = List(1, 2, 3, 3, 4)
+
+
+scala&gt; val twoThree = List(2,3)
+twoThree: List[Int] = List(2, 3)
+
+
+scala&gt; val oneTwoThree = 1 :: twoThree
+oneTwoThree: List[Int] = List(1, 2, 3)
+
+
+
+scala&gt; val thrill = "will " :: "fill " :: "until " :: Nil
+thrill: List[String] = List("will ", "fill ", "until ")
+
+scala&gt; thrill.head
+res75: String = "will "
+
+scala&gt; thrill.length
+res76: Int = 3
+
+scala&gt; thrill.last
+res77: String = "until "
+
+
+scala&gt; val len = thrill.length
+len: Int = 3
+
+scala&gt; thrill(len-1)
+res78: String = "until "
+
+
+scala&gt; thrill
+res85: List[String] = List("will ", "fill ", "until ")
+
+scala&gt; thrill.filter(x =&gt; x.contains("fill"))
+res86: List[String] = List("fill ")
+
+scala&gt; thrill.filterNot(x =&gt; x.contains("fill"))
+res87: List[String] = List("will ", "until ")
+
+Partially applied functions:
+-----------------------------
+scala&gt; def origFunc(a:Int, b:Int) = a+b
+origFunc: (a: Int, b: Int)Int
+
+scala&gt; def modFunc = origFunc(10,_:Int)
+modFunc: Int =&gt; Int
+
+scala&gt; modFunc(10)
+res89: Int = 20
+
+scala&gt; modFunc(103)
+res90: Int = 113
+
+
+named parameters:
+-----------------
+scala&gt; def speed(distance:Float, time:Float)  = distance / time
+speed: (distance: Float, time: Float)Float
+
+scala&gt; speed(time=4.5F, distance=10F)
+res91: Float = 2.2222223
+
+scala&gt; speed(distance=100F,time=5.5F)
+res92: Float = 18.181818
+
+
+scala&gt; thrill
+res93: List[String] = List("will ", "fill ", "until ")
+
+scala&gt; thrill.sorted
+res94: List[String] = List("fill ", "until ", "will ")
+
+scala&gt; thrill.map(s =&gt; s + "y")
+res95: List[String] = List(will y, fill y, until y)
+
+scala&gt; thrill.map(s =&gt; s.trim() + "y")
+res96: List[String] = List(willy, filly, untily)
+
+scala&gt; thrill
+res99: List[String] = List("will ", "fill ", "until ")
+
+scala&gt; val thrill = List("I","Love","India")
+thrill: List[String] = List(I, Love, India)
+
+scala&gt; val thrill  = List("Will","Fill","Until")
+thrill: List[String] = List(Will, Fill, Until)
+
+scala&gt; thrill.map(s =&gt; s + "y")
+res100: List[String] = List(Willy, Filly, Untily)
+
+scala&gt; val thrill = "will" :: "will" :: "until" :: Nil
+thrill: List[String] = List(will, will, until)
+
+scala&gt; thrill.map(s =&gt; s+ "y")
+res0: List[String] = List(willy, willy, untily)
+
+scala&gt; thrill.mkString(",")
+res1: String = will,will,until
+
+scala&gt; thrill.mkString("$")
+res2: String = will$will$until
+
+scala&gt; thrill.mkString(":")
+res3: String = will:will:until
+
+scala&gt; thrill.sortBy(s =&gt; s.charAt(0).toLower)
+res7: List[String] = List(until, will, will)
+
+scala&gt; val pair = (99,"LuftBallons")
+pair: (Int, String) = (99,LuftBallons)
+
+scala&gt; println(pair._1)
+99
+
+scala&gt; println(pair._2)
+LuftBallons
+
+
+scala&gt; val largeTuple = ('u','r',"the",1,4,"me")
+largeTuple: (Char, Char, String, Int, Int, String) = (u,r,the,1,4,me)
+
+
+
+// mutable Set example
+scala&gt; import scala.collection.mutable.Set
+import scala.collection.mutable.Set
+
+scala&gt; val movieSet = Set("Hitch","Poltergeist")
+movieSet: scala.collection.mutable.Set[String] = Set(Poltergeist, Hitch)
+
+scala&gt; movieSet += "Shrek"
+res12: movieSet.type = Set(Poltergeist, Shrek, Hitch)
+
+scala&gt; println(movieSet)
+Set(Poltergeist, Shrek, Hitch)
+
+
+
+//Immutable Set Example
+scala&gt; import scala.collection.immutable.Set
+import scala.collection.immutable.Set
+
+scala&gt; val movieSet = Set("Hitch","Poltergeist")
+movieSet: scala.collection.immutable.Set[String] = Set(Hitch, Poltergeist)
+
+scala&gt; movieSet += "Shrek"
+:29: error: value += is not a member of scala.collection.immutable.Set[String]
+  Expression does not convert to assignment because receiver is not assignable.
+       movieSet += "Shrek"
+                ^
+
+scala&gt; println(movieSet)
+Set(Hitch, Poltergeist)
+
+
+
+scala&gt; import scala.collection.mutable.Map
+import scala.collection.mutable.Map
+
+scala&gt; val treasureMap = Map[Int,String]()
+treasureMap: scala.collection.mutable.Map[Int,String] = Map()
+
+scala&gt; treasureMap += (1 -&gt; "Go to Island")
+res16: treasureMap.type = Map(1 -&gt; Go to Island)
+
+scala&gt; treasureMap += (2 -&gt; "Find Big X on Ground")
+res17: treasureMap.type = Map(2 -&gt; Find Big X on Ground, 1 -&gt; Go to Island)
+
+scala&gt; treasureMap += (3 -&gt; "Dig.")
+res18: treasureMap.type = Map(2 -&gt; Find Big X on Ground, 1 -&gt; Go to Island, 3 -&gt; Dig.)
+
+scala&gt; println(treasureMap)
+Map(2 -&gt; Find Big X on Ground, 1 -&gt; Go to Island, 3 -&gt; Dig.)
+
+scala&gt; treasureMap.foreach(println)
+(2,Find Big X on Ground)
+(1,Go to Island)
+(3,Dig.)
+
+
+//Immutable Map but val
+scala&gt; import scala.collection.immutable.Map
+import scala.collection.immutable.Map
+
+scala&gt; val romanNumeral = Map(1 -&gt; "I", 2 -&gt; "II")
+romanNumeral: scala.collection.immutable.Map[Int,String] = Map(1 -&gt; I, 2 -&gt; II)
+
+scala&gt; romanNumeral += (3 -&gt; "III")
+:32: error: value += is not a member of scala.collection.immutable.Map[Int,String]
+  Expression does not convert to assignment because receiver is not assignable.
+       romanNumeral += (3 -&gt; "III")
+                    ^
+
+//Immutable Map but var
+scala&gt; import scala.collection.immutable.Map
+import scala.collection.immutable.Map
+
+scala&gt; var romanNumeral = Map(1-&gt;"I",2 -&gt; "II")
+romanNumeral: scala.collection.immutable.Map[Int,String] = Map(1 -&gt; I, 2 -&gt; II)
+
+scala&gt; romanNumeral += (3 -&gt; "III")
+
+scala&gt; println(romanNumeral)
+Map(1 -&gt; I, 2 -&gt; II, 3 -&gt; III)
+
+
+
+
+// Execption handling...
+scala&gt; def getContent(filePath:String) = {
+     | for(line      | println(line.length + " " + line)
+     | }
+getContent: (filePath: String)Unit
+
+scala&gt; getContent("")
+java.io.FileNotFoundException:  (No such file or directory)
+  at java.io.FileInputStream.open0(Native Method)
+  at java.io.FileInputStream.open(FileInputStream.java:195)
+  at java.io.FileInputStream.(FileInputStream.java:138)
+  at scala.io.Source$.fromFile(Source.scala:91)
+  at scala.io.Source$.fromFile(Source.scala:76)
+  at scala.io.Source$.fromFile(Source.scala:54)
+  at getContent(:37)
+  ... 54 elided
+
+
+scala&gt; getContent("/home/hadoop/Desktop/emp_data.csv")
+52 empno,ename,designation,manager,hire_date,sal,deptno
+39 7369,SMITH,CLERK,7902,12/17/1980,800,20
+42 7499,ALLEN,SALESMAN,7698,2/20/1981,1600,30
+41 7521,WARD,SALESMAN,7698,2/22/1981,1250,30
+41 7566,TURNER,MANAGER,7839,4/2/1981,2975,20
+43 7654,MARTIN,SALESMAN,7698,9/28/1981,1250,30
+41 7698,MILLER,MANAGER,7839,5/1/1981,2850,30
+
+
+//Exception Handling
+scala&gt; def getContent(filePath:String) = {
+     |    try{
+     |        for (line      |        println(line.length + " " + line)
+     |        }
+     |     catch{
+     |           case e: java.io.FileNotFoundException =&gt; println("No file found")
+     |     }
+     |   }
+getContent: (filePath: String)Unit
+
+scala&gt; getContent("")
+No file found
+
+scala&gt; getContent("/home/hadoop/Desktop/emp_Nosuchfile.csv")
+No file found
+
+
+
+
+
+
+
+//Partial functions
+
+scala&gt; def SalaryCalculator(base:Int, inc:Int, varComp:Int):Int  = base + inc + varComp
+
+SalaryCalculator: (base: Int, inc: Int, varComp: Int)Int
+
+
+
+scala&gt; def jrSalCalc = SalaryCalculator(10,_:Int,_:Int)
+
+jrSalCalc: (Int, Int) =&gt; Int
+
+
+
+scala&gt; def MidSalCalc = SalaryCalculator(20,_:Int, _:Int)
+
+MidSalCalc: (Int, Int) =&gt; Int
+
+
+
+scala&gt; def SeniorCalc = SalaryCalculator(30, _:Int, _:Int)
+
+SeniorCalc: (Int, Int) =&gt; Int
+
+
+
+scala&gt; SalaryCalculator(35,10,12)
+
+res0: Int = 57
+
+
+
+scala&gt; jrSalCalc(10,12)
+
+res1: Int = 32
+
+
+
+scala&gt; MidSalCalc(10,12)
+
+res2: Int = 42
+
+
+
+scala&gt; SeniorCalc(10,12)
+
+res3: Int = 52
+
+
+
+
+
+
+
+
+
+
+
+// named arguments
+
+scala&gt; def speed(distance:Float, time:Float)  = distance / time
+
+speed: (distance: Float, time: Float)Float
+
+
+
+scala&gt; def speed(distance:Float=10F, time:Float=2F) = distance / time
+
+speed: (distance: Float, time: Float)Float
+
+
+
+scala&gt; speed(time=4F)
+
+res5: Float = 2.5
+
+
+
+scala&gt; speed(10,4.5F)
+
+res6: Float = 2.2222223
+
+
+
+scala&gt; speed(time=4.5F,distance=10F)
+
+res7: Float = 2.2222223
+
+
+
+scala&gt; speed()
+
+res8: Float = 5.0
+
+
+
+scala&gt; speed(distance=10F)
+
+res9: Float = 5.0
+
+
+
+scala&gt; speed(distance=10F,time=4.5F)
+
+res10: Float = 2.2222223
+
+
+
+
+
+
+
+
+
+// Pattern matching example
+
+scala&gt; val myStr = "Hello"
+
+myStr: String = Hello
+
+
+
+scala&gt; val result = myStr match {
+
+       case "Hello" =&gt; println("Greeting!")
+
+       case "Hi" =&gt; println("Short Greeting!")
+
+       case _ =&gt; println("Unknown")
+
+       }
+
+Greeting!
+
+result: Unit = ()
+
+
+
+
+
+scala&gt; val myStr = "Hello"
+
+myStr: String = Hello
+
+
+
+scala&gt; val result = myStr match {
+
+     | case "Hello" =&gt; println("Greeting!")
+
+     | case "Hi" =&gt; println("Short Greeting!")
+
+     | case _ =&gt; println("Unknown")
+
+     | }
+
+Greeting!
+
+result: Unit = ()
+
+
+
+scala&gt; def UsingMatchPatternExa(myStr:String) = {
+
+     |  val result = myStr match {
+
+     |        case "Hello" =&gt; println("Greeting!")
+
+     |        case "Hi" =&gt; println("Short Greeting!")
+
+     |        case _ =&gt; println("Unknown")
+
+     |        }
+
+     | }
+
+UsingMatchPatternExa: (myStr: String)Unit
+
+
+
+scala&gt; UsingMatchPatternExa("Hello")
+
+Greeting!
+
+
+
+scala&gt; UsingMatchPatternExa("Hi")
+
+Short Greeting!
+
+
+
+scala&gt; UsingMatchPatternExa("Hey")
+
+Unknown
+
+
+
+
+
+
+
+
+
+scala&gt; var a = 0
+
+a: Int = 0
+
+
+
+scala&gt; var b = 0
+
+b: Int = 0
+
+
+
+scala&gt; for (a      | println("Value of a : " + a + ", b: " + b)
+     | }
+Value of a : 1, b: 1
+Value of a : 1, b: 2
+Value of a : 2, b: 1
+Value of a : 2, b: 2
+Value of a : 3, b: 1
+Value of a : 3, b: 2
+
+
+
+
+scala&gt; val numList = List(1 to 10)
+numList: List[scala.collection.immutable.Range.Inclusive] = List(Range(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+
+scala&gt; for (a      | println("Value of a : " + a)
+     | }
+Value of a : Range(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+
+
+
+scala&gt; val numList = List(1 to 10)
+numList: List[scala.collection.immutable.Range.Inclusive] = List(Range(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+
+scala&gt; for (a      | println("Value of a : " + a)
+     | }
+Value of a : Range(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+
+scala&gt; val numList = List(1,2,3,4,5,6)
+numList: List[Int] = List(1, 2, 3, 4, 5, 6)
+
+scala&gt; val retVal = numList.filter( x =&gt; x != 3 &amp;&amp; x &lt; 6)
+retVal: List[Int] = List(1, 2, 4, 5)
+
+scala&gt; val retVal = for(a retVal: List[Int] = List(1, 2, 4, 5)
+
+
+
+
+/// variable arguments
+scala&gt; def printStrings(args: String*) = {
+     | var i:Int = 0
+     | for (arg      | println("Arg Value[" + i + "] = " + arg)
+     | i = i + 1;
+     | }
+     | }
+printStrings: (args: String*)Unit
+
+scala&gt; printStrings("Hadoop","Scala","Spark","Oozie","Hive","Hbase")
+Arg Value[0] = Hadoop
+Arg Value[1] = Scala
+Arg Value[2] = Spark
+Arg Value[3] = Oozie
+Arg Value[4] = Hive
+Arg Value[5] = Hbase
+
+scala&gt; printStrings("Arun","Prasad")
+Arg Value[0] = Arun
+Arg Value[1] = Prasad
+
+
+// Anonymous functions
+scala&gt; var inc = (x: Int) =&gt; x + 1
+inc: Int =&gt; Int = 
+
+scala&gt;
+
+scala&gt; inc(7)
+res3: Int = 8
+
+scala&gt; inc(7) - 10
+res4: Int = -2
+
+scala&gt; var mul = (x:Int, y:Int) =&gt; x * y
+mul: (Int, Int) =&gt; Int = 
+
+scala&gt; mul(5,7)
+res5: Int = 35
+
+scala&gt; var userDir = () =&gt; { System.getProperty("user.dir")}
+userDir: () =&gt; String = 
+
+scala&gt; println(userDir())
+/home/hadoop
+
+
+
+
+//Higher Order function0
+//(x:A) --&gt; x's type is A. So A is a type
+//A means Any Type
+
+scala&gt; def apply(f:Int =&gt; String, v:Int) = f(v)
+apply: (f: Int =&gt; String, v: Int)String
+
+scala&gt; def CurlyIt[A] (x: A) = "{" + x.toString() + "}"
+CurlyIt: [A](x: A)String
+
+scala&gt; def SquareIt[A](x: A) = "[" + x.toString() + "]"
+SquareIt: [A](x: A)String
+
+scala&gt; SquareIt(10)
+res9: String = [10]
+
+scala&gt; CurlyIt(20)
+res10: String = {20}
+
+scala&gt; println(apply(SquareIt,10))
+[10]
+
+scala&gt; println(apply(CurlyIt,20))
+{20}
+
+scala&gt; SquareIt("sare")
+res14: String = [sare]
+
+scala&gt; CurlyIt("sare")
+res15: String = {sare}
+
+
+
+
+
+
+//Higher Order function
+scala&gt; def apply(f:String =&gt; String, v:String) = f(v)
+apply: (f: String =&gt; String, v: String)String
+
+scala&gt; def CurlyIt[A] (x: A) = "{" + x.toString() + "}"
+CurlyIt: [A](x: A)String
+
+scala&gt; def SquareIt[A](x: A) = "[" + x.toString() + "]"
+SquareIt: [A](x: A)String
+
+scala&gt; println(apply(SquareIt,"--Sare--"))
+[--Sare--]
+
+scala&gt; println(apply(CurlyIt,"--Sare--"))
+{--Sare--}
+
+
+
+
+// Partially applied function
+
+scala&gt; def adder (m:Int, n:Int, p:Int) = m + n + p
+adder: (m: Int, n: Int, p: Int)Int
+
+scala&gt; val add2 = adder(2, _:Int, _:Int)
+add2: (Int, Int) =&gt; Int = 
+
+scala&gt; add2(10,2)
+res19: Int = 14
+
+scala&gt; add2(1,1)
+res20: Int = 4
+
+scala&gt; def adder(m:Int)(n:Int)(p:Int) = m + n + p
+adder: (m: Int)(n: Int)(p: Int)Int
+
+scala&gt; adder(2)(3)(4)
+res21: Int = 9
+
+/*
+Scala collections can be mutable and immutable
+Mutable collections can be updated or extended in place.
+Immutable collections never change: Additions, Removals, Updates operators return a new collection and leave the old collection unchanged
+*/
+
+Arrays :
+ Fixed size sequential collection of elements of the same type
+Lists :
+ Sequential collection of elements of the same type
+ Immutable
+ Lists represents a Linked List
+Sets
+Maps
+Tuples
+ Fixed number of items of different types together
+ Immutable
+Option
+
+
+
+scala&gt; val myList = List(1,2,3)
+myList: List[Int] = List(1, 2, 3)
+
+scala&gt; val ourList = 1 :: 2 :: 3 :: Nil
+ourList: List[Int] = List(1, 2, 3)
+
+// Add Leader -- Adding an element to the head of a list
+scala&gt; val AddLeaderList = 0 :: myList
+AddLeaderList: List[Int] = List(0, 1, 2, 3)
+
+//Add Follower -- Adding an element to the tail of a list
+scala&gt; val AddFollowerList = ourList :+ 4
+AddFollowerList: List[Int] = List(1, 2, 3, 4)
+
+// List concatenation
+scala&gt; val t3 = myList ::: ourList
+t3: List[Int] = List(1, 2, 3, 1, 2, 3)
+
+// remove duplicates
+scala&gt; t3.distinct
+res23: List[Int] = List(1, 2, 3)
+
+
+
+scala&gt;
+Left: List[String] = List(Arun, Banu, Chitra)
+
+scala&gt; val Right = List("Sara","Tanu","Umesh")
+Right: List[String] = List(Sara, Tanu, Umesh)
+
+scala&gt; Left ::: Right
+res27: List[String] = List(Arun, Banu, Chitra, Sara, Tanu, Umesh)
+
+//List concatenation
+scala&gt; Right ::: Left
+res28: List[String] = List(Sara, Tanu, Umesh, Arun, Banu, Chitra)
+
+
+scala&gt; Left.union(Right)
+res30: List[String] = List(Arun, Banu, Chitra, Sara, Tanu, Umesh)
+
+scala&gt; Right.union(Left)
+res31: List[String] = List(Sara, Tanu, Umesh, Arun, Banu, Chitra)
+
+
+scala&gt; val t = (10,"Twenty",30,"Fourty",true,3.5F)
+t: (Int, String, Int, String, Boolean, Float) = (10,Twenty,30,Fourty,true,3.5)
+
+scala&gt; t._1
+res35: Int = 10
+
+
+
+
+//Sets
+scala&gt; val numberSet = Set(0,1,2,3,4,5,6,7,8, 9,10)
+numberSet: scala.collection.immutable.Set[Int] = Set(0, 5, 10, 1, 6, 9, 2, 7, 3, 8, 4)
+
+
+scala&gt; numberSet.filter ( _ % 2 == 0)
+res39: scala.collection.immutable.Set[Int] = Set(0, 10, 6, 2, 8, 4)
+
+scala&gt; numberSet.filter ( _ % 2 != 0)
+res40: scala.collection.immutable.Set[Int] = Set(5, 1, 9, 7, 3)
+
+// Set doesn't keep duplicates. It keeps unique only
+scala&gt; val noDuplicates = Set(1,2,3,2,3,1,2,3,4,3,2,1,2,34,5,4,3,2,1)
+noDuplicates: scala.collection.immutable.Set[Int] = Set(5, 1, 2, 34, 3, 4)
+
+scala&gt; noDuplicates.foreach(println)
+5
+1
+2
+34
+3
+4
+
+
+
+
+
+
+
+scala&gt; def toInt(in : String) : Option[Int] = {
+     | try{
+     | Some(Integer.parseInt(in.trim))
+     | } catch {
+     | case e:NumberFormatException =&gt; None
+     | }
+     | }
+toInt: (in: String)Option[Int]
+
+scala&gt; val someString = "123"
+someString: String = 123
+
+scala&gt; toInt(someString) match {
+     | case Some(i) =&gt; println(i)
+     | case None =&gt; println(" Failed ")
+     | }
+123
+
+scala&gt; val someString = "sare"
+someString: String = sare
+
+scala&gt; toInt(someString) match {
+     | case Some(i) =&gt; println(i)
+     | case None =&gt; println(" Failed ")
+     | }
+ Failed
+
+scala&gt; toInt(someString).getOrElse(-1)
+res44: Int = -1
+
+scala&gt; toInt("10101").getOrElse(-1)
+res45: Int = 10101
+
+scala&gt; toInt("Aries").getOrElse("Format Error")
+res47: Any = Format Error
+
+
+
+
+
+scala&gt; val countryCapitals = Map ("India"-&gt;"Delhi","Afhanistan"-&gt;"Kabul","Egypt"-&gt;"Cairo")
+countryCapitals: scala.collection.immutable.Map[String,String] = Map(India -&gt; Delhi, Afhanistan -&gt; Kabul, Egypt -&gt; Cairo)
+
+scala&gt; countryCapitals.get("Egypt")
+res48: Option[String] = Some(Cairo)
+
+scala&gt; countryCapitals.get("Egypt").isDefined
+res49: Boolean = true
+
+scala&gt; countryCapitals.get("China").getOrElse("Not Defined in our list")
+res51: String = Not Defined in our list
+
+
+
+
+
+// zip example
+scala&gt; val numbers = List(1,2,3,4,5)
+numbers: List[Int] = List(1, 2, 3, 4, 5)
+
+scala&gt; val chars  = List("a","b","c","d","e")
+chars: List[String] = List(a, b, c, d, e)
+
+scala&gt; numbers.zip(chars)
+res52: List[(Int, String)] = List((1,a), (2,b), (3,c), (4,d), (5,e))
+
+scala&gt; chars.zip(numbers)
+res54: List[(String, Int)] = List((a,1), (b,2), (c,3), (d,4), (e,5))
+
+
+
+// zipWithIndex example
+scala&gt; val myList = List("Arun","Prasad","Kalai","Harini","Nila","Silva")
+myList: List[String] = List(Arun, Prasad, Kalai, Harini, Nila, Silva)
+
+scala&gt; myList.zipWithIndex
+res55: List[(String, Int)] = List((Arun,0), (Prasad,1), (Kalai,2), (Harini,3), (Nila,4), (Silva,5))
+
+scala&gt; myList.zipWithIndex.foreach(println)
+(Arun,0)
+(Prasad,1)
+(Kalai,2)
+(Harini,3)
+(Nila,4)
+(Silva,5)
+
+
+scala&gt; myList.zip(List(1,2,3,4,5,6))
+res57: List[(String, Int)] = List((Arun,1), (Prasad,2), (Kalai,3), (Harini,4), (Nila,5), (Silva,6))
+
+scala&gt; List(1,2,3,4,5,6).zip(myList)
+res58: List[(Int, String)] = List((1,Arun), (2,Prasad), (3,Kalai), (4,Harini), (5,Nila), (6,Silva))
+
+
+
+//fold left
+scala&gt; val numbers = List(1,2,3,4,5,6,7,8,9,10)
+numbers: List[Int] = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+// with Seed value as 0
+scala&gt; numbers.foldLeft(0) { (m,n) =&gt; println("m : " + m + " n: " + n ); m + n}
+m : 0 n: 1
+m : 1 n: 2
+m : 3 n: 3
+m : 6 n: 4
+m : 10 n: 5
+m : 15 n: 6
+m : 21 n: 7
+m : 28 n: 8
+m : 36 n: 9
+m : 45 n: 10
+res59: Int = 55
+
+// with Seed value as 5
+scala&gt; numbers.foldLeft(5) { (m,n) =&gt; println("m : " + m + " n: " + n ); m + n}
+m : 5 n: 1
+m : 6 n: 2
+m : 8 n: 3
+m : 11 n: 4
+m : 15 n: 5
+m : 20 n: 6
+m : 26 n: 7
+m : 33 n: 8
+m : 41 n: 9
+m : 50 n: 10
+res60: Int = 60
+
+
+
+// fold Right
+
+scala&gt; val numbers = List(1,2,3,4,5,6,7,8,9,10)
+numbers: List[Int] = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+scala&gt; numbers.foldRight(0) { (m,n) =&gt; println("m : " + m + " n: " + n ); m + n}
+m : 10 n: 0
+m : 9 n: 10
+m : 8 n: 19
+m : 7 n: 27
+m : 6 n: 34
+m : 5 n: 40
+m : 4 n: 45
+m : 3 n: 49
+m : 2 n: 52
+m : 1 n: 54
+res61: Int = 55
+
+
+//with seed value as 5
+scala&gt; numbers.foldRight(5) { (m,n) =&gt; println("m : " + m + " n: " + n ); m + n}
+m : 10 n: 5
+m : 9 n: 15
+m : 8 n: 24
+m : 7 n: 32
+m : 6 n: 39
+m : 5 n: 45
+m : 4 n: 50
+m : 3 n: 54
+m : 2 n: 57
+m : 1 n: 59
+res62: Int = 60
+
+
+//flatten
+//It collapses one level of nested structure
+
+cala&gt; List(List(1,2,3),List(3,4,5),List(5,6,7)).flatten
+res63: List[Int] = List(1, 2, 3, 3, 4, 5, 5, 6, 7)
+
+scala&gt; List(List(1,2,3),List(3,4,5),List(5,6,7)).flatten.toSet
+res64: scala.collection.immutable.Set[Int] = Set(5, 1, 6, 2, 7, 3, 4)
+
+scala&gt; List(List(1,2,3),List(3,4,5),List(5,6,7)).flatten.distinct
+res65: List[Int] = List(1, 2, 3, 4, 5, 6, 7)
+
+class Calculator(brand:String){
+  val color: String = if (brand =="TI"){      
+                "blue"      
+                } else if (brand =="HP"){      
+                "black"      
+               } else {      
+                "white"      
+           }  
+  def add(m:Int, n:Int) : Int = m + n  
+ def displayBrandAndColor()={  
+ println("Brand : " + brand + ", Color : " + color)      
+ }defined class Calculator
+}
+scala&gt;
+
+scala&gt; val calc = new Calculator("HP")
+calc: Calculator = Calculator@51d6e3ae
+
+scala&gt; println(calc.color)
+black
+
+
+
+
+
+cala&gt; class Calculator(brand:String){
+     |   val color: String = if (brand =="TI"){
+     |                 "blue"
+     |                 } else if (brand =="HP"){
+     |                 "black"
+     |                } else {
+     |                 "white"
+     |            }
+     |   def add(m:Int, n:Int) : Int = m + n
+     |  def displayBrandAndColor()={
+     |   println("Brand : " + brand + ", Color : " + color)
+     |  }
+     | }
+defined class Calculator
+
+scala&gt; val c = new Calculator("HP")
+c: Calculator = Calculator@67885e1f
+
+scala&gt; c.displayBrandAndColor
+Brand : HP, Color : black
+
+
+
