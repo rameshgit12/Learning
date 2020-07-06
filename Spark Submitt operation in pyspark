@@ -1,0 +1,119 @@
+spark apps to YARN
+
+
+YARN--&gt;Resource Manager,Node Manager
+
+HDFS--&gt;Namenode,Datanode
+
+---------------------------------------
+
+Namenode
+
+RM
+
+submitting a spark app means submitting spark app to RM
+
+
+
+spark-submit configurationoptions programfilepath inputfilepath outputfilepath
+
+
+
+we can provide the configuration options either from the spark-submit script
+
+or from the program itself.
+
+
+
+from pyspark.sql import SparkSession
+
+import sys
+
+
+
+if __name__='__main__':
+
+with open('/home/karnakar/option.json') as options:
+
+     readoption=json.load(options)
+
+master-sparkoptions['sparkmaster'].encode('utf-8')
+
+
+
+excores=sparkoptions['executor-memory'].encode('utf-8')
+
+
+
+spark-SparkSession.builder.master('local').appName('exampleapp').config('spark.executor-cores','2').
+
+config('spark.executor.memory','2G').config('spark.submit.deployMode','client').getOrCreate()
+
+spark
+
+
+
+df1=spark.read.format('csv').load(sys.argv[1])
+
+
+
+df1.write.saveAsTable(sys.argv[2])
+
+
+
+spark.stop()
+
+
+
+spark-submit --master local --executor-memory 2G --executor-cores 2 --deploy-mode client
+
+/home/osboxes/example.py /user/karna/calllogdata  exampletable
+
+
+
+options.json
+
+{
+
+   "master":"yarn",
+
+   "appname":"exampleapp",
+
+   "executormemory":"2G",
+
+   "executorcore":"2"
+
+ }
+
+
+
+import json
+
+
+
+def f1():
+
+
+
+with open('/home/karnakar/option.json') as options:
+
+     readoption=json.load(options)
+
+ return readoption
+
+
+
+print(readoption)
+
+
+
+if __name__=="__main__":
+
+    f1()
+
+pythin.reoption.py
+
+storage for hive is HDFS and default exec.engine is mr
+
+
+
