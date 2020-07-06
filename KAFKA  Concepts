@@ -1,0 +1,255 @@
+
+
+kafka1:distributed streaming application
+
+
+
+ HDFS--&gt;NN,DN
+
+
+
+Master Slave
+
+
+
+kafka--&gt;Broker/Server
+
+
+
+It is peer to peer to architecture
+
+
+
+ Producer------&gt;B1  B2  B3  B4  B5 --&gt;Kafka cluster
+
+
+
+ Topics is divided as partitions
+
+
+
+Producer--&gt;T1--&gt;P1,P2,P3
+
+
+
+P2--&gt;T1--&gt; p1(msg1,msg4)
+
+           p2(msg2)
+
+                                 p3(msg3)====&gt;It is following the round robin fashion
+
+
+
+It can give the high fault tolerance
+
+
+
+Push the data to the topic--&gt;producer
+
+
+
+Pull the data from the topic--&gt;Consumer
+
+
+
+Consumer(its very fast)--&gt; it can pull the data from the multiple partitions p1,p2,p3,p4
+
+
+
+consumer(it is sequentially, peformance should be increased)--&gt;it can pull the data from the single partitions
+
+
+
+HDFS--&gt;Master,Slave
+
+Kafka--&gt;Server(peer to peer architecture)
+
+p1--&gt;b2(leader),b3(follower)
+
+It is uniform distribution
+
+
+
+Kafka service:
+
+
+
+1)zoo keeper
+
+
+
+ 2)kafka/server
+
+
+
+3)Topics
+
+
+
+4)Producer--
+
+
+
+5)Consumer
+
+
+
+
+
+Read and write operation by Leaders
+
+Kafka is called as public subscribe messaging system
+
+API'S
+
+producer API
+
+Consumer API
+
+Stream API
+
+Connect API(Producer and consumer API)
+
+ack==0
+
+ack-- 1( 1 orignal writing copy)
+
+ack--all(writing and all the replication copies)
+
+props("acks","all")
+
+props,put("retries",4)
+
+Batch--&gt;collection of messages.....default 16KB
+
+
+1.start the zookeeper service
+
+command===&gt;$KAFKA_HOME/bin/zookeeper-server-start.sh  config/
+
+         (hostname:2181)
+
+
+
+the process name will be shown as QuorumPeerMain      
+
+
+
+hostname:2181 
+
+
+
+2.start the kafkabroker/kafkaserver services
+
+
+
+command:
+
+                              single broker:
+
+
+
+        $KAFKA_HOME/bin/kafka-server-start.sh  config/server.properties(hostname:9091)
+
+
+
+         multiple brokers:
+
+
+
+                              $KAFKA_HOME/bin/kafka-server-start.sh  config/server1.properties(hostname:9097)
+
+
+
+                              $KAFKA_HOME/bin/kafka-server-start.sh  config/server2.properties(hostname:9098)
+
+
+
+                               $KAFKA_HOME/bin/kafka-server-start.sh  config/server.properties(hostnmae:9099)
+
+                            
+
+
+
+The process name of a kafka broker/server will be shown as "kafka"
+
+
+
+
+
+3.creation of topic(s)
+
+
+
+        A topic can be created either manually/automatically when producer application runs.
+
+
+
+Manual creation of a topic:
+
+
+
+       $KAFKA_HOME/bin/kafka-topics.sh  --create --topic topicname   --partitions  3 
+
+
+
+                  --replication-factor 3 --zookeeper hostname:2181
+
+
+
+ Automatic creation of a topic:
+
+
+
+   If we run producer application, and if automatic creation of topics is enabled. producer creates a
+
+ topic.
+
+
+
+  The configuration of enabling or disabling automatic creation of topics will be under
+
+server.properties.
+
+auto.create.topics.enable==true
+
+
+
+4.Publish the data(messages) to the topic
+
+  console producer process: Its only for testing purpose.
+
+    $KAFKA_HOME/bin/kafka-console-producer.sh --topic  topicname  --broker-list hostname:9091,
+
+               hostname:9092
+
+
+
+ if not console
+
+    develop producer application with kafka clients API in an IDE
+
+
+
+5.Subscribe to the topic(consumer)
+
+    console consumer process
+
+     $KAFKA_HOME/bin/kafka-console-consumer,sh  --topic  topicname  hostname:9091,hostname:9092
+
+   if not console consumer,develop a consumer application with kafka clients API in an IDE
+
+
+
+                        
+
+
+
+                                
+
+
+
+                                
+
+
+
