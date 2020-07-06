@@ -1,0 +1,1001 @@
+Python built in function: 
+
+abs(): Returns the absolute value of a number 
+
+Ex: 
+
+x = abs(-7.25)  
+
+print(x) 
+
+7.25 
+
+
+
+all():Returns True if all items in an iterable object are true 
+
+mylist = [True, True, True] 
+
+x = all(mylist)  
+
+print(x) 
+
+mylist = [0, True, True] 
+
+y = all(mylist)  
+
+print(y) 
+
+false 
+
+
+
+any() Returns True if any item in an iterable object is true 
+
+mylist = [False, True, False] 
+
+x = any(mylist)  
+
+print(x) 
+
+True 
+
+
+
+ascii() Returns a readable version of an object. Replaces none-ascii characters with escape character 
+
+x = ascii("My name is Ståle")  
+
+print(x) 
+
+'My name is St\xe5le' 
+
+
+
+bin() Returns the binary version of a number 
+
+x = bin(36)  
+
+print(x) 
+
+0b100100 
+
+
+
+bool() Returns the boolean value of the specified object 
+
+x = bool(1)  
+
+print(x) 
+
+y = bool(0)  
+
+print(y) 
+
+y = bool('a')  
+
+print(y) 
+
+True 
+
+False 
+
+True 
+
+
+
+bytearray() Returns an array of bytes 
+
+x = bytearray(4)  
+
+print(x) 
+
+bytearray(b'\x00\x00\x00\x00') 
+
+
+
+bytes() Returns a bytes object 
+
+x = bytes(4)  
+
+print(x) 
+
+b'\x00\x00\x00\x00' 
+
+
+
+callable() Returns True if the specified object is callable, otherwise False 
+
+def x(): 
+
+  a = 5 
+
+print(callable(x)) 
+
+true 
+
+
+
+chr() Returns a character from the specified Unicode code. 
+
+x = chr(97)  
+
+print(x) 
+
+a 
+
+
+
+compile() Returns the specified source as an object, ready to be executed 
+
+x = compile('print(55)', 'test', 'eval') 
+
+exec(x)  
+
+x = compile('print(55)\nprint(88)', 'test', 'exec') 
+
+exec(x) 
+
+55 
+
+55 
+
+88 
+
+
+
+complex() Returns a complex number 
+
+x = complex(3, 5) 
+
+print(x) 
+
+(3+5j) 
+
+
+
+delattr() Deletes the specified attribute (property or method) from the specified object 
+
+class Person: 
+
+  name = "John" 
+
+  age = 36 
+
+  country = "Norway" 
+
+delattr(Person, 'age') 
+
+
+
+dict() Returns a dictionary (Array) 
+
+x = dict(name = "John", age = 36, country = "Norway") 
+
+print(x) 
+
+{'name': 'John', 'age': 36, 'country': 'Norway'} 
+
+
+
+dir() Returns a list of the specified object's properties and methods 
+
+class Person: 
+
+  name = "John" 
+
+  age = 36 
+
+  country = "Norway" 
+
+print(dir(Person)) 
+
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'age', 'country', 'name'] 
+
+
+
+divmod() Returns the quotient and the remainder when argument1 is divided by argument2 
+
+x = divmod(5, 2) 
+
+print(x) 
+
+(2, 1) 
+
+
+
+enumerate() Takes a collection (e.g. a tuple) and returns it as an enumerate object 
+
+x = ('apple', 'banana', 'cherry') 
+
+y = enumerate(x) 
+
+print(x) 
+
+('apple', 'banana', 'cherry') 
+
+
+
+eval() Evaluates and executes an expression 
+
+x = 'print(55)' 
+
+eval(x) 
+
+55 
+
+
+
+exec() Executes the specified code (or object) 
+
+x = 'name = "John"\nprint(name)' 
+
+exec(x) 
+
+John 
+
+
+
+filter() Use a filter function to exclude items in an iterable object 
+
+ages = [5, 12, 17, 18, 24, 32] 
+
+
+
+def myFunc(x): 
+
+  if x &lt; 18: 
+
+    return False 
+
+  else: 
+
+    return True 
+
+
+
+adults = filter(myFunc, ages) 
+
+
+
+for x in adults: 
+
+  print(x) 
+
+output: 
+
+18 
+
+24 
+
+32 
+
+
+
+float() Returns a floating point number 
+
+x = float(3) 
+
+print(x) 
+
+3.0 
+
+
+
+format() Formats a specified value 
+
+x = format(0.5, '%') 
+
+print(x) 
+
+y = format(255, 'x')  
+
+print(y) 
+
+50.000000% 
+
+Ff 
+
+
+
+frozenset() Returns a frozenset object 
+
+mylist = ['apple', 'banana', 'cherry'] 
+
+x = frozenset(mylist) 
+
+print(x) 
+
+frozenset({'apple', 'banana', 'cherry'}) 
+
+
+
+getattr() Returns the value of the specified attribute (property or method) 
+
+class Person: 
+
+  name = "John" 
+
+  age = 36 
+
+  country = "Norway" 
+
+
+
+x = getattr(Person, 'age') 
+
+print(x) 
+
+36 
+
+
+
+globals() Returns the current global symbol table as a dictionary 
+
+x = globals() 
+
+print(x)  
+
+print(x["__file__"]) 
+
+{'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': , '__spec__': None, '__annotations__':{}, '__builtins__': , 'signal': , '__file__': 'main.py', '__cached__': None, 'x': {...}} 
+
+main.py 
+
+hasattr() Returns True if the specified object has the specified attribute (property/method) 
+
+class Person: 
+
+  name = "John" 
+
+  age = 36 
+
+  country = "Norway" 
+
+
+
+x = hasattr(Person, 'age') 
+
+print(x) 
+
+True 
+
+
+
+hex() Converts a number into a hexadecimal value 
+
+x = hex(255) 
+
+print(x) 
+
+ff 
+
+
+
+id() Returns the id of an object 
+
+x = ('apple', 'banana', 'cherry')
+y = id(x) 
+
+print(y) 
+
+140027154184808 
+
+
+
+input() Allowing user input 
+
+print('Enter your name:') 
+
+x = input() 
+
+print('Hello, ' + x) 
+
+Enter your name: 
+
+89 
+
+Hello, 89 
+
+
+
+int() Returns an integer number 
+
+x = int(3.5) 
+
+print(x) 
+
+3 
+
+isinstance() Returns True if a specified object is an instance of a specified object 
+
+x = isinstance("Hello", (float, int, str, list, dict, tuple))  
+
+print(x) 
+
+True 
+
+class myObj: 
+
+  name = "John" 
+
+y = myObj() 
+
+x = isinstance(y, myObj)  
+
+print(x) 
+
+True 
+
+
+
+issubclass() Returns True if a specified class is a subclass of a specified object 
+
+class myAge: 
+
+  age = 36 
+
+class myObj(myAge): 
+
+  name = "John" 
+
+  age = myAge 
+
+x = issubclass(myObj, myAge)  
+
+print(x) 
+
+True 
+
+
+
+iter() Returns an iterator object 
+
+x = iter(["apple", "banana", "cherry"]) 
+
+print(next(x)) 
+
+print(next(x)) 
+
+print(next(x)) 
+
+apple 
+
+banana 
+
+cherry 
+
+
+
+len() Returns the length of an object 
+
+mylist = ["apple", "banana", "cherry"] 
+
+x = len(mylist)  
+
+print(x) 
+
+3 
+
+
+
+list() Returns a list 
+
+x = list(('apple', 'banana', 'cherry'))  
+
+print(x) 
+
+['apple', 'banana', 'cherry'] 
+
+
+
+locals() Returns an updated dictionary of the current local symbol table 
+
+x = locals() 
+
+print(x)  
+
+print(x["__file__"]) 
+
+{'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': , '__spec__': None, '__annotations__':{}, '__builtins__': , 'signal': , '__file__': 'main.py', '__cached__': None, 'x': {...}} 
+
+main.py 
+
+
+
+map() Returns the specified iterator with the specified function applied to each item 
+
+def myfunc(n): 
+
+  return len(n) 
+
+x = map(myfunc, ('apple', 'banana', 'cherry'))  
+
+for i in x: 
+
+   print(i) 
+
+5 
+
+6 
+
+6 
+
+
+
+def myfunc(a, b): 
+
+  return a + b 
+
+x = map(myfunc, ('apple', 'banana', 'cherry'), ('orange', 'lemon', 'pineapple'))  
+
+for i in x: 
+
+   print(i) 
+
+appleorange 
+
+bananalemon 
+
+cherrypineapple 
+
+
+
+max() Returns the largest item in an iterable 
+
+a = (1, 5, 3, 9) 
+
+x = max(a)  
+
+print(x) 
+
+9 
+
+x = max("Mike", "John", "Vicky")  
+
+print(x) 
+
+Vicky 
+
+memoryview() Returns a memory view object 
+
+x = memoryview(b"Hello") 
+
+print(x) 
+
+#return the Unicode of the first character 
+
+print(x[0]) 
+
+#return the Unicode of the second character 
+
+print(x[1]) 
+
+
+
+72 
+
+101 
+
+
+
+min() Returns the smallest item in an iterable 
+
+a = (1, 5, 3, 9) 
+
+x = min(a)  
+
+print(x) 
+
+1 
+
+
+
+next() Returns the next item in an iterable 
+
+mylist = iter(["apple", "banana", "cherry"]) 
+
+x = next(mylist) 
+
+print(x) 
+
+x = next(mylist) 
+
+print(x) 
+
+x = next(mylist) 
+
+print(x)  
+
+[GCC 4.8.2] on linux 
+
+apple 
+
+banana 
+
+cherry 
+
+
+
+object() Returns a new object 
+
+x = object()  
+
+print(x) 
+
+x = object()  
+
+print(x) 
+
+
+
+oct() Converts a number into an octal 
+
+x = oct(12)  
+
+print(x) 
+
+0o14 
+
+
+
+open() Opens a file and returns a file object 
+
+f = open("demofile.txt", "r") 
+
+print(f.read()) 
+
+Hello Jeeva 
+
+"r" - Read - Default value. Opens a file for reading, error if the file does not exist 
+
+"a" - Append - Opens a file for appending, creates the file if it does not exist 
+
+"w" - Write - Opens a file for writing, creates the file if it does not exist 
+
+"x" - Create - Creates the specified file, returns an error if the file exist 
+
+In addition you can specify if the file should be handled as binary or text mode 
+
+"t" - Text - Default value. Text mode 
+
+"b" - Binary - Binary mode (e.g. images) 
+
+
+
+ord() Convert an integer representing the Unicode of the specified character 
+
+x = ord("h")  
+
+print(x) 
+
+x = ord("h")  
+
+print(x) 
+
+
+
+pow() Returns the value of x to the power of y 
+
+x = pow(4, 3)  
+
+print(x) 
+
+64 
+
+
+
+print() Prints to the standard output device 
+
+print("Hello", "how are you?", sep=" ---")  
+
+print("Hello", "how are you?")  
+
+x = ("apple", "banana", "cherry") 
+
+print(x) 
+
+Hello ---how are you? 
+
+Hello how are you? 
+
+('apple', 'banana', 'cherry') 
+
+
+
+range() Returns a sequence of numbers, starting from 0 and increments by 1 (by default) 
+
+x = range(6) 
+
+for n in x: 
+
+  print(n)  
+
+0 
+
+1 
+
+2 
+
+3 
+
+4 
+
+5 
+
+x = range(3, 6) 
+
+for n in x: 
+
+  print(n)  
+
+  3 
+
+4 
+
+5 
+
+x = range(3, 20, 2) 
+
+for n in x: 
+
+  print(n) 
+
+3 
+
+5 
+
+7 
+
+9 
+
+11 
+
+13 
+
+15 
+
+17 
+
+19 
+
+
+
+reversed() Returns a reversed iterator 
+
+alph = ["a", "b", "c", "d"] 
+
+ralph = reversed(alph) 
+
+for x in ralph: 
+
+  print(x) 
+
+d 
+
+c 
+
+b 
+
+a 
+
+
+
+round() Rounds a numbers 
+
+x = round(5.76543, 2) 
+
+print(x)  
+
+x = round(5.76543) 
+
+print(x) 
+
+5.77 
+
+6 
+
+
+
+set() Returns a new set object 
+
+x = set(('apple','apple', 'banana', 'cherry'))  
+
+print(x) 
+
+{'cherry', 'banana', 'apple'} 
+
+
+
+setattr() Sets an attribute (property/method) of an object 
+
+class Person: 
+
+  name = "John" 
+
+  age = 36 
+
+  country = "Norway" 
+
+setattr(Person, 'age', 40) 
+
+
+
+slice() Returns a slice object 
+
+a = ("a", "b", "c", "d", "e", "f", "g", "h") 
+
+x = slice(2) 
+
+print(a[x]) 
+
+
+
+a = ("a", "b", "c", "d", "e", "f", "g", "h") 
+
+x = slice(3, 5) 
+
+print(a[x]) 
+
+
+
+a = ("a", "b", "c", "d", "e", "f", "g", "h") 
+
+x = slice(0, 8, 3) 
+
+print(a[x]) 
+
+('a', 'b') 
+
+('d', 'e') 
+
+('a', 'd', 'g') 
+
+
+
+sorted() Returns a sorted list 
+
+a = ("b", "g", "a", "d", "f", "c", "h", "e") 
+
+x = sorted(a) 
+
+print(x) 
+
+['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] 
+
+a = ("a", "b", "c", "d", "e", "f", "g", "h") 
+
+x = sorted(a, reverse=True) 
+
+print(x) 
+
+['h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'] 
+
+
+
+str() Returns a string object 
+
+x = str(3.5) 
+
+print(x) 
+
+x = int("12")  
+
+print(x) 
+
+3.5 
+
+12 
+
+
+
+sum() Sums the items of an iterator 
+
+a = (1, 2, 3, 4, 5) 
+
+x = sum(a) 
+
+print(x)  
+
+a = (1, 2, 3, 4, 5) 
+
+x = sum(a, 7)  
+
+print(x) 
+
+15 
+
+22 
+
+
+
+tuple() Returns a tuple 
+
+x = tuple(('apple', 'banana', 'cherry'))  
+
+print(x) 
+
+
+
+type() Returns the type of an object 
+
+ a = ('apple', 'banana', 'cherry') 
+
+b = "Hello World" 
+
+c = 33 
+
+x = type(a) 
+
+y = type(b) 
+
+z = type(c) 
+
+print(x,y,z) 
+
+ 
+
+
+
+vars() Returns the __dict__ property of an object 
+
+ class Person: 
+
+...   name = "John" 
+
+...   age = 36 
+
+...   country = "norway" 
+
+... 
+
+ x = vars(Person) 
+
+ print(x) 
+
+{'__module__': '__main__', 'name': 'John', 'age': 36, 'country': 'norway', '__dict__': , '__weakref__': , '__doc__': None} 
+
+
+
+zip() Returns an iterator, from two or more iterators 
+
+ a = ("John", "Charles", "Mike") 
+
+ b = ("Jenny", "Christy", "Monica") 
+
+x = zip(a, b) 
+
+print(x) 
+
+for i in x: 
+
+...     print(i) 
+
+... 
+
+('John', 'Jenny') 
+
+('Charles', 'Christy') 
+
+('Mike', 'Monica') 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
