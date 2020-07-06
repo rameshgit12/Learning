@@ -1,0 +1,821 @@
+GITUB:
+
+We can manage our version.
+
+pwd
+
+ls
+
+cd Documents
+
+ls
+
+cd Gitdemo
+
+ls
+
+git init -&gt;Initialized empty Git repository
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (awgfile)
+
+$ git init
+
+Initialized empty Git repository in C:/Users/Nethra/Documents/GitHub/.git/
+
+$ git --version
+
+git version 2.22.0.windows.1
+
+
+
+Dont touch GIT files:
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ ls -al
+
+total 47136
+
+drwxr-xr-x 1 Nethra 197121        0 Jul 23 03:29 ./
+
+drwxr-xr-x 1 Nethra 197121        0 Apr 30 02:21 ../
+
+drwxr-xr-x 1 Nethra 197121        0 Jul 23 03:29 .git/
+
+Git add
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git status
+
+On branch master
+
+No commits yet
+
+Untracked files:
+
+  (use "git add ..." to include in what will be committed)
+
+        letter1.txt
+
+        letter2.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git add letter1.txt
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git status
+
+On branch master
+
+No commits yet
+
+
+
+Changes to be committed:
+
+  (use "git rm --cached ..." to unstage)
+
+        new file:   letter1.txt   ---&gt;staged, need to commit
+
+Untracked files:
+
+  (use "git add ..." to include in what will be committed)
+
+        letter2.txt   -&gt;Working copy
+
+
+
+Git configuration Settings:
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git config --global user.name "rameshexpvodat"
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git config --list
+
+core.symlinks=false
+
+core.autocrlf=true
+
+core.fscache=true
+
+color.diff=auto
+
+color.status=auto
+
+color.branch=auto
+
+color.interactive=true
+
+help.format=html
+
+rebase.autosquash=true
+
+http.sslbackend=openssl
+
+http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+
+credential.helper=manager
+
+diff.astextplain.textconv=astextplain
+
+filter.lfs.clean=git-lfs clean -- %f
+
+filter.lfs.smudge=git-lfs smudge -- %f
+
+filter.lfs.process=git-lfs filter-process
+
+filter.lfs.required=true
+
+filter.lfs.clean=git-lfs clean -- %f
+
+filter.lfs.smudge=git-lfs smudge -- %f
+
+filter.lfs.process=git-lfs filter-process
+
+filter.lfs.required=true
+
+user.name=rameshexpvodat
+
+core.repositoryformatversion=0
+
+core.filemode=false
+
+core.bare=false
+
+core.logallrefupdates=true
+
+core.symlinks=false
+
+core.ignorecase=true
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git config --global user.email "rameshexpvodat@gmail.com"
+
+
+
+Git commit
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+git status
+
+On branch master
+
+No commits yet
+
+Changes to be committed:
+
+  (use "git rm --cached ..." to unstage)
+
+        new file:   letter1.txt
+
+Untracked files:
+
+  (use "git add ..." to include in what will be committed)
+
+        letter2.txt
+
+
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git commit -m "commiting on the first file"
+
+[master (root-commit) e6d8f60] commiting on the first file
+
+ 1 file changed, 1 insertion(+)
+
+ create mode 100644 letter1.txt
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git status
+
+On branch master
+
+Untracked files:
+
+  (use "git add ..." to include in what will be committed)
+
+        letter2.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+Adding all files in one go:
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git status
+
+On branch master
+
+Untracked files:
+
+  (use "git add ..." to include in what will be committed)
+
+        letter2.txt
+
+        letter3.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git add .
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git status
+
+On branch master
+
+Changes to be committed:
+
+  (use "git reset HEAD ..." to unstage)
+
+        new file:   letter2.txt
+
+        new file:   letter3.txt
+
+
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ clear
+
+
+
+Git Unstage:
+
+From the staging areas to working copies
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git status
+
+On branch master
+
+Changes to be committed:
+
+  (use "git reset HEAD ..." to unstage)
+
+        new file:   letter2.txt
+
+        new file:   letter3.txt
+
+
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git reset head
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git status
+
+On branch master
+
+Untracked files:
+
+  (use "git add ..." to include in what will be committed)
+
+        letter2.txt
+
+        letter3.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git add .
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git status
+
+On branch master
+
+Changes to be committed:
+
+  (use "git reset HEAD ..." to unstage)
+
+        new file:   letter2.txt
+
+        new file:   letter3.txt
+
+
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git reset HEAD letter2.txt
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git status
+
+On branch master
+
+Changes to be committed:
+
+  (use "git reset HEAD ..." to unstage)
+
+        new file:   letter3.txt
+
+Untracked files:
+
+  (use "git add ..." to include in what will be committed)
+
+        letter2.txt
+
+
+
+Checking the Git differences:
+
+compare Git local and staging area
+
+compare Git local and working copies
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git diff
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git diff letter2.txt
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git diff --staged
+
+diff --git a/letter3.txt b/letter3.txt
+
+new file mode 100644
+
+index 0000000..b14c750
+
+--- /dev/null
+
++++ b/letter3.txt
+
+@@ -0,0 +1 @@
+
++this is my third file
+
+\ No newline at end of file
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git add .
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git reset HEAD
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git add .
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git reset HEAD letter3.txt
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git status
+
+On branch master
+
+
+
+Changes to be committed:
+
+  (use "git reset HEAD ..." to unstage)
+
+        new file:   letter2.txt
+
+Untracked files:
+
+  (use "git add ..." to include in what will be committed)
+
+        letter3.txt
+
+
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git commit -m "commiting letter2.txt"
+
+[master ce57d3d] commiting letter2.txt
+
+ 1 file changed, 1 insertion(+)
+
+ create mode 100644 letter2.txt
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git status
+
+On branch master
+
+Changes not staged for commit:
+
+  (use "git add ..." to update what will be committed)
+  (use "git checkout -- ..." to discard changes in working directory)
+
+        modified:   letter2.txt
+
+Untracked files:
+
+  (use "git add ..." to include in what will be committed)
+
+        letter3.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git diff
+
+diff --git a/letter2.txt b/letter2.txt
+
+index 3d37eb2..b73eda8 100644
+
+--- a/letter2.txt
+
++++ b/letter2.txt
+
+@@ -1 +1 @@
+
+-my second file
+
+\ No newline at end of file
+
++my tenth file
+
+\ No newline at end of file
+
+
+
+Git remote:
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git remote add firstremote "https://github.com/rameshgit12/gitDemo.git"
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git remote
+
+firstremote
+
+
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git remote add second "git@github.com:rameshgit12/gitDemo.git"
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git remote
+
+firstremote
+
+second
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git remote -v
+
+firstremote     https://github.com/rameshgit12/gitDemo.git (fetch)
+
+firstremote     https://github.com/rameshgit12/gitDemo.git (push)
+
+second  git@github.com:rameshgit12/gitDemo.git (fetch)
+
+second  git@github.com:rameshgit12/gitDemo.git (push)
+
+pushing changes to gitub:
+
+$ git remote -v
+
+firstremote     https://github.com/rameshgit12/gitDemo.git (fetch)
+
+firstremote     https://github.com/rameshgit12/gitDemo.git (push)
+
+second  git@github.com:rameshgit12/gitDemo.git (fetch)
+
+second  git@github.com:rameshgit12/gitDemo.git (push)
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git push -u firstremote master
+
+Enumerating objects: 10, done.
+
+Counting objects: 100% (10/10), done.
+
+Delta compression using up to 8 threads
+
+Compressing objects: 100% (5/5), done.
+
+Writing objects: 100% (10/10), 790 bytes | 197.00 KiB/s, done.
+
+Total 10 (delta 0), reused 0 (delta 0)
+
+To https://github.com/rameshgit12/gitDemo.git
+
+ * [new branch]      master -&gt; master
+
+Branch 'master' set up to track remote branch 'master' from 'firstremote'.
+
+
+
+what is and how to create branch:
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git branch
+
+* master
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git branch gitdemo1
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git branch
+
+  gitdemo1
+
+* master
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (gitdemo1)
+
+$ git status
+
+On branch gitdemo1
+
+Changes not staged for commit:
+
+  (use "git add ..." to update what will be committed)
+  (use "git checkout -- ..." to discard changes in working directory)
+
+        modified:   letter2.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (gitdemo1)
+
+$ git add letter2.txt
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (gitdemo1)
+
+$ git commit -m "commiting changes to letter2.txt"
+
+[gitdemo1 3bce886] commiting changes to letter2.txt
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (gitdemo1)
+
+$ git push -u firstremote gitdemo1
+
+Enumerating objects: 5, done.
+
+Counting objects: 100% (5/5), done.
+
+Delta compression using up to 8 threads
+
+Compressing objects: 100% (2/2), done.
+
+Writing objects: 100% (3/3), 328 bytes | 164.00 KiB/s, done.
+
+Total 3 (delta 0), reused 0 (delta 0)
+
+remote:
+
+remote: Create a pull request for 'gitdemo1' on GitHub by visiting:
+
+remote:      https://github.com/rameshgit12/gitDemo/pull/new/gitdemo1
+
+remote:
+
+To https://github.com/rameshgit12/gitDemo.git
+
+ * [new branch]      gitdemo1 -&gt; gitdemo1
+
+Branch 'gitdemo1' set up to track remote branch 'gitdemo1' from 'firstremote'.
+
+Merge the branches:
+
+git checkout master
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (gitdemo1)
+
+$ git checkout master
+
+Switched to branch 'master'
+
+Your branch is up to date with 'firstremote/master'.
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git branch
+
+  gitdemo1
+
+* master
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git merge gitdemo1
+
+Updating 771b459..3bce886
+
+Fast-forward
+
+ letter2.txt | 2 +-
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git status
+
+On branch master
+
+Your branch is ahead of 'firstremote/master' by 1 commit.
+
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git push -u firstremote master
+
+Total 0 (delta 0), reused 0 (delta 0)
+
+To https://github.com/rameshgit12/gitDemo.git
+
+   771b459..3bce886  master -&gt; master
+
+Branch 'master' set up to track remote branch 'master' from 'firstremote'.
+
+Deleting and Renaming the branches:
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git branch gitdemo2
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (master)
+
+$ git checkout gitdemo2
+
+Switched to branch 'gitdemo2'
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (gitdemo2)
+
+$ git checkout -b gitdemo3
+
+Switched to a new branch 'gitdemo3'
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (gitdemo3)
+
+$ git branch -d gitdemo2
+
+Deleted branch gitdemo2 (was 3bce886).
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (gitdemo3)
+
+$ git branch
+
+  gitdemo1
+
+* gitdemo3
+
+  master
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (gitdemo3)
+
+$ git branch -d gitdemo3
+
+error: Cannot delete branch 'gitdemo3' checked out at 'C:/Users/Nethra/Documents/GitHub'
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (gitdemo3)
+
+$ git checkout gitdemo1
+
+Switched to branch 'gitdemo1'
+
+Your branch is up to date with 'firstremote/gitdemo1'.
+
+
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (gitdemo1)
+
+$ git branch -d gitdemo3
+
+Deleted branch gitdemo3 (was 3bce886).
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (gitdemo1)
+
+$ git branch -m
+
+fatal: branch name required
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (gitdemo1)
+
+$ git branch -m gitdemo1 git123
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (git123)
+
+$ git branch
+
+* git123
+
+  master
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (git123)
+
+$ git remote -v
+
+firstremote     https://github.com/rameshgit12/gitDemo.git (fetch)
+
+firstremote     https://github.com/rameshgit12/gitDemo.git (push)
+
+second  git@github.com:rameshgit12/gitDemo.git (fetch)
+
+second  git@github.com:rameshgit12/gitDemo.git (push)
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (git123)
+
+$ git remote rm second
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (git123)
+
+$ git remote -v
+
+firstremote     https://github.com/rameshgit12/gitDemo.git (fetch)
+
+firstremote     https://github.com/rameshgit12/gitDemo.git (push)
+
+Deleting and Changing URLs for remotes:
+
+
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (git123)
+
+$ git remote set-url firstremote https://github.com/rameshgit12/test.git
+
+Nethra@LAPTOP-JR9FSSG9 MINGW64 ~/Documents/GitHub (git123)
+
+$ git remote -v
+
+firstremote     https://github.com/rameshgit12/test.git (fetch)
+
+firstremote     https://github.com/rameshgit12/test.git (push)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
