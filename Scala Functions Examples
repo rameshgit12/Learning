@@ -1,0 +1,3449 @@
+Aggregation
+
+def aggregate[B](z: =&gt;B)(seqop: (B, A) =&gt; B, combop: (B, B) =&gt; B): B = foldLeft(z)(seqop)
+
+
+
+scala&gt; println("Step 1: How to initialize a Set of type String to represent Donut elements")
+
+Step 1: How to initialize a Set of type String to represent Donut elements
+
+
+
+scala&gt; val donutBasket1: Set[String] = Set("Plain Donut", "Strawberry Donut")
+
+donutBasket1: Set[String] = Set(Plain Donut, Strawberry Donut)
+
+
+
+scala&gt; println(s"Elements of donutBasket1 = $donutBasket1")
+
+Elements of donutBasket1 = Set(Plain Donut, Strawberry Donut)
+
+
+
+scala&gt; val donutLengthAccumulator: (Int, String) =&gt; Int = (accumulator, donutName) =&gt; accumulator + donutName.length
+
+donutLengthAccumulator: (Int, String) =&gt; Int = &lt;function2&gt;
+
+scala&gt;
+
+
+
+scala&gt; println("\nStep 3: How to call aggregate function with the accumulator function from Step 2")
+
+Step 3: How to call aggregate function with the accumulator function from Step 2
+
+
+
+scala&gt; val totalLength = donutBasket1.aggregate(0)(donutLengthAccumulator, _ + _)
+
+totalLength: Int = 27
+
+
+
+scala&gt; println(s"Total length of elements in donutBasket1 = $totalLength")
+
+Total length of elements in donutBasket1 = 27
+
+scala&gt;
+
+
+
+scala&gt; println("\nStep 4: How to initialize a Set of Tuple3 elements to represent Donut name, price and quantity")
+
+Step 4: How to initialize a Set of Tuple3 elements to represent Donut name, price and quantity
+
+
+
+scala&gt; val donutBasket2: Set[(String, Double, Int)] = Set(("Plain Donut", 1.50, 10), ("Strawberry Donut", 2.0, 10))
+
+donutBasket2: Set[(String, Double, Int)] = Set((Plain Donut,1.5,10), (Strawberry Donut,2.0,10))
+
+
+
+scala&gt; println(s"Elements of donutBasket2 = $donutBasket2")
+
+Elements of donutBasket2 = Set((Plain Donut,1.5,10), (Strawberry Donut,2.0,10))
+
+
+
+Step 5: How to define an accumulator function to calculate the total cost of Donuts
+
+
+
+scala&gt; val totalCostAccumulator: (Double, Double, Int) =&gt; Double = (accumulator, price, quantity) =&gt; accumulator + (price * quantity)
+
+totalCostAccumulator: (Double, Double, Int) =&gt; Double = &lt;function3&gt;
+
+
+
+scala&gt; println("\nStep 6: How to call aggregate function with accumulator function from Step 5")
+
+Step 6: How to call aggregate function with accumulator function from Step 5
+
+
+
+scala&gt; val totalCost = donutBasket2.aggregate(0.0)((accumulator: Double, tuple: (String, Double, Int)) =&gt; totalCostAccumulator(accumulator, tuple._2, tuple._3), _ + _)
+
+totalCost: Double = 35.0
+
+
+
+scala&gt; println(s"Total cost of donuts in donutBasket2 = $totalCost")
+
+Total cost of donuts in donutBasket2 = 35.0
+
+
+Collect:
+
+def collect[B](pf: PartialFunction[A, B]): Traversable[B]
+
+
+
+Step 1: How to initialize a Sequence which contains donut names and prices
+
+scala&gt; val donutNamesandPrices: Seq[Any] = Seq("Plain Donut", 1.5, "Strawberry Donut", 2.0, "Glazed Donut", 2.5)
+
+donutNamesandPrices: Seq[Any] = List(Plain Donut, 1.5, Strawberry Donut, 2.0, Glazed Donut, 2.5)
+
+
+
+scala&gt; println(s"Elements of donutNamesAndPrices = $donutNamesandPrices")
+
+Elements of donutNamesAndPrices = List(Plain Donut, 1.5, Strawberry Donut, 2.0, Glazed Donut, 2.5)
+
+
+
+scala&gt; println("\nStep 2: How to use collect function to cherry pick all the donut names")
+
+Step 2: How to use collect function to cherry pick all the donut names
+
+
+
+scala&gt; val donutNames: Seq[String] = donutNamesandPrices.collect{ case name: String =&gt; name }
+
+donutNames: Seq[String] = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println("\nStep 3: How to use collect function to cherry pick all the donut prices")
+
+Step 3: How to use collect function to cherry pick all the donut prices
+
+
+
+scala&gt; val donutPrices: Seq[Double] = donutNamesandPrices.collect{ case price: Double =&gt; price }
+
+donutPrices: Seq[Double] = List(1.5, 2.0, 2.5)
+
+
+
+scala&gt; println(s"Elements of donutPrices = $donutPrices")
+
+Elements of donutPrices = List(1.5, 2.0, 2.5)
+
+
+
+
+
+Diff:
+
+def diff(that: GenSet[A]): This
+
+
+
+scala&gt; println("Step 1: How to initialize a Set containing 3 donuts")
+
+Step 1: How to initialize a Set containing 3 donuts
+
+
+
+scala&gt; val donutBasket1: Set[String] = Set("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+donutBasket1: Set[String] = Set(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Elements of donutBasket1 = $donutBasket1")
+
+Elements of donutBasket1 = Set(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println("\nStep 2: How to initialize a Set containing 2 donuts")
+
+Step 2: How to initialize a Set containing 2 donuts
+
+
+
+scala&gt; val donutBasket2: Set[String] = Set("Glazed Donut", "Vanilla Donut")
+
+donutBasket2: Set[String] = Set(Glazed Donut, Vanilla Donut)
+
+
+
+scala&gt; println(s"Elements of donutBasket2 = $donutBasket2")
+
+Elements of donutBasket2 = Set(Glazed Donut, Vanilla Donut)
+
+
+
+scala&gt; println("\nStep 3: How to find the difference between two Sets using the diff function")
+
+Step 3: How to find the difference between two Sets using the diff function
+
+
+
+scala&gt; val diffDonutBasket1From2: Set[String] = donutBasket1 diff donutBasket2
+
+diffDonutBasket1From2: Set[String] = Set(Plain Donut, Strawberry Donut)
+
+
+
+scala&gt; println(s"Elements of diffDonutBasket1From2 = $diffDonutBasket1From2")
+
+Elements of diffDonutBasket1From2 = Set(Plain Donut, Strawberry Donut)
+
+
+
+scala&gt; println("\nStep 4: How to find the difference between two Sets using the diff function")
+
+Step 4: How to find the difference between two Sets using the diff function
+
+
+
+scala&gt; val diffDonutBasket2From1: Set[String] = donutBasket2 diff donutBasket1
+
+diffDonutBasket2From1: Set[String] = Set(Vanilla Donut)
+
+
+
+scala&gt; println(s"Elements of diff DonutBasket2From1 = $diffDonutBasket2From1")
+
+Elements of diff DonutBasket2From1 = Set(Vanilla Donut)
+
+scala&gt;
+
+
+
+scala&gt; println("\nStep 5: How to find the difference between two Sets using the --")
+
+Step 5: How to find the difference between two Sets using the --
+
+
+
+scala&gt; println(s"Difference between donutBasket1 and donutBasket2 = ${donutBasket1 -- donutBasket2}")
+
+
+
+Difference between donutBasket1 and donutBasket2 = Set(Plain Donut, Strawberry Donut)
+
+scala&gt; println(s"Difference between donutBasket2 and donutBasket1 = ${donutBasket2 -- donutBasket1}")
+
+Difference between donutBasket2 and donutBasket1 = Set(Vanilla Donut)
+
+
+
+DROP:
+
+def drop(n: Int): Repr
+
+scala&gt; println("Step 1: How to initialize a Sequence of donuts")
+
+Step 1: How to initialize a Sequence of donuts
+
+
+
+scala&gt; val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+donuts: Seq[String] = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Elements of donuts = $donuts")
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println("\nStep 2: How to drop the first element using drop function")
+
+Step 2: How to drop the first element using drop function
+
+
+
+scala&gt; println(s"Drop the first element in the sequence = ${donuts.drop(1)}")
+
+Drop the first element in the sequence = List(Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println("\nStep 3: How to drop the first two elements using the drop function")
+
+Step 3: How to drop the first two elements using the drop function
+
+
+
+scala&gt; println(s"Drop the first and second elements in the sequence = ${donuts.drop(2)}")
+
+Drop the first and second elements in the sequence = List(Glazed Donut)
+
+
+
+DropWhile
+
+def dropWhile(p: (A) ⇒ Boolean): Repr
+
+
+
+scala&gt; println("Step 1: How to initialize a Sequence of donuts")
+
+Step 1: How to initialize a Sequence of donuts
+
+
+
+scala&gt; val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+donuts: Seq[String] = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Elements of donuts = $donuts")
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println("\nStep 2: How to drop elements from the sequence using the dropWhile function")
+
+Step 2: How to drop elements from the sequence using the dropWhile function
+
+
+
+scala&gt; println(s"Drop donut elements whose name starts with letter P = ${donuts.dropWhile(_.charAt(0) == 'P')}")
+
+Drop donut elements whose name starts with letter P = List(Strawberry Donut, Glazed Donut)
+
+scala&gt; val dropElementsPredicate: (String) =&gt; Boolean = (donutName) =&gt; donutName.charAt(0) == 'P'
+
+dropElementsPredicate: String =&gt; Boolean = &lt;function1&gt;
+
+
+
+scala&gt; println(s"Value function dropElementsPredicate = $dropElementsPredicate")
+
+Value function dropElementsPredicate = &lt;function1&gt;
+
+scala&gt;
+
+
+
+scala&gt; println("\nStep 4: How to drop elements using the predicate function from Step 3")
+
+Step 4: How to drop elements using the predicate function from Step 3
+
+
+
+scala&gt; println(s"Drop elements using function from Step 3 = ${donuts.dropWhile(dropElementsPredicate)}")
+
+Drop elements using function from Step 3 = List(Strawberry Donut, Glazed Donut)
+
+
+Exists:
+
+
+
+scala&gt; println("Step 1: How to initialize a Sequence of donuts")
+
+Step 1: How to initialize a Sequence of donuts
+
+
+
+scala&gt; val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+donuts: Seq[String] = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Elements of donuts = $donuts")
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+scala&gt;
+
+
+
+scala&gt; println("\nStep 2: How to check if a particular element exists in the sequence using the exists function")
+
+Step 2: How to check if a particular element exists in the sequence using the exists function
+
+
+
+scala&gt; val doesPlainDonutExists: Boolean = donuts.exists(donutName =&gt; donutName == "Plain Donut")
+
+doesPlainDonutExists: Boolean = true
+
+
+
+scala&gt; println(s"Does Plain Donut exists = $doesPlainDonutExists")
+
+Does Plain Donut exists = true
+
+
+
+scala&gt; val doesPlainDonutExists: Boolean = donuts.exists(donutName =&gt; (donutName == "Plain Donut") || (donutName == "Glazed Donut"))
+
+doesPlainDonutExists: Boolean = true
+
+
+
+scala&gt; println("\nStep 3: How to declare a predicate value function for the exists function")
+
+Step 3: How to declare a predicate value function for the exists function
+
+
+
+scala&gt; val plainDonutPredicate: (String) =&gt; Boolean = (donutName) =&gt; donutName == "Plain Donut"
+
+plainDonutPredicate: String =&gt; Boolean = &lt;function1&gt;
+
+
+
+scala&gt; println(s"Value function plainDonutPredicate = $plainDonutPredicate")
+
+Value function plainDonutPredicate = &lt;function1&gt;
+
+
+
+scala&gt; println("\nStep 4: How to find element Plain Donut using the exists function and passing through the predicate function from Step 3")
+
+Step 4: How to find element Plain Donut using the exists function and passing through the predicate function from Step 3
+
+
+
+scala&gt; println(s"Does Plain Donut exists = ${donuts.exists(plainDonutPredicate)}")
+
+Does Plain Donut exists = true
+
+
+
+scala&gt; println("\nStep 5: How to declare a predicate def function for the exists function")
+
+Step 5: How to declare a predicate def function for the exists function
+
+
+
+scala&gt; def plainDonutPredicateFunction(donutName: String): Boolean = donutName == "Plain Donut"
+
+plainDonutPredicateFunction: (donutName: String)Boolean
+
+scala&gt;
+
+scala&gt; println("\nStep 6: How to find element Plain Donut using the exists function and passing through the predicate function from Step 5")
+
+Step 6: How to find element Plain Donut using the exists function and passing through the predicate function from Step 5
+
+
+
+scala&gt; println(s"Does plain Donut exists = ${donuts.exists(plainDonutPredicateFunction(_))}")
+
+Does plain Donut exists = true
+
+
+
+filter and filterNot
+
+def filter(p: (A) ⇒ Boolean): Repr
+
+def filterNot(p: (A) ⇒ Boolean): Repr
+
+scala&gt; println("Step 1: How to initialize a Sequence of donuts")
+
+Step 1: How to initialize a Sequence of donuts
+
+
+
+scala&gt; val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut", "Vanilla Donut")
+
+donuts: Seq[String] = List(Plain Donut, Strawberry Donut, Glazed Donut, Vanilla Donut)
+
+scala&gt; println(s"Elements of donuts = $donuts")
+
+
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut, Vanilla Donut)
+
+
+
+scala&gt; println("\nStep 2: How to keep only Plain and Glazed Donuts using the filter method")
+
+Step 2: How to keep only Plain and Glazed Donuts using the filter method
+
+
+
+scala&gt; val sequenceWithPlainAndGlazedDonut = donuts.filter { donutName =&gt;
+
+     |   donutName.contains("Plain") || donutName.contains("Glazed")
+
+     | }
+
+sequenceWithPlainAndGlazedDonut: Seq[String] = List(Plain Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Sequence with Plain and Glazed donuts only = $sequenceWithPlainAndGlazedDonut")
+
+
+
+Sequence with Plain and Glazed donuts only = List(Plain Donut, Glazed Donut)
+
+scala&gt;
+
+
+
+scala&gt; println("\nStep 3: How to filter out element Vanilla Donut using the filterNot function")
+
+Step 3: How to filter out element Vanilla Donut using the filterNot function
+
+
+
+scala&gt; val sequenceWithoutVanillaDonut = donuts.filterNot(donutName =&gt; donutName == "Vanilla Donut" )
+
+sequenceWithoutVanillaDonut: Seq[String] = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Sequence without vanilla donut = $sequenceWithoutVanillaDonut")
+
+Sequence without vanilla donut = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+find:
+
+def find(p: (A) ⇒ Boolean): Option[A]
+
+scala&gt; println("Step 1: How to initialize a Sequence of donuts")
+
+Step 1: How to initialize a Sequence of donuts
+
+
+
+scala&gt; val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+donuts: Seq[String] = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Elements of donuts = $donuts")
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println("\nStep 2: How to find a particular element in the sequence using the find function")
+
+Step 2: How to find a particular element in the sequence using the find function
+
+
+
+scala&gt; val plainDonut: Option[String] = donuts.find(donutName =&gt; donutName == "Plain Donut")
+
+plainDonut: Option[String] = Some(Plain Donut)
+
+
+
+scala&gt; println(s"Find Plain Donut = ${plainDonut.get}")
+
+Find Plain Donut = Plain Donut
+
+
+
+scala&gt; println("\nStep 3: How to find element Vanilla Donut which does not exist in the sequence using the find function")
+
+Step 3: How to find element Vanilla Donut which does not exist in the sequence using the find function
+
+
+
+scala&gt; val vanillaDonut: String = donuts.find(_ == "Vanilla Donut").get
+
+java.util.NoSuchElementException: None.get
+
+  at scala.None$.get(Option.scala:347)
+
+  at scala.None$.get(Option.scala:345)
+
+  ... 32 elided
+
+
+
+scala&gt; println(s"Find Vanilla Donuts = $vanillaDonut")
+
+&lt;console&gt;:12: error: not found: value vanillaDonut
+
+       println(s"Find Vanilla Donuts = $vanillaDonut")
+
+   
+
+scala&gt; println("\nStep 4: How to find element Vanilla Donut using the find function and getOrElse")
+
+Step 4: How to find element Vanilla Donut using the find function and getOrElse
+
+
+
+scala&gt; val vanillaDonut2: String = donuts.find(_ == "Vanilla Donut").getOrElse("Vanilla Donut was not found!")
+
+vanillaDonut2: String = Vanilla Donut was not found!
+
+
+
+scala&gt; println(s"Find Vanilla Donuts = $vanillaDonut2")
+
+Find Vanilla Donuts = Vanilla Donut was not found!
+
+
+
+flatMap:
+
+def flatMap[B](f: (A) ⇒ GenTraversableOnce[B]): TraversableOnce[B]
+
+scala&gt; println("\nStep 3: How to find element Vanilla Donut which does not exist in the sequence using the find 
+
+
+
+scala&gt; println("Step 1: How to initialize a Sequence of donuts")
+
+Step 1: How to initialize a Sequence of donuts
+
+
+
+scala&gt; val donuts1: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+donuts1: Seq[String] = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Elements of donuts1 = $donuts1")
+
+Elements of donuts1 = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println("\nStep 2: How to initialize another Sequence of donuts")
+
+Step 2: How to initialize another Sequence of donuts
+
+
+
+scala&gt; val donuts2: Seq[String] = Seq("Vanilla Donut", "Glazed Donut")
+
+donuts2: Seq[String] = List(Vanilla Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Elements of donuts2 = $donuts2")
+
+Elements of donuts2 = List(Vanilla Donut, Glazed Donut)
+
+
+
+scala&gt; println("\nStep 3: How to create a List of donuts initialized using the two Sequences from Step 1 and Step 2")
+
+Step 3: How to create a List of donuts initialized using the two Sequences from Step 1 and Step 2
+
+
+
+scala&gt; val listDonuts: List[Seq[String]] = List(donuts1, donuts2)
+
+listDonuts: List[Seq[String]] = List(List(Plain Donut, Strawberry Donut, Glazed Donut), List(Vanilla Donut, Glazed Donut))
+
+
+
+scala&gt; println(s"Elements of listDonuts = $listDonuts")
+
+Elements of listDonuts = List(List(Plain Donut, Strawberry Donut, Glazed Donut), List(Vanilla Donut, Glazed Donut))
+
+
+
+scala&gt;
+
+scala&gt; println("\nStep 4: How to return a single list of donut using the flatMap function")
+
+Step 4: How to return a single list of donut using the flatMap function
+
+
+
+scala&gt; val listDonutsFromFlatMap: List[String] = listDonuts.flatMap(seq =&gt; seq)
+
+listDonutsFromFlatMap: List[String] = List(Plain Donut, Strawberry Donut, Glazed Donut, Vanilla Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Elements of listDonutsFromFlatMap as a flatMap as a single list = $listDonutsFromFlatMap")
+
+Elements of listDonutsFromFlatMap as a flatMap as a single list = List(Plain Donut, Strawberry Donut, Glazed Donut, Vanilla Donut, Glazed Donut)
+
+scala&gt;
+
+
+
+Flatten:
+
+def flatten[B]: Traversable[B]
+
+
+
+ala&gt; println("\nStep 3: How to find element Vanilla Donut which does not exist in the sequence using the find 
+
+
+
+scala&gt; println("Step 1: How to initialize a Sequence of donuts")
+
+Step 1: How to initialize a Sequence of donuts
+
+
+
+scala&gt; val donuts1: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+donuts1: Seq[String] = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Elements of donuts1 = $donuts1")
+
+Elements of donuts1 = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+scala&gt; println("\nStep 2: How to initialize another Sequence of donuts")
+
+Step 2: How to initialize another Sequence of donuts
+
+
+
+scala&gt; val donuts2: Seq[String] = Seq("Vanilla Donut", "Glazed Donut")
+
+donuts2: Seq[String] = List(Vanilla Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Elements of donuts2 = $donuts2")
+
+Elements of donuts2 = List(Vanilla Donut, Glazed Donut)
+
+
+
+scala&gt; println("\nStep 3: How to create a List of donuts initialized using the two Sequences from Step 1 and Step 2")
+
+
+
+Step 3: How to create a List of donuts initialized using the two Sequences from Step 1 and Step 2
+
+scala&gt; val listDonuts: List[Seq[String]] = List(donuts1, donuts2)
+
+listDonuts: List[Seq[String]] = List(List(Plain Donut, Strawberry Donut, Glazed Donut), List(Vanilla Donut, Glaz
+
+
+
+scala&gt; println("Step 1: How to initialize a Sequence of donuts")
+
+Step 1: How to initialize a Sequence of donuts
+
+
+
+scala&gt; val donuts1: Seq[String] = Seq("Plain", "Strawberry", "Glazed")
+
+donuts1: Seq[String] = List(Plain, Strawberry, Glazed)
+
+
+
+scala&gt; println(s"Elements of donuts1 = $donuts1")
+
+Elements of donuts1 = List(Plain, Strawberry, Glazed)
+
+scala&gt;
+
+scala&gt; println("\nStep 2: How to initialize another Sequence of donuts")
+
+Step 2: How to initialize another Sequence of donuts
+
+scala&gt; val donuts2: Seq[String] = Seq("Vanilla", "Glazed")
+
+
+
+donuts2: Seq[String] = List(Vanilla, Glazed)
+
+scala&gt; println(s"Elements of donuts2 = $donuts2")
+
+Elements of donuts2 = List(Vanilla, Glazed)
+
+scala&gt;
+
+scala&gt; println("\nStep 3: How to create a List of donuts initialized using the two Sequences from Step 1 and Step 2")
+
+Step 3: How to create a List of donuts initialized using the two Sequences from Step 1 and Step 2
+
+
+
+scala&gt; val listDonuts: List[Seq[String]] = List(donuts1, donuts2)
+
+listDonuts: List[Seq[String]] = List(List(Plain, Strawberry, Glazed), List(Vanilla, Glazed))
+
+
+
+scala&gt; println(s"Elements of listDonuts = $listDonuts")
+
+Elements of listDonuts = List(List(Plain, Strawberry, Glazed), List(Vanilla, Glazed))
+
+
+
+scala&gt; println("\nStep 4: How to return a single list of donut using the flatten function")
+
+Step 4: How to return a single list of donut using the flatten function
+
+
+
+scala&gt; val listDonutsFromFlatten: List[String] = listDonuts.flatten
+
+listDonutsFromFlatten: List[String] = List(Plain, Strawberry, Glazed, Vanilla, Glazed)
+
+
+
+scala&gt; println(s"Elements of listDonutsFromFlatten = $listDonutsFromFlatten")
+
+Elements of listDonutsFromFlatten = List(Plain, Strawberry, Glazed, Vanilla, Glazed)
+
+
+
+scala&gt; println("\nStep 5: How to append the word Donut to each element of listDonuts using flatten and map functions")
+
+Step 5: How to append the word Donut to each element of listDonuts using flatten and map functions
+
+
+
+scala&gt; val listDonutsFromFlatten2: List[String] = listDonuts.flatten.map(_ + " Donut")
+
+listDonutsFromFlatten2: List[String] = List(Plain Donut, Strawberry Donut, Glazed Donut, Vanilla Donut, Glazed Donut)
+
+
+
+scala&gt; println(s"Elements of listDonutsFromFlatten2 = $listDonutsFromFlatten2")
+
+Elements of listDonutsFromFlatten2 = List(Plain Donut, Strawberry Donut, Glazed Donut, Vanilla Donut, Glazed Donut)
+
+
+
+Fold:
+
+
+
+def fold[A1 &gt;: A](z: A1)(op: (A1, A1) ⇒ A1): A1
+
+
+
+// Start writing your ScalaFiddle code here
+
+
+
+println("Step 1: How to initialize a sequence of donut prices")
+
+val prices: Seq[Double] = Seq(1.5, 2.0, 2.5)
+
+println(s"Donut prices = $prices")
+
+
+
+println("\nStep 2: How to sum all the donut prices using fold function")
+
+val sum = prices.fold(0.0)(_ + _)
+
+println(s"Sum = $sum")
+
+
+
+println("\nStep 3: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain", "Strawberry", "Glazed")
+
+println(s"Elements of donuts1 = $donuts")
+
+
+
+println("\nStep 4: How to create a String of all donuts using fold function")
+
+println(s"All donuts = ${donuts.fold("")((acc, s) =&gt; acc + s + " Donut ")}")
+
+
+
+println("\nStep 5: How to declare a value function to create the donut string")
+
+val concatDonuts: (String, String) =&gt; String = (s1, s2) =&gt; s1 + s2 + " Donut "
+
+println(s"Value function concatDonuts = $concatDonuts")
+
+
+
+println("\nStep 6: How to create a String of all donuts using value function from Step 5 and fold function")
+
+println(s"All donuts = ${donuts.fold("")(concatDonuts)}") 
+
+Output
+
+Step 1: How to initialize a sequence of donut prices Donut prices = List(1.5, 2, 2.5)
+
+
+
+Step 2: How to sum all the donut prices using fold function Sum = 6
+
+
+
+Step 3: How to initialize a Sequence of donuts Elements of donuts1 = List(Plain, Strawberry, Glazed) 
+
+
+
+Step 4: How to create a String of all donuts using fold function All donuts = Plain Donut Strawberry Donut Glazed Donut 
+
+
+
+Step 5: How to declare a value function to create the donut string Value function concatDonuts = &lt;function2&gt;
+
+
+
+Step 6: How to create a String of all donuts using value function from Step 5 and fold function All donuts = Plain Donut Strawberry Donut Glazed Donut 
+
+
+
+foldLeft:
+
+def foldLeft[B](z: B)(op: (B, A) ⇒ B): B 
+
+
+
+println("Step 1: How to initialize a sequence of donut prices")
+
+val prices: Seq[Double] = Seq(1.5, 2.0, 2.5)
+
+println(s"Donut prices = $prices")
+
+
+
+println("\nStep 2: How to sum all the donut prices using foldLeft function")
+
+val sum = prices.foldLeft(0.0)(_ + _)
+
+println(s"Sum = $sum")
+
+
+
+println("\nStep 3: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain", "Strawberry", "Glazed")
+
+println(s"Elements of donuts1 = $donuts")
+
+
+
+println("\nStep 4: How to create a String of all donuts using foldLeft function")
+
+println(s"All donuts = ${donuts.foldLeft("")((a, b) =&gt; a + b + " Donut ")}")
+
+
+
+println("\nStep 5: How to declare a value function to create the donut string")
+
+val concatDonuts: (String, String) =&gt; String = (a, b) =&gt; a + b + " Donut "
+
+println(s"Value function concatDonuts = $concatDonuts")
+
+
+
+println("\nStep 6: How to create a String of all donuts using value function from Step 5 and foldLeft function")
+
+println(s"All donuts = ${donuts.foldLeft("")(concatDonuts)}") 
+
+
+
+Output
+
+Step 1: How to initialize a sequence of donut prices Donut prices = List(1.5, 2, 2.5)
+
+
+
+Step 2: How to sum all the donut prices using foldLeft function Sum = 6
+
+
+
+Step 3: How to initialize a Sequence of donuts Elements of donuts1 = List(Plain, Strawberry, Glazed) 
+
+
+
+Step 4: How to create a String of all donuts using foldLeft function All donuts = Plain Donut Strawberry Donut Glazed Donut 
+
+
+
+Step 5: How to declare a value function to create the donut string Value function concatDonuts = &lt;function2&gt;
+
+
+
+Step 6: How to create a String of all donuts using value function from Step 5 and foldLeft function All donuts = Plain Donut Strawberry Donut Glazed Donut 
+
+
+
+
+
+FoldRight:
+
+def foldRight[B](z: B)(op: (A, B) ⇒ B): B 
+
+
+
+println("Step 1: How to initialize a sequence of donut prices")
+
+val prices: Seq[Double] = Seq(1.5, 2.0, 2.5)
+
+println(s"Donut prices = $prices")
+
+
+
+println("\nStep 2: How to sum all the donut prices using foldRight function")
+
+val sum = prices.foldRight(0.0)(_ + _)
+
+println(s"Sum = $sum")
+
+
+
+println("\nStep 3: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain", "Strawberry", "Glazed")
+
+println(s"Elements of donuts1 = $donuts")
+
+
+
+println("\nStep 4: How to create a String of all donuts using foldRight function")
+
+println(s"All donuts = ${donuts.foldRight("")((a, b) =&gt; a + " Donut " + b)}")
+
+
+
+
+
+println("\nStep 5: How to declare a value function to create the donut string")
+
+val concatDonuts: (String, String) =&gt; String = (a, b) =&gt; a + " Donut " + b
+
+println(s"Value function concatDonuts = $concatDonuts")
+
+
+
+println("\nStep 6: How to create a String of all donuts using value function from Step 5 and foldRight function")
+
+println(s"All donuts = ${donuts.foldRight("")(concatDonuts)}") 
+
+
+
+Output
+
+
+
+Step 1: How to initialize a sequence of donut prices Donut prices = List(1.5, 2, 2.5)
+
+
+
+Step 2: How to sum all the donut prices using foldRight function Sum = 6
+
+
+
+Step 3: How to initialize a Sequence of donuts Elements of donuts1 = List(Plain, Strawberry, Glazed) 
+
+
+
+Step 4: How to create a String of all donuts using foldRight function All donuts = Plain Donut Strawberry Donut Glazed Donut 
+
+ Step 5: How to declare a value function to create the donut string Value function concatDonuts = &lt;function2&gt;
+
+
+
+Step 6: How to create a String of all donuts using value function from Step 5 and foldRight function All donuts = Plain Donut Strawberry Donut Glazed Donut 
+
+
+
+
+
+foreach:
+
+def foreach(f: (A) ⇒ Unit): Unit
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to loop through all the elements in the sequence using the foreach function")
+
+donuts.foreach(println(_))
+
+
+
+println("\nStep 3: How to loop through and access all the elements in the sequence using the foreach function")
+
+donuts.foreach(donutName =&gt; println(s"donutName = $donutName"))
+
+
+
+println("\nStep 4: How to declare a value function to format a donut names into upper case format")
+
+val uppercase: (String) =&gt; String = (s) =&gt; {
+
+ val upper = s.toUpperCase
+
+ println(upper)
+
+ upper
+
+}
+
+println(s"Value function formatting donut names to uppercase = $uppercase")
+
+
+
+println("\nStep 5: How to format all donuts to uppercase using value function from Step 4")
+
+donuts.foreach(uppercase) 
+
+
+
+Output
+
+Step 1: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 2: How to loop through all the elements in the sequence using the foreach function Plain Donut Strawberry Donut Glazed Donut
+
+
+
+Step 3: How to loop through and access all the elements in the sequence using the foreach function donutName = Plain Donut donutName = Strawberry Donut donutName = Glazed Donut
+
+
+
+Step 4: How to declare a value function to format a donut names into upper case format Value function formatting donut names to uppercase = &lt;function1&gt;
+
+
+
+Step 5: How to format all donuts to uppercase using value function from Step 4 PLAIN DONUT STRAWBERRY DONUT GLAZED DONUT
+
+
+
+
+
+groupBy:
+
+groupBy[K](f: (A) ⇒ K): immutable.Map[K, Repr] 
+
+
+
+// Start writing your ScalaFiddle code here
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to group elements in a sequence using the groupBy function")
+
+val donutsGroup: Map[Char, Seq[String]] = donuts.groupBy(_.charAt(0))
+
+println(s"Group elements in the donut sequence by the first letter of the donut name = $donutsGroup")
+
+
+
+
+
+println("\nStep 3: How to create a case class to represent Donut objects")
+
+case class Donut(name: String, price: Double)
+
+
+
+println("\nStep 4: How to create a Sequence of type Donut")
+
+val donuts2: Seq[Donut] = Seq(Donut("Plain Donut", 1.5), Donut("Strawberry Donut", 2.0), Donut("Glazed Donut", 2.5))
+
+println(s"Elements of donuts2 = $donuts2")
+
+
+
+println(s"\nStep 5: How to group case classes donut objects by the name property")
+
+val donutsGroup2: Map[String, Seq[Donut]] = donuts2.groupBy(_.name)
+
+println(s"Group element in the sequence of type Donut grouped by the donut name = $donutsGroup2") 
+
+
+
+Output
+
+Step 1: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 2: How to group elements in a sequence using the groupBy function Group elements in the donut sequence by the first letter of the donut name = Map(S -&gt; List(Strawberry Donut), G -&gt; List(Glazed Donut), P -&gt; List(Plain Donut))
+
+
+
+Step 3: How to create a case class to represent Donut objects
+
+
+
+Step 4: How to create a Sequence of type Donut Elements of donuts2 = List(Donut(Plain Donut,1.5), Donut(Strawberry Donut,2), Donut(Glazed Donut,2.5))
+
+
+
+Step 5: How to group case classes donut objects by the name property Group element in the sequence of type Donut grouped by the donut name = Map(Glazed Donut -&gt; List(Donut(Glazed Donut,2.5)), Plain Donut -&gt; List(Donut(Plain Donut,1.5)), Strawberry Donut -&gt; List(Donut(Strawberry Donut,2)))
+
+
+
+Head:
+
+def head: A 
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to access the first element of the donut sequence")
+
+println(s"First element of donut sequence = ${donuts(0)}")
+
+
+
+println("\nStep 3: How to access the first element of the donut sequence using the head method")
+
+println(s"First element of donut sequence using head method = ${donuts.head}")
+
+
+
+println("\nStep 4: How to create an empty sequence")
+
+val donuts2: Seq[String] = Seq.empty[String]
+
+println(s"Elements of donuts2 = $donuts2")
+
+
+
+println("\nStep 5: How to access the first element of the donut sequence using the headOption function")
+
+println(s"First element of empty sequence = ${donuts2.headOption.getOrElse("No donut was found!")}") 
+
+
+
+Output
+
+Step 1: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 2: How to access the first element of the donut sequence First element of donut sequence = Plain Donut
+
+
+
+Step 3: How to access the first element of the donut sequence using the head method First element of donut sequence using head method = Plain Donut
+
+
+
+Step 4: How to create an empty sequence Elements of donuts2 = List()
+
+
+
+Step 5: How to access the first element of the donut sequence using the headOption function First element of empty sequence = No donut was found!
+
+
+
+IsEmpty
+
+abstract def isEmpty: Boolean
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to find out if a sequence is empty using isEmpty function")
+
+println(s"Is donuts sequence empty = ${donuts.isEmpty}")
+
+
+
+println("\nStep 3: How to create an empty sequence")
+
+val donuts2: Seq[String] = Seq.empty[String]
+
+println(s"Elements of donuts2 = $donuts2")
+
+
+
+println("\nStep 4: How to find out if a sequence is empty using isEmpty function")
+
+println(s"Is donuts2 sequence empty = ${donuts2.isEmpty}") 
+
+
+
+Output
+
+Step 1: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 2: How to find out if a sequence is empty using isEmpty function Is donuts sequence empty = false
+
+
+
+Step 3: How to create an empty sequence Elements of donuts2 = List()
+
+
+
+Step 4: How to find out if a sequence is empty using isEmpty function Is donuts2 sequence empty = true
+
+
+
+Intersect function
+
+def intersect(that: GenSet[A]): Repr
+
+// Start writing your ScalaFiddle code here
+
+println("Step 1: How to initialize a Set of donuts")
+
+val donuts1: Set[String] = Set("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts1 = $donuts1")
+
+
+
+println("\nStep 2: How to initialize another Set of donuts")
+
+val donuts2: Set[String] = Set("Plain Donut", "Chocolate Donut", "Vanilla Donut")
+
+println(s"Elements of donuts2 = $donuts2")
+
+
+
+println("\nStep 3: How to find the common elements between two Sets using intersect function")
+
+println(s"Common elements between donuts1 and donuts2 = ${donuts1 intersect donuts2}")
+
+println(s"Common elements between donuts2 and donuts1 = ${donuts2 intersect donuts1}")
+
+
+
+println("\nStep 4: How to find the common elements between two Sets using &amp; function")
+
+println(s"Common elements between donuts1 and donuts2 = ${donuts1 &amp; donuts2}")
+
+println(s"Common elements between donuts2 and donuts1 = ${donuts2 &amp; donuts1}")
+
+
+
+Output
+
+Step 1: How to initialize a Set of donuts Elements of donuts1 = Set(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 2: How to initialize another Set of donuts Elements of donuts2 = Set(Plain Donut, Chocolate Donut, Vanilla Donut)
+
+
+
+Step 3: How to find the common elements between two Sets using intersect function Common elements between donuts1 and donuts2 = Set(Plain Donut) Common elements between donuts2 and donuts1 = Set(Plain Donut)
+
+
+
+Step 4: How to find the common elements between two Sets using &amp; function Common elements between donuts1 and donuts2 = Set(Plain Donut) Common elements between donuts2 and donuts1 = Set(Plain Donut)
+
+
+
+Last:
+
+def last: A
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+
+
+println("\nStep 2: How to access the last element of the donut sequence by index")
+
+println(s"Last element of donut sequence = ${donuts(donuts.size - 1)}")
+
+
+
+
+
+println("\nStep 3: How to access the last element of the donut sequence by using the last function")
+
+println(s"Last element of donut sequence = ${donuts.last}")
+
+
+
+println("\nStep 4: How to create an empty sequence")
+
+val donuts2: Seq[String] = Seq.empty[String]
+
+println(s"Elements of donuts2 = $donuts2")
+
+
+
+println("\nStep 5: How to access the last element of the donut sequence using the lastOption function")
+
+println(s"Last element of empty sequence = ${donuts2.lastOption.getOrElse("No donut was found!")}") 
+
+
+
+Output
+
+Step 1: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 2: How to access the last element of the donut sequence by index Last element of donut sequence = Glazed Donut
+
+
+
+Step 3: How to access the last element of the donut sequence by using the last function Last element of donut sequence = Glazed Donut
+
+ Step 4: How to create an empty sequence Elements of donuts2 = List()
+
+
+
+Step 5: How to access the last element of the donut sequence using the lastOption function Last element of empty sequence = No donut was found!
+
+
+
+Map:
+
+def map[B](f: (A) ⇒ B): Traversable[B]
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts1: Seq[String] = Seq("Plain", "Strawberry", "Glazed")
+
+println(s"Elements of donuts1 = $donuts1")
+
+
+
+println("\nStep 2: How to append the word Donut to each element using the map function")
+
+val donuts2: Seq[String] = donuts1.map(_+ " Donut")
+
+println(s"Elements of donuts2 = $donuts2")
+
+
+
+println("\nStep 3: How to create a donut sequence with one None element")
+
+val donuts3: Seq[AnyRef] = Seq("Plain", "Strawberry", None)
+
+donuts3.foreach(println(_))
+
+
+
+println("\nStep 4: How to filter out the None element using map function")
+
+val donuts4: Seq[String] = donuts3.map {
+
+ case donut: String =&gt; donut + " Donut"
+
+ case None =&gt; "Unknown Donut"
+
+}
+
+println(s"Elements of donuts4 = $donuts4")
+
+
+
+println("\nStep 5: How to define couple of functions which returns an Option of type String")
+
+def favoriteDonut: Option[String] = Some("Glazed Donut")
+
+
+
+def leastFavoriteDonut: Option[String] = None
+
+
+
+println("\nStep 6: How to use map function to filter out None values")
+
+favoriteDonut.map(donut =&gt; println(s"Favorite donut = $donut"))
+
+leastFavoriteDonut.map(donut=&gt; println(s"Least favorite donut = $donut"))
+
+
+
+Output
+
+Step 1: How to initialize a Sequence of donuts Elements of donuts1 = List(Plain, Strawberry, Glazed) 
+
+
+
+Step 2: How to append the word Donut to each element using the map function Elements of donuts2 = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 3: How to create a donut sequence with one None element Plain Strawberry None
+
+
+
+Step 4: How to filter out the None element using map function Elements of donuts4 = List(Plain Donut, Strawberry Donut, Unknown Donut)
+
+
+
+Step 5: How to define couple of functions which returns an Option of type String
+
+
+
+Step 6: How to use map function to filter out None values Favorite donut = Glazed Donut
+
+
+
+Max function:
+
+def max: A 
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to find the maximum element in the sequence using the max
+
+function")
+
+println(s"Max element in the donuts sequence = ${donuts.max}")
+
+
+
+println("\nStep 3: How to initialize donut prices")
+
+val prices: Seq[Double] = Seq(1.50, 2.0, 2.50)
+
+println(s"Elements of prices = $prices")
+
+
+
+println("\nStep 4: How to find the maximum element in the sequence using the max function")
+
+println(s"Max element in the donut prices sequence = ${prices.max}")
+
+
+
+Output
+
+Step 1: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 2: How to find the maximum element in the sequence using the max function Max element in the donuts sequence = Strawberry Donut
+
+
+
+Step 3: How to initialize donut prices Elements of prices = List(1.5, 2, 2.5)
+
+
+
+Step 4: How to find the maximum element in the sequence using the max function Max element in the donut prices sequence = 2.5
+
+
+
+MaxBy:
+
+def maxBy[B](f: (A) ⇒ B): A 
+
+
+
+println("Step 1: How to create a case class to represent Donut object")
+
+case class Donut(name: String, price: Double)
+
+
+
+println("\nStep 2: How to create a Sequence of type Donut")
+
+val donuts: Seq[Donut] = Seq(Donut("Plain Donut", 1.5), Donut("Strawberry Donut", 2.0), Donut("Glazed Donut", 2.5))
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 3: How to find the maximum element in a sequence of case classes objects using the maxBy function")
+
+println(s"Maximum element in sequence of case class of type Donut, ordered by price = ${donuts.maxBy(donut =&gt; donut.price)}")
+
+
+
+println("\nStep 4: How to declare a value predicate function for maxBy function")
+
+val donutsMaxBy: (Donut) =&gt; Double = (donut) =&gt; donut.price
+
+println(s"Value function donutMaxBy = $donutsMaxBy")
+
+
+
+println("\nStep 5: How to find the maximum element using maxBy function and pass through the predicate function from Step 4")
+
+println(s"Maximum element in sequence using function from Step 3 = ${donuts.maxBy(donutsMaxBy)}")
+
+
+
+Output
+
+Step 1: How to create a case class to represent Donut object
+
+
+
+Step 2: How to create a Sequence of type Donut Elements of donuts = List(Donut(Plain Donut,1.5), Donut(Strawberry Donut,2), Donut(Glazed Donut,2.5))
+
+
+
+Step 3: How to find the maximum element in a sequence of case classes objects using the maxBy function Maximum element in sequence of case class of type Donut, ordered by price = Donut(Glazed Donut,2.5)
+
+
+
+Step 4: How to declare a value predicate function for maxBy function Value function donutMaxBy = &lt;function1&gt;
+
+
+
+Step 5: How to find the maximum element using maxBy function and pass through the predicate function from Step 4 Maximum element in sequence using function from Step 3 = Donut(Glazed Donut,2.5)
+
+
+
+Min:
+
+def min: A
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to find the minimum element in the sequence using the min function")
+
+println(s"Min element in the donuts sequence = ${donuts.min}")
+
+
+
+println("\nStep 3: How to initialize a Sequence of donut prices")
+
+val prices: Seq[Double] = Seq(1.50, 2.0, 2.50)
+
+println(s"Elements of prices = $prices")
+
+
+
+println("\nStep 4: How to find the minimum element in the sequence using the min function")
+
+println(s"Min element in the donut prices sequence = ${prices.min}")
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to find the minimum element in the sequence using the min function")
+
+println(s"Min element in the donuts sequence = ${donuts.min}")
+
+
+
+println("\nStep 3: How to initialize a Sequence of donut prices")
+
+val prices: Seq[Double] = Seq(1.50, 2.0, 2.50)
+
+println(s"Elements of prices = $prices")
+
+
+
+println("\nStep 4: How to find the minimum element in the sequence using the min function")
+
+println(s"Min element in the donut prices sequence = ${prices.min}")
+
+
+
+output
+
+Step 1: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 2: How to find the minimum element in the sequence using the min function Min element in the donuts sequence = Glazed Donut
+
+
+
+Step 3: How to initialize a Sequence of donut prices Elements of prices = List(1.5, 2, 2.5)
+
+
+
+Step 4: How to find the minimum element in the sequence using the min function Min element in the donut prices sequence = 1.5
+
+
+
+MinBy:
+
+def minBy[B](f: (A) ⇒ B): A
+
+
+
+// Start writing your ScalaFiddle code here
+
+println("Step 1: How to create case class to represent Donut object")
+
+case class Donut(name: String, price: Double)
+
+
+
+println("\nStep 2: How to create a Sequence of type Donut")
+
+val donuts: Seq[Donut] = Seq(Donut("Plain Donut", 1.5), Donut("Strawberry Donut", 2.0), Donut("Glazed Donut", 2.5))
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 3: How to find the minimum element in a sequence of case classes using the minBy function")
+
+println(s"Minimum element in sequence of case class of type Donut, ordered by price = ${donuts.minBy(donut =&gt; donut.price)}")
+
+
+
+println("\nStep 4: How to declare a value predicate function for minBy function")
+
+val donutsMinBy: (Donut) =&gt; Double = (donut) =&gt; donut.price
+
+println(s"Value function donutMinBy = $donutsMinBy")
+
+
+
+println("\nStep 5: How to find the minimum element using minBy function and passing through the predicate function from Step 4")
+
+println(s"Minimum element in sequence using function from Step 3 = ${donuts.minBy(donutsMinBy)}")
+
+
+
+Output
+
+Step 1: How to create case class to represent Donut object
+
+
+
+Step 2: How to create a Sequence of type Donut Elements of donuts = List(Donut(Plain Donut,1.5), Donut(Strawberry Donut,2), Donut(Glazed Donut,2.5))
+
+
+
+Step 3: How to find the minimum element in a sequence of case classes using the minBy function Minimum element in sequence of case class of type Donut, ordered by price = Donut(Plain Donut,1.5)
+
+
+
+Step 4: How to declare a value predicate function for minBy function Value function donutMinBy = &lt;function1&gt;
+
+
+
+Step 5: How to find the minimum element using minBy function and passing through the predicate function from Step 4 Minimum element in sequence using function from Step 3 = Donut(Plain Donut,1.5)
+
+
+
+Mkstring() 
+
+def mkString: String
+
+
+
+def mkString(sep: String): String
+
+
+
+def mkString(start: String, sep: String, end: String): String
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to concatenate the elements of a sequence into a String using mkString function")
+
+val donutsAsString: String = donuts.mkString(" and ")
+
+println(s"Donuts elements using mkString function = $donutsAsString")
+
+
+
+
+
+println("\nStep 3: How to concatenate the elements of a sequence into a String using mkString and specifying prefix and suffix")
+
+val donutsWithPrefixAndSuffix: String = donuts.mkString("My favorite donuts namely ", " and ", " are very tasty!")
+
+println(s"$donutsWithPrefixAndSuffix")
+
+
+
+output
+
+Step 1: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 2: How to concatenate the elements of a sequence into a String using mkString function Donuts elements using mkString function = Plain Donut and Strawberry Donut and Glazed Donut
+
+
+
+Step 3: How to concatenate the elements of a sequence into a String using mkString and specifying prefix and suffix My favorite donuts namely Plain Donut and Strawberry Donut and Glazed Donut are very tasty!
+
+
+
+
+
+NonEmpty
+
+def nonEmpty: Boolean
+
+
+
+// Start writing your ScalaFiddle code here
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to check if a sequence is not empty using nonEmpty function")
+
+println(s"Is donuts sequence NOT empty = ${donuts.nonEmpty}")
+
+
+
+println("\nStep 3: How to create an empty sequence")
+
+val emptyDonuts: Seq[String] = Seq.empty[String]
+
+println(s"Elements of emptyDonuts = $emptyDonuts")
+
+
+
+println("\nStep 4: How to find out if sequence is empty using nonEmpty function")
+
+println(s"Is emptyDonuts sequence empty = ${emptyDonuts.nonEmpty}")
+
+
+
+output
+
+Step 1: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 2: How to check if a sequence is not empty using nonEmpty function Is donuts sequence NOT empty = true
+
+
+
+Step 3: How to create an empty sequence Elements of emptyDonuts = List()
+
+
+
+Step 4: How to find out if sequence is empty using nonEmpty function Is emptyDonuts sequence empty = false
+
+
+
+Par:
+
+println("Step 1: How to initialize an Immutable Sequence of various donut flavours")
+
+val donutFlavours: Seq[String] = Seq("Plain", "Strawberry", "Glazed")
+
+println(s"Elements of donutFlavours immutable sequence = $donutFlavours")
+
+
+
+
+
+println("\nStep 2: Convert the Immutable donut flavours Sequence into Parallel Collection")
+
+import scala.collection.parallel.ParSeq
+
+val donutFlavoursParallel: ParSeq[String] = donutFlavours.par
+
+
+
+
+
+println("\nStep 3: How to use Scala Parallel Collection")
+
+val donuts: ParSeq[String] = donutFlavoursParallel.map(d =&gt; s"$d donut")
+
+println(s"Elements of donuts parallel collection = $donuts")
+
+
+
+Scala Parallel Collection
+
+Elements of donuts parallel collection = ParVector(Plain donut, Strawberry donut, Glazed donut)
+
+
+
+Partitions:
+
+def partition(p: (A) ⇒ Boolean): (Repr, Repr) 
+
+
+
+println("Step 1: How to initialize a sequence which contains donut names and prices")
+
+val donutNamesAndPrices: Seq[Any] = Seq("Plain Donut", 1.5, "Strawberry Donut", 2.0, "Glazed Donut", 2.5)
+
+println(s"Elements of donutNamesAndPrices = $donutNamesAndPrices")
+
+
+
+
+
+println("\nStep 2: How to split the sequence by the element types using partition function")
+
+val namesAndPrices: (Seq[Any], Seq[Any]) = donutNamesAndPrices.partition {
+
+  case name: String =&gt; true
+
+  case price: Double =&gt; false
+
+}
+
+println(s"Elements of namesAndPrices = $namesAndPrices")
+
+
+
+
+
+println("\nStep 3: How to access the donut String sequence from Step 2")
+
+println(s"Donut names = ${namesAndPrices._1}")
+
+
+
+val (donutNames, donutPrices) = donutNamesAndPrices.partition {
+
+  case name: String =&gt; true
+
+  case _ =&gt; false
+
+}
+
+println(s"donutNames = $donutNames")
+
+println(s"donutPrices = $donutPrices")
+
+
+
+output
+
+Step 1: How to initialize a sequence which contains donut names and prices Elements of donutNamesAndPrices = List(Plain Donut, 1.5, Strawberry Donut, 2, Glazed Donut, 2.5)
+
+
+
+Step 2: How to split the sequence by the element types using partition function Elements of namesAndPrices = (List(Plain Donut, Strawberry Donut, Glazed Donut),List(1.5, 2, 2.5))
+
+
+
+Step 3: How to access the donut String sequence from Step 2 Donut names = List(Plain Donut, Strawberry Donut, Glazed Donut) donutNames = List(Plain Donut, Strawberry Donut, Glazed Donut) donutPrices = List(1.5, 2, 2.5)
+
+
+
+Reduce:
+
+def reduce[A1 &gt;: A](op: (A1, A1) ⇒ A1): A1 
+
+
+
+println("Step 1: How to initialize a sequence of donut prices")
+
+val donutPrices: Seq[Double] = Seq(1.5, 2.0, 2.5)
+
+println(s"Elements of donutPrices = $donutPrices")
+
+
+
+println("\nStep 2: How to find the sum of the elements using reduce function")
+
+val sum: Double = donutPrices.reduce(_ + _)
+
+println(s"Sum of elements from donutPrices = $sum")
+
+
+
+println("\nStep 3: How to find the sum of elements using reduce function explicitly")
+
+val sum1: Double = donutPrices.reduce((a, b) =&gt; a + b)
+
+println(s"Sum of elements from donutPrices by calling reduce function explicitly= $sum1")
+
+
+
+println("\nStep 4: How to find the cheapest donut using reduce function")
+
+println(s"Cheapest donut price = ${donutPrices.reduce(_ min _)}")
+
+
+
+
+
+println("\nStep 5: How to find the most expensive donut using reduce function")
+
+println(s"Most expensive donut price = ${donutPrices.reduce(_ max _)}")
+
+
+
+println("\nStep 6: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 7: How to concatenate the elements from the sequence using reduce function")
+
+println(s"Elements of donuts sequence concatenated = ${donuts.reduce((left, right) =&gt; left + ", " + right)}")
+
+
+
+println("\nStep 8: How to declare a value function to concatenate donut names")
+
+val concatDonutNames: (String, String) =&gt; String = (left, right) =&gt; {
+
+ left + ", " + right
+
+}
+
+println(s"Value function concatDonutNames = $concatDonutNames")
+
+
+
+println(s"Elements of donuts sequence concatenated by passing function to the reduce function = ${donuts reduce concatDonutNames}")
+
+
+
+println("\nStep 10: How to use option reduce to avoid exception if the collection is empty")
+
+println(s"Using reduce option will NOT throw any exception = ${Seq.empty[String].reduceOption(_ + ", " + _)}")
+
+
+
+Output
+
+Step 1: How to initialize a sequence of donut prices Elements of donutPrices = List(1.5, 2, 2.5)
+
+
+
+Step 2: How to find the sum of the elements using reduce function Sum of elements from donutPrices = 6
+
+
+
+Step 3: How to find the sum of elements using reduce function explicitly Sum of elements from donutPrices by calling reduce function explicitly= 6
+
+
+
+Step 4: How to find the cheapest donut using reduce function Cheapest donut price = 1.5
+
+
+
+Step 5: How to find the most expensive donut using reduce function Most expensive donut price = 2.5
+
+
+
+Step 6: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 7: How to concatenate the elements from the sequence using reduce function Elements of donuts sequence concatenated = Plain Donut, Strawberry Donut, Glazed Donut
+
+
+
+Step 8: How to declare a value function to concatenate donut names Value function concatDonutNames = &lt;function2&gt; Elements of donuts sequence concatenated by passing function to the reduce function = Plain Donut, Strawberry Donut, Glazed Donut
+
+
+
+Step 10: How to use option reduce to avoid exception if the collection is empty Using reduce option will NOT throw any exception = None
+
+
+
+reduceLeft:
+
+def reduceLeft[B &gt;: A](op: (B, A) ⇒ B): B 
+
+
+
+println("Step 1: How to initialize a sequence of donut prices")
+
+val donutPrices: Seq[Double] = Seq(1.5, 2.0, 2.5)
+
+println(s"Elements of donutPrices = $donutPrices")
+
+
+
+println("\nStep 2: How to find the sum of the elements using reduceLeft function")
+
+val sum: Double = donutPrices.reduceLeft(_ + _)
+
+println(s"Sum of elements from donutPrices = $sum")
+
+
+
+println("\nStep 3: How to find the sum of elements using reduceLeft function explicitly")
+
+val sum1: Double = donutPrices.reduceLeft((a, b) =&gt; a + b)
+
+println(s"Sum of elements from donutPrices by calling reduceLeft function explicitly= $sum1")
+
+
+
+
+
+println("\nStep 4: How to find the cheapest donut using reduceLeft function")
+
+println(s"Cheapest donut price = ${donutPrices.reduceLeft(_ min _)}")
+
+
+
+println("\nStep 5: How to find the most expensive donut using reduceLeft function")
+
+println(s"Most expensive donut price = ${donutPrices.reduceLeft(_ max _)}")
+
+
+
+println("\nStep 6: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 7: How to concatenate the elements from the sequence using reduceLeft function")
+
+println(s"Elements of donuts sequence concatenated = ${donuts.reduceLeft((left, right) =&gt; left + ", " + right)}")
+
+
+
+println("\nStep 8: How to declare a value function to concatenate donut names")
+
+val concatDonutNames: (String, String) =&gt; String = (left, right) =&gt; {
+
+ left + ", " + right
+
+}
+
+println(s"Value function concatDonutNames = $concatDonutNames")
+
+
+
+println("\nStep 9: How to pass a function to reduceLeft function")
+
+println(s"Elements of donuts sequence concatenated by passing function to the reduceLeft function = ${donuts reduceLeft concatDonutNames}")
+
+
+
+println("\nStep 10: How to use reduceLeftOption to avoid exception if the collection is empty")
+
+println(s"Using reduceLeftOption will NOT throw any exception = ${Seq.empty[String].reduceLeftOption(_ + ", " + _)}")
+
+
+
+Output
+
+Step 1: How to initialize a sequence of donut prices Elements of donutPrices = List(1.5, 2, 2.5)
+
+
+
+Step 2: How to find the sum of the elements using reduceLeft function Sum of elements from donutPrices = 6
+
+
+
+Step 3: How to find the sum of elements using reduceLeft function explicitly Sum of elements from donutPrices by calling reduceLeft function explicitly= 6
+
+
+
+Step 4: How to find the cheapest donut using reduceLeft function Cheapest donut price = 1.5
+
+
+
+Step 5: How to find the most expensive donut using reduceLeft function Most expensive donut price = 2.5
+
+
+
+Step 6: How to initialize a Sequence of donuts
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 7: How to concatenate the elements from the sequence using reduceLeft function Elements of donuts sequence concatenated = Plain Donut, Strawberry Donut, Glazed Donut
+
+
+
+Step 8: How to declare a value function to concatenate donut names Value function concatDonutNames = &lt;function2&gt;
+
+
+
+Step 9: How to pass a function to reduceLeft function Elements of donuts sequence concatenated by passing function to the reduceLeft function = Plain Donut, Strawberry Donut, Glazed Donut
+
+
+
+Step 10: How to use reduceLeftOption to avoid exception if the collection is empty Using reduceLeftOption will NOT throw any exception = None
+
+
+
+
+
+ReduceRight:
+
+As per the Scala documentation, the definition of the reduceRight method is as follows: def reduceRight[B &gt;: A](op: (B, A) ⇒ B): B
+
+
+
+  def reduceRight[B &gt;: A](op: (A, B) =&gt; B): B = {     if (isEmpty)       throw new UnsupportedOperationException("empty.reduceRight")
+
+
+
+    reversed.reduceLeft[B]((x, y) =&gt; op(y, x))   }
+
+
+
+println("Step 1: How to initialize a sequence of donut prices")
+
+val donutPrices: Seq[Double] = Seq(1.5, 2.0, 2.5)
+
+println(s"Elements of donutPrices = $donutPrices")
+
+
+
+println("\nStep 2: How to find the sum of the elements using reduceRight function")
+
+val sum: Double = donutPrices.reduceRight(_ + _)
+
+println(s"Sum of elements from donutPrices = $sum")
+
+
+
+println("\nStep 3: How to find the sum of elements using reduceRight function explicitly")
+
+val sum1: Double = donutPrices.reduceRight((a, b) =&gt; a + b)
+
+println(s"Sum of elements from donutPrices by calling reduceRight function explicitly= $sum1")
+
+
+
+
+
+println("\nStep 4: How to find the cheapest donut using reduceRight function")
+
+println(s"Cheapest donut price = ${donutPrices.reduceRight(_ min _)}")
+
+
+
+println(s"Most expensive donut price = ${donutPrices.reduceRight(_ max _)}")
+
+
+
+println("\nStep 6: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 7: How to concatenate the elements from the sequence using reduceRight function")
+
+println(s"Elements of donuts sequence concatenated = ${donuts.reduceRight((left, right) =&gt; left + ", " + right)}")
+
+
+
+println("\nStep 7: How to concatenate the elements from the sequence using reduceRight function")
+
+println(s"Elements of donuts sequence concatenated = ${donuts.reduceRight((left, right) =&gt; left + ", " + right)}")
+
+
+
+println("\nStep 8: How to declare a value function to concatenate donut names")
+
+val concatDonutNames: (String, String) =&gt; String = (left, right) =&gt; {
+
+ left + ", " + right
+
+}
+
+println(s"Value function concatDonutNames = $concatDonutNames")
+
+
+
+println("\nStep 9: How to pass a function to reduceRight function")
+
+println(s"Elements of donuts sequence concatenated by passing function to the reduceRight function = ${donuts reduceRight concatDonutNames}")
+
+
+
+println("\nStep 10: How to use reduceRightOption to avoid exception if the collection is empty")
+
+println(s"Using reduceRightOption will NOT throw any exception = ${Seq.empty[String].reduceRightOption(_ + ", " + _)}")
+
+
+
+output
+
+Step 1: How to initialize a sequence of donut prices Elements of donutPrices = List(1.5, 2, 2.5)
+
+
+
+Step 2: How to find the sum of the elements using reduceRight function Sum of elements from donutPrices = 6
+
+
+
+Step 3: How to find the sum of elements using reduceRight function explicitly Sum of elements from donutPrices by calling reduceRight function explicitly= 6
+
+
+
+Step 4: How to find the cheapest donut using reduceRight function Cheapest donut price = 1.5 Most expensive donut price = 2.5
+
+
+
+Step 6: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 7: How to concatenate the elements from the sequence using reduceRight function Elements of donuts sequence concatenated = Plain Donut, Strawberry Donut, Glazed Donut
+
+
+
+Step 7: How to concatenate the elements from the sequence using reduceRight function Elements of donuts sequence concatenated = Plain Donut, Strawberry Donut, Glazed Donut
+
+
+
+Step 8: How to declare a value function to concatenate donut names Value function concatDonutNames = &lt;function2&gt;
+
+
+
+Step 9: How to pass a function to reduceRight function Elements of donuts sequence concatenated by passing function to the reduceRight function = Plain Donut, Strawberry Donut, Glazed Donut 
+
+
+
+ Step 10: How to use reduceRightOption to avoid exception if the collection is empty Using reduceRightOption will NOT throw any exception = None
+
+
+
+
+
+Reverse:
+
+def reverse: Repr 
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to get the elements of the sequence in reverse using the reverse method")
+
+println(s"Elements of donuts in reversed order = ${donuts.reverse}")
+
+
+
+
+
+println("\nStep 3: How to access each reversed element using reverse and foreach methods")
+
+donuts.reverse.foreach(donut =&gt; println(s"donut = $donut")) 
+
+
+
+Output
+
+Step 1: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 2: How to get the elements of the sequence in reverse using the reverse method Elements of donuts in reversed order = List(Glazed Donut, Strawberry Donut, Plain Donut)
+
+
+
+Step 3: How to access each reversed element using reverse and foreach methods donut = Glazed Donut donut = Strawberry Donut donut = Plain Donut
+
+
+
+
+
+reverseIterator
+
+def reverseIterator: Iterator[A] 
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to print all elements in reversed order using reverseIterator function")
+
+println(s"Elements of donuts in reversed order = ${donuts.reverseIterator.toList}")
+
+
+
+println("\nStep 3: How to iterate through elements using foreach method")
+
+val reverseIterator: Iterator[String] = donuts.reverseIterator
+
+reverseIterator.foreach(donut =&gt; println(s"donut = $donut"))
+
+
+
+output
+
+Step 1: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 2: How to print all elements in reversed order using reverseIterator function Elements of donuts in reversed order = List(Glazed Donut, Strawberry Donut, Plain Donut)
+
+
+
+Step 3: How to iterate through elements using foreach method donut = Glazed Donut donut = Strawberry Donut donut = Plain Donut
+
+
+
+Scan:
+
+def scan[B &gt;: A, That](z: B)(op: (B, B) ⇒ B)(implicit cbf: CanBuildFrom[Repr, B, That]): That 
+
+
+
+Scan method iterations
+
+0 + 1             =  1
+
+1 + 2             =  3
+
+1 + 2 + 3         =  6
+
+1 + 2 + 3 + 4     = 10
+
+1 + 2 + 3 + 4 + 5 = 15
+
+
+
+println("Step 1: How to initialize a sequence of numbers")
+
+val numbers: Seq[Int] = Seq(1, 2, 3, 4, 5)
+
+println(s"Elements of numbers = $numbers")
+
+
+
+println("\nStep 2: How to create a running total using the scan function")
+
+val runningTotal: Seq[Int] = numbers.scan(0)(_ + _)
+
+println(s"Running total of all elements in the collection = $runningTotal")
+
+
+
+println("\nStep 3: How to create a running total using the scan function explicitly")
+
+val runningTotal2: Seq[Int] = numbers.scan(0)((a, b) =&gt; a + b)
+
+println(s"Running total of all elements in the collection = $runningTotal2")
+
+
+
+output
+
+Step 1: How to initialize a sequence of numbers Elements of numbers = List(1, 2, 3, 4, 5)
+
+
+
+Step 2: How to create a running total using the scan function Running total of all elements in the collection = List(0, 1, 3, 6, 10, 15)
+
+
+
+Step 3: How to create a running total using the scan function explicitly Running total of all elements in the collection = List(0, 1, 3, 6, 10, 15)
+
+
+
+Scala Left:
+
+def scanLeft[B, That](z: B)(op: (B, A) ⇒ B)(implicit bf: CanBuildFrom[Repr, B, That]): That
+
+0 + 1             =    1 1 + 2             =    3 1 + 2 + 3         =    6 1 + 2 + 3 + 4     =   10 1 + 2 + 3 + 4 + 5 =   15 
+
+
+
+println("Step 1: How to initialize a sequence of numbers")
+
+val numbers: Seq[Int] = Seq(1, 3, 3, 4, 5)
+
+println(s"Elements of numbers = $numbers")
+
+
+
+println("\nStep 2: How to create a running total using the scanLeft function")
+
+val runningTotal: Seq[Int] = numbers.scanLeft(0)(_ + _)
+
+println(s"Running total of all elements in the collection = $runningTotal")
+
+
+
+println("\nStep 3: How to create a running total using the scanLeft function explicitly")
+
+val runningTotal2: Seq[Int] = numbers.scanLeft(0)((a, b) =&gt; a + b)
+
+println(s"Running total of all elements in the collection = $runningTotal2")
+
+
+
+output
+
+Step 1: How to initialize a sequence of numbers Elements of numbers = List(1, 3, 3, 4, 5)
+
+
+
+Step 2: How to create a running total using the scanLeft function Running total of all elements in the collection = List(0, 1, 4, 7, 11, 16)
+
+
+
+Step 3: How to create a running total using the scanLeft function explicitly Running total of all elements in the collection = List(0, 1, 4, 7, 11, 16)
+
+
+
+scanRight:
+
+def scanRight[B, That](z: B)(op: (A, B) ⇒ B)(implicit bf: CanBuildFrom[Repr, B, That]): That
+
+5 + 4 + 3 + 2 + 1 = 15 5 + 4 + 3 + 2     = 14 5 + 4 + 3         = 12 5 + 4             =  9 5 + 0             =  5 0 =  0
+
+
+
+println("Step 1: How to initialize a sequence of numbers")
+
+val numbers: Seq[Int] = Seq(1, 2, 3, 4, 5)
+
+println(s"Elements of numbers = $numbers")
+
+
+
+println("\nStep 2: How to create a running total using the scanRight function")
+
+val runningTotal: Seq[Int] = numbers.scanRight(0)(_ + _)
+
+println(s"Running total of all elements in the collection = $runningTotal")
+
+
+
+println("\nStep 3: How to create a running total using the scanRight function explicitly")
+
+val runningTotal2: Seq[Int] = numbers.scanRight(0)((a, b) =&gt; a + b)
+
+println(s"Running total of all elements in the collection = $runningTotal2")
+
+
+
+output
+
+Step 1: How to initialize a sequence of numbers Elements of numbers = List(1, 2, 3, 4, 5)
+
+
+
+Step 2: How to create a running total using the scanRight function Running total of all elements in the collection = List(15, 14, 12, 9, 5, 0)
+
+
+
+Step 3: How to create a running total using the scanRight function explicitly Running total of all elements in the collection = List(15, 14, 12, 9, 5, 0)
+
+
+
+Size:
+
+def size: Int 
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to count the number of elements in the sequence using size function")
+
+println(s"Size of donuts sequence = ${donuts.size}")
+
+
+
+println("\nStep 3: How to use the count function")
+
+println(s"Number of times element Plain Donut appear in donuts sequence = ${donuts.count(_ == "Plain Donut")}") 
+
+
+
+Output
+
+Step 1: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 2: How to count the number of elements in the sequence using size function Size of donuts sequence = 3
+
+
+
+Step 3: How to use the count function Number of times element Plain Donut appear in donuts sequence = 1
+
+
+
+Slice:
+
+def slice(from: Int, until: Int): Repr
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to take a section from the sequence using the slice function")
+
+println(s"Take elements from the sequence from index 0 to 1 = ${donuts.slice(0,1)}")
+
+println(s"Take elements from the sequence from index 0 to 2 = ${donuts.slice(0,2)}")
+
+println(s"Take elements from the sequence from index 0 to 3 = ${donuts.slice(1,3)}")
+
+
+
+
+
+println("\nStep 3: Slice function where the index is out of range")
+
+println(s"Take elements from the sequence from index 0 to 4 = ${donuts.slice(0,4)}")
+
+
+
+Output
+
+Step 1: How to initialize a Sequence of donuts Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+Step 2: How to take a section from the sequence using the slice function Take elements from the sequence from index 0 to 1 = List(Plain Donut) Take elements from the sequence from index 0 to 2 = List(Plain Donut, Strawberry Donut) Take elements from the sequence from index 0 to 3 = List(Strawberry Donut, Glazed Donut)
+
+
+
+Step 3: Slice function where the index is out of range Take elements from the sequence from index 0 to 4 = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+SortBy:
+
+def sortBy[B](f: (A) ⇒ B)(implicit ord: math.Ordering[B]): Repr
+
+
+
+// Start writing your ScalaFiddle code here
+
+println("\nStep 1: How to create a case class to represent Donut objects")
+
+case class Donut(name: String, price: Double)
+
+
+
+println("\nStep 2: How to create a Sequence of type Donut")
+
+val donuts: Seq[Donut] = Seq(Donut("Plain Donut", 1.5), Donut("Strawberry Donut", 2.0), Donut("Glazed Donut", 2.5))
+
+
+
+println(s"Elements of donuts = $donuts")
+
+println("\nStep 3: How to sort a sequence of case class objects using the sortBy function")
+
+println(s"Sort a sequence of case class objects of type Donut, sorted by price = ${donuts.sortBy(donut =&gt; donut.price)}")
+
+
+
+Output
+
+Step 1: How to create a case class to represent Donut objects
+
+Step 2: How to create a Sequence of type Donut
+
+Elements of donuts = List(Donut(Plain Donut,1.5), Donut(Strawberry Donut,2), Donut(Glazed Donut,2.5))
+
+Step 3: How to sort a sequence of case class objects using the sortBy function
+
+Sort a sequence of case class objects of type Donut, sorted by price = List(Donut(Plain Donut,1.5), Donut(Strawberry Donut,2), Donut(Glazed Donut,2.5))
+
+
+
+
+
+Sorted:
+
+def sorted[B &gt;: A](implicit ord: math.Ordering[B]): Repr
+
+
+
+println("Step 1: How to initialize donut prices")
+
+val prices: Seq[Double] = Seq(1.50, 2.0, 2.50)
+
+println(s"Elements of prices = $prices")
+
+println("\nStep 2: How to sort a sequence of type Double using the sorted function")
+
+println(s"Sort a sequence of type Double by their natural ordering = ${prices.sorted}")
+
+
+
+println("\nStep 3: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+println("\nStep 4: How to sort a sequence of type String using the sorted function")
+
+println(s"Sort a sequence of type String by their natural ordering = ${donuts.sorted}")
+
+
+
+Output
+
+Step 1: How to initialize donut prices
+
+Elements of prices = List(1.5, 2, 2.5)
+
+Step 2: How to sort a sequence of type Double using the sorted function
+
+Sort a sequence of type Double by their natural ordering = List(1.5, 2, 2.5)
+
+Step 3: How to initialize a Sequence of donuts
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+Step 4: How to sort a sequence of type String using the sorted function
+
+Sort a sequence of type String by their natural ordering = List(Glazed Donut, Plain Donut, Strawberry Donut)
+
+
+
+sortwith
+
+def sortWith(lt: (A, A) ⇒ Boolean): Repr
+
+
+
+println("\nStep 1: How to create a case class to represent Donut objects")
+
+case class Donut(name: String, price: Double)
+
+println("\nStep 2: How to create a Sequence of type Donut")
+
+val donuts: Seq[Donut] = Seq(Donut("Plain Donut", 1.5), Donut("Strawberry Donut", 2.0), Donut("Glazed Donut", 2.5))
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 3: How to sort a sequence of case class objects using the sortWith function")
+
+println(s"Sort a sequence of case classes of type Donut, sorted with price = ${donuts.sortWith(_.price &lt; _.price)}")
+
+
+
+println("\nStep 4: How to sort a sequence of case class objects in ascending order using the sortWith function")
+
+println(s"Sort a sequence of case classes of type Donut, sorted with price in ascending order = ${donuts.sortWith(_.price &lt; _.price)}")
+
+println(s"Sort a sequence of case classes of type Donut, sorted with price in ascending order explicitly = ${donuts.sortWith((d1,d2) =&gt; d1.price &lt; d2.price)}")
+
+
+
+Output
+
+Step 1: How to create a case class to represent Donut objects
+
+Step 2: How to create a Sequence of type Donut
+
+Elements of donuts = List(Donut(Plain Donut,1.5), Donut(Strawberry Donut,2), Donut(Glazed Donut,2.5))
+
+Step 3: How to sort a sequence of case class objects using the sortWith function
+
+Sort a sequence of case classes of type Donut, sorted with price = List(Donut(Plain Donut,1.5), Donut(Strawberry Donut,2), Donut(Glazed Donut,2.5))
+
+Step 4: How to sort a sequence of case class objects in ascending order using the sortWith function
+
+Sort a sequence of case classes of type Donut, sorted with price in ascending order = List(Donut(Plain Donut,1.5), Donut(Strawberry Donut,2), Donut(Glazed Donut,2.5))
+
+Sort a sequence of case classes of type Donut, sorted with price in ascending order explicitly = List(Donut(Plain Donut,1.5), Donut(Strawberry Donut,2), Donut(Glazed Donut,2.5))
+
+
+
+tail:
+
+def tail: Repr
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to return all elements in the sequence except the head using the tail function")
+
+println(s"Elements of donuts excluding the head = ${donuts.tail}")
+
+println("\nStep 3: How to access the last element of the donut sequence by using the last function")
+
+println(s"Last element of donut sequence = ${donuts.last}")
+
+
+
+println("\nStep 4: How to access the first element of the donut sequence by using the head function")
+
+println(s"First element of donut sequence = ${donuts.head}")
+
+
+
+output
+
+Step 1: How to initialize a Sequence of donuts
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+Step 2: How to return all elements in the sequence except the head using the tail function
+
+Elements of donuts excluding the head = List(Strawberry Donut, Glazed Donut)
+
+Step 3: How to access the last element of the donut sequence by using the last function
+
+Last element of donut sequence = Glazed Donut
+
+Step 4: How to access the first element of the donut sequence by using the head function
+
+First element of donut sequence = Plain Donut
+
+
+
+Take function:
+
+def take(n: Int): Repr
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+println("\nStep 2: How to take elements from the sequence using the take function")
+
+println(s"Take the first donut element in the sequence = ${donuts.take(1)}")
+
+println(s"Take the first and second donut elements in the sequence = ${donuts.take(2)}")
+
+println(s"Take the first, second and third donut elements in the sequence = ${donuts.take(3)}")                                                                          
+
+
+
+output
+
+Step 1: How to initialize a Sequence of donuts
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+Step 2: How to take elements from the sequence using the take function
+
+Take the first donut element in the sequence = List(Plain Donut)
+
+Take the first and second donut elements in the sequence = List(Plain Donut, Strawberry Donut)
+
+Take the first, second and third donut elements in the sequence = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+
+
+TakeRight:
+
+def takeRight(n: Int): Repr
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to take the last N elements using the takeRight function")
+
+println(s"Take the last donut element in the sequence = ${donuts.takeRight(1)}")
+
+println(s"Take the last two donut elements in the sequence = ${donuts.takeRight(2)}")
+
+println(s"Take the last three donut elements in the sequence = ${donuts.takeRight(3)}")
+
+
+
+output
+
+Step 1: How to initialize a Sequence of donuts
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+Step 2: How to take the last N elements using the takeRight function
+
+Take the last donut element in the sequence = List(Glazed Donut)
+
+Take the last two donut elements in the sequence = List(Strawberry Donut, Glazed Donut)
+
+Take the last three donut elements in the sequence = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+
+
+TakeWhile
+
+def takeWhile(p: (A) ⇒ Boolean): Repr
+
+println("Step 1: How to initialize a List of donuts")
+
+
+
+val donuts: Seq[String] = List("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts") 
+
+ 
+
+println("\nStep 2: How to take elements from the List using the takeWhile function")
+
+println(s"Take donut elements which start with letter P = ${donuts.takeWhile(_.charAt(0) == 'P')}")
+
+println("\nStep 3: How to declare a predicate function to be passed-through to the takeWhile function")
+
+
+
+val takeDonutPredicate: (String) =&gt; Boolean = (donutName) =&gt; donutName.charAt(0) == 'P'
+
+println(s"Value function takeDonutPredicate = $takeDonutPredicate")
+
+
+
+println("\nStep 4: How to take elements using the predicate function from Step 3")
+
+println(s"Take elements using function from Step 3 = ${donuts.takeWhile(takeDonutPredicate)}")
+
+
+
+output
+
+Step 1: How to initialize a List of donuts
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+Step 2: How to take elements from the List using the takeWhile function
+
+Take donut elements which start with letter P = List(Plain Donut)
+
+Step 3: How to declare a predicate function to be passed-through to the takeWhile function
+
+Value function takeDonutPredicate = &lt;function1&gt;
+
+Step 4: How to take elements using the predicate function from Step 3
+
+Take elements using function from Step 3 = List(Plain Donut)
+
+                                                                    
+
+transpose:
+
+def transpose[B](implicit asTraversable: (A) ⇒ GenTraversableOnce[B]): CC[CC[B]]
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to initialize donut prices")
+
+val prices: Seq[Double] = Seq(1.50, 2.0, 2.50)
+
+println(s"Elements of prices = $prices")
+
+
+
+println("\nStep 3: How to create a List of donuts and prices")
+
+val donutList = List(donuts, prices)
+
+println(s"Sequence of donuts and prices = $donutList")
+
+
+
+println("\nStep 4: How to pair each element from both donuts and prices Sequences using the transpose function")
+
+println(s"Transposed list of donuts paired with their individual prices = ${donutList.transpose}")
+
+
+
+Output
+
+Step 1: How to initialize a Sequence of donuts
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+Step 2: How to initialize donut prices
+
+Elements of prices = List(1.5, 2, 2.5)
+
+Step 3: How to create a List of donuts and prices
+
+Sequence of donuts and prices = List(List(Plain Donut, Strawberry Donut, Glazed Donut), List(1.5, 2, 2.5))
+
+Step 4: How to pair each element from both donuts and prices Sequences using the transpose function
+
+Transposed list of donuts paired with their individual prices = List(List(Plain Donut, 1.5), List(Strawberry Donut, 2), List(Glazed Donut, 2.5))
+
+
+
+Union
+
+def union(that: GenSet[A]): This
+
+println("Step 1: How to initialize a Set of donuts")
+
+val donuts1: Set[String] = Set("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts1 = $donuts1")
+
+println("\nStep 2: How to initialize another Set of donuts")
+
+val donuts2: Set[String] = Set("Plain Donut", "Chocolate Donut", "Vanilla Donut")
+
+println(s"Elements of donuts2 = $donuts2")
+
+
+
+println("\nStep 3: How to merge two Sets using union function")
+
+println(s"Union of Sets donuts1 and donuts2 = ${donuts1 union donuts2}")
+
+println(s"Union of Sets donuts2 and donuts1 = ${donuts2 union donuts1}")
+
+
+
+println("\nStep 4: How to merge two Sets using ++ function")
+
+println(s"Union of Sets donuts1 and donuts2 = ${donuts1 ++ donuts2}")
+
+println(s"Union of Sets donuts2 and donuts1 = ${donuts2 ++ donuts1}")
+
+
+
+output
+
+Step 1: How to initialize a Set of donuts
+
+Elements of donuts1 = Set(Plain Donut, Strawberry Donut, Glazed Donut)
+
+Step 2: How to initialize another Set of donuts
+
+Elements of donuts2 = Set(Plain Donut, Chocolate Donut, Vanilla Donut)
+
+Step 3: How to merge two Sets using union function
+
+Union of Sets donuts1 and donuts2 = Set(Vanilla Donut, Plain Donut, Chocolate Donut, Strawberry Donut, Glazed Donut)
+
+Union of Sets donuts2 and donuts1 = Set(Vanilla Donut, Plain Donut, Chocolate Donut, Strawberry Donut, Glazed Donut)
+
+Step 4: How to merge two Sets using ++ function
+
+Union of Sets donuts1 and donuts2 = Set(Vanilla Donut, Plain Donut, Chocolate Donut, Strawberry Donut, Glazed Donut)
+
+Union of Sets donuts2 and donuts1 = Set(Vanilla Donut, Plain Donut, Chocolate Donut, Strawberry Donut, Glazed Donut)
+
+
+
+
+
+Unzip:
+
+def unzip[A1, A2](implicit asPair: (A) ⇒ (A1, A2)): (CC[A1], CC[A2])
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to initialize a Sequence of donut prices")
+
+val donutPrices = Seq[Double](1.5, 2.0, 2.5)
+
+println(s"Elements of donut prices = $donutPrices")
+
+println("\nStep 3: How to zip the donuts Sequence with their corresponding prices")
+
+val zippedDonutsAndPrices: Seq[(String, Double)] = donuts zip donutPrices
+
+println(s"Zipped donuts and prices = $zippedDonutsAndPrices")
+
+
+
+println("\nStep 4: How to unzip the zipped donut sequence into separate donuts names and prices Sequences")
+
+val unzipped: (Seq[String], Seq[Double]) = zippedDonutsAndPrices.unzip
+
+println(s"Donut names unzipped = ${unzipped._1}")
+
+println(s"Donut prices unzipped = ${unzipped._2}")
+
+
+
+Output
+
+Step 1: How to initialize a Sequence of donuts
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+Step 2: How to initialize a Sequence of donut prices
+
+Elements of donut prices = List(1.5, 2, 2.5)
+
+Step 3: How to zip the donuts Sequence with their corresponding prices
+
+Zipped donuts and prices = List((Plain Donut,1.5), (Strawberry Donut,2), (Glazed Donut,2.5))
+
+Step 4: How to unzip the zipped donut sequence into separate donuts names and prices Sequences
+
+Donut names unzipped = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+Donut prices unzipped = List(1.5, 2, 2.5)
+
+
+
+Unzip3:
+
+def unzip3[A1, A2, A3](implicit asTriple: (A) ⇒ (A1, A2, A3)): (CC[A1], CC[A2], CC[A3])
+
+
+
+println("Step 1: How to initialize a Sequence of Tuple33 elements")
+
+val donuts: Seq[(String, Double, String)] = Seq(("Plain Donut",1.5,"Tasty"), ("Glazed Donut",2.0,"Very Tasty"), ("Strawberry Donut",2.5,"Very Tasty"))
+
+println(s"Donuts tuple3 elements = $donuts")
+
+
+
+println("\nStep 2: How to call unzip3 function to unzip Tuple3 elements")
+
+val unzipped: (Seq[String], Seq[Double], Seq[String]) = donuts.unzip3
+
+println(s"Unzipped donut names = ${unzipped._1}")
+
+println(s"Unzipped donut prices = ${unzipped._2}")
+
+println(s"Unzipped donut taste = ${unzipped._3}")
+
+
+
+output
+
+Step 1: How to initialize a Sequence of Tuple3 elements
+
+Donuts tuple3 elements = List((Plain Donut,1.5,Tasty), (Glazed Donut,2,Very Tasty), (Strawberry Donut,2.5,Very Tasty))
+
+Step 2: How to call unzip3 function to unzip Tuple3 elements
+
+Unzipped donut names = List(Plain Donut, Glazed Donut, Strawberry Donut)
+
+Unzipped donut prices = List(1.5, 2, 2.5)
+
+Unzipped donut taste = List(Tasty, Very Tasty, Very Tasty)
+
+
+
+View:
+
+def view: TraversableView[A, Repr]
+
+
+
+println("Step 1: How to create a large numeric range and take the first 10 odd numbers")
+
+val largeOddNumberList: List[Int] = (1 to 1000000).filter(_ % 2 != 0).take(10).toList
+
+println(s"\nStep 2: How to lazily create a large numeric range and take the first 10 odd numbers")
+
+val lazyLargeOddNumberList = (1 to 1000000).view.filter(_ % 2 != 0).take(10).toList
+
+println(s"Lazily take the first 100 odd numbers from lazyLargeOddNumberList = ${lazyLargeOddNumberList}")
+
+
+
+output
+
+Step 1: How to create a large numeric range and take the first 10 odd numbers
+
+Step 2: How to lazily create a large numeric range and take the first 10 odd numbers
+
+Lazily take the first 100 odd numbers from lazyLargeOddNumberList = List(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)
+
+
+
+WithFilter:
+
+def withFilter(p: (A) ⇒ Boolean): FilterMonadic[A, Repr]
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = List("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+println("\nStep 2: How to filter elements using the withFilter function")
+
+ donuts
+
+ .withFilter(_.charAt(0) == 'P')
+
+ .foreach(donut =&gt; println(s"Donut starting with letter P = $donut"))
+
+
+
+output
+
+Step 1: How to initialize a Sequence of donuts
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+Step 2: How to filter elements using the withFilter function
+
+Donut starting with letter P = Plain Donut
+
+
+
+ZIP:
+
+def zip[B](that: GenIterable[B]): Iterable[(A, B)]
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+println("\nStep 2: How to initialize a Sequence of donut prices")
+
+val donutPrices: Seq[Double] = Seq(1.5, 2.0, 2.5)
+
+println(s"Elements of donut prices = $donutPrices")
+
+
+
+println("\nStep 3: How to use zip method to zip two collections")
+
+val zippedDonutsAndPrices: Seq[(String, Double)] = donuts zip donutPrices
+
+println(s"Zipped donuts and prices = $zippedDonutsAndPrices")
+
+println("\nStep 4: How to use unzip method to un-merge a zipped collections")
+
+val unzipped: (Seq[String], Seq[Double]) = zippedDonutsAndPrices.unzip
+
+println(s"Donut names unzipped = ${unzipped._1}")
+
+println(s"Donut prices unzipped = ${unzipped._2}")
+
+
+
+output
+
+Step 1: How to initialize a Sequence of donuts
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+Step 2: How to initialize a Sequence of donut prices
+
+Elements of donut prices = List(1.5, 2, 2.5)
+
+Step 3: How to use zip method to zip two collections
+
+Zipped donuts and prices = List((Plain Donut,1.5), (Strawberry Donut,2), (Glazed Donut,2.5))
+
+Step 4: How to use unzip method to un-merge a zipped collections
+
+Donut names unzipped = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+Donut prices unzipped = List(1.5, 2, 2.5)
+
+
+
+zipwithIndex
+
+def zipWithIndex: Iterable[(A, Int)]
+
+
+
+println("Step 1: How to initialize a Sequence of donuts")
+
+val donuts: Seq[String] = Seq("Plain Donut", "Strawberry Donut", "Glazed Donut")
+
+println(s"Elements of donuts = $donuts")
+
+
+
+println("\nStep 2: How to zip the donuts Sequence with their corresponding index using zipWithIndex method")
+
+val zippedDonutsWithIndex: Seq[(String, Int)] = donuts.zipWithIndex
+
+zippedDonutsWithIndex.foreach{ donutWithIndex =&gt;
+
+ println(s"Donut element = ${donutWithIndex._1} is at index = ${donutWithIndex._2}")
+
+}
+
+
+
+Output
+
+Step 1: How to initialize a Sequence of donuts
+
+Elements of donuts = List(Plain Donut, Strawberry Donut, Glazed Donut)
+
+Step 2: How to zip the donuts Sequence with their corresponding index using zipWithIndex method
+
+Donut element = Plain Donut is at index = 0
+
+Donut element = Strawberry Donut is at index = 1
+
+Donut element = Glazed Donut is at index = 2
+
+
+
+
+
+                                                  
+
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
