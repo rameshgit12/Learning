@@ -1,0 +1,55 @@
+
+Mutliline JSON:
+
+
+from pyspark.sql import SparkSession
+
+
+
+sparkdriver=SparkSession.builder.master('local').appName('demoapp4').\
+
+config('spark.jars.packages','mysql:mysql-connector-java:5.1.44').\
+
+getOrCreate()
+
+
+
+df_json=sparkdriver.read.format("json").option('multiLine',True).load("file:///home/hadoop/mul.json")
+
+
+
+df_json.show(5)
+
+
+
+df_json.printSchema()  
+
+       
+
++-----+------+----------+---+----+
+
+|Count|County|First Name|Sex|Year|
+
++-----+------+----------+---+----+
+
+|   27|     A|      JANE|  F|2013|
+
+|   26|     B|      JADE|  M|2013|
+
+|   21|     C|     JAMES|  M|2013|
+
++-----+------+----------+---+----+
+
+
+
+oot
+
+ |-- Count: string (nullable = true)
+
+ |-- County: string (nullable = true)
+
+ |-- First Name: string (nullable = true)
+
+ |-- Sex: string (nullable = true)
+
+ |-- Year: string (nullable = true)
