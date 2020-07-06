@@ -1,0 +1,67 @@
+
+RESTAPI --&gt; reading data through URL
+
+
+
+url--&gt;fetchdata--&gt;file--&gt;dataframe
+
+
+
+import requests
+
+import json
+
+from pyspark.sql import SparkSession
+
+
+
+sparkdriver=SparkSession.builder.master('local').appName('demoapp').\
+
+config('spark.jars.packages','mysql:mysql-connector-java:5.1.44').\
+
+getOrCreate()
+
+
+
+jsonapidata=requests.request('GET','https://api.github.com/users/hadley/orgs')
+
+jsonapidata
+
+
+
+jsondata=jsonapidata.json()
+
+
+
+print(type(len(jsonapidata.json())))
+
+
+
+print(len(jsonapidata.json()))
+
+
+
+file= open("C:\\Users\\Nethra\\Desktop\\restapi.json",'a')
+
+
+
+for record in jsondata:
+
+    file.write("%s\n" %record)
+
+
+
+df_json=sparkdriver.read.format('json').option("multiLine",True).load("C:\\Users\\Nethra\\Desktop\\restapi.json")
+
+
+
+df_update=df_rdd.map(lambda x:(str)x).toDF()
+
+
+
+ df_json.show(2)
+
+
+
+print("success")
+
