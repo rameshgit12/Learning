@@ -1,0 +1,533 @@
+1. How to define a simple class to represent a Donut object
+
+scala&gt; class Donut(name: String, productCode: Long) {
+
+     |
+
+     |  def print = println(s"Donut name = $name, productCode = $productCode")
+
+     |
+
+     | }
+
+defined class Donut
+
+
+
+2. How to create instances of Donut class
+
+Step 2: How to create instances of Donut class
+
+
+
+scala&gt; val glazedDonut = new Donut("Glazed Donut", 1111)
+
+glazedDonut: Donut = Donut@68e62ca4
+
+
+
+scala&gt; val vanillaDonut = new Donut("Vanilla Donut", 2222)
+
+vanillaDonut: Donut = Donut@67a056f1
+
+
+
+ How to call the print function for each of the donut object
+
+
+
+ Step 3: How to call the print function for each of the donut object
+
+
+scala&gt; glazedDonut.print
+
+Donut name = Glazed Donut, productCode = 1111
+
+
+
+scala&gt; vanillaDonut.print
+
+Donut name = Vanilla Donut, productCode = 2222
+
+
+
+ Companion Object
+
+ 1. How to define a simple class to represent a Donut object
+
+
+
+scala&gt; class Donut(name: String, productCode: Long){
+
+     |
+
+     |   def print = println(s"Donut name = $name, productCode = $productCode")
+
+     |
+
+     | }
+
+defined class Donut
+
+
+
+2. How to declare a companion object for the Donut class
+
+he name of the object should be identical to the class name.
+
+
+
+println("Step 1: How to define a simple class to represent a Donut object")
+
+class Donut(name: String, productCode: Long){
+
+  def print = println(s"Donut name = $name, productCode = $productCode")
+
+}
+
+
+
+object Donut {
+
+ def apply(name: String, productCode: Long): Donut = {
+
+   new Donut(name, productCode)
+
+ }
+
+}
+
+
+
+// Exiting paste mode, now interpreting.
+
+Step 1: How to define a simple class to represent a Donut object
+
+defined class Donut
+
+defined object Donut
+
+
+
+Step 1: How to define a simple class to represent a Donut object
+
+defined class Donut
+
+defined object Donut
+
+
+
+scala&gt; val glazedDonut = Donut("Glazed Donut", 1111)
+
+glazedDonut: Donut = Donut@3414a8c3
+
+
+
+scala&gt; val vanillaDonut = Donut("Vanilla Donut", 2222)
+
+vanillaDonut: Donut = Donut@60cf62ad
+
+
+
+scala&gt; glazedDonut.print
+
+
+
+. How to declare apply method of companion object as a factory
+
+class GlazedDonut(name: String) extends Donut(name)
+
+class VanillaDonut(name: String) extends Donut(name)
+
+
+
+object Donut {
+
+ def apply(name: String): Donut = {
+
+  name match {
+
+   case "Glazed Donut" =&gt; new GlazedDonut(name)
+
+   case "Vanilla Donut" =&gt; new VanillaDonut(name)
+
+   case _ =&gt; new Donut(name)
+
+  }
+
+ }
+
+}
+
+
+
+defined class Donut
+
+defined class GlazedDonut
+
+defined class VanillaDonut
+
+defined object Donut
+
+
+
+How to call apply method of companion object which is a factory
+
+
+scala&gt; val glazedDonut = Donut("Glazed Donut")
+
+glazedDonut: Donut = GlazedDonut@10a18e3e
+
+
+
+scala&gt; println(s"The class type of glazedDonut = ${glazedDonut.getClass}")
+
+The class type of glazedDonut = class $line28.$read$$iw$$iw$GlazedDonut
+
+
+
+scala&gt; glazedDonut.print
+
+Donut name = Glazed Donut, productCode = 0
+
+scala&gt;
+
+
+
+scala&gt; val vanillaDonut = Donut("Vanilla Donut")
+
+vanillaDonut: Donut = VanillaDonut@9e02f84
+
+
+
+scala&gt; println(s"The class type of vanillaDonut = ${vanillaDonut.getClass}")
+
+The class type of vanillaDonut = class $line28.$read$$iw$$iw$VanillaDonut
+
+
+
+scala&gt; vanillaDonut.print
+
+Donut name = Vanilla Donut, productCode = 0
+
+
+
+scala&gt; :paste
+
+// Entering paste mode (ctrl-D to finish)
+
+println("Step 1: How to define a simple class to represent a Donut object")
+
+class Donut(name: String, productCode: Option[Long] = None){
+
+def print = println(s"Donut name = $name, productCode = ${productCode.getOrElse(0)}, uuid = ${Donut.uuid}")
+
+}
+
+println("\nStep 2: How to declare fields and values in companion object")
+
+object Donut {
+
+ private val uuid = 1
+
+ def apply(name: String, productCode: Option[Long]): Donut = {
+
+  new Donut(name, productCode)
+
+ }
+
+ def apply(name: String): Donut = {
+
+  new Donut(name)
+
+ }
+
+}
+
+
+
+// Exiting paste mode, now interpreting.
+
+Step 1: How to define a simple class to represent a Donut object
+
+Step 2: How to declare fields and values in companion object
+
+defined class Donut
+
+defined object Donut
+
+
+
+scala&gt;
+
+
+
+scala&gt; println("\nStep 3: How to create instances of the Donut class using the companion object")
+
+
+
+Step 3: How to create instances of the Donut class using the companion object
+
+
+scala&gt; val glazedDonut = Donut("Glazed Donut", Some(1111))
+
+glazedDonut: Donut = Donut@3ea75b05
+
+
+
+scala&gt; val vanillaDonut = Donut("Vanilla Donut")
+
+vanillaDonut: Donut = Donut@63a7781
+
+
+
+scala&gt; glazedDonut.print
+
+
+
+Donut name = Glazed Donut, productCode = 1111, uuid = 1
+
+
+
+scala&gt; vanillaDonut.print
+
+Donut name = Vanilla Donut, productCode = 0, uuid = 1
+
+
+
+1. How to declare a Singleton Object
+
+scala&gt; object DonutShoppingCartCalculator {
+
+     |
+
+     |  println("\nStep 2: How to define a global field")
+
+     |  val discount: Double = 0.01
+
+     |
+
+     |  println("\nStep 3: How to define utility function called calculateTotalCost")
+
+     |  def calculateTotalCost(donuts: List[String]): Double = {
+
+     |   // calculate the cost of donuts
+
+     |   return 1
+
+     |  }
+
+     | }
+
+defined object DonutShoppingCartCalculator
+
+
+
+scala&gt; println(s"Global discount = ${DonutShoppingCartCalculator.discount}")
+
+
+
+Step 2: How to define a global field
+
+Step 3: How to define utility function called calculateTotalCost
+
+Global discount = 0.01
+
+
+
+
+
+scala&gt; println(s"Call to calculateTotalCost function = ${DonutShoppingCartCalculator.calculateTotalCost(List())}")
+
+Call to calculateTotalCost function = 1.0
+
+
+
+println("Step 1: How to define a case class to represent a Donut object")
+
+
+
+case class Donut(name: String, price: Double, productCode: Option[Long] = None)
+
+
+
+Step 2: How to create instances or objects for the Donut case class
+
+
+
+scala&gt; val vanillaDonut: Donut = Donut("Vanilla Donut", 1.50)
+
+vanillaDonut: Donut = Donut(Vanilla Donut,1.5,None)
+
+
+
+scala&gt; val glazedDonut: Donut = Donut("Glazed Donut", 2.0)
+
+glazedDonut: Donut = Donut(Glazed Donut,2.0,None)
+
+
+
+scala&gt; println(s"Vanilla Donut = $vanillaDonut")
+
+Vanilla Donut = Donut(Vanilla Donut,1.5,None)
+
+
+
+scala&gt; println(s"Glazed Donut = $glazedDonut")
+
+Glazed Donut = Donut(Glazed Donut,2.0,None)
+
+
+
+scala&gt; println(s"Vanilla Donut name field = ${vanillaDonut.name}")
+
+Vanilla Donut name field = Vanilla Donut
+
+
+
+scala&gt; println(s"Vanilla Donut price field = ${vanillaDonut.price}")
+
+Vanilla Donut price field = 1.5
+
+
+
+scala&gt; println(s"Vanilla Donut productCode field = ${vanillaDonut.productCode}")
+
+Vanilla Donut productCode field = None
+
+
+
+Step 5: How to define the hashCode and equals method for Donut object
+
+scala&gt; val shoppingCart: Map[Donut, Int] = Map(vanillaDonut -&gt; 4, glazedDonut -&gt; 3)
+
+shoppingCart: Map[Donut,Int] = Map(Donut(Vanilla Donut,1.5,None) -&gt; 4, Donut(Glazed Donut,2.0,None) -&gt; 3)
+
+
+
+scala&gt; println(s"All items in shopping cart = ${shoppingCart}")
+
+All items in shopping cart = Map(Donut(Vanilla Donut,1.5,None) -&gt; 4, Donut(Glazed Donut,2.0,None) -&gt; 3)
+
+
+
+scala&gt; println(s"Quantity of vanilla donuts in shopping cart = ${shoppingCart(vanillaDonut)}")
+
+Quantity of vanilla donuts in shopping cart = 4
+
+
+
+scala&gt; println(s"Quantity of glazed donuts in shopping cart = ${shoppingCart(glazedDonut)}")
+
+Quantity of glazed donuts in shopping cart = 3
+
+
+
+Abstract Class:
+
+scala&gt;  abstract class Donut(name: String) {
+
+     |
+
+     |    def printName: Unit
+
+     |
+
+     | }
+
+defined class Donut
+
+
+
+warning: previously defined object Donut is not a companion to class Donut.
+
+Companions must be defined together; you may wish to use :paste mode for this.
+
+
+
+scala&gt; :paste
+
+// Entering paste mode (ctrl-D to finish)
+
+ class VanillaDonut(name: String) extends Donut(name) {
+
+   override def printName: Unit = println(name)
+
+ }
+
+ object VanillaDonut {
+
+   def apply(name: String): Donut = {
+
+     new VanillaDonut(name)
+
+   }
+
+}
+
+// Exiting paste mode, now interpreting.
+
+defined class VanillaDonut
+
+defined object VanillaDonut
+
+
+
+scala&gt; :paste
+
+// Entering paste mode (ctrl-D to finish)
+
+println("\nStep 3: How to extend abstract class Donut and define another sub-class of Donut called GlazedDonut")
+
+ class GlazedDonut(name: String) extends Donut(name) {
+
+   override def printName: Unit = println(name)
+
+ }
+
+ object GlazedDonut {
+
+   def apply(name: String): Donut = {
+
+     new GlazedDonut(name)
+
+   }
+
+ }
+
+// Exiting paste mode, now interpreting.
+
+
+
+Step 3: How to extend abstract class Donut and define another sub-class of Donut called GlazedDonut
+
+defined class GlazedDonut
+
+defined object GlazedDonut
+
+
+
+scala&gt; val vanillaDonut: Donut = VanillaDonut("Vanilla Donut")
+
+vanillaDonut: Donut = VanillaDonut@66709528
+
+
+
+scala&gt; vanillaDonut.printName
+
+Vanilla Donut
+
+scala&gt;
+
+scala&gt; val glazedDonut: Donut = GlazedDonut("Glazed Donut")
+
+glazedDonut: Donut = GlazedDonut@10742c78
+
+
+
+scala&gt; glazedDonut.printName
+
+Glazed Donut
+
+scala&gt;
+
