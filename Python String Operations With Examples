@@ -1,0 +1,3463 @@
+
+
+
+Python String operations
+
+
+
+
+
+
+
+capitalize() Converts the first character to upper case
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "hello, and welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; y=txt.capitalize()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(y)
+
+
+
+
+
+
+
+Hello, and welcome to my world.
+
+
+
+
+
+
+
+casefold() Converts string into lower case
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, And Welcome To My World!"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.casefold()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+hello, and welcome to my world!
+
+
+
+
+
+
+
+center() Returns a centered string
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "banana"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.center(20)
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+       banana
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "banana"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.center(20, "O")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+OOOOOOObananaOOOOOOO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+count() Returns the number of times a specified value occurs in a string
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "I love apples, apple are my favorite fruit"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.count("apple")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+2
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "I love apples, apple are my favorite fruit"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.count("apple", 10, 24)
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+encode() Returns an encoded version of the string
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "My name is Ståle"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.encode()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+b'My name is St\xc3\xa5le'
+
+
+
+
+
+
+
+endswith() Returns true if the string ends with the specified value
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.endswith("my world.")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.endswith("my world.", 5, 11)
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+False
+
+
+
+
+
+
+
+expandtabs() Sets the tab size of the string
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "H\te\tl\tl\to"
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(txt)
+
+
+
+
+
+
+
+H       e       l       l       o
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(txt.expandtabs())
+
+
+
+
+
+
+
+H       e       l       l       o
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(txt.expandtabs(2))
+
+
+
+
+
+
+
+H e l l o
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(txt.expandtabs(4))
+
+
+
+
+
+
+
+H   e   l   l   o
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(txt.expandtabs(10))
+
+
+
+
+
+
+
+H         e         l         l         o
+
+
+
+
+
+
+
+find() Searches the string for a specified value and returns the position of where it was found
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.find("welcome")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+7
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.find("e")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+1
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(txt.find("q"))
+
+
+
+
+
+
+
+-1
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(txt.index("q"))
+
+
+
+
+
+
+
+Traceback (most recent call last):
+
+
+
+
+
+
+
+  File "", line 1, in
+
+
+
+
+
+
+
+ValueError: substring not found
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+index() Searches the string for a specified value and returns the position of where it was found
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.index("welcome")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+7
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(txt.find("q"))
+
+
+
+
+
+
+
+-1
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(txt.index("q"))
+
+
+
+
+
+
+
+Traceback (most recent call last):
+
+
+
+
+
+
+
+  File "", line 1, in
+
+
+
+
+
+
+
+ValueError: substring not found
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+isalnum() Returns True if all characters in the string are alphanumeric
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Company12"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.isalnum()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Company 12"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.isalnum()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+False
+
+
+
+
+
+
+
+isalpha() Returns True if all characters in the string are in the alphabet
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "CompanyX"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.isalpha()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Company10"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.isalpha()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+False
+
+
+
+
+
+
+
+isdecimal() Returns True if all characters in the string are decimals
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "\u0033" #unicode for 3
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.isdecimal()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; a = "\u0030" #unicode for 0
+
+
+
+
+
+
+
+&gt;&gt;&gt; b = "\u0047" #unicode for G
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(a.isdecimal())
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(b.isdecimal())
+
+
+
+
+
+
+
+False
+
+
+
+
+
+
+
+isdigit() Returns True if all characters in the string are digits
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "50800"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.isdigit()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; a = "\u0030" #unicode for 0
+
+
+
+
+
+
+
+&gt;&gt;&gt; b = "\u00B2" #unicode for ²
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(a.isdigit())
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(b.isdigit())
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+isidentifier() Returns True if the string is an identifier
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Demo"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.isidentifier()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; a = "MyFolder"
+
+
+
+
+
+
+
+&gt;&gt;&gt; b = "Demo002"
+
+
+
+
+
+
+
+&gt;&gt;&gt; c = "2bring"
+
+
+
+
+
+
+
+&gt;&gt;&gt; d = "my demo"
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(a.isidentifier())
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(b.isidentifier())
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(c.isidentifier())
+
+
+
+
+
+
+
+False
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(d.isidentifier())
+
+
+
+
+
+
+
+False
+
+
+
+
+
+
+
+islower() Returns True if all characters in the string are lower case
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "hello world!"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.islower()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; a = "Hello world!"
+
+
+
+
+
+
+
+&gt;&gt;&gt; b = "hello 123"
+
+
+
+
+
+
+
+&gt;&gt;&gt; c = "mynameisPeter"
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(a.islower())
+
+
+
+
+
+
+
+False
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(b.islower())
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(c.islower())
+
+
+
+
+
+
+
+False
+
+
+
+
+
+
+
+isnumeric() Returns True if all characters in the string are numeric
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "565543"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.isnumeric()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; a = "\u0030" #unicode for 0
+
+
+
+
+
+
+
+&gt;&gt;&gt; b = "\u00B2" #unicode for ²
+
+
+
+
+
+
+
+&gt;&gt;&gt; c = "10km2"
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(a.isnumeric())
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(b.isnumeric())
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(c.isnumeric())
+
+
+
+
+
+
+
+False
+
+
+
+
+
+
+
+isprintable() Returns True if all characters in the string are printable
+
+
+
+
+
+
+
+txt = "Hello! Are you #1?"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.isprintable()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello!\nAre you #1?"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.isprintable()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+False
+
+
+
+
+
+
+
+isspace() Returns True if all characters in the string are whitespaces
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "   "
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.isspace()
+
+
+
+
+
+
+
+&gt;&gt;&gt; 
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "   s   "
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.isspace()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+False
+
+
+
+
+
+
+
+istitle() Returns True if the string follows the rules of a title
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, And Welcome To My World!"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.istitle()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; a = "HELLO, AND WELCOME TO MY WORLD"
+
+
+
+
+
+
+
+&gt;&gt;&gt; b = "Hello"
+
+
+
+
+
+
+
+&gt;&gt;&gt; c = "22 Names"
+
+
+
+
+
+
+
+&gt;&gt;&gt; d = "This Is %'!?"
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(a.istitle())
+
+
+
+
+
+
+
+False
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(b.istitle())
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(c.istitle())
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(d.istitle())
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+isupper() Returns True if all characters in the string are upper case
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "THIS IS NOW!"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.isupper()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; a = "Hello World!"
+
+
+
+
+
+
+
+&gt;&gt;&gt; b = "hello 123"
+
+
+
+
+
+
+
+&gt;&gt;&gt; c = "MY NAME IS PETER"
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(a.isupper())
+
+
+
+
+
+
+
+False
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(b.isupper())
+
+
+
+
+
+
+
+False
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(c.isupper())
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+join() Joins the elements of an iterable to the end of the string
+
+
+
+
+
+
+
+&gt;&gt;&gt; myTuple = ("John", "Peter", "Vicky")
+
+
+
+
+
+
+
+&gt;&gt; x = "#".join(myTuple)
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+John#Peter#Vicky
+
+
+
+
+
+
+
+&gt;&gt;&gt; myDict = {"name": "John", "country": "Norway"}
+
+
+
+
+
+
+
+&gt;&gt;&gt; mySeparator = "TEST"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = mySeparator.join(myDict)
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+nameTESTcountry
+
+
+
+
+
+
+
+ljust() Returns a left justified version of the string
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "banana"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.ljust(20)
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x, "is my favorite fruit.")
+
+
+
+
+
+
+
+banana               is my favorite fruit.
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "banana"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.ljust(20, "O")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+bananaOOOOOOOOOOOOOO
+
+
+
+
+
+
+
+lower() Converts a string into lower case
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello my FRIENDS"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.lower()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+hello my friends
+
+
+
+
+
+
+
+lstrip() Returns a left trim version of the string
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "     banana     "
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.lstrip()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print("of all fruits", x, "is my favorite")
+
+
+
+
+
+
+
+of all fruits banana      is my favorite
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = ",,,,,ssaaww.....banana"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.lstrip(",.asw")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+Banana
+
+
+
+
+
+
+
+partition() Returns a tuple where the string is parted into three parts
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "I could eat bananas all day"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.partition("bananas")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+('I could eat ', 'bananas', ' all day')
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "I could eat bananas all day"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.partition("apples")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+('I could eat bananas all day', '', '')
+
+
+
+
+
+
+
+replace() Returns a string where a specified value is replaced with a specified value
+
+
+
+
+
+
+
+I could eat apples all day
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "one one was a race horse, two two was one too."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.replace("one", "three")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+three three was a race horse, two two was three too.
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "one one was a race horse, two two was one too."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.replace("one", "three", 2)
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+three three was a race horse, two two was one too.
+
+
+
+
+
+
+
+rfind() Searches the string for a specified value and returns the last position of where it was found
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Mi casa, su casa."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.rfind("casa")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+12
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.rfind("e")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+13
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.rfind("e", 5, 10)
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+8
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(txt.rfind("q"))
+
+
+
+
+
+
+
+-1
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(txt.rindex("q"))
+
+
+
+
+
+
+
+Traceback (most recent call last):
+
+
+
+
+
+
+
+  File "", line 1, in
+
+
+
+
+
+
+
+ValueError: substring not found
+
+
+
+
+
+
+
+&gt;&gt;&gt; 
+
+
+
+
+
+
+
+rindex()Searches the string for a specified value and returns the last position of where it was found
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Mi casa, su casa."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.rindex("casa")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+12
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.rindex("e")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+13
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.rindex("e", 5, 10)
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+8
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(txt.rfind("q"))
+
+
+
+
+
+
+
+-1
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(txt.rindex("q"))
+
+
+
+
+
+
+
+Traceback (most recent call last):
+
+
+
+
+
+
+
+  File "", line 1, in
+
+
+
+
+
+
+
+ValueError: substring not found
+
+
+
+
+
+
+
+rjust() Returns a right justified version of the string
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "banana"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.rjust(20)
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x, "is my favorite fruit.")
+
+
+
+
+
+
+
+              banana is my favorite fruit.
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "banana"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.rjust(20, "O")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+OOOOOOOOOOOOOObanana
+
+
+
+
+
+
+
+rpartition() Returns a tuple where the string is parted into three parts
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "I could eat bananas all day, bananas are my favorite fruit"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.rpartition("bananas")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+('I could eat bananas all day, ', 'bananas', ' are my favorite fruit')
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "I could eat bananas all day, bananas are my favorite fruit"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.rpartition("apples")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+('', '', 'I could eat bananas all day, bananas are my favorite fruit')
+
+
+
+
+
+
+
+rsplit() Splits the string at the specified separator, and returns a list
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "apple, banana, cherry"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.rsplit(", ")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+['apple', 'banana', 'cherry']
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "apple, banana, cherry"
+
+
+
+
+
+
+
+&gt;&gt;&gt; # setting the max parameter to 1, will return a list with 2 elements!
+
+
+
+
+
+
+
+... x = txt.rsplit(", ", 1)
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+['apple, banana', 'cherry']
+
+
+
+
+
+
+
+rstrip() Returns a right trim version of the string
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "     banana     "
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.rstrip()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print("of all fruits", x, "is my favorite")
+
+
+
+
+
+
+
+of all fruits      banana is my favorite
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "banana,,,,,ssaaww....."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.rstrip(",.asw")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+Banan
+
+
+
+
+
+
+
+split() Splits the string at the specified separator, and returns a list
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "welcome to the jungle"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.split()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+['welcome', 'to', 'the', 'jungle']
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "hello, my name is Peter, I am 26 years old"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.split(", ")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+['hello', 'my name is Peter', 'I am 26 years old']
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "apple#banana#cherry#orange"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.split("#")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+['apple', 'banana', 'cherry', 'orange']
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "apple#banana#cherry#orange"
+
+
+
+
+
+
+
+&gt;&gt;&gt; # setting the max parameter to 1, will return a list with 2 elements!
+
+
+
+
+
+
+
+... x = txt.split("#", 1)
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+['apple', 'banana#cherry#orange']
+
+
+
+
+
+
+
+splitlines() Splits the string at line breaks and returns a list
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Thank you for the music\nWelcome to the jungle"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.splitlines()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+['Thank you for the music', 'Welcome to the jungle']
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Thank you for the music\nWelcome to the jungle"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.splitlines(True)
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+['Thank you for the music\n', 'Welcome to the jungle']
+
+
+
+
+
+
+
+startswith() Returns true if the string starts with the specified value
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.startswith("Hello")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+True
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello, welcome to my world."
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.startswith("wel", 7, 20)
+
+
+
+
+
+
+
+strip() Returns a trimmed version of the string
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "     banana     "
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.strip()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print("of all fruits", x, "is my favorite")
+
+
+
+
+
+
+
+of all fruits banana is my favorite
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = ",,,,,rrttgg.....banana....rrr"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.strip(",.grt")
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+Banana
+
+
+
+
+
+
+
+swapcase() Swaps cases, lower case becomes upper case and vice versa
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello My Name Is PETER"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.swapcase()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+hELLO mY nAME iS peter
+
+
+
+
+
+
+
+title() Converts the first character of each word to upper case
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Welcome to my world"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.title()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+Welcome To My World
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Welcome to my 2nd world"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.title()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+Welcome To My 2Nd World
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "hello b2b2b2 and 3g3g3g"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.title()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+Hello B2B2B2 And 3G3G3G
+
+
+
+
+
+
+
+upper() Converts a string into upper case
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "Hello my friends"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.upper()
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+HELLO MY FRIENDS
+
+
+
+
+
+
+
+zfill() Fills the string with a specified number of 0 values at the beginning+
+
+
+
+
+
+
+
+&gt;&gt;&gt; txt = "50"
+
+
+
+
+
+
+
+&gt;&gt;&gt; x = txt.zfill(10)
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(x)
+
+
+
+
+
+
+
+0000000050
+
+
+
+
+
+
+
+&gt;&gt;&gt; a = "hello"
+
+
+
+
+
+
+
+&gt;&gt;&gt; b = "welcome to the jungle"
+
+
+
+
+
+
+
+&gt;&gt;&gt; c = "10.000"
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(a.zfill(10))
+
+
+
+
+
+
+
+00000hello
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(b.zfill(10))
+
+
+
+
+
+
+
+welcome to the jungle
+
+
+
+
+
+
+
+&gt;&gt;&gt; print(c.zfill(10))
+
+
+
+
+
+
+
+000010.000
+
+
+
