@@ -1,0 +1,1112 @@
+
+
+
+
+MYSQL Integration with Python:
+
+
+
+
+
+
+
+It worked with mysql-workbench-community-8.0.11-rc-winx64.msi (from https://dev.mysql.com/downloads/workbench/, tab Development Releases).
+
+
+
+
+
+cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+
+
+mysql_upgrade -uroot -padmin
+
+
+
+mysql -uroot -padmin
+
+
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'admin'
+
+
+
+
+
+COMMAND SHELL à login PYTHON
+
+
+
+&gt;&gt;&gt;;import mysql.connector
+
+
+
+&gt;&gt;&gt;;mysql.connector.connect(user='root', password='admin',host='127.0.0.1',auth_plugin='mysql_native_password')
+
+
+
+
+
+Create Database:
+
+
+
+&gt;&gt;&gt;;mydb=mysql.connector.connect(user='root', password='admin',host='127.0.0.1',auth_plugin='mysql_native_password')
+
+ 
+
+&gt;&gt;&gt;;mycursor=mydb.cursor()
+
+ 
+
+&gt;&gt;&gt;;mycursor.execute("CREATE DATABASE mydatabase")
+
+
+
+
+
+
+
+Verify the database:
+
+ 
+
+&gt;&gt;&gt;;mycursor.execute("show databases")
+
+ 
+
+&gt;&gt;&gt;;for x in mycursor:
+
+
+
+...     print(x)
+
+
+
+…
+
+('information_schema',)
+
+ 
+
+('mydatabase',)
+
+ 
+
+('mysql',)
+
+ 
+
+('performance_schema',)
+
+ 
+
+('sakila',)
+
+ 
+
+('sys',)
+
+ 
+
+('world',)
+
+ 
+
+Create a new table
+
+ 
+
+&gt;&gt;&gt;;mydb=mysql.connector.connect(user='root', password='admin',host='127.0.0.1',database='mydatabase',auth_plugin='mysql_native_password')
+
+
+
+&gt;&gt;&gt;;mycursor = mydb.cursor()
+
+
+
+&gt;&gt;&gt;;mycursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
+
+ 
+
+Check if Table Exists
+
+
+
+&gt;&gt;&gt;;mycursor.execute("show tables")
+
+
+
+&gt;&gt;&gt;;for x in mycursor:
+
+ ...     print(x)
+
+
+
+…
+
+
+
+('customers',)
+
+ 
+
+Create table with primary key:
+
+
+
+&gt;&gt;&gt;;mycursor.execute("CREATE TABLE customer (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))")
+
+ 
+
+Alter the table with primary key:
+
+
+
+&gt;&gt;&gt;;mycursor.execute("Alter table customers add column id int auto_increment primary key")
+
+ 
+
+&gt;&gt;&gt;;mycursor.execute("show tables")
+
+ 
+
+&gt;&gt;&gt;;for x in mycursor:
+
+
+
+...     print(x)
+
+
+
+('customers',)
+
+ 
+
+Insert the single/multiple records:
+
+
+
+&gt;&gt;&gt;;sql="insert into customers(name,address) values(%s,%s)"
+
+
+
+&gt;&gt;&gt;;val=("John","Highway 21")
+
+ 
+
+&gt;&gt;&gt;;mycursor.execute(sql,val)
+
+ 
+
+&gt;&gt;&gt;;mydb.commit()
+
+ 
+
+&gt;&gt;&gt;;print(mycursor.rowcount,"record inserted.")
+
+
+
+1 record inserted.
+
+
+
+
+
+&gt;&gt;&gt;;sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
+
+
+
+&gt;&gt;&gt;;val = [
+
+
+
+...   ('Peter', 'Lowstreet 4'),
+
+ 
+
+...   ('Amy', 'Apple st 652'),
+
+ 
+
+...   ('Hannah', 'Mountain 21'),
+
+ 
+
+...   ('Michael', 'Valley 345'),
+
+ 
+
+...   ('Sandy', 'Ocean blvd 2'),
+
+ 
+
+...   ('Betty', 'Green Grass 1'),
+
+ 
+
+...   ('Richard', 'Sky st 331'),
+
+
+
+...   ('Susan', 'One way 98'),
+
+ 
+
+...   ('Vicky', 'Yellow Garden 2'),
+
+ 
+
+...   ('Ben', 'Park Lane 38'),
+
+
+
+...   ('William', 'Central st 954'),
+
+ 
+
+...   ('Chuck', 'Main Road 989'),
+
+ 
+
+...   ('Viola', 'Sideway 1633')
+
+
+
+... ]
+
+ 
+
+&gt;&gt;&gt;;mycursor.executemany(sql,val)
+
+ 
+
+&gt;&gt;&gt;;mydb.commit()
+
+ 
+
+&gt;&gt;&gt;;print(mycursor.rowcount,"was inserted.")
+
+ 
+
+13 was inserted.
+
+ 
+
+&gt;&gt;&gt;;
+
+
+
+&gt;&gt;&gt;;val = ("Michelle", "Blue Village")
+
+
+
+&gt;&gt;&gt;;mycursor.execute(sql, val)
+
+
+
+&gt;&gt;&gt;;mydb.commit()
+
+
+
+&gt;&gt;&gt;;print("1 record inserted, ID:", mycursor.lastrowid)
+
+ 
+
+1 record inserted, ID: 15              
+
+
+
+Select from Table
+
+
+
+&gt;&gt;&gt;;import mysql.connector
+
+
+
+&gt;&gt;&gt;;mydb=mysql.connector.connect(user='root', password='admin',host='127.0.0.1',database='mydatabase',auth_plugin='mysql_native_password')
+
+
+
+&gt;&gt;&gt;;mycursor=mydb.cursor()
+
+
+
+&gt;&gt;&gt;;mycursor.execute("select * from customers")
+
+ 
+
+&gt;&gt;&gt;;myresult=mycursor.fetchall()
+
+ 
+
+&gt;&gt;&gt;;for x in myresult:
+
+
+
+...     print(x)
+
+
+
+('John', 'Highway 21', 1)
+
+
+
+('Peter', 'Lowstreet 4', 2)
+
+ 
+
+('Amy', 'Apple st 652', 3)
+
+ 
+
+('Hannah', 'Mountain 21', 4)
+
+ 
+
+('Michael', 'Valley 345', 5)
+
+ 
+
+('Sandy', 'Ocean blvd 2', 6)
+
+ 
+
+('Betty', 'Green Grass 1', 7)
+
+ 
+
+('Richard', 'Sky st 331', 8)
+
+ 
+
+('Susan', 'One way 98', 9)
+
+ 
+
+('Vicky', 'Yellow Garden 2', 10)
+
+ 
+
+('Ben', 'Park Lane 38', 11)
+
+ 
+
+('William', 'Central st 954', 12)
+
+ 
+
+('Chuck', 'Main Road 989', 13)
+
+ 
+
+('Viola', 'Sideway 1633', 14)
+
+ 
+
+('Michelle', 'Blue Village', 15)
+
+ 
+
+
+
+Select the specific columns:
+
+
+
+&gt;&gt;&gt;;mycursor.execute("SELECT name, address FROM customers")
+
+
+
+&gt;&gt;&gt;;myresult = mycursor.fetchall()
+
+&gt;&gt;&gt;;for x in myresult:
+
+ ...   print(x)
+
+
+
+('John', 'Highway 21')
+
+ 
+
+('Peter', 'Lowstreet 4')
+
+ 
+
+('Amy', 'Apple st 652')
+
+ 
+
+('Hannah', 'Mountain 21')
+
+ 
+
+('Michael', 'Valley 345')
+
+
+
+ ('Sandy', 'Ocean blvd 2')
+
+ 
+
+('Betty', 'Green Grass 1')
+
+
+
+ ('Richard', 'Sky st 331')
+
+ 
+
+('Susan', 'One way 98')
+
+ 
+
+('Vicky', 'Yellow Garden 2')
+
+
+
+ ('Ben', 'Park Lane 38')
+
+ 
+
+('William', 'Central st 954')
+
+ 
+
+('Chuck', 'Main Road 989')
+
+ 
+
+('Viola', 'Sideway 1633')
+
+
+
+('Michelle', 'Blue Village')
+
+ 
+
+Using fetchone method:
+
+ 
+
+&gt;&gt;&gt;;mycursor.execute("SELECT * FROM customers")
+
+
+
+&gt;&gt;&gt;;myresult = mycursor.fetchone()
+
+ 
+
+&gt;&gt;&gt;;print(myresult)
+
+ 
+
+('John', 'Highway 21', 1)
+
+
+
+ 
+
+Filter the records:
+
+
+
+&gt;&gt;&gt;;mydb=mysql.connector.connect(user='root', password='admin',host='127.0.0.1',database='mydatabase',auth_plugin='mysql_native_password')
+
+
+
+&gt;&gt;&gt;;mycursor = mydb.cursor()
+
+
+
+&gt;&gt;&gt;;sql = "SELECT * FROM customers WHERE address ='Park Lane 38'"
+
+
+
+&gt;&gt;&gt;;mycursor.execute(sql)
+
+ 
+
+&gt;&gt;&gt;;myresult=mycursor.fetchall()
+
+ 
+
+&gt;&gt;&gt;;for x in myresult:
+
+
+
+...     print(x)
+
+
+
+('Ben', 'Park Lane 38', 11)
+
+ 
+
+LIKE:
+
+
+
+&gt;&gt;&gt;;sql = "SELECT * FROM customers WHERE address LIKE '%way%'"
+
+ 
+
+&gt;&gt;&gt;;mycursor.execute(sql)
+
+
+
+&gt;&gt;&gt;;myresult = mycursor.fetchall()
+
+
+
+&gt;&gt;&gt;;for x in myresult:
+
+ ...   print(x)
+
+
+
+
+
+('John', 'Highway 21', 1)
+
+
+
+('Susan', 'One way 98', 9)
+
+ 
+
+('Viola', 'Sideway 1633', 14)
+
+
+
+ 
+
+&gt;&gt;&gt;;mydb=mysql.connector.connect(user='root', password='admin',host='127.0.0.1',database='mydatabase',auth_plugin='mysql_native_password')
+
+ 
+
+&gt;&gt;&gt;;mycursor = mydb.cursor()
+
+ 
+
+&gt;&gt;&gt;;sql = "SELECT * FROM customers WHERE address = %s"
+
+ 
+
+&gt;&gt;&gt;;adr = ("Yellow Garden 2", )
+
+ 
+
+&gt;&gt;&gt;;mycursor.execute(sql, adr)
+
+
+
+ &gt;&gt;&gt;;myresult = mycursor.fetchall()
+
+ 
+
+&gt;&gt;&gt;;for x in myresult:
+
+
+
+...   print(x)
+
+ 
+
+ ('Vicky', 'Yellow Garden 2', 10)
+
+ 
+
+ORDER BY in ASC(DEFAULT) and DESC
+
+
+
+&gt;&gt;&gt;;mycursor = mydb.cursor()
+
+
+
+&gt;&gt;&gt;;sql="select * from customers order by name"
+
+ 
+
+&gt;&gt;&gt;;mycursor.execute(sql)
+
+
+
+&gt;&gt;&gt;;myresult=mycursor.fetchall()
+
+
+
+&gt;&gt;&gt;;for x in myresult:
+
+ ...     print(x)
+
+
+
+('Amy', 'Apple st 652', 3)
+
+
+
+('Ben', 'Park Lane 38', 11)
+
+ 
+
+('Betty', 'Green Grass 1', 7)
+
+
+
+('Chuck', 'Main Road 989', 13)
+
+ 
+
+('Hannah', 'Mountain 21', 4)
+
+
+
+('John', 'Highway 21', 1)
+
+
+
+('Michael', 'Valley 345', 5)
+
+ 
+
+('Michelle', 'Blue Village', 15)
+
+
+
+('Peter', 'Lowstreet 4', 2)
+
+
+
+('Richard', 'Sky st 331', 8)
+
+
+
+('Sandy', 'Ocean blvd 2', 6)
+
+ ('Susan', 'One way 98', 9)
+
+ ('Vicky', 'Yellow Garden 2', 10)
+
+ ('Viola', 'Sideway 1633', 14)
+
+ ('William', 'Central st 954', 12)
+
+
+
+Descending Order:
+
+ &gt;&gt;&gt;;mycursor=mydb.cursor()
+
+ &gt;&gt;&gt;;sql="select * from customers order by name desc"
+
+ &gt;&gt;&gt;;mycursor.execute(sql)
+
+ &gt;&gt;&gt;;myresult=mycursor.fetchall()
+
+ &gt;&gt;&gt;;for x in myresult:
+
+ ...   print(x)
+
+
+
+('William', 'Central st 954', 12)
+
+ 
+
+('Viola', 'Sideway 1633', 14)
+
+ 
+
+('Vicky', 'Yellow Garden 2', 10)
+
+
+
+('Susan', 'One way 98', 9)
+
+
+
+('Sandy', 'Ocean blvd 2', 6)
+
+
+
+('Richard', 'Sky st 331', 8)
+
+
+
+('Peter', 'Lowstreet 4', 2)
+
+ ('Michelle', 'Blue Village', 15)
+
+ ('Michael', 'Valley 345', 5)
+
+
+
+('John', 'Highway 21', 1)
+
+
+
+('Hannah', 'Mountain 21', 4)
+
+  ('Chuck', 'Main Road 989', 13)
+
+ ('Betty', 'Green Grass 1', 7)
+
+
+
+('Ben', 'Park Lane 38', 11)
+
+
+
+('Amy', 'Apple st 652', 3)
+
+
+
+ Delete the records from the table:
+
+
+
+&gt;&gt;&gt;;mycursor=mydb.cursor()
+
+
+
+&gt;&gt;&gt;;sql="delete from customers where address='Mountain 21'"
+
+
+
+&gt;&gt;&gt;;mycursor.execute(sql)
+
+
+
+&gt;&gt;&gt;;mydb.commit()
+
+
+
+&gt;&gt;&gt;;print(mycursor.rowcount,"record(s) deleted")
+
+
+
+1 record(s) deleted
+
+ 
+
+&gt;&gt;&gt;;mycursor = mydb.cursor()
+
+
+
+&gt;&gt;&gt;;sql = "DELETE FROM customers WHERE address = %s"
+
+
+
+&gt;&gt;&gt;;adr = ("Yellow Garden 2", )
+
+
+
+ &gt;&gt;&gt;;mycursor.execute(sql, adr)
+
+
+
+&gt;&gt;&gt;;mydb.commit()
+
+
+
+&gt;&gt;&gt;;print(mycursor.rowcount, "record(s) deleted")
+
+ 
+
+1 record(s) deleted
+
+
+
+Drop the table:
+
+ &gt;&gt;&gt;;mycursor=mydb.cursor()
+
+ &gt;&gt;&gt;;sql="drop table customer"
+
+ &gt;&gt;&gt;;mycursor.execute(sql)
+
+ &gt;&gt;&gt;;mycursor=mydb.cursor()
+
+ &gt;&gt;&gt;;sql="drop table if exists  customers"
+
+ &gt;&gt;&gt;;mycursor.execute(sql)
+
+ 
+
+Update records:
+
+ &gt;&gt;;mycursor=mydb.cursor()
+
+ &gt;&gt;&gt;;sql="update customers set address='Canyn 123' where address='Valley 345'"
+
+ &gt;&gt;&gt;;mycursor.execute(sql)
+
+ &gt;&gt;&gt;;mydb.commit()
+
+ &gt;&gt;&gt;;print(mycursor.rowcount,"record(s) affected")
+
+
+
+1 record(s) affected
+
+
+
+
+
+&gt;&gt;&gt;; mycursor = mydb.cursor()
+
+ 
+
+&gt;&gt;&gt;;sql = "UPDATE customers SET address = %s WHERE address = %s"
+
+
+
+&gt;&gt;&gt;;val = ("Valley 345", "Canyon 123")
+
+
+
+&gt;&gt;&gt;;mycursor.execute(sql, val)
+
+ 
+
+&gt;&gt;&gt;;mydb.commit()
+
+
+
+&gt;&gt;&gt;;print(mycursor.rowcount, "record(s) affected")
+
+
+
+0 record(s) affected
+
+
+
+
+
+Limit the records:
+
+ &gt;&gt;&gt;;mycursor=mydb.cursor()
+
+ &gt;&gt;&gt;;mycursor.execute("select * from customers limit 5")
+
+ &gt;&gt;&gt;;myresult=mycursor.fetchall()
+
+ &gt;&gt;&gt;;for x in myresult:
+
+ ..     print(x)
+
+
+
+('John', 'Highway 21', 1)
+
+
+
+('Peter', 'Lowstreet 4', 2)
+
+
+
+('Amy', 'Apple st 652', 3)
+
+
+
+('Michael', 'Canyn 123', 5)
+
+
+
+('Sandy', 'Ocean blvd 2', 6)
+
+ 
+
+&gt;&gt;&gt;;mycursor = mydb.cursor()
+
+ &gt;&gt;&gt;;mycursor.execute("SELECT * FROM customers LIMIT 5 OFFSET 2")
+
+ &gt;&gt;&gt;;myresult = mycursor.fetchall()
+
+
+
+&gt;&gt;&gt;;for x in myresult:
+
+ ...   print(x)
+
+ 
+
+('Amy', 'Apple st 652', 3)
+
+
+
+('Michael', 'Canyn 123', 5)
+
+
+
+ ('Sandy', 'Ocean blvd 2', 6)
+
+
+
+ ('Betty', 'Green Grass 1', 7)
+
+
+
+('Richard', 'Sky st 331', 8)
+
+
+
+
+
+Join operation:
+
+
+
+users
+
+ 
+
+
+
+{ id: 1, name: 'John', fav: 154},
+
+{ id: 2, name: 'Peter', fav: 154},
+
+{ id: 3, name: 'Amy', fav: 155},
+
+{ id: 4, name: 'Hannah', fav:},
+
+{ id: 5, name: 'Michael', fav:}
+
+
+
+products
+
+ 
+
+{ id: 154, name: 'Chocolate Heaven' },
+
+{ id: 155, name: 'Tasty Lemons' },
+
+{ id: 156, name: 'Vanilla Dreams' }
+
+ 
+
+mycursor = mydb.cursor()
+
+sql = "SELECT \
+
+  users.name AS user, \
+
+  products.name AS favorite \
+
+  FROM users \
+
+  INNER JOIN products ON users.fav = products.id"
+
+mycursor.execute(sql)
+
+myresult = mycursor.fetchall()
+
+for x in myresult:
+
+  print(x)
+
+
+
+
+
+Output:
+
+ 
+
+C:\Users\My Name&gt;python demo_mysql_inner_join.py
+
+('John', 'Chocolate Heaven')
+
+('Peter', 'Chocolate Heaven')
+
+('Amy', 'Tasty Lemon')
+
+
+
+
+
+
+
+Left outer join:
+
+ 
+
+sql = "SELECT \
+
+  users.name AS user, \
+
+  products.name AS favorite \
+
+  FROM users \
+
+  LEFT JOIN products ON users.fav = products.id"
+
+ 
+
+ 
+
+C:\Users\My Name&gt;python demo_mysql_left_join.py
+
+('John', 'Chocolate Heaven')
+
+('Peter', 'Chocolate Heaven')
+
+('Amy', 'Tasty Lemon')
+
+('Hannah', None)
+
+('Michael', None)
+
+
+
+ 
+
+Right join:
+
+ 
+
+
+
+sql = "SELECT \
+
+  users.name AS user, \
+
+  products.name AS favorite \
+
+  FROM users \
+
+  RIGHT JOIN products ON users.fav = products.id"
+
+
+
+
+
+C:\Users\My Name&gt;python demo_mysql_right_join.py
+
+('John', 'Chocolate Heaven')
+
+('Peter', 'Chocolate Heaven')
+
+('Amy', 'Tasty Lemon')
+
+(None, 'Vanilla Dreams')
+
+
+
+
+
+
+
+
+
+
+
+
+
