@@ -1,0 +1,841 @@
+You can download a free MongoDB database at https://www.mongodb.com.
+
+
+Install the python mangodb driver:
+
+C:\Users\Nethra&gt;python -m pip install pymongo
+
+Collecting pymongo
+
+  Downloading https://files.pythonhosted.org/packages/92/d2/6993655f5c46755cf3385ef8cec78f49909e035777724a0bf02251de733f/pymongo-3.8.0-cp37-cp37m-win32.whl (312kB)
+
+    100% |████████████████████████████████| 317kB 729kB/s
+
+Installing collected packages: pymongo
+
+Successfully installed pymongo-3.8.0
+
+You are using pip version 19.0.3, however version 19.1 is available.
+
+You should consider upgrading via the 'python -m pip install --upgrade pip' command.
+
+
+
+Creating a Database
+
+Important: In MongoDB, a database is not created until it gets content!
+
+Python 3.7.3 (v3.7.3:ef4ec6ed12, Mar 25 2019, 21:26:53) [MSC v.1916 32 bit (Intel)] on win32
+
+Type "help", "copyright", "credits" or "license" for more information.
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb=myclient["mydatabase"]
+
+Check if Database Exists
+
+&gt;&gt;&gt; print(myclient.list_database_names())
+
+['admin', 'config', 'local']
+
+&gt;&gt;&gt; dblist=myclient.list_database_names()
+
+&gt;&gt;&gt; if "mydatabase" in dblist:
+
+...     print("The database exists.")
+
+
+
+Create a collection:
+
+A collection in MongoDB is the same as a table in SQL databases.
+
+Important: In MongoDB, a collection is not created until it gets content!
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol=mydb["customes"]
+
+&gt;&gt;&gt; print(mydb.list_collection_names())
+
+[]
+
+&gt;&gt;&gt; collist=mydb.list_collection_names()
+
+&gt;&gt;&gt; if "customers" in collist:
+
+...     print("The collection exists")
+
+
+Insert Into Collection
+
+A document in MongoDB is the same as a record in SQL databases
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt; mydict = { "name": "John", "address": "Highway 37" }
+
+&gt;&gt;&gt; x=mycol.insert_one(mydict)
+
+Return the _id Field
+
+&gt;&gt;&gt; x = mycol.insert_one(mydict)
+
+&gt;&gt;&gt; print(x.inserted_id)
+
+5cc74f3ae1ceb9d5e0930979
+
+
+
+Insert Multiple Documents
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt;
+
+&gt;&gt;&gt; mylist = [
+
+...   { "name": "Amy", "address": "Apple st 652"},
+
+...   { "name": "Hannah", "address": "Mountain 21"},
+
+...   { "name": "Michael", "address": "Valley 345"},
+
+...   { "name": "Sandy", "address": "Ocean blvd 2"},
+
+...   { "name": "Betty", "address": "Green Grass 1"},
+
+...   { "name": "Richard", "address": "Sky st 331"},
+
+...   { "name": "Susan", "address": "One way 98"},
+
+...   { "name": "Vicky", "address": "Yellow Garden 2"},
+
+...   { "name": "Ben", "address": "Park Lane 38"},
+
+...   { "name": "William", "address": "Central st 954"},
+
+...   { "name": "Chuck", "address": "Main Road 989"},
+
+...   { "name": "Viola", "address": "Sideway 1633"}
+
+... ]
+
+&gt;&gt;&gt;
+
+&gt;&gt;&gt; x = mycol.insert_many(mylist)
+
+&gt;&gt;&gt;
+
+&gt;&gt;&gt; #print list of the _id values of the inserted documents:
+
+... print(x.inserted_ids)
+
+
+
+Insert Multiple Documents, with Specified IDs
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt;
+
+&gt;&gt;&gt; mylist = [
+
+...   { "_id": 1, "name": "John", "address": "Highway 37"},
+
+...   { "_id": 2, "name": "Peter", "address": "Lowstreet 27"},
+
+...   { "_id": 3, "name": "Amy", "address": "Apple st 652"},
+
+...   { "_id": 4, "name": "Hannah", "address": "Mountain 21"},
+
+...   { "_id": 5, "name": "Michael", "address": "Valley 345"},
+
+...   { "_id": 6, "name": "Sandy", "address": "Ocean blvd 2"},
+
+...   { "_id": 7, "name": "Betty", "address": "Green Grass 1"},
+
+...   { "_id": 8, "name": "Richard", "address": "Sky st 331"},
+
+...   { "_id": 9, "name": "Susan", "address": "One way 98"},
+
+...   { "_id": 10, "name": "Vicky", "address": "Yellow Garden 2"},
+
+...   { "_id": 11, "name": "Ben", "address": "Park Lane 38"},
+
+...   { "_id": 12, "name": "William", "address": "Central st 954"},
+
+...   { "_id": 13, "name": "Chuck", "address": "Main Road 989"},
+
+...   { "_id": 14, "name": "Viola", "address": "Sideway 1633"}
+
+... ]
+
+&gt;&gt;&gt;
+
+&gt;&gt;&gt; x = mycol.insert_many(mylist)
+
+&gt;&gt;&gt;
+
+&gt;&gt;&gt; #print list of the _id values of the inserted documents:
+
+... print(x.inserted_ids)
+
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+
+
+
+Python MongoDB Find(Select)
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt;
+
+&gt;&gt;&gt; x = mycol.find_one()
+
+&gt;&gt;&gt;
+
+&gt;&gt;&gt; print(x)
+
+{'_id': ObjectId('5cc74eebe1ceb9d5e0930978'), 'name': 'John', 'address': 'Highway 37'}
+
+
+
+Findall:
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt;
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt;
+
+&gt;&gt;&gt; for x in mycol.find():
+
+...   print(x)
+
+...
+
+{'_id': ObjectId('5cc74eebe1ceb9d5e0930978'), 'name': 'John', 'address': 'Highway 37'}
+
+{'_id': ObjectId('5cc74f3ae1ceb9d5e0930979'), 'name': 'Peter', 'address': 'Lowstreet 27'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097b'), 'name': 'Amy', 'address': 'Apple st 652'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097c'), 'name': 'Hannah', 'address': 'Mountain 21'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097d'), 'name': 'Michael', 'address': 'Valley 345'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097e'), 'name': 'Sandy', 'address': 'Ocean blvd 2'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097f'), 'name': 'Betty', 'address': 'Green Grass 1'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930980'), 'name': 'Richard', 'address': 'Sky st 331'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930981'), 'name': 'Susan', 'address': 'One way 98'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930982'), 'name': 'Vicky', 'address': 'Yellow Garden 2'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930983'), 'name': 'Ben', 'address': 'Park Lane 38'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930984'), 'name': 'William', 'address': 'Central st 954'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930985'), 'name': 'Chuck', 'address': 'Main Road 989'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930986'), 'name': 'Viola', 'address': 'Sideway 1633'}
+
+{'_id': 1, 'name': 'John', 'address': 'Highway 37'}
+
+
+Return Only Some Fields
+
+&gt;&gt;&gt; for x in mycol.find({},{ "_id": 0, "name": 1, "address": 1 }):
+
+...     print(x)
+
+...
+
+{'name': 'John', 'address': 'Highway 37'}
+
+{'name': 'Peter', 'address': 'Lowstreet 27'}
+
+{'name': 'Amy', 'address': 'Apple st 652'}
+
+{'name': 'Hannah', 'address': 'Mountain 21'}
+
+{'name': 'Michael', 'address': 'Valley 345'}
+
+{'name': 'Sandy', 'address': 'Ocean blvd 2'}
+
+{'name': 'Betty', 'address': 'Green Grass 1'}
+
+{'name': 'Richard', 'address': 'Sky st 331'}
+
+{'name': 'Susan', 'address': 'One way 98'}
+
+{'name': 'Vicky', 'address': 'Yellow Garden 2'}
+
+{'name': 'Ben', 'address': 'Park Lane 38'}
+
+{'name': 'William', 'address': 'Central st 954'}
+
+{'name': 'Chuck', 'address': 'Main Road 989'}
+
+{'name': 'Viola', 'address': 'Sideway 1633'}
+
+{'name': 'John', 'address': 'Highway 37'}
+
+{'name': 'Peter', 'address': 'Lowstreet 27'}
+
+{'name': 'Amy', 'address': 'Apple st 652'}
+
+{'name': 'Hannah', 'address': 'Mountain 21'}
+
+{'name': 'Michael', 'address': 'Valley 345'}
+
+{'name': 'Sandy', 'address': 'Ocean blvd 2'}
+
+{'name': 'Betty', 'address': 'Green Grass 1'}
+
+{'name': 'Richard', 'address': 'Sky st 331'}
+
+{'name': 'Susan', 'address': 'One way 98'}
+
+{'name': 'Vicky', 'address': 'Yellow Garden 2'}
+
+{'name': 'Ben', 'address': 'Park Lane 38'}
+
+{'name': 'William', 'address': 'Central st 954'}
+
+{'name': 'Chuck', 'address': 'Main Road 989'}
+
+{'name': 'Viola', 'address': 'Sideway 1633'}
+
+
+
+Excluding the Address:
+
+&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt;
+
+&gt;&gt;&gt; for x in mycol.find({},{ "address": 0 }):
+
+...   print(x)
+
+...
+
+{'_id': ObjectId('5cc74eebe1ceb9d5e0930978'), 'name': 'John'}
+
+{'_id': ObjectId('5cc74f3ae1ceb9d5e0930979'), 'name': 'Peter'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097b'), 'name': 'Amy'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097c'), 'name': 'Hannah'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097d'), 'name': 'Michael'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097e'), 'name': 'Sandy'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097f'), 'name': 'Betty'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930980'), 'name': 'Richard'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930981'), 'name': 'Susan'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930982'), 'name': 'Vicky'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930983'), 'name': 'Ben'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930984'), 'name': 'William'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930985'), 'name': 'Chuck'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930986'), 'name': 'Viola'}
+
+{'_id': 1, 'name': 'John'}
+
+{'_id': 2, 'name': 'Peter'}
+
+{'_id': 3, 'name': 'Amy'}
+
+{'_id': 4, 'name': 'Hannah'}
+
+{'_id': 5, 'name': 'Michael'}
+
+{'_id': 6, 'name': 'Sandy'}
+
+{'_id': 7, 'name': 'Betty'}
+
+{'_id': 8, 'name': 'Richard'}
+
+{'_id': 9, 'name': 'Susan'}
+
+{'_id': 10, 'name': 'Vicky'}
+
+{'_id': 11, 'name': 'Ben'}
+
+{'_id': 12, 'name': 'William'}
+
+{'_id': 13, 'name': 'Chuck'}
+
+{'_id': 14, 'name': 'Viola'}
+
+
+
+Filter the Result:
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt; myquery = { "address": "Park Lane 38" }
+
+&gt;&gt;&gt; mydoc = mycol.find(myquery)
+
+&gt;&gt;&gt; for x in mydoc:
+
+...   print(x)
+
+...
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930983'), 'name': 'Ben', 'address': 'Park Lane 38'}
+
+{'_id': 11, 'name': 'Ben', 'address': 'Park Lane 38'}
+
+
+
+Advanced Query
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt; myquery = { "address": { "$gt": "S" } }
+
+&gt;&gt;&gt; mydoc = mycol.find(myquery)
+
+&gt;&gt;&gt; for x in mydoc:
+
+...   print(x)
+
+...
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097d'), 'name': 'Michael', 'address': 'Valley 345'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930980'), 'name': 'Richard', 'address': 'Sky st 331'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930982'), 'name': 'Vicky', 'address': 'Yellow Garden 2'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930986'), 'name': 'Viola', 'address': 'Sideway 1633'}
+
+{'_id': 5, 'name': 'Michael', 'address': 'Valley 345'}
+
+{'_id': 8, 'name': 'Richard', 'address': 'Sky st 331'}
+
+{'_id': 10, 'name': 'Vicky', 'address': 'Yellow Garden 2'}
+
+{'_id': 14, 'name': 'Viola', 'address': 'Sideway 1633'}
+
+
+
+Filter With Regular Expressions
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt; myquery = { "address": { "$regex": "^S" } }
+
+&gt;&gt;&gt; mydoc = mycol.find(myquery)
+
+&gt;&gt;&gt; for x in mydoc:
+
+...   print(x)
+
+...
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930980'), 'name': 'Richard', 'address': 'Sky st 331'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930986'), 'name': 'Viola', 'address': 'Sideway 1633'}
+
+{'_id': 8, 'name': 'Richard', 'address': 'Sky st 331'}
+
+{'_id': 14, 'name': 'Viola', 'address': 'Sideway 1633'}
+
+
+
+Sort the Result:
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt; mydoc = mycol.find().sort("name")
+
+&gt;&gt;&gt; for x in mydoc:
+
+...   print(x)
+
+...
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097b'), 'name': 'Amy', 'address': 'Apple st 652'}
+
+{'_id': 3, 'name': 'Amy', 'address': 'Apple st 652'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930983'), 'name': 'Ben', 'address': 'Park Lane 38'}
+
+{'_id': 11, 'name': 'Ben', 'address': 'Park Lane 38'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097f'), 'name': 'Betty', 'address': 'Green Grass 1'}
+
+{'_id': 7, 'name': 'Betty', 'address': 'Green Grass 1'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930985'), 'name': 'Chuck', 'address': 'Main Road 989'}
+
+{'_id': 13, 'name': 'Chuck', 'address': 'Main Road 989'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097c'), 'name': 'Hannah', 'address': 'Mountain 21'}
+
+{'_id': 4, 'name': 'Hannah', 'address': 'Mountain 21'}
+
+{'_id': ObjectId('5cc74eebe1ceb9d5e0930978'), 'name': 'John', 'address': 'Highway 37'}
+
+{'_id': 1, 'name': 'John', 'address': 'Highway 37'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097d'), 'name': 'Michael', 'address': 'Valley 345'}
+
+{'_id': 5, 'name': 'Michael', 'address': 'Valley 345'}
+
+{'_id': ObjectId('5cc74f3ae1ceb9d5e0930979'), 'name': 'Peter', 'address': 'Lowstreet 27'}
+
+{'_id': 2, 'name': 'Peter', 'address': 'Lowstreet 27'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930980'), 'name': 'Richard', 'address': 'Sky st 331'}
+
+{'_id': 8, 'name': 'Richard', 'address': 'Sky st 331'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097e'), 'name': 'Sandy', 'address': 'Ocean blvd 2'}
+
+{'_id': 6, 'name': 'Sandy', 'address': 'Ocean blvd 2'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930981'), 'name': 'Susan', 'address': 'One way 98'}
+
+{'_id': 9, 'name': 'Susan', 'address': 'One way 98'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930982'), 'name': 'Vicky', 'address': 'Yellow Garden 2'}
+
+{'_id': 10, 'name': 'Vicky', 'address': 'Yellow Garden 2'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930986'), 'name': 'Viola', 'address': 'Sideway 1633'}
+
+{'_id': 14, 'name': 'Viola', 'address': 'Sideway 1633'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930984'), 'name': 'William', 'address': 'Central st 954'}
+
+{'_id': 12, 'name': 'William', 'address': 'Central st 954'}
+
+
+Sort Descending
+
+sort("name", 1) #ascending
+sort("name", -1) #descending 
+
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt; mydoc = mycol.find().sort("name", -1)
+
+&gt;&gt;&gt;
+
+&gt;&gt;&gt; for x in mydoc:
+
+...   print(x)
+
+...
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930984'), 'name': 'William', 'address': 'Central st 954'}
+
+{'_id': 12, 'name': 'William', 'address': 'Central st 954'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930986'), 'name': 'Viola', 'address': 'Sideway 1633'}
+
+{'_id': 14, 'name': 'Viola', 'address': 'Sideway 1633'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930982'), 'name': 'Vicky', 'address': 'Yellow Garden 2'}
+
+{'_id': 10, 'name': 'Vicky', 'address': 'Yellow Garden 2'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930981'), 'name': 'Susan', 'address': 'One way 98'}
+
+{'_id': 9, 'name': 'Susan', 'address': 'One way 98'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097e'), 'name': 'Sandy', 'address': 'Ocean blvd 2'}
+
+{'_id': 6, 'name': 'Sandy', 'address': 'Ocean blvd 2'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930980'), 'name': 'Richard', 'address': 'Sky st 331'}
+
+{'_id': 8, 'name': 'Richard', 'address': 'Sky st 331'}
+
+{'_id': ObjectId('5cc74f3ae1ceb9d5e0930979'), 'name': 'Peter', 'address': 'Lowstreet 27'}
+
+{'_id': 2, 'name': 'Peter', 'address': 'Lowstreet 27'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097d'), 'name': 'Michael', 'address': 'Valley 345'}
+
+{'_id': 5, 'name': 'Michael', 'address': 'Valley 345'}
+
+{'_id': ObjectId('5cc74eebe1ceb9d5e0930978'), 'name': 'John', 'address': 'Highway 37'}
+
+{'_id': 1, 'name': 'John', 'address': 'Highway 37'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097c'), 'name': 'Hannah', 'address': 'Mountain 21'}
+
+{'_id': 4, 'name': 'Hannah', 'address': 'Mountain 21'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930985'), 'name': 'Chuck', 'address': 'Main Road 989'}
+
+{'_id': 13, 'name': 'Chuck', 'address': 'Main Road 989'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097f'), 'name': 'Betty', 'address': 'Green Grass 1'}
+
+{'_id': 7, 'name': 'Betty', 'address': 'Green Grass 1'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e0930983'), 'name': 'Ben', 'address': 'Park Lane 38'}
+
+{'_id': 11, 'name': 'Ben', 'address': 'Park Lane 38'}
+
+{'_id': ObjectId('5cc75008e1ceb9d5e093097b'), 'name': 'Amy', 'address': 'Apple st 652'}
+
+{'_id': 3, 'name': 'Amy', 'address': 'Apple st 652'}
+
+
+
+Delete Document
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt; myquery = { "address": "Mountain 21" }
+
+&gt;&gt;&gt; mycol.delete_one(myquery)
+
+
+
+
+
+Delete Many Documents
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt; myquery = { "address": {"$regex": "^S"} }
+
+&gt;&gt;&gt; x = mycol.delete_many(myquery)
+
+&gt;&gt;&gt; print(x.deleted_count, " documents deleted.")
+
+4  documents deleted.
+
+
+
+Delete All Documents in a Collection
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt; x = mycol.delete_many({})
+
+&gt;&gt;&gt; print(x.deleted_count, " documents deleted.")
+
+23  documents deleted.
+
+
+
+Delete collection:
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt; mycol.drop()
+
+Update Collection:
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt; myquery = { "address": "Valley 345" }
+
+&gt;&gt;&gt; newvalues = { "$set": { "address": "Canyon 123" } }
+
+&gt;&gt;&gt; mycol.update_one(myquery, newvalues)
+
+
+&gt;&gt;&gt;
+&gt;&gt;&gt; #print "customers" after the update:
+... for x in mycol.find():
+...   print(x)
+...
+{'_id': ObjectId('5cc7589de1ceb9d5e0930997'), 'name': 'Amy', 'address': 'Apple st 652'}
+{'_id': ObjectId('5cc7589de1ceb9d5e0930998'), 'name': 'Hannah', 'address': 'Mountain 21'}
+{'_id': ObjectId('5cc7589de1ceb9d5e0930999'), 'name': 'Michael', 'address': 'Canyon 123'}
+{'_id': ObjectId('5cc7589de1ceb9d5e093099a'), 'name': 'Sandy', 'address': 'Ocean blvd 2'}
+{'_id': ObjectId('5cc7589de1ceb9d5e093099b'), 'name': 'Betty', 'address': 'Green Grass 1'}
+{'_id': ObjectId('5cc7589de1ceb9d5e093099c'), 'name': 'Richard', 'address': 'Sky st 331'}
+{'_id': ObjectId('5cc7589de1ceb9d5e093099d'), 'name': 'Susan', 'address': 'One way 98'}
+{'_id': ObjectId('5cc7589de1ceb9d5e093099e'), 'name': 'Vicky', 'address': 'Yellow Garden 2'}
+{'_id': ObjectId('5cc7589de1ceb9d5e093099f'), 'name': 'Ben', 'address': 'Park Lane 38'}
+{'_id': ObjectId('5cc7589de1ceb9d5e09309a0'), 'name': 'William', 'address': 'Central st 954'}
+{'_id': ObjectId('5cc7589de1ceb9d5e09309a1'), 'name': 'Chuck', 'address': 'Main Road 989'}
+{'_id': ObjectId('5cc7589de1ceb9d5e09309a2'), 'name': 'Viola', 'address': 'Sideway 1633'}
+
+
+
+Update Many:
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt; myquery = { "address": { "$regex": "^S" } }
+
+&gt;&gt;&gt; newvalues = { "$set": { "name": "Minnie" } }
+
+&gt;&gt;&gt; x = mycol.update_many(myquery, newvalues)
+
+&gt;&gt;&gt; print(x.modified_count, "documents updated.")
+
+2 documents updated.
+
+
+
+Limit the Result
+
+&gt;&gt;&gt; import pymongo
+
+&gt;&gt;&gt; myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+&gt;&gt;&gt; mydb = myclient["mydatabase"]
+
+&gt;&gt;&gt; mycol = mydb["customers"]
+
+&gt;&gt;&gt; myresult = mycol.find().limit(5)
+
+&gt;&gt;&gt; #print the result:
+
+... for x in myresult:
+
+...   print(x)
+
+...
+
+{'_id': ObjectId('5cc7589de1ceb9d5e0930997'), 'name': 'Amy', 'address': 'Apple st 652'}
+
+{'_id': ObjectId('5cc7589de1ceb9d5e0930998'), 'name': 'Hannah', 'address': 'Mountain 21'}
+
+{'_id': ObjectId('5cc7589de1ceb9d5e0930999'), 'name': 'Michael', 'address': 'Canyon 123'}
+
+{'_id': ObjectId('5cc7589de1ceb9d5e093099a'), 'name': 'Sandy', 'address': 'Ocean blvd 2'}
+
+{'_id': ObjectId('5cc7589de1ceb9d5e093099b'), 'name': 'Betty', 'address': 'Green Grass 1'}
+
+&gt;&gt;&gt;
+
+
+
+
+
+
+
+
+
