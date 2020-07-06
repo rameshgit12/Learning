@@ -1,0 +1,245 @@
+Scala Strings:
+
+
+
+scala&gt; "Hello, world".getClass.getName
+
+res0: String = java.lang.String
+
+
+
+val s = "Hello, world"
+
+s.length//12
+
+
+
+"hello".foreach(println)
+
+
+
+for (c 
+s.getBytes.foreach(println)
+
+val result = "hello world".filter(_ != 'l')
+result: String = heo word
+
+"scala".drop(2).take(2).capitalize
+
+Testing String Equality
+scala&gt; val s1 = "Hello"
+s1: String = Hello
+
+val s2 = "Hello"
+
+val s3 = "H" + "ello"
+
+s1 == s2
+s1 == s3
+
+val s4: String = null
+
+s3 == s4
+
+s4 == s3
+
+val s1 = "Hello"
+
+val s2 = "hello"
+
+s1.toUpperCase == s2.toUpperCase
+
+val s1: String = null
+
+val s2: String = null
+
+s1.toUpperCase == s2.toUpperCase
+Null pointer exception
+
+
+val a = "Marisa"
+
+val b = "marisa"
+
+a.equalsIgnoreCase(b)
+
+
+1.2. Creating Multiline Strings
+
+
+
+val foo = """This is
+
+a multiline
+
+String""
+
+
+
+This is    a multiline    String
+
+
+
+val foo = """This is
+
+a multiline
+
+String"""
+
+
+
+val speech= """Four score and
+
+|seven years ago""".stripMargin
+
+
+
+val speech= """Four score and#seven years ago""".stripMargin('#')
+
+
+
+Four score and
+
+seven years ago
+
+
+
+val speech= """Four score and
+
+|seven years ago
+
+|our fathers""".stripMargin.replaceAll("\n", " ")
+
+
+
+val s = """This is known as a
+
+|"multiline" string
+
+|or 'heredoc' syntax.""". stripMargin.replaceAll("\n", " ")
+
+
+
+Splitting Strings:
+
+
+
+scala&gt; "hello world".split(" ")res0: Array[java.lang.String] = Array(hello, world)
+
+
+
+cala&gt; "hello world".split(" ").foreach(println)
+
+hello
+
+world
+
+
+
+cala&gt; val s = "eggs, milk, butter, Coco Puffs"
+
+s: java.lang.String = eggs, milk, butter, Coco Puff
+
+
+
+scala&gt; s.split(",")
+
+res0: Array[java.lang.String] = Array(eggs, " milk", " butter", " Coco Puffs"
+
+
+
+s.split(",").map(_.trim)
+
+
+
+"hello world, this is Al".split("\\s+")
+
+
+
+"hello world".split(" ")
+
+
+
+"hello world".split(' ')
+
+
+
+1.4. Substituting Variables into Strings
+
+
+
+ val name = "Fred"
+
+
+
+ val age = 33
+
+
+
+val weight = 200.00
+
+
+
+println(s"$name is $age years old, and weighs $weight pounds.")
+
+
+
+println(s"Age next year: ${age + 1}")
+
+
+
+println(s"You are 33 years old: ${age == 33}")
+
+
+
+case class Student(name: String, score: Int)
+
+
+
+val hannah = Student("Hannah", 95)
+
+
+
+println(s"${hannah.name} has a score of ${hannah.score}")
+
+
+
+println(s"$hannah.name has a score of $hannah.score")
+
+
+
+println(f"$name is $age years old, and weighs $weight%.2f pounds.")
+
+
+
+println(f"$name is $age years old, and weighs $weight%.0f pounds.")
+
+
+
+val out = f"$name, you weigh $weight%.0f pounds."
+
+
+
+s"foo\nbar"
+
+
+
+r"foo\nbar"
+
+
+
+Before 2.11
+
+val s = "%s is %d years old".format(name, age)
+
+
+
+println("%s is %d years old".format(name, age))
+
+
+
+
+
+
+
+
