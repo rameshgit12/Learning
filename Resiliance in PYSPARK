@@ -1,0 +1,151 @@
+Resilience in PYSPARK
+
+
+Resilience:
+
+Lineage
+
+DAG
+
+Persis stance
+
+Resiliance--&gt; Rolling back to the original state
+
+
+
+r1=spark.sparkContext.textFile("")
+
+r2=r1.t1()   r2---&gt;r1 will be released
+
+r3=r2.t2()   r3---&gt;r2 will be released
+
+r4=r3.t3()    r4---&gt;r3 will be released
+
+r5=r4.t4()     r5--&gt;r5 will be released
+
+r5.action()
+
+r6=r3.t5()
+
+r7=r6.t6()
+
+r7.action2()
+
+spark instead of execution a transformation,it remembers the transformation.
+
+spark remembers the dependency of transformation in the form of a graph called as lineage graph
+
+
+
+r5--&gt;r4--&gt;r3--&gt;r2--&gt;r1--&gt;textFile(tracing the dependency)
+
+Execution start from
+
+textfile-&gt;r1-&gt;r2-&gt;r3-&gt;r4-&gt;r5(Execution of the flow--&gt;lineage)
+
+
+
+RDD(tf)--&gt;RDD/DF
+
+DF(tr)--&gt;DF/RDD
+
+
+
+Where does this lineage stored and how long?
+
+memory and as long as the application is active
+
+The execution of the transformation will be represented as a graph called
+
+(DAG-Direct asyclic graph)
+
+
+from pyspark.sql import SparkSession
+
+from pyspark import StorageLevel
+
+
+
+spark=SparkSession.builder.master('local').appName('app').getOrCreate()
+
+r1=spark.sparkContext.textFile("file:///home/hadoop/sample.txt")
+
+
+
+r2=r1.map(lambda x:x.encode('utf-8'))
+
+r2.persist(StorageLevel.MEMORY_ONLY) #r2 wlll be persisted in memory
+
+
+
+r3=r2.filter(lambda x:'SUCCESS' in x)
+
+print(r3.count())
+
+
+
+r4=r2.filter(lambda x:"FAILED" in x)
+
+
+
+print(r4.count())
+
+r2.unpersist()  #to unpersist or release the persisted data
+
+
+
+r3.persist()---#the data will be persisted to memory,de-serialized,1 replication
+
+
+
+Dot--&gt;RDD(Object)
+
+arrow--&gt;transformation
+
+
+
+textFile--&gt;r1--t1--&gt;r2--t2--&gt;r3--t3---&gt;r4--t4--&gt;r5(action)
+
+
+
+textFile--&gt;r1--t1--&gt;r2--t2--&gt;r3--t5--&gt;r6--t6--&gt;r7(Action)
+
+once an action is finished--&gt;the data will be lost
+
+application completion--&gt;
+
+Persistance
+
+------------
+
+reuse of the data--&gt;performance will increase
+
+the data can be persisted in memory and disk,serialized,de-serialized,with or without replication
+
+Perisitance Level:
+
+MEMORY_ONLY
+
+MEMORY_ONLY_SER
+
+DISK_ONLY  --&gt;disk,serial,1 copy
+
+MEMORY_AND_DISK  --&gt;if space in memory that memory ,de-serialized,1 copy
+
+MEMORY_AND_DISK_SER
+
+MEMORY_ONLY_2
+
+MEMORY_ONLY_SER_2
+
+DISK_ONLY_2
+
+MEMORY_AND_DISK_2
+
+MEMORY_AND_DISK_SER_2
+
+OFF_HEAP
+
+
+
+persistance is only a request not a demand
