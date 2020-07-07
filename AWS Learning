@@ -48,6 +48,60 @@ Creating EC2 instance:
 
 
 
+aws console---> aws.amazon.com
+
+Free Tier- 12 months Free Access
+
+New user-creating the account
+old user-New mail id,New Debit card/credit card,Mobile Number
+
+Support Plan Basic(Free)
+             Business
+             Enterprise
+
+Phone number -Verification(suggested to use Mobile Number)
+Payment(CC/DB Card)-verification
+
+
+Region---> 
+
+    Availability Zones(min 2 to max 6 zones)
+
+Latency->The time taken to intiate the process(2s) (4s)
+
+Charges
+-------
+Time
+type (ec2-1 core 1GB,256 core-1920GB RAM)
+Network- 2 GB Video-100 persons vs 2GB video-100,000
+
+AWS monthly calculator
+AWS Pricing calculator
+
+Purchasing Options
+-------------------
+On-Demand
+Reserved  -->Company usage
+Spot Instance
+
+Region-which region
+-----------------------
+100 machine-purchasing-On-demand(default)
+                      -Reserved- 3 years/1 year-2$(advanced pay)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
