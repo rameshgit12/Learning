@@ -22,3 +22,21 @@ Spring Prototype:
 Spring Inheritance (parent):
 
 Spring Lazy Init(Constructor):
+
+Config.xml:
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+<bean id="id1" class="com.surya.spring.HelloSpring">
+    <property name="message"  value="Welcome to Spring"/>
+</bean>
+<bean id="single" class="com.surya.spring.HelloSpring" scope="singleton"/>
+<bean id="prototype" class="com.surya.spring.HelloSpring" scope="prototype"/>
+<bean id="p"  class="com.surya.spring.Parent">
+    <property name="number" value="100"/>
+</bean>
+<bean id="child" class="com.surya.spring.Child" parent="p"/>
+<bean id="first"  class="com.surya.spring.FirstBean" lazy-init="false"/>
+<bean id="second"  class="com.surya.spring.Secondbean" lazy-init="true"/>
+</beans>
