@@ -1,0 +1,118 @@
+Cloud Analytics (Hadoop + Cloud) Course 5th Session
+
+1.Cloud Analytics -future of Hadoop and How cloud is affecting the hadoop 
+space
+
+2. Hadoop 1 Architecture
+
+3. Hadoop components
+
+Components  -MasterNodes  -WorkerNode
+HDFS        -NameNode,    SNN-DN
+Processing   Job Tracker  Task Tracker
+
+4.Hadoop 1 Limitation
+   1.SPOF of Name Node
+   2.High Intensive Job Tracker
+
+Hadoop 2
+   SPOF overcome by High Availability/HDFS Federation
+   High Intensive Job Tracker overcome by YARN-Yet Naother Resource Negotiator
+
+
+Job Tracker-->Resource Manager--->Application Manager
+                                  Schedular
+
+Task Tracker---> Node Manager---->Container
+                                  Application Master
+
+Hadoop1 suppose if you are processing -then it is called as Mapreduce1
+Hadoop2(YARN) if you are processing-then it is called as Mapreduce2
+Hadoop2-HA+Yarn
+Hadoop1-SPOF Name Node
+Hadoop2-HA+Checkpoint server(SNN)+Journal Node Control by Zookeeper
+
+Hadoop1- You can run at a time only job
+Hadoop2-You can run at a time multiple jobs.
+----------------------------------------------------------------------
+The FIFO Scheduler -First in First Out-->Default in Hadoop1-Job1--->Job2
+CapacityScheduler, -Configures capacity in XML file-Job1-1 hr Job2-30 minutes-75%-job1 25% job2, both are running at the same time,
+and FairScheduler-
+-------------------------------------
+OpenSource vs Distribution
+Hadoop opensource-Enterprise  they are not using as it is.
+Hadoop Distribution-Cloudera+Hortonworks ,MapR
+
+local filesystem Commands:
+ls
+ls -lrt
+mkdir test
+ls -ltr test
+cd test
+cat>>a.txt
+ss
+s
+s
+s
+pwd
+cat a.txt
+cp
+mv
+rm
+
+HDFS command:
+hadoop fs -put inputfile.txt test.txt
+hadoop fs -ls /user/cloudera
+hadoop fs -cat /user/cloudera/test.txt
+hadoop fs -mkdir /user/cloudera/todayclass
+hadoop fs -ls /user/cloudera
+hadoop fs -copyFromLocal sample.txt  /user/cloudera/todayclass/simple.txt
+hadoop fs -get /user/cloudera/todayclass/simple.txt bada.txt
+hadoop fs -Ddfs.replication=4 -cp /user/cloudera/todayclass/simple.txt  /user/cloudera/sample.txt
+
+sudo -u hdfs hdfs fsck /user/cloudera/todayclass/ -files -blocks -locations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
