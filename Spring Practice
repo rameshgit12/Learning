@@ -34,6 +34,10 @@ Config.xml:
 <bean id="single" class="com.surya.spring.HelloSpring" scope="singleton"/>
 <bean id="prototype" class="com.surya.spring.HelloSpring" scope="prototype"/>
 <bean id="p"  class="com.surya.spring.Parent">
+
+constructor-arg
+
+ref-> it is refered to another pojo class
     <property name="number" value="100"/>
 </bean>
 <bean id="child" class="com.surya.spring.Child" parent="p"/>
