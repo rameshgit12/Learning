@@ -72,6 +72,99 @@ hadoop fs -Ddfs.replication=4 -cp /user/cloudera/todayclass/simple.txt  /user/cl
 
 sudo -u hdfs hdfs fsck /user/cloudera/todayclass/ -files -blocks -locations
 
+Data sec ops
+Data Engineer
+Job market
+singleskil -DBA-Oracle
+Broader skill
+oracke DBA-No sql, c
+cassandra,hbase,mongo
+db,AWS RDS
+----------------------
+supply and Demand
+supply less-Demand
+supply more-
+----------------------------
+Hadoop 1
+Hadoop components
+Hadoopm1 limitations
+Hadoop 2 HA
+Hadoop 2 high JT-YARN
+Hadoop comments
+
+Fault tolerance
+
+Map reduce:
+----------------------------
+processing logic in hadoop
+
+each block has key-value
+
+Map reduce:
+Data set->splitting as Data block
+
+Each block is 64 MB 
+
+6MB-block more-meta data -network banwidth-
+600MB-
+900 MB data set-600 MB
+600MB-1 block
+300 MB-1 block
+
+900 MB-Default-64Mb-15 block
+       600   -2 block
+       6     -150 block
+
+
+Mapper(key id value-number) -User Define
+
+hfs-sitexml
+dfs.block.size
+13421418
+
+Mapper(key-id value-number)- User Define
+Sort and Shuffling(grouping)
+Reduce and compute
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
