@@ -135,6 +135,54 @@ echo "hello">/var/www/html/index.html
 Template:
 
 
+USA company -->End User Europe-->Chennai
+
+Instance Type
+General Purpose
+Compute optimized
+GPU Instance
+Memory Optimized
+
+T2/T3 unlimited -1CPU-1GB RAM
+
+Real Time-Tag
+-------------------------
+Security Group->Inbound /Outbound Access
+49.207.141.49/32- single machine
+49.207.14.20/24-
+49.207.14.20/16
+49.207.14.20/8
+
+
+yum update -y
+yum install httpd
+systemctl start httpd
+systemctl enable httpd
+
+cd /var/www/html
+vi index.html
+
+
+Meta data http://169.254.169.254/latest/meta-data
+
+dynamic
+-public ,private IP
+Per account 5 static (Elastic IP
+
+user data:
+#!/bin/bash
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo "hello">/var/www/html/index.html
+
+Template:
+
+
+
+
+
 
 
 
