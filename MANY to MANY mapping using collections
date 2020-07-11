@@ -1,0 +1,134 @@
+PFB
+Practiced collection scenario:
+Between LIST to LIST:
+
+package com.surya.spring;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Mul {
+public static void main(String a[])
+{
+List l=new ArrayList();
+List l1=new ArrayList();
+l.add(1);
+l.add(2);
+l.add(3);
+l1.add("banana");
+l1.add("orange");
+display1(l,l1);
+}
+public static void display1(List l,List l1)
+{
+   /*Using Iterator approach between mapping from List to List */
+System.out.println("Using Iterator approach between mapping from List to List");
+    Iterator itr=l.iterator();
+    while(itr.hasNext())
+    {
+    int next=(Integer) itr.next();
+    System.out.println("order id--->"+next+"items---->"+l1.toString()+"Size--->"+l1.size());
+    }
+    System.out.println(" ");
+       System.out.println("using for loop approach between mapping from List to List");
+   /*using for loop approach between mapping from List to List */
+    for(Object obj:l)
+    {
+    System.out.println("order id--->"+obj+"items---->"+l1.toString()+"Size--->"+l1.size());
+    }
+}
+ }
+
+Output:
+
+Using Iterator approach between mapping from List to Map
+order id---> 1 items---->[banana, Orange, Apple, grapes]  Size--->4
+order id---> 2 items---->[tea, Cofee]  Size--->2
+order id---> 3 items---->[chicken, mutton, Fish]  Size--->3
+ 
+using for loop approach between mapping from List to Map
+Key : 1 Value : [banana, Orange, Apple, grapes]  Size--->4
+Key : 2 Value : [tea, Cofee]  Size--->2
+Key : 3 Value : [chicken, mutton, Fish]  Size--->3
+
+
+Between LIST and MAP:
+package com.surya.spring;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+public class Mulm {
+public static void main(String a[])
+{
+List l=new ArrayList();
+List itm1=Arrays.asList("banana","Orange","Apple","grapes");
+List itm2=Arrays.asList("tea","Cofee");
+List itm3=Arrays.asList("chicken","mutton","Fish");
+HashMap<Integer,List> m=new HashMap();
+l.add(1);
+l.add(2);
+l.add(3);
+m.put(1,itm1);
+m.put(2,itm2);
+m.put(3,itm3);
+display(l,m);
+}
+public static void display(List l,HashMap m)
+{
+   /*Using Iterator approach between mapping from List to List */
+System.out.println("Using Iterator approach between mapping from List to Map");
+    Iterator itr=l.iterator();
+    while(itr.hasNext())
+    {
+    int next=(Integer) itr.next();
+    Iterator <Integer> it = m.keySet().iterator();
+    while(it.hasNext())
+    {
+    int key=it.next();
+    if(next==key)
+        System.out.println("order id---> "+next+" items---->"+m.get(key).toString()+"  Size--->"+((List) m.get(key)).size());
+
+    }
+    }
+    System.out.println(" ");
+       System.out.println("using for loop approach between mapping from List to Map");
+    for(Object obj:l)
+    {
+    //Integer obj1=(Integer)obj;
+    //System.out.println(obj1.getClass().getName());
+       for (Object key : m.keySet()) {
+        //Integer obj2=(Integer)key;
+        if(obj==key)
+            System.out.println("Key : " + key.toString() + " Value : " + m.get(key)+"  Size--->"+((List) m.get(key)).size());
+      }}}}
+   
+Output:
+
+Using Iterator approach between mapping from List to Map
+order id---> 1 items---->[banana, Orange, Apple, grapes]  Size--->4
+order id---> 2 items---->[tea, Cofee]  Size--->2
+order id---> 3 items---->[chicken, mutton, Fish]  Size--->3
+ 
+using for loop approach between mapping from List to Map
+Key : 1 Value : [banana, Orange, Apple, grapes]  Size--->4
+Key : 2 Value : [tea, Cofee]  Size--->2
+Key : 3 Value : [chicken, mutton, Fish]  Size--->3
+
+Same Screenshot:
+
+image.png
+
+
+image.png
+
+
+
+
+
+
+
