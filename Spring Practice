@@ -23,6 +23,25 @@ Spring Inheritance (parent):
 
 Spring Lazy Init(Constructor):
 
+ref keyword is used for dependency ingestion-->the alternative is autowiring(it 
+is invoked automatically)
+
+Auto wiring:(Implicit dependency ingestion)
+
+By Name
+By Type
+By Constructor
+auto detect
+
+Aspects oriented programming(AOP)
+before. after,around,throws
+
+
+
+
+
+
+
 Config.xml:
 
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
