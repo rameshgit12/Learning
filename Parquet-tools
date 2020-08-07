@@ -1,0 +1,19 @@
+1. To read metadata - I'll use my home directory(/home/akshay/) to place the parquet files in, which we want to read.
+
+$ cd ~
+get the parquet file in local using the filesystem get command:
+$ hdfs dfs -get /user/akshay/ad/000001_0
+
+Navigate to the directory where your parquet-tools utility script is installed(I have it at /opt/cloudera/parcels/CDH-5.4.4-1.cdh5.4.4/bin)
+
+$ cd /opt/cloudera/parcels/CDH-5.4.4-1.cdh5.4.4/bin
+$ ./parquet-tools meta /home/akshay/000001_0
+
+2. To read data - Since we are already in the directory of parquet-tools utility, use the traditional cat parameter to read the data of parquet file.
+$ ./parquet-tools cat /home/akshay/000001_0
+
+3. To read schema - 
+$ ./parquet-tools schema /home/akshay/000001_0
+
+4. To read top n rows(eg 10 rows)- 
+$ ./parquet-tools head -n 10 /home/akshay/000001_0
